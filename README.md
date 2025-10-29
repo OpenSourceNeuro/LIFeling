@@ -22,7 +22,7 @@ Spiky lives alongside our digital <a href="https://github.com/OpenSourceNeuro/Sp
 </p>
 
 <p style='text-align: justify;'>
-<img align="right" src="/Images/Spiky_3D.jpg" width="246" height="106" >
+<img align="right" src="/Images/Spiky_3D.png" width="246" height="106" >
 
 This project is licensed under the [GNU General Public License v3.0](https://github.com/OpenSourceNeuro/Spikeling-V2/blob/main/LICENSE)<br>
 The hardware is licensed under the [CERN OHL v1.2](https://github.com/OpenSourceNeuro/Spikeling-V2/blob/main/PCB%20-%202.2c/LICENSE)
