@@ -8,22 +8,31 @@
 
 
 ## What is Spiky
+<div>
+<p style='text-align: justify;'>
 Spiky is a low-cost, through-hole–friendly analog circuit that emulates a spiking neuron in real time. It implements the Leaky Integrate-and-Fire (LIF) and Adaptive Exponential Integrate-and-Fire (AdEx) dynamics using op-amps, RC networks, comparators, and simple transistor/MOSFET logic.
 
+
+<p style='text-align: justify;'>
 Students can turn knobs (capacitance, leak, synaptic gains, adaptation, threshold, reset) and immediately see how membrane voltage and spikes change—just like a patch-clamp demo, but on an interactive PCB.
+</p>
 
+<p style='text-align: justify;'>
 Spiky lives alongside our digital <a href="https://github.com/OpenSourceNeuro/Spikeling">Spikeling</a>: project; where Spikeling runs code, Spiky is purely analog, making the math–to–hardware mapping very explicit. (For background on AdEx/LIF and neuromorphic “silicon neurons”, <a href="https://www-sop.inria.fr/members/Mathieu.Desroches/teaching/MTSN/Articles/Brette_Gertsner_JNeurophysiol_2005.pdf?utm_source=chatgpt.com">See the references</a>).
+</p>
 
+<p style='text-align: justify;'>
+<img align="right" src="/Images/Spiky_3D.jpg" width="246" height="106" >
 
 This project is licensed under the [GNU General Public License v3.0](https://github.com/OpenSourceNeuro/Spikeling-V2/blob/main/LICENSE)<br>
 The hardware is licensed under the [CERN OHL v1.2](https://github.com/OpenSourceNeuro/Spikeling-V2/blob/main/PCB%20-%202.2c/LICENSE)
+</p>
+</div>
+
+<br>
 
 ***
 
-<img align="right" src="/Images/Spiky_3D.jpg" width="400" height="250" >
-
-<br>
-</br>
 
 ## Objectives
 - **Pedagogy** first: Make classical neuron equations tangible with knobs, LEDs, and BNC/TTL I/O so learners can fit parameters from data and build intuition.
