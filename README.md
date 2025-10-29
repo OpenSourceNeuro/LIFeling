@@ -20,7 +20,7 @@ The hardware is licensed under the [CERN OHL v1.2](https://github.com/OpenSource
 
 ***
 
-<img align="center" src="Images/Spiky_3D" width="400" height="250" >
+<img align="center" src="/Images/Spiky_3D" width="400" height="250" >
 
 ## Objectives
 - **Pedagogy** first: Make classical neuron equations tangible with knobs, LEDs, and BNC/TTL I/O so learners can fit parameters from data and build intuition.
