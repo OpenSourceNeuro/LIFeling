@@ -1,4 +1,4 @@
-<p align="left"><img width="270" height="170" src="https://github.com/OpenSourceNeuro/Spikeling-V2/blob/main/Images/SpikyLogo.png">
+<p align="left"><img width="270" height="170" src="/Images/SpikyLogo.png">
 
 <h1 align="center"> Spiky </h1></p>
 <h3 align="center">  An analog LIF/AdEx “silicon neuron” for teaching & exploration</h3></p>
@@ -20,6 +20,7 @@ The hardware is licensed under the [CERN OHL v1.2](https://github.com/OpenSource
 
 ***
 
+<img align="center" src="Images/Spiky_3D" width="400" height="250" >
 
 ## Objectives
 - **Pedagogy** first: Make classical neuron equations tangible with knobs, LEDs, and BNC/TTL I/O so learners can fit parameters from data and build intuition.
