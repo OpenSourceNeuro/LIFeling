@@ -1,0 +1,171 @@
+(kicad_symbol_lib
+	(version 20241209)
+	(generator "kicad_symbol_editor")
+	(generator_version "9.0")
+	(symbol "root_0_XFL3012-222MEC_"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "*IND-SMD_L3.0-W3.0_XFL3012*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "root_0_XFL3012-222MEC__1_0"
+			(circle
+				(center -4.572 0.762)
+				(radius 0.127)
+				(stroke
+					(width 0)
+					(type solid)
+					(color 0 0 0 1)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(arc
+				(start -4.064 0.0051)
+				(mid -3.0429 1.016)
+				(end -2.032 -0.0051)
+				(stroke
+					(width 0)
+					(type solid)
+					(color 160 0 0 1)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -2.032 0.0051)
+				(mid -1.0109 1.016)
+				(end 0 -0.0051)
+				(stroke
+					(width 0)
+					(type solid)
+					(color 160 0 0 1)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 0.0051)
+				(mid 1.0211 1.016)
+				(end 2.032 -0.0051)
+				(stroke
+					(width 0)
+					(type solid)
+					(color 160 0 0 1)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 2.032 0.0051)
+				(mid 3.0531 1.016)
+				(end 4.064 -0.0051)
+				(stroke
+					(width 0)
+					(type solid)
+					(color 160 0 0 1)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 1.016)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 0 180)
+				(length 1.016)
+				(name "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+)
