@@ -1,0 +1,17 @@
+
+Note: No compatibility mode selected!
+
+warning, can't find model 'd_tlv_input_clamp' from line
+    dclamp_spike_gnd 0 spike_pulse d_tlv_input_clamp
+
+Circuit: * spiky_lui2 vm simulation: stage=threshold_reset
+
+Ignoring attempt to set a default for read-only instance parameter cgd in:
+  .model bss138_fallback nmos(level=1 vto=1.2 kp=2m lambda=0.02 rd=2 rs=2 cgd=20p cgs=20p)
+Ignoring attempt to set a default for read-only instance parameter cgs in:
+  .model bss138_fallback nmos(level=1 vto=1.2 kp=2m lambda=0.02 rd=2 rs=2 cgd=20p cgs=20p)
+Error on line 61 or its substitute:
+  dclamp_spike_gnd 0 spike_pulse d_tlv_input_clamp
+could not find a valid modelname
+    Simulation interrupted due to error!
+
