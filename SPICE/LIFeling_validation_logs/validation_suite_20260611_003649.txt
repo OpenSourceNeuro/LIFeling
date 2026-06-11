@@ -1,0 +1,17 @@
+﻿Spiky-Lu.i SPICE validation suite
+START: 2026-06-11T00:36:49.9213605+02:00
+PythonExe: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\.venv\Scripts\python.exe
+SpicePy: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\Spice.py
+WorkDir: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE
+NgspiceBinary: auto
+ContinueOnError: False
+SkipRV123Sweep: False
+SkipRV5Sweep: False
+SkipLongSynapseSweep: False
+
+Removed runs: buffered V_Leak_Ref_Max validation; legacy direct-reference comparison
+
+STATUS	RUN	EXIT/ELAPSED/LOG
+FAIL	01_00_python_compile	Exception=Cannot validate argument on parameter 'ArgumentList'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again.
+
+ABORTED: 2026-06-11T00:36:50.0850269+02:00

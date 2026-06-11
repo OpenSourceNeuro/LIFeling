@@ -1,0 +1,9 @@
+﻿RUN: 01_00_python_compile
+START: 2026-06-11T16:28:38.9217211+02:00
+WORKDIR: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE
+COMMAND: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\.venv\Scripts\python.exe -m py_compile C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\Spice.py
+
+
+END: 2026-06-11T16:28:41.1626957+02:00
+ELAPSED: 2.2 s
+EXIT_CODE: 0

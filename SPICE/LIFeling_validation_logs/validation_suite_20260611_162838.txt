@@ -1,0 +1,48 @@
+﻿Spiky-Lu.i SPICE validation suite
+START: 2026-06-11T16:28:38.7955466+02:00
+PythonExe: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\.venv\Scripts\python.exe
+SpicePy: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\Spice.py
+WorkDir: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE
+NgspiceBinary: auto
+ContinueOnError: False
+SkipRV123Sweep: False
+SkipRV5Sweep: False
+SkipLongSynapseSweep: False
+
+Removed runs: buffered V_Leak_Ref_Max validation; legacy direct-reference comparison
+
+STATUS	RUN	EXIT/ELAPSED/LOG
+PASS	01_00_python_compile	Exit=0	Elapsed=2.2s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\01_00_python_compile.console.txt
+PASS	02_01_threshold_reset_ap_spikeout	Exit=0	Elapsed=84.0s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\02_01_threshold_reset_ap_spikeout.console.txt
+PASS	03_02_full_lif_no_synapse_vmext_peak	Exit=0	Elapsed=285.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\03_02_full_lif_no_synapse_vmext_peak.console.txt
+PASS	04_03_full_lif_no_synapse_debug	Exit=0	Elapsed=217.6s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\04_03_full_lif_no_synapse_debug.console.txt
+PASS	05_04_cold_start_no_synapse	Exit=0	Elapsed=216.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\05_04_cold_start_no_synapse.console.txt
+PASS	06_05_synapses_present_no_pulses	Exit=0	Elapsed=310.2s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\06_05_synapses_present_no_pulses.console.txt
+PASS	07_06_synapses_simultaneous_low_stress	Exit=0	Elapsed=314.8s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\07_06_synapses_simultaneous_low_stress.console.txt
+PASS	08_07_synapses_simultaneous_high_stress	Exit=0	Elapsed=316.4s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\08_07_synapses_simultaneous_high_stress.console.txt
+PASS	09_08_stimulus_dc_positive	Exit=0	Elapsed=175.5s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\09_08_stimulus_dc_positive.console.txt
+PASS	10_rv1_behaviour_0p3	Exit=0	Elapsed=190.1s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\10_rv1_behaviour_0p3.console.txt
+PASS	11_rv1_behaviour_0p5	Exit=0	Elapsed=185.8s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\11_rv1_behaviour_0p5.console.txt
+PASS	12_rv1_behaviour_0p7	Exit=0	Elapsed=215.5s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\12_rv1_behaviour_0p7.console.txt
+PASS	13_rv1_behaviour_0p9	Exit=0	Elapsed=214.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\13_rv1_behaviour_0p9.console.txt
+PASS	14_rv2_behaviour_0p2	Exit=0	Elapsed=225.6s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\14_rv2_behaviour_0p2.console.txt
+PASS	15_rv2_behaviour_0p5	Exit=0	Elapsed=232.7s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\15_rv2_behaviour_0p5.console.txt
+PASS	16_rv2_behaviour_0p8	Exit=0	Elapsed=217.4s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\16_rv2_behaviour_0p8.console.txt
+PASS	17_rv3_behaviour_0p2	Exit=0	Elapsed=222.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\17_rv3_behaviour_0p2.console.txt
+PASS	18_rv3_behaviour_0p5	Exit=0	Elapsed=210.3s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\18_rv3_behaviour_0p5.console.txt
+PASS	19_rv3_behaviour_0p8	Exit=0	Elapsed=200.6s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\19_rv3_behaviour_0p8.console.txt
+PASS	20_rv3_behaviour_1p0	Exit=0	Elapsed=204.5s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\20_rv3_behaviour_1p0.console.txt
+PASS	21_rv5_syn_decay_0p1	Exit=0	Elapsed=301.5s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\21_rv5_syn_decay_0p1.console.txt
+PASS	22_rv5_syn_decay_0p3	Exit=0	Elapsed=299.7s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\22_rv5_syn_decay_0p3.console.txt
+PASS	23_rv5_syn_decay_0p5	Exit=0	Elapsed=323.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\23_rv5_syn_decay_0p5.console.txt
+PASS	24_rv5_syn_decay_0p8	Exit=0	Elapsed=360.0s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\24_rv5_syn_decay_0p8.console.txt
+PASS	25_rv5_syn_decay_1p0	Exit=0	Elapsed=371.4s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\25_rv5_syn_decay_1p0.console.txt
+PASS	26_synapse_staggered_rv0p1	Exit=0	Elapsed=386.7s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\26_synapse_staggered_rv0p1.console.txt
+PASS	27_synapse_staggered_rv0p3	Exit=0	Elapsed=417.7s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\27_synapse_staggered_rv0p3.console.txt
+PASS	28_synapse_staggered_rv0p5	Exit=0	Elapsed=350.9s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\28_synapse_staggered_rv0p5.console.txt
+PASS	29_synapse_staggered_rv0p8	Exit=0	Elapsed=294.0s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\29_synapse_staggered_rv0p8.console.txt
+PASS	30_synapse_staggered_rv1p0	Exit=0	Elapsed=303.5s	Log=C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\spiky_validation_logs\30_synapse_staggered_rv1p0.console.txt
+
+END: 2026-06-11T18:36:14.2342713+02:00
+TOTAL RUNS: 30
+FAILED RUNS: 0

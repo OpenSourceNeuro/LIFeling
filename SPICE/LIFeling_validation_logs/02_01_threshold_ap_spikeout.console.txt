@@ -1,0 +1,5 @@
+﻿RUN: 02_01_threshold_ap_spikeout
+START: 2026-06-11T00:39:12.2265028+02:00
+WORKDIR: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE
+COMMAND: C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\.venv\Scripts\python.exe C:\Users\mzimm\Documents\GitHub\Spiky-Lu.i\SPICE\Spice.py --stage threshold --trace-set core --backend ngspice-cli --ngspice-binary auto --supply-mode coin --vbat 3 --rbat 50 --startup-mode operating --ignore-start-ms 20 --rv1 0.7 --rv2 0.5 --rv3 0.8 --cmem-mode rv4 --rv4 0.3 --tstep 1u --maxstep 1u --tstop 300m
+
