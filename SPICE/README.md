@@ -200,13 +200,13 @@ The script can search automatically:
 You can also pass the full path explicitly. On Windows, prefer quoting the path and using either escaped backslashes or forward slashes:
 
 ```powershell
---ngspice-binary "C:/Users/mzimm/Documents/Spice64/bin/ngspice.exe"
+--ngspice-binary "./Spice64/bin/ngspice.exe"
 ```
 
 or:
 
 ```powershell
---ngspice-binary "C:\Users\mzimm\Documents\Spice64\bin\ngspice.exe"
+--ngspice-binary ".\Spice64\bin\ngspice.exe"
 ```
 
 You can also define an environment variable named `NGSPICE_BINARY` pointing to `ngspice.exe`.
