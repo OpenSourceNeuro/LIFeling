@@ -1,16 +1,16 @@
 <p align="left"><img width="270" height="170" src="/Images/SpikyLogo.png">
 
-<h1 align="center"> Spiky </h1></p>
+<h1 align="center"> LIFeling </h1></p>
 <h3 align="center">  An analog LIF/AdEx “silicon neuron” for teaching & exploration</h3></p>
 <p align="center"><h6 align="right">developed by M.J.Y. Zimmermann, A. Koumoundourou</h6></p>
 
 <br></br>
 
 
-## What is Spiky
+## What is LIFeling
 <div>
 <p style='text-align: justify;'>
-Spiky is a low-cost, through-hole–friendly analog circuit that emulates a spiking neuron in real time. It implements the Leaky Integrate-and-Fire (LIF) and Adaptive Exponential Integrate-and-Fire (AdEx) dynamics using op-amps, RC networks, comparators, and simple transistor/MOSFET logic.
+LIFeling is a low-cost, through-hole–friendly analog circuit that emulates a spiking neuron in real time. It implements the Leaky Integrate-and-Fire (LIF) and Adaptive Exponential Integrate-and-Fire (AdEx) dynamics using op-amps, RC networks, comparators, and simple transistor/MOSFET logic.
 
 
 <p style='text-align: justify;'>
@@ -18,7 +18,7 @@ Students can turn knobs (capacitance, leak, synaptic gains, adaptation, threshol
 </p>
 
 <p style='text-align: justify;'>
-Spiky lives alongside our digital <a href="https://github.com/OpenSourceNeuro/Spikeling">Spikeling</a>: project; where Spikeling runs code, Spiky is purely analog, making the math–to–hardware mapping very explicit. (For background on AdEx/LIF and neuromorphic “silicon neurons”, <a href="https://www-sop.inria.fr/members/Mathieu.Desroches/teaching/MTSN/Articles/Brette_Gertsner_JNeurophysiol_2005.pdf?utm_source=chatgpt.com">See the references</a>).
+LIFeling lives alongside our digital <a href="https://github.com/OpenSourceNeuro/Spikeling">Spikeling</a>: project; where Spikeling runs code, LIFeling is purely analog, making the math–to–hardware mapping very explicit. (For background on AdEx/LIF and neuromorphic “silicon neurons”, <a href="https://www-sop.inria.fr/members/Mathieu.Desroches/teaching/MTSN/Articles/Brette_Gertsner_JNeurophysiol_2005.pdf?utm_source=chatgpt.com">See the references</a>).
 </p>
 
 <p style='text-align: justify;'>
@@ -51,7 +51,7 @@ The hardware is licensed under the [CERN OHL v1.2](https://github.com/OpenSource
 - **Interoperability**: Optional headers/IO for stimulus/recording from microcontrollers (ESP32/Arduino) and classroom oscilloscopes.
 
 
-## The models Spiky implements
+## The models LIFeling implements
 
 #### 1) Leaky Integrate-and-Fire (LIF)
 
