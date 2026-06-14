@@ -10219,7 +10219,7 @@
 	)
 	(text "Buffered peak injection source"
 		(exclude_from_sim no)
-		(at 179.07 311.785 0)
+		(at 110.49 184.15 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10489,7 +10489,7 @@
 	)
 	(text "Connectors"
 		(exclude_from_sim no)
-		(at 25.4 228.6 0)
+		(at 25.4 264.16 0)
 		(effects
 			(font
 				(size 3 3)
@@ -10789,7 +10789,7 @@
 		(uuid "082f7b46-4bf7-4a63-b3a9-0f7f94e88133")
 	)
 	(junction
-		(at 79.375 364.49)
+		(at 145.415 228.6)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0ab62be3-2860-4af0-accb-fa886ba0c95b")
@@ -10837,13 +10837,7 @@
 		(uuid "15a95048-aec6-42e0-b2f2-a87ff0f90be2")
 	)
 	(junction
-		(at 66.04 193.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1967f071-d723-4936-85b7-1b4b8d934b7f")
-	)
-	(junction
-		(at 167.64 50.8)
+		(at 50.8 228.6)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "198534f0-dca4-416d-9221-f6350231533b")
@@ -10913,6 +10907,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "32aa2a2d-5d42-41ac-bf47-88aacf979c6f")
+	)
+	(junction
+		(at 135.89 193.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "32c34f2c-c6ed-4376-926a-034073fa11ba")
 	)
 	(junction
 		(at 476.25 292.1)
@@ -11089,6 +11089,12 @@
 		(uuid "747822a7-4170-4ec8-9679-b96849199437")
 	)
 	(junction
+		(at 66.04 193.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "767d467e-5466-406f-a2c9-bab204c85e7d")
+	)
+	(junction
 		(at 454.66 212.725)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11171,12 +11177,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "89555638-b727-4858-ba61-1ddaa3e0b3de")
-	)
-	(junction
-		(at 203.2 322.58)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8ce87554-ac0b-416e-87ec-985052498ed7")
 	)
 	(junction
 		(at 406.4 53.34)
@@ -11389,7 +11389,7 @@
 		(uuid "c5bbe817-7407-4ff2-875d-f17e04f988cc")
 	)
 	(junction
-		(at 175.26 50.8)
+		(at 58.42 228.6)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c609235e-8042-473e-a660-bd400ce4c1af")
@@ -11776,7 +11776,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 261.62) (xy 45.974 261.62)
+			(xy 40.386 297.18) (xy 43.18 297.18)
 		)
 		(stroke
 			(width 0)
@@ -11816,7 +11816,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 320.04) (xy 177.8 312.42)
+			(xy 110.49 190.5) (xy 110.49 184.15)
 		)
 		(stroke
 			(width 0)
@@ -11876,7 +11876,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 50.8) (xy 167.64 50.8)
+			(xy 58.42 228.6) (xy 50.8 228.6)
 		)
 		(stroke
 			(width 0)
@@ -11996,7 +11996,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 322.58) (xy 205.74 322.58)
+			(xy 135.89 193.04) (xy 138.43 193.04)
 		)
 		(stroke
 			(width 0)
@@ -12026,7 +12026,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.272 246.38) (xy 149.352 246.38)
+			(xy 142.24 281.94) (xy 147.32 281.94)
 		)
 		(stroke
 			(width 0)
@@ -12126,7 +12126,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 264.16) (xy 45.974 264.16)
+			(xy 40.386 299.72) (xy 43.18 299.72)
 		)
 		(stroke
 			(width 0)
@@ -12276,7 +12276,7 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 364.49) (xy 79.375 364.49)
+			(xy 142.24 228.6) (xy 145.415 228.6)
 		)
 		(stroke
 			(width 0)
@@ -12406,7 +12406,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 320.04) (xy 180.34 320.04)
+			(xy 110.49 190.5) (xy 113.03 190.5)
 		)
 		(stroke
 			(width 0)
@@ -12926,7 +12926,7 @@
 	)
 	(wire
 		(pts
-			(xy 42.672 241.3) (xy 45.466 241.3)
+			(xy 40.386 276.86) (xy 43.18 276.86)
 		)
 		(stroke
 			(width 0)
@@ -13066,7 +13066,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.472 241.3) (xy 96.266 241.3)
+			(xy 91.186 276.86) (xy 93.98 276.86)
 		)
 		(stroke
 			(width 0)
@@ -13136,7 +13136,7 @@
 	)
 	(wire
 		(pts
-			(xy 79.375 350.266) (xy 79.375 353.06)
+			(xy 145.415 214.376) (xy 145.415 217.17)
 		)
 		(stroke
 			(width 0)
@@ -13156,7 +13156,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 50.8) (xy 175.26 50.8)
+			(xy 63.5 228.6) (xy 58.42 228.6)
 		)
 		(stroke
 			(width 0)
@@ -13306,7 +13306,7 @@
 	)
 	(bus
 		(pts
-			(xy 15.24 218.44) (xy 177.8 218.44)
+			(xy 15.24 254) (xy 177.8 254)
 		)
 		(stroke
 			(width 0)
@@ -13326,7 +13326,7 @@
 	)
 	(wire
 		(pts
-			(xy 42.672 246.38) (xy 47.752 246.38)
+			(xy 40.386 281.94) (xy 45.466 281.94)
 		)
 		(stroke
 			(width 0)
@@ -13336,7 +13336,7 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 186.69) (xy 66.04 186.69)
+			(xy 35.56 184.15) (xy 66.04 184.15)
 		)
 		(stroke
 			(width 0)
@@ -13666,7 +13666,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 369.57) (xy 55.88 369.57)
+			(xy 111.76 233.68) (xy 121.92 233.68)
 		)
 		(stroke
 			(width 0)
@@ -13756,7 +13756,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 264.16) (xy 96.774 264.16)
+			(xy 91.186 299.72) (xy 93.98 299.72)
 		)
 		(stroke
 			(width 0)
@@ -13846,7 +13846,7 @@
 	)
 	(wire
 		(pts
-			(xy 42.672 238.76) (xy 45.466 238.76)
+			(xy 40.386 274.32) (xy 43.18 274.32)
 		)
 		(stroke
 			(width 0)
@@ -13926,7 +13926,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 367.03) (xy 55.88 367.03)
+			(xy 111.76 231.14) (xy 121.92 231.14)
 		)
 		(stroke
 			(width 0)
@@ -14106,7 +14106,7 @@
 	)
 	(wire
 		(pts
-			(xy 79.375 363.22) (xy 79.375 364.49)
+			(xy 145.415 227.33) (xy 145.415 228.6)
 		)
 		(stroke
 			(width 0)
@@ -14116,7 +14116,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 50.8) (xy 165.1 50.8)
+			(xy 50.8 228.6) (xy 48.26 228.6)
 		)
 		(stroke
 			(width 0)
@@ -14276,7 +14276,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 264.16) (xy 147.574 264.16)
+			(xy 142.748 299.72) (xy 145.542 299.72)
 		)
 		(stroke
 			(width 0)
@@ -14416,7 +14416,7 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 369.57) (xy 76.2 369.57)
+			(xy 147.32 233.68) (xy 142.24 233.68)
 		)
 		(stroke
 			(width 0)
@@ -14486,7 +14486,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 50.8) (xy 154.94 50.8)
+			(xy 35.56 228.6) (xy 38.1 228.6)
 		)
 		(stroke
 			(width 0)
@@ -14596,7 +14596,7 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 312.42) (xy 203.2 322.58)
+			(xy 135.89 184.15) (xy 135.89 193.04)
 		)
 		(stroke
 			(width 0)
@@ -14616,7 +14616,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 325.12) (xy 180.34 325.12)
+			(xy 110.49 195.58) (xy 113.03 195.58)
 		)
 		(stroke
 			(width 0)
@@ -15036,7 +15036,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 186.69) (xy 66.04 193.04)
+			(xy 66.04 184.15) (xy 66.04 193.04)
 		)
 		(stroke
 			(width 0)
@@ -15376,7 +15376,7 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 190.5) (xy 35.56 186.69)
+			(xy 35.56 190.5) (xy 35.56 184.15)
 		)
 		(stroke
 			(width 0)
@@ -15586,7 +15586,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.272 238.76) (xy 147.066 238.76)
+			(xy 142.24 274.32) (xy 145.034 274.32)
 		)
 		(stroke
 			(width 0)
@@ -15596,7 +15596,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 261.62) (xy 147.574 261.62)
+			(xy 142.748 297.18) (xy 145.542 297.18)
 		)
 		(stroke
 			(width 0)
@@ -15646,7 +15646,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 269.24) (xy 48.26 269.24)
+			(xy 40.386 304.8) (xy 45.466 304.8)
 		)
 		(stroke
 			(width 0)
@@ -16186,7 +16186,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 261.62) (xy 96.774 261.62)
+			(xy 91.186 297.18) (xy 93.98 297.18)
 		)
 		(stroke
 			(width 0)
@@ -16276,7 +16276,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.472 238.76) (xy 96.266 238.76)
+			(xy 91.186 274.32) (xy 93.98 274.32)
 		)
 		(stroke
 			(width 0)
@@ -16306,7 +16306,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 312.42) (xy 203.2 312.42)
+			(xy 110.49 184.15) (xy 135.89 184.15)
 		)
 		(stroke
 			(width 0)
@@ -16426,7 +16426,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 269.24) (xy 149.86 269.24)
+			(xy 142.748 304.8) (xy 147.828 304.8)
 		)
 		(stroke
 			(width 0)
@@ -16576,7 +16576,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 269.24) (xy 99.06 269.24)
+			(xy 91.186 304.8) (xy 96.266 304.8)
 		)
 		(stroke
 			(width 0)
@@ -16606,7 +16606,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 322.58) (xy 203.2 322.58)
+			(xy 133.35 193.04) (xy 135.89 193.04)
 		)
 		(stroke
 			(width 0)
@@ -16906,7 +16906,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.472 246.38) (xy 98.552 246.38)
+			(xy 91.186 281.94) (xy 96.266 281.94)
 		)
 		(stroke
 			(width 0)
@@ -16976,7 +16976,7 @@
 	)
 	(wire
 		(pts
-			(xy 79.375 364.49) (xy 84.328 364.49)
+			(xy 145.415 228.6) (xy 150.368 228.6)
 		)
 		(stroke
 			(width 0)
@@ -17096,7 +17096,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.272 241.3) (xy 147.066 241.3)
+			(xy 142.24 276.86) (xy 145.034 276.86)
 		)
 		(stroke
 			(width 0)
@@ -17674,7 +17674,7 @@
 	)
 	(global_label "Syn1_Vm"
 		(shape input)
-		(at 147.066 238.76 0)
+		(at 145.034 274.32 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -17684,7 +17684,7 @@
 		)
 		(uuid "02254daf-c366-43c3-8f92-dd175439c6f7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 158.3363 238.76 0)
+			(at 156.3043 274.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17722,7 +17722,7 @@
 	)
 	(global_label "Syn4_Spike"
 		(shape input)
-		(at 147.574 264.16 0)
+		(at 145.542 299.72 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -17732,7 +17732,7 @@
 		)
 		(uuid "05859626-825c-4ed8-a288-e4b12ff6998b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 161.1424 264.16 0)
+			(at 159.1104 299.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17746,7 +17746,7 @@
 	)
 	(global_label "Syn3_Spike"
 		(shape input)
-		(at 96.774 264.16 0)
+		(at 93.98 299.72 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -17756,7 +17756,7 @@
 		)
 		(uuid "06617733-5d57-4ca7-ad81-5877e135ed6f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 110.3424 264.16 0)
+			(at 107.5484 299.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17770,7 +17770,7 @@
 	)
 	(global_label "Vm_Display_In"
 		(shape input)
-		(at 45.72 367.03 180)
+		(at 111.76 231.14 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -17780,7 +17780,7 @@
 		)
 		(uuid "0664c909-1412-4586-b55d-1e1086358ac1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 29.4302 367.03 0)
+			(at 95.4702 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18082,7 +18082,7 @@
 	)
 	(global_label "Vm_Ext"
 		(shape input)
-		(at 45.466 238.76 0)
+		(at 43.18 274.32 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18092,7 +18092,7 @@
 		)
 		(uuid "1cf315cf-d6dd-4a6e-8d36-2429f8ed33fe")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 55.1035 238.76 0)
+			(at 52.8175 274.32 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18106,7 +18106,7 @@
 	)
 	(global_label "Peak_Window"
 		(shape input)
-		(at 81.28 369.57 0)
+		(at 147.32 233.68 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18116,7 +18116,7 @@
 		)
 		(uuid "20d6c25f-9ab8-4c76-9a17-51f3e0484562")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 96.6022 369.57 0)
+			(at 162.6422 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18250,7 +18250,7 @@
 	)
 	(global_label "Syn2_Vm"
 		(shape input)
-		(at 45.974 261.62 0)
+		(at 43.18 297.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18260,7 +18260,7 @@
 		)
 		(uuid "2d4fdfa5-dcf6-42a9-b9e7-493e549059d0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 57.2443 261.62 0)
+			(at 54.4503 297.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18298,7 +18298,7 @@
 	)
 	(global_label "Syn2_Spike"
 		(shape input)
-		(at 45.974 264.16 0)
+		(at 43.18 299.72 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18308,7 +18308,7 @@
 		)
 		(uuid "33ed23b6-f74f-42e1-a4c5-19c08d38b3c7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 59.5424 264.16 0)
+			(at 56.7484 299.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18418,7 +18418,7 @@
 	)
 	(global_label "Stimulus_Ext"
 		(shape input)
-		(at 45.466 241.3 0)
+		(at 43.18 276.86 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18428,7 +18428,7 @@
 		)
 		(uuid "46a6a643-d706-4c63-bf9f-e44095ab7d56")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 60.5462 241.3 0)
+			(at 58.2602 276.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18490,7 +18490,7 @@
 	)
 	(global_label "Spike_Out"
 		(shape input)
-		(at 96.266 241.3 0)
+		(at 93.98 276.86 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18500,7 +18500,7 @@
 		)
 		(uuid "4b453c09-247f-4d89-af40-1a42cada9343")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.504 241.3 0)
+			(at 106.218 276.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18825,7 +18825,7 @@
 	)
 	(global_label "Vm_Display_In"
 		(shape input)
-		(at 180.34 50.8 0)
+		(at 63.5 228.6 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18835,7 +18835,7 @@
 		)
 		(uuid "86828eda-2efa-4af3-bd43-d3b73c329b52")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 196.6298 50.8 0)
+			(at 79.7898 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18849,7 +18849,7 @@
 	)
 	(global_label "Syn4_Vm"
 		(shape input)
-		(at 147.574 261.62 0)
+		(at 145.542 297.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18859,7 +18859,7 @@
 		)
 		(uuid "88b43f1f-9881-4b1f-b78d-679a161b6121")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 158.8443 261.62 0)
+			(at 156.8123 297.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18897,7 +18897,7 @@
 	)
 	(global_label "Syn3_Vm"
 		(shape input)
-		(at 96.774 261.62 0)
+		(at 93.98 297.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -18907,7 +18907,7 @@
 		)
 		(uuid "8dc2f520-4c7e-4799-b363-81ee814e18dc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.0443 261.62 0)
+			(at 105.2503 297.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19280,7 +19280,7 @@
 	)
 	(global_label "Vm_Ext"
 		(shape input)
-		(at 96.266 238.76 0)
+		(at 93.98 274.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19289,7 +19289,7 @@
 		)
 		(uuid "b762ba4e-8305-47e2-b62e-c15a40f60383")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 126.1631 243.078 0)
+			(at 123.8771 278.638 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19543,7 +19543,7 @@
 	)
 	(global_label "Vm_Int"
 		(shape input)
-		(at 152.4 50.8 180)
+		(at 35.56 228.6 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19553,7 +19553,7 @@
 		)
 		(uuid "cdc86bde-49cd-4dcd-a824-1090018a9a72")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.1858 50.8 0)
+			(at 26.3458 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19879,7 +19879,7 @@
 	)
 	(global_label "Syn1_Spike"
 		(shape input)
-		(at 147.066 241.3 0)
+		(at 145.034 276.86 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -19889,7 +19889,7 @@
 		)
 		(uuid "dfa9e490-e2e8-4855-88bb-0e0db7903f57")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 160.6344 241.3 0)
+			(at 158.6024 276.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20287,7 +20287,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 99.06 269.24 90)
+		(at 96.266 304.8 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -20297,7 +20297,7 @@
 		(dnp no)
 		(uuid "01393564-37f5-489c-818e-db11455ade77")
 		(property "Reference" "#PWR046"
-			(at 105.41 269.24 0)
+			(at 102.616 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20308,7 +20308,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 106.045 269.24 90)
+			(at 103.251 304.8 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20318,7 +20318,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 99.06 269.24 0)
+			(at 96.266 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20329,7 +20329,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 99.06 269.24 0)
+			(at 96.266 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20340,7 +20340,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 99.06 269.24 0)
+			(at 96.266 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20354,7 +20354,7 @@
 			(uuid "541df78f-ac08-4508-9f0d-df688eae778e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR046")
 					(unit 1)
@@ -20432,7 +20432,7 @@
 			(uuid "db4732e4-352c-4d9e-9768-54b17a10f319")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR07")
 					(unit 1)
@@ -20730,7 +20730,7 @@
 			(uuid "50ed64a2-cdf9-4d89-bfab-9f4264051c3c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R61")
 					(unit 1)
@@ -21028,7 +21028,7 @@
 			(uuid "ae69dd29-e09e-473c-9997-1e1018340232")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R80")
 					(unit 1)
@@ -21326,7 +21326,7 @@
 			(uuid "b5bad428-d134-476d-b7e9-8abf0f4eb930")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R64")
 					(unit 1)
@@ -21588,7 +21588,7 @@
 			(uuid "580a6309-1a85-43ad-9379-7388240de011")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C13")
 					(unit 1)
@@ -21665,7 +21665,7 @@
 			(uuid "9929ccde-4aa4-46a6-9de4-61cbe6278998")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR057")
 					(unit 1)
@@ -21951,7 +21951,7 @@
 			(uuid "b1d8328c-f730-4ac2-a153-d172b0b3b230")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D8")
 					(unit 1)
@@ -22346,7 +22346,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc2175187f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U2")
 					(unit 1)
@@ -22423,7 +22423,7 @@
 			(uuid "7da3aa4a-48ce-4d19-b08f-a8fe23cb818f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR032")
 					(unit 1)
@@ -22721,7 +22721,7 @@
 			(uuid "e1b053df-7a00-454d-a09c-d182589bd013")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R76")
 					(unit 1)
@@ -23019,7 +23019,7 @@
 			(uuid "c03aaf61-ccde-428f-89da-6ec6119dc113")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R29")
 					(unit 1)
@@ -23260,7 +23260,7 @@
 			(uuid "6d16e6e1-52bf-403d-a597-cc843da39e03")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV5")
 					(unit 1)
@@ -23337,7 +23337,7 @@
 			(uuid "18aec33c-d087-42ae-b736-a21b6130a735")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0113")
 					(unit 1)
@@ -23674,7 +23674,7 @@
 			(uuid "14cb4e57-4b66-4dea-aa7a-a5c4e4246d8b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q7")
 					(unit 1)
@@ -24069,7 +24069,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751880")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U1")
 					(unit 1)
@@ -24439,7 +24439,7 @@
 			(uuid "79f1bd91-e729-4134-897b-2727f1c1de46")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U4")
 					(unit 3)
@@ -24701,7 +24701,7 @@
 			(uuid "7a23ff47-b70e-4018-a2dd-fe4e948ba51a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C21")
 					(unit 1)
@@ -24963,7 +24963,7 @@
 			(uuid "2ca0bf13-6ef7-47ae-a3ad-e50ab1e49d85")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C30")
 					(unit 1)
@@ -25261,7 +25261,7 @@
 			(uuid "afc03f37-ea23-4acf-bdf1-298319f3f63b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R60")
 					(unit 1)
@@ -25271,7 +25271,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 87.122 243.84 0)
+		(at 84.836 279.4 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -25282,7 +25282,7 @@
 		(dnp no)
 		(uuid "0a7fb093-8d71-42e0-9fab-4ef01ebf1117")
 		(property "Reference" "J2"
-			(at 81.28 235.204 0)
+			(at 78.994 270.764 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25293,7 +25293,7 @@
 			)
 		)
 		(property "Value" "Axon Output"
-			(at 86.487 234.95 0)
+			(at 84.201 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25304,7 +25304,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25315,7 +25315,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25327,7 +25327,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25338,7 +25338,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25350,7 +25350,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25362,7 +25362,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25374,7 +25374,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25386,7 +25386,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25398,7 +25398,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25410,7 +25410,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25422,7 +25422,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25434,7 +25434,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25446,7 +25446,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25458,7 +25458,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25470,7 +25470,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25482,7 +25482,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25494,7 +25494,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 87.122 243.84 0)
+			(at 84.836 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25515,7 +25515,7 @@
 			(uuid "fe4093ac-8a9c-432f-b53f-11e758ac8f3c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J2")
 					(unit 1)
@@ -25777,7 +25777,7 @@
 			(uuid "a6d06fae-8fb0-4077-9011-5f9387aa419d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C14")
 					(unit 1)
@@ -25787,7 +25787,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 138.43 266.7 0)
+		(at 136.398 302.26 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -25798,7 +25798,7 @@
 		(dnp no)
 		(uuid "0c0daee4-2d93-4944-96d2-e2fbfe6abede")
 		(property "Reference" "J6"
-			(at 132.588 258.064 0)
+			(at 130.556 293.624 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25809,7 +25809,7 @@
 			)
 		)
 		(property "Value" "Syn4 Input"
-			(at 137.795 257.81 0)
+			(at 135.763 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25820,7 +25820,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25831,7 +25831,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25843,7 +25843,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25854,7 +25854,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25866,7 +25866,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25878,7 +25878,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25890,7 +25890,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25902,7 +25902,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25914,7 +25914,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25926,7 +25926,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25938,7 +25938,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25950,7 +25950,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25962,7 +25962,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25974,7 +25974,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25986,7 +25986,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25998,7 +25998,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26010,7 +26010,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 138.43 266.7 0)
+			(at 136.398 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26031,7 +26031,7 @@
 			(uuid "16fe70cf-fdff-461f-a72c-5f267f75eba7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J6")
 					(unit 1)
@@ -26107,7 +26107,7 @@
 			(uuid "1cb91e46-8a60-495d-8504-c1b288a8d65d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0118")
 					(unit 1)
@@ -26185,7 +26185,7 @@
 			(uuid "c5a8d148-18cb-4b9c-a2ac-50fb9dbdf865")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0171")
 					(unit 1)
@@ -26263,7 +26263,7 @@
 			(uuid "042219e9-df45-4e99-b57c-6111b49e8f12")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR054")
 					(unit 1)
@@ -26339,7 +26339,7 @@
 			(uuid "a674fddf-75b6-4bc0-8c41-f8c25ba62e9d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0147")
 					(unit 1)
@@ -26637,7 +26637,7 @@
 			(uuid "c9f7edec-b5cf-4658-b0d4-43cc88a50c4e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R46")
 					(unit 1)
@@ -26714,7 +26714,7 @@
 			(uuid "179582fa-246c-45a1-96a4-1a18e23e9bd5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR060")
 					(unit 1)
@@ -26791,7 +26791,7 @@
 			(uuid "72fddb06-4d04-4ba5-8966-fae7f5e6f090")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR056")
 					(unit 1)
@@ -26801,7 +26801,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 45.72 369.57 270)
+		(at 111.76 233.68 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -26811,7 +26811,7 @@
 		(dnp no)
 		(uuid "11fb3d72-7e38-410c-9991-285f305a6dab")
 		(property "Reference" "#PWR0149"
-			(at 39.37 369.57 0)
+			(at 105.41 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26822,7 +26822,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 38.735 369.57 90)
+			(at 104.775 233.68 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -26832,7 +26832,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 369.57 0)
+			(at 111.76 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26843,7 +26843,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 369.57 0)
+			(at 111.76 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26854,7 +26854,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 45.72 369.57 0)
+			(at 111.76 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -26868,7 +26868,7 @@
 			(uuid "1d1ca16f-21b1-4a67-be1f-ae42bd711a08")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0149")
 					(unit 1)
@@ -27262,7 +27262,7 @@
 			(uuid "4da3bd13-9cec-4c23-8a12-fe1501b7719b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U1")
 					(unit 4)
@@ -27657,7 +27657,7 @@
 			(uuid "4da3bd13-9cec-4c23-8a12-fe1501b7719c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U1")
 					(unit 3)
@@ -27734,7 +27734,7 @@
 			(uuid "5ae648c3-4562-4bdb-ba71-9e0a660ece53")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR040")
 					(unit 1)
@@ -27744,7 +27744,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 137.922 243.84 0)
+		(at 135.89 279.4 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -27755,7 +27755,7 @@
 		(dnp no)
 		(uuid "1261d53d-ce5f-405f-aaf2-fa9b7030a593")
 		(property "Reference" "J3"
-			(at 132.08 235.204 0)
+			(at 130.048 270.764 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27766,7 +27766,7 @@
 			)
 		)
 		(property "Value" "Syn1 Input"
-			(at 137.287 234.95 0)
+			(at 135.255 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -27777,7 +27777,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27788,7 +27788,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27800,7 +27800,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27811,7 +27811,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27823,7 +27823,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27835,7 +27835,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27847,7 +27847,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27859,7 +27859,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27871,7 +27871,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27883,7 +27883,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27895,7 +27895,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27907,7 +27907,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27919,7 +27919,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27931,7 +27931,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27943,7 +27943,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27955,7 +27955,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27967,7 +27967,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 137.922 243.84 0)
+			(at 135.89 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27988,7 +27988,7 @@
 			(uuid "2e4d743c-e5a7-434e-a157-61421e24abd9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J3")
 					(unit 1)
@@ -28274,7 +28274,7 @@
 			(uuid "1c745e57-e144-43f9-9e1c-2c8814ed4499")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D2")
 					(unit 1)
@@ -28572,7 +28572,7 @@
 			(uuid "66b38d94-924b-4f8f-a188-1d24eef2fdc9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R55")
 					(unit 1)
@@ -28879,7 +28879,7 @@
 			(uuid "7f8a2209-f191-469f-b6fe-526b65cf26c2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U18")
 					(unit 1)
@@ -28956,7 +28956,7 @@
 			(uuid "62a66de7-67d6-44a5-98f8-c6cbd8a79e20")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0166")
 					(unit 1)
@@ -29242,7 +29242,7 @@
 			(uuid "29c5d949-82c1-4464-acf6-f8799020d5b8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D15")
 					(unit 1)
@@ -29320,7 +29320,7 @@
 			(uuid "b1f93702-50ba-4f02-8b78-6d886c8890f2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR014")
 					(unit 1)
@@ -29582,7 +29582,7 @@
 			(uuid "0f8a0bc7-4673-4b81-9690-1212c786b7f9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C37")
 					(unit 1)
@@ -29659,7 +29659,7 @@
 			(uuid "ed4afec2-a408-495a-87cd-f2e4a173f539")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0135")
 					(unit 1)
@@ -29957,7 +29957,7 @@
 			(uuid "fe798001-b9e7-4de2-a332-06048e3b30b7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R30")
 					(unit 1)
@@ -29967,7 +29967,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 149.352 246.38 90)
+		(at 147.32 281.94 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -29977,7 +29977,7 @@
 		(dnp no)
 		(uuid "1a36ec50-c82a-46e0-a00e-3970ee1d36f6")
 		(property "Reference" "#PWR015"
-			(at 155.702 246.38 0)
+			(at 153.67 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -29988,7 +29988,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 156.337 246.38 90)
+			(at 154.305 281.94 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29998,7 +29998,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.352 246.38 0)
+			(at 147.32 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30009,7 +30009,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.352 246.38 0)
+			(at 147.32 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30020,7 +30020,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 149.352 246.38 0)
+			(at 147.32 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30034,7 +30034,7 @@
 			(uuid "450f6f49-608c-4d40-bc06-45ad81b37578")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR015")
 					(unit 1)
@@ -30111,7 +30111,7 @@
 			(uuid "560a2797-a187-4ecd-9be9-9c957e164f4e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0108")
 					(unit 1)
@@ -30187,7 +30187,7 @@
 			(uuid "d4aff579-d285-4877-9e2e-0d4f9d50bab7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR08")
 					(unit 1)
@@ -30263,7 +30263,7 @@
 			(uuid "841d2a3e-454d-451e-8e57-16a944853c53")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR082")
 					(unit 1)
@@ -30273,7 +30273,7 @@
 	)
 	(symbol
 		(lib_id "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import:root_0_CL05B104KO5NNNC_")
-		(at 79.375 358.14 90)
+		(at 145.415 222.25 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -30283,7 +30283,7 @@
 		(dnp no)
 		(uuid "1db863bb-495b-4a41-8ab1-117cb368bb1d")
 		(property "Reference" "C39"
-			(at 79.375 355.6 90)
+			(at 145.415 219.71 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30294,7 +30294,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 79.375 359.41 90)
+			(at 145.415 223.52 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30305,7 +30305,7 @@
 			)
 		)
 		(property "Footprint" "C0402"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30316,7 +30316,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30328,7 +30328,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30339,7 +30339,7 @@
 			)
 		)
 		(property "SYMBOL" "CL05B104KO5NNNC"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30351,7 +30351,7 @@
 			)
 		)
 		(property "DEVICE" "CL05B104KO5NNNC"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30363,7 +30363,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "100nF ±10% 16V"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30375,7 +30375,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C1525"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30387,7 +30387,7 @@
 			)
 		)
 		(property "MANUFACTURER" "SAMSUNG(三星)"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30399,7 +30399,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "CL05B104KO5NNNC"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30411,7 +30411,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "0402"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30423,7 +30423,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Basic Part"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30435,7 +30435,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30447,7 +30447,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30459,7 +30459,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30471,7 +30471,7 @@
 			)
 		)
 		(property "ALTIUM_VALUE" "100nF"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30483,7 +30483,7 @@
 			)
 		)
 		(property "TOLERANCE" "±10%"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30495,7 +30495,7 @@
 			)
 		)
 		(property "VOLTAGE RATING" "16V"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30507,7 +30507,7 @@
 			)
 		)
 		(property "TEMPERATURE COEFFICIENT" "X7R"
-			(at 79.375 358.14 0)
+			(at 145.415 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30525,7 +30525,7 @@
 			(uuid "752b6a0a-be55-4395-a31b-14a36d7457df")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C39")
 					(unit 1)
@@ -30896,7 +30896,7 @@
 			(uuid "3014a98e-5bdb-4e76-a6d8-6536fdffa661")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U6")
 					(unit 4)
@@ -30906,7 +30906,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 73.406 309.626 0)
+		(at 72.644 345.186 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -30917,7 +30917,7 @@
 		(fields_autoplaced yes)
 		(uuid "1f0d623d-f388-426a-b59c-cada0e2bc813")
 		(property "Reference" "H6"
-			(at 76.962 308.3559 0)
+			(at 76.2 343.9159 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30928,7 +30928,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 76.962 310.8959 0)
+			(at 76.2 346.4559 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -30939,7 +30939,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 73.406 309.626 0)
+			(at 72.644 345.186 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30950,7 +30950,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 73.406 309.626 0)
+			(at 72.644 345.186 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30961,7 +30961,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 73.406 309.626 0)
+			(at 72.644 345.186 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -30972,7 +30972,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H6")
 					(unit 1)
@@ -31049,7 +31049,7 @@
 			(uuid "fe7880c5-eb51-4cde-9bc0-313f8ff1a334")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0116")
 					(unit 1)
@@ -31126,7 +31126,7 @@
 			(uuid "71c0f041-036e-48ee-8967-c25b902f7013")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR038")
 					(unit 1)
@@ -31424,7 +31424,7 @@
 			(uuid "869c4b8f-5b45-4c0e-b750-fa20350f14b4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R85")
 					(unit 1)
@@ -31500,7 +31500,7 @@
 			(uuid "0e960590-806c-4fbf-a465-31840520c755")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0157")
 					(unit 1)
@@ -31798,7 +31798,7 @@
 			(uuid "e8199efc-43ff-426d-9b7e-b1458aec38c3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R84")
 					(unit 1)
@@ -32096,7 +32096,7 @@
 			(uuid "0af2cad3-98fc-44f0-87a5-89d853a4bf2d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R4")
 					(unit 1)
@@ -32434,7 +32434,7 @@
 			(uuid "ecf07623-5628-456f-9e9b-2a2204ff4dcf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q6")
 					(unit 1)
@@ -32741,7 +32741,7 @@
 			(uuid "0f8edaa1-0c5b-4311-a5f7-be81124bb41e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U11")
 					(unit 1)
@@ -32818,7 +32818,7 @@
 			(uuid "eb20e2ed-992d-4914-8919-4abad4c5af44")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0114")
 					(unit 1)
@@ -33080,7 +33080,7 @@
 			(uuid "3580103f-d248-4d53-bbcb-25187f113cf2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C18")
 					(unit 1)
@@ -33378,7 +33378,7 @@
 			(uuid "c6d5a28c-ad77-409f-a16a-a6962cf76197")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R82")
 					(unit 1)
@@ -33640,7 +33640,7 @@
 			(uuid "5cc97bd0-ae47-4722-accd-a621860bfd24")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C32")
 					(unit 1)
@@ -33717,7 +33717,7 @@
 			(uuid "a0bd0f68-ecc5-41b8-bd26-85ef7c68f4a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR088")
 					(unit 1)
@@ -33793,7 +33793,7 @@
 			(uuid "8f199743-549e-4a40-8ae7-d3879b68db00")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0161")
 					(unit 1)
@@ -33870,7 +33870,7 @@
 			(uuid "aafbc7c7-fcea-4e64-aefb-5bc37a71ca89")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR063")
 					(unit 1)
@@ -33947,7 +33947,7 @@
 			(uuid "1efc2b37-7e45-4e71-9f43-5859d7d2914f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0132")
 					(unit 1)
@@ -34024,7 +34024,7 @@
 			(uuid "7bc8a401-31b9-4f35-bedc-d240626021a1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR071")
 					(unit 1)
@@ -34322,7 +34322,7 @@
 			(uuid "9f45d3d4-e679-4184-b71a-43c79b6aa2f2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R78")
 					(unit 1)
@@ -34399,7 +34399,7 @@
 			(uuid "24d1a5c5-84ab-4e01-a374-5cc5f15d1b9e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR072")
 					(unit 1)
@@ -34769,7 +34769,7 @@
 			(uuid "8d919af5-036c-49f5-9a73-e27e884401f1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U5")
 					(unit 2)
@@ -35031,7 +35031,7 @@
 			(uuid "e19255b0-55b8-464f-b3d8-307d17bc757e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C31")
 					(unit 1)
@@ -35353,7 +35353,7 @@
 			(uuid "462f0323-dc18-4e85-8197-91bb7fad715d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D7")
 					(unit 1)
@@ -35363,7 +35363,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 36.322 243.84 0)
+		(at 34.036 279.4 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -35374,7 +35374,7 @@
 		(dnp no)
 		(uuid "2ad808d6-2718-4c5f-9097-f5f08d01287a")
 		(property "Reference" "J1"
-			(at 30.48 235.204 0)
+			(at 28.194 270.764 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -35385,7 +35385,7 @@
 			)
 		)
 		(property "Value" "Oscilloscope Jack"
-			(at 35.687 234.95 0)
+			(at 33.401 270.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -35396,7 +35396,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35407,7 +35407,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35419,7 +35419,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35430,7 +35430,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35442,7 +35442,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35454,7 +35454,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35466,7 +35466,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35478,7 +35478,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35490,7 +35490,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35502,7 +35502,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35514,7 +35514,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35526,7 +35526,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35538,7 +35538,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35550,7 +35550,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35562,7 +35562,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35574,7 +35574,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35586,7 +35586,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 36.322 243.84 0)
+			(at 34.036 279.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35607,7 +35607,7 @@
 			(uuid "725e3bb4-d2fe-4d10-957b-7d8df63ccb7f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J1")
 					(unit 1)
@@ -35905,7 +35905,7 @@
 			(uuid "68b2c1ab-73a2-4ed7-87a4-eeab73d051f5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R79")
 					(unit 1)
@@ -36203,7 +36203,7 @@
 			(uuid "70ab2ced-5225-47a9-a054-274ee3c4f506")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R18")
 					(unit 1)
@@ -36280,7 +36280,7 @@
 			(uuid "985ab19a-edf3-4d21-bed5-2fbaa342385f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0164")
 					(unit 1)
@@ -36578,7 +36578,7 @@
 			(uuid "84230f78-cb74-4344-b0c4-6e1736ee016a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R71")
 					(unit 1)
@@ -36885,7 +36885,7 @@
 			(uuid "bb8d6f54-e13c-4586-a07c-16351bad1bde")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U13")
 					(unit 1)
@@ -37183,7 +37183,7 @@
 			(uuid "36e9d3a2-bac0-4a03-99d2-cccb945bbce4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R23")
 					(unit 1)
@@ -37481,7 +37481,7 @@
 			(uuid "8e452f7c-c189-4bcc-8a71-6859fa98913f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R86")
 					(unit 1)
@@ -37779,7 +37779,7 @@
 			(uuid "a61a4694-69ef-4047-9cb2-db62425ba356")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R9")
 					(unit 1)
@@ -38041,7 +38041,7 @@
 			(uuid "02290c95-a385-4126-8f1a-64764b59bf6c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C11")
 					(unit 1)
@@ -38348,7 +38348,7 @@
 			(uuid "8c5e3558-f6cb-417e-afce-d655a341afce")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U14")
 					(unit 1)
@@ -38646,7 +38646,7 @@
 			(uuid "aab97ac7-fba2-4373-b08e-aa30f2b0f9db")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R26")
 					(unit 1)
@@ -38656,7 +38656,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 79.375 350.266 180)
+		(at 145.415 214.376 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -38666,7 +38666,7 @@
 		(dnp no)
 		(uuid "3015c388-d929-4b91-b3d0-7e787d478813")
 		(property "Reference" "#PWR019"
-			(at 79.375 343.916 0)
+			(at 145.415 208.026 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -38677,7 +38677,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 79.375 346.456 0)
+			(at 145.415 210.566 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38687,7 +38687,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 79.375 350.266 0)
+			(at 145.415 214.376 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -38698,7 +38698,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 79.375 350.266 0)
+			(at 145.415 214.376 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -38709,7 +38709,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 79.375 350.266 0)
+			(at 145.415 214.376 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -38723,7 +38723,7 @@
 			(uuid "e03eedbf-c599-4049-9ac0-04ef294e650c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR019")
 					(unit 1)
@@ -39021,7 +39021,7 @@
 			(uuid "78414272-f5e2-42a1-b692-9e3fb1ad4459")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R33")
 					(unit 1)
@@ -39031,7 +39031,7 @@
 	)
 	(symbol
 		(lib_id "BAT54WS L91_BAT54WS L9-altium-import:root_0_BAT54WS L9_")
-		(at 175.26 55.88 270)
+		(at 58.42 233.68 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -39041,7 +39041,7 @@
 		(dnp no)
 		(uuid "30db4bb7-6233-4ed6-89b2-a14108c8db7e")
 		(property "Reference" "D22"
-			(at 175.895 53.086 90)
+			(at 59.055 230.886 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -39052,7 +39052,7 @@
 			)
 		)
 		(property "Value" "BAT54WS L9"
-			(at 177.165 56.261 90)
+			(at 60.325 234.061 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -39063,7 +39063,7 @@
 			)
 		)
 		(property "Footprint" "SOD-323_L1.8-W1.3-LS2.5-RD"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39074,7 +39074,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/BAT54WS%2520L9/23356.html"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39086,7 +39086,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39097,7 +39097,7 @@
 			)
 		)
 		(property "SYMBOL" "BAT54WS L9"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39109,7 +39109,7 @@
 			)
 		)
 		(property "DEVICE" "BAT54WS L9"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39121,7 +39121,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "电压:30V 电流:100mA"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39133,7 +39133,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C22629"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39145,7 +39145,7 @@
 			)
 		)
 		(property "MANUFACTURER" "CJ(江苏长电/长晶)"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39157,7 +39157,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "BAT54WS L9"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39169,7 +39169,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SOD-323"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39181,7 +39181,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39193,7 +39193,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39205,7 +39205,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39217,7 +39217,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39229,7 +39229,7 @@
 			)
 		)
 		(property "DIODE CONFIGURATION" "Independent"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39241,7 +39241,7 @@
 			)
 		)
 		(property "VOLTAGE - FORWARD(VF@IF)" "1V@100mA"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39253,7 +39253,7 @@
 			)
 		)
 		(property "VOLTAGE - DC REVERSE(VR)" "30V"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39265,7 +39265,7 @@
 			)
 		)
 		(property "CURRENT - RECTIFIED" "100mA"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39277,7 +39277,7 @@
 			)
 		)
 		(property "REVERSE LEAKAGE CURRENT (IR)" "2uA@25V"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39289,7 +39289,7 @@
 			)
 		)
 		(property "NON-REPETITIVE PEAK FORWARD SURGE CURRENT" "600mA"
-			(at 175.26 55.88 0)
+			(at 58.42 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -39307,7 +39307,7 @@
 			(uuid "77d66388-e95e-49b3-9bbe-f2a85108eb59")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D22")
 					(unit 1)
@@ -39384,7 +39384,7 @@
 			(uuid "f27848dc-703c-45fb-b653-a6a254a1215c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0158")
 					(unit 1)
@@ -39682,7 +39682,7 @@
 			(uuid "0a5541e6-c611-4348-a337-d75ccf7c023f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R45")
 					(unit 1)
@@ -39980,7 +39980,7 @@
 			(uuid "8fd9462c-22c4-470b-a0c3-b96a70a9d95e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R20")
 					(unit 1)
@@ -40056,7 +40056,7 @@
 			(uuid "e047c192-2fc1-4b2b-bb55-0a4e58eabadb")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR025")
 					(unit 1)
@@ -40134,7 +40134,7 @@
 			(uuid "2a373b37-d170-4792-98c2-4f49efab1924")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR011")
 					(unit 1)
@@ -40504,7 +40504,7 @@
 			(uuid "cb6c7830-ef9f-4cf0-b010-a29db1f5740a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U5")
 					(unit 3)
@@ -40580,7 +40580,7 @@
 			(uuid "7f00015a-9f0f-4e89-8d06-663eb4dba1b1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0138")
 					(unit 1)
@@ -40657,7 +40657,7 @@
 			(uuid "b684a72d-7456-445c-adbf-f8d8bfb14782")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0115")
 					(unit 1)
@@ -40943,7 +40943,7 @@
 			(uuid "2686f447-a590-42ea-9fdb-717ced2c979f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D10")
 					(unit 1)
@@ -41313,7 +41313,7 @@
 			(uuid "3014a98e-5bdb-4e76-a6d8-6536fdffa662")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U5")
 					(unit 4)
@@ -41575,7 +41575,7 @@
 			(uuid "98ab7253-7310-4682-98ad-2094b9c5ff50")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C15")
 					(unit 1)
@@ -41837,7 +41837,7 @@
 			(uuid "962b59e4-c88d-49a0-ac41-b9e10e11ba59")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C26")
 					(unit 1)
@@ -42135,7 +42135,7 @@
 			(uuid "96644287-105f-4610-bce5-3a1b1c05442c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R11")
 					(unit 1)
@@ -42397,7 +42397,7 @@
 			(uuid "5aaf7aac-91c7-4fa0-b249-950ef0d81fc8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C6")
 					(unit 1)
@@ -42407,7 +42407,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 73.152 304.292 0)
+		(at 72.39 339.852 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -42418,7 +42418,7 @@
 		(fields_autoplaced yes)
 		(uuid "412d8f1e-78c7-4342-82de-a4bd7bc4ed3e")
 		(property "Reference" "H3"
-			(at 76.708 303.0219 0)
+			(at 75.946 338.5819 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -42429,7 +42429,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 76.708 305.5619 0)
+			(at 75.946 341.1219 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -42440,7 +42440,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 73.152 304.292 0)
+			(at 72.39 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -42451,7 +42451,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 73.152 304.292 0)
+			(at 72.39 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -42462,7 +42462,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 73.152 304.292 0)
+			(at 72.39 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -42473,7 +42473,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H3")
 					(unit 1)
@@ -42550,7 +42550,7 @@
 			(uuid "57b365bc-6c4e-4362-8e48-519d3cd318a0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0139")
 					(unit 1)
@@ -42627,7 +42627,7 @@
 			(uuid "a6f5001a-3fcb-4ddd-b38e-77771cc6877b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0152")
 					(unit 1)
@@ -42925,7 +42925,7 @@
 			(uuid "896225d5-041d-43bd-8db3-d359ee26c1e2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R25")
 					(unit 1)
@@ -43223,7 +43223,7 @@
 			(uuid "4e36bf82-2d56-4fd2-b78c-2d2e1c13690b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R54")
 					(unit 1)
@@ -43301,7 +43301,7 @@
 			(uuid "415dd226-a309-4150-b982-5e9e8e470589")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR087")
 					(unit 1)
@@ -43378,7 +43378,7 @@
 			(uuid "b40398d1-3070-4b35-aaac-a801b2f459df")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR070")
 					(unit 1)
@@ -43454,7 +43454,7 @@
 			(uuid "2333db5d-506b-439b-b04b-2967c4bc1e77")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR051")
 					(unit 1)
@@ -43848,7 +43848,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751881")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U3")
 					(unit 3)
@@ -43858,7 +43858,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 98.552 246.38 90)
+		(at 96.266 281.94 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -43868,7 +43868,7 @@
 		(dnp no)
 		(uuid "496dde3c-62f5-4d6b-9dde-5bb130ced869")
 		(property "Reference" "#PWR048"
-			(at 104.902 246.38 0)
+			(at 102.616 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -43879,7 +43879,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 105.537 246.38 90)
+			(at 103.251 281.94 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -43889,7 +43889,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 98.552 246.38 0)
+			(at 96.266 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -43900,7 +43900,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 98.552 246.38 0)
+			(at 96.266 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -43911,7 +43911,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 98.552 246.38 0)
+			(at 96.266 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -43925,7 +43925,7 @@
 			(uuid "dd48d4a3-192e-4fc2-8656-3962484ee7e6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR048")
 					(unit 1)
@@ -44002,7 +44002,7 @@
 			(uuid "8d6b4387-7416-42c8-b24b-a4453b693bf9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0103")
 					(unit 1)
@@ -44300,7 +44300,7 @@
 			(uuid "b7e8f2e7-2a7a-42bf-aedc-1791b0a760dc")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R58")
 					(unit 1)
@@ -44598,7 +44598,7 @@
 			(uuid "8de2f0bc-ee49-4dc7-9d3d-fc5e35085983")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R15")
 					(unit 1)
@@ -44723,7 +44723,7 @@
 			(uuid "5700e4e8-12a6-4a91-b43b-e3345fb7e716")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "BT1")
 					(unit 1)
@@ -44800,7 +44800,7 @@
 			(uuid "05f7f276-d3b0-4c29-9a7e-b426ce9f3602")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR079")
 					(unit 1)
@@ -45098,7 +45098,7 @@
 			(uuid "c5db2ddd-64b0-4fa8-95be-c71aaf44ab29")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R63")
 					(unit 1)
@@ -45175,7 +45175,7 @@
 			(uuid "26967ccd-6e1c-417f-a994-f5c38e32a749")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0112")
 					(unit 1)
@@ -45252,7 +45252,7 @@
 			(uuid "7939db7a-a805-4d90-a916-273c9a88be98")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR053")
 					(unit 1)
@@ -45550,7 +45550,7 @@
 			(uuid "6bc737d4-d9de-4099-a916-f738a9b331a1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R77")
 					(unit 1)
@@ -45560,7 +45560,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 47.752 246.38 90)
+		(at 45.466 281.94 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -45570,7 +45570,7 @@
 		(dnp no)
 		(uuid "4dce03ac-940c-47b5-bc49-6b3685fe424d")
 		(property "Reference" "#PWR049"
-			(at 54.102 246.38 0)
+			(at 51.816 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -45581,7 +45581,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 54.991 246.253 90)
+			(at 52.705 281.813 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -45591,7 +45591,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 47.752 246.38 0)
+			(at 45.466 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -45602,7 +45602,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 47.752 246.38 0)
+			(at 45.466 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -45613,7 +45613,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 47.752 246.38 0)
+			(at 45.466 281.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -45627,7 +45627,7 @@
 			(uuid "607a0838-7cdc-4e66-9751-d103f710693f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR049")
 					(unit 1)
@@ -45925,7 +45925,7 @@
 			(uuid "2e23bec2-9d17-45e3-8e92-7f9570390ca4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R49")
 					(unit 1)
@@ -46002,7 +46002,7 @@
 			(uuid "2ad77794-6eba-46ab-82d2-638efc89b809")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR093")
 					(unit 1)
@@ -46288,7 +46288,7 @@
 			(uuid "2337a52b-ac59-4374-8822-89d0942e6e3b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D16")
 					(unit 1)
@@ -46364,7 +46364,7 @@
 			(uuid "8b2eaa8c-0a03-4996-83bd-b86e47f123cf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR076")
 					(unit 1)
@@ -46662,7 +46662,7 @@
 			(uuid "45d17383-2097-4ff5-bb55-9e8534f4f05f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R59")
 					(unit 1)
@@ -46738,7 +46738,7 @@
 			(uuid "9f9da01b-a2b9-4bb4-af4d-f3199ae0d087")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR017")
 					(unit 1)
@@ -46816,7 +46816,7 @@
 			(uuid "c74aac54-f8f2-429a-ac27-c93f91c193d0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0175")
 					(unit 1)
@@ -46893,7 +46893,7 @@
 			(uuid "bc31d20a-ab66-4d44-a178-6108d8894d29")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR018")
 					(unit 1)
@@ -46970,7 +46970,7 @@
 			(uuid "f7275d4f-027d-4ca2-9d21-c9a3501ba8ea")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR083")
 					(unit 1)
@@ -47340,7 +47340,7 @@
 			(uuid "9d15edaa-eb0e-4252-aafa-3ff2e988467c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U6")
 					(unit 1)
@@ -47416,7 +47416,7 @@
 			(uuid "71484bfb-98d6-4f40-8bcc-93dcb58ba5f7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0127")
 					(unit 1)
@@ -47493,7 +47493,7 @@
 			(uuid "578a16d7-f263-422a-8221-58db08e61ccd")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0109")
 					(unit 1)
@@ -47503,7 +47503,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 87.63 266.7 0)
+		(at 84.836 302.26 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -47514,7 +47514,7 @@
 		(dnp no)
 		(uuid "5710815e-2691-4af2-9631-944b1c401d2d")
 		(property "Reference" "J5"
-			(at 81.788 258.064 0)
+			(at 78.994 293.624 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -47525,7 +47525,7 @@
 			)
 		)
 		(property "Value" "Syn3 Input"
-			(at 86.995 257.81 0)
+			(at 84.201 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -47536,7 +47536,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47547,7 +47547,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47559,7 +47559,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47570,7 +47570,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47582,7 +47582,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47594,7 +47594,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47606,7 +47606,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47618,7 +47618,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47630,7 +47630,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47642,7 +47642,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47654,7 +47654,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47666,7 +47666,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47678,7 +47678,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47690,7 +47690,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47702,7 +47702,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47714,7 +47714,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47726,7 +47726,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 87.63 266.7 0)
+			(at 84.836 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -47747,7 +47747,7 @@
 			(uuid "7d0ca347-4de3-4132-8ea9-ab4563afac90")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J5")
 					(unit 1)
@@ -47823,7 +47823,7 @@
 			(uuid "553e3088-f068-4283-8ce5-a2338ceb48bf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR039")
 					(unit 1)
@@ -47901,7 +47901,7 @@
 			(uuid "8d9c7727-80ab-441a-b7e7-46f7fe62f4a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0125")
 					(unit 1)
@@ -47977,7 +47977,7 @@
 			(uuid "2d31f6be-6c00-43eb-9f26-20cdcab1d387")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR045")
 					(unit 1)
@@ -48053,7 +48053,7 @@
 			(uuid "cc788894-ee2d-4f76-84ce-edf98d3ae130")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0144")
 					(unit 1)
@@ -48351,7 +48351,7 @@
 			(uuid "99e13aa9-6d38-46d3-b4b8-d1a26b8d5e5b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D19")
 					(unit 1)
@@ -48429,7 +48429,7 @@
 			(uuid "956f6a65-e6fe-4c0e-b9f9-81466e7da885")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR066")
 					(unit 1)
@@ -48507,7 +48507,7 @@
 			(uuid "19973ab6-bc2f-414a-8500-53c2b5125e56")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR05")
 					(unit 1)
@@ -48517,7 +48517,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 167.64 60.96 0)
+		(at 50.8 238.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -48527,7 +48527,7 @@
 		(dnp no)
 		(uuid "5ded1abe-1e54-4c8b-b0f4-3151f019fb80")
 		(property "Reference" "#PWR0137"
-			(at 167.64 67.31 0)
+			(at 50.8 245.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -48538,7 +48538,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 167.64 65.532 0)
+			(at 50.8 243.332 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -48548,7 +48548,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 167.64 60.96 0)
+			(at 50.8 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -48559,7 +48559,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 60.96 0)
+			(at 50.8 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -48570,7 +48570,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 167.64 60.96 0)
+			(at 50.8 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -48584,7 +48584,7 @@
 			(uuid "f092c8e1-8f64-44fd-ba23-396758f6ac98")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0137")
 					(unit 1)
@@ -48661,7 +48661,7 @@
 			(uuid "c04706fa-3f41-4077-b362-6adfeaaeba01")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0148")
 					(unit 1)
@@ -48959,7 +48959,7 @@
 			(uuid "82a5457b-d48a-4327-a6d2-212b828493c8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R89")
 					(unit 1)
@@ -49257,7 +49257,7 @@
 			(uuid "db595a3b-3561-41a3-8c0b-4ff430cc0ff0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R88")
 					(unit 1)
@@ -49334,7 +49334,7 @@
 			(uuid "d540a711-32dd-4fd2-b582-3f48202c7f90")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR037")
 					(unit 1)
@@ -49344,7 +49344,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 149.86 269.24 90)
+		(at 147.828 304.8 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -49354,7 +49354,7 @@
 		(dnp no)
 		(uuid "5fd250eb-7ee3-487e-819f-5a02e399e421")
 		(property "Reference" "#PWR047"
-			(at 156.21 269.24 0)
+			(at 154.178 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -49365,7 +49365,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 156.845 269.24 90)
+			(at 154.813 304.8 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -49375,7 +49375,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 269.24 0)
+			(at 147.828 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -49386,7 +49386,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 269.24 0)
+			(at 147.828 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -49397,7 +49397,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 149.86 269.24 0)
+			(at 147.828 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -49411,7 +49411,7 @@
 			(uuid "b8a69130-e4fa-4dd0-b813-10f7bed2386e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR047")
 					(unit 1)
@@ -49488,7 +49488,7 @@
 			(uuid "e5b53626-0adc-4a7e-a3cf-0c1e9d051203")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR062")
 					(unit 1)
@@ -49750,7 +49750,7 @@
 			(uuid "b745d00e-d6f9-4b08-b6db-ca135f6fd7b5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C10")
 					(unit 1)
@@ -50120,7 +50120,7 @@
 			(uuid "3014a98e-5bdb-4e76-a6d8-6536fdffa663")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U4")
 					(unit 4)
@@ -50361,7 +50361,7 @@
 			(uuid "39830f01-e548-46ea-a972-6b06c35c9c90")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV2")
 					(unit 1)
@@ -50437,7 +50437,7 @@
 			(uuid "53c8d929-c2a7-4ab9-8f6b-937b212150cf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR098")
 					(unit 1)
@@ -50515,7 +50515,7 @@
 			(uuid "4de84dc6-20a3-45d2-b7b2-691ff573ca5c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR069")
 					(unit 1)
@@ -50593,7 +50593,7 @@
 			(uuid "4691a838-fae4-49ed-96ac-e9f73aaf61ac")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR067")
 					(unit 1)
@@ -50603,7 +50603,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 48.26 269.24 90)
+		(at 45.466 304.8 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -50613,7 +50613,7 @@
 		(dnp no)
 		(uuid "635f99fa-55a2-4a9d-bc67-45a6ac55c677")
 		(property "Reference" "#PWR044"
-			(at 54.61 269.24 0)
+			(at 51.816 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -50624,7 +50624,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 55.245 269.24 90)
+			(at 52.451 304.8 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -50634,7 +50634,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 48.26 269.24 0)
+			(at 45.466 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -50645,7 +50645,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 48.26 269.24 0)
+			(at 45.466 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -50656,7 +50656,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 48.26 269.24 0)
+			(at 45.466 304.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -50670,7 +50670,7 @@
 			(uuid "1cd7037f-ded1-4d23-a7d0-606b83863286")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR044")
 					(unit 1)
@@ -50968,7 +50968,7 @@
 			(uuid "7ac9a320-9f18-4249-98dd-cdc0b4bacd81")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R40")
 					(unit 1)
@@ -51045,7 +51045,7 @@
 			(uuid "b807dc70-c9af-4525-b8cd-4a42c48606c6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0111")
 					(unit 1)
@@ -51122,7 +51122,7 @@
 			(uuid "856a54e2-b349-435f-a780-0457f2f48409")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR068")
 					(unit 1)
@@ -51198,7 +51198,7 @@
 			(uuid "1f607d17-85aa-4d95-bc6e-49a3152ca6c1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR095")
 					(unit 1)
@@ -51274,7 +51274,7 @@
 			(uuid "c30bbde8-cad3-49f7-93ee-78bd6c45c057")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR084")
 					(unit 1)
@@ -51536,7 +51536,7 @@
 			(uuid "8bca6f3f-6f97-4a54-92db-c0f9b0d209a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C4")
 					(unit 1)
@@ -51613,7 +51613,7 @@
 			(uuid "9d447bda-fa71-452b-b53d-5a0b13f75af6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0117")
 					(unit 1)
@@ -51854,7 +51854,7 @@
 			(uuid "2aac663e-fa52-4739-935b-c1e552746dfa")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV7")
 					(unit 1)
@@ -52152,7 +52152,7 @@
 			(uuid "46ea6e8e-f81d-4e6b-883b-c4604753cfbf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R67")
 					(unit 1)
@@ -52438,7 +52438,7 @@
 			(uuid "e92959b7-7d57-41c9-85cd-7d11c126ec81")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D14")
 					(unit 1)
@@ -52760,7 +52760,7 @@
 			(uuid "299d6a6c-6801-4fe7-be26-30471d75051f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D5")
 					(unit 1)
@@ -52836,7 +52836,7 @@
 			(uuid "003b84f6-4790-4140-9706-1d02d87d7d34")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR031")
 					(unit 1)
@@ -53174,7 +53174,7 @@
 			(uuid "dc7391fd-92d9-4f19-adcc-88fa5af9592c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q5")
 					(unit 1)
@@ -53568,7 +53568,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751882")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U3")
 					(unit 1)
@@ -53866,7 +53866,7 @@
 			(uuid "3ffd075c-3c83-41d1-94e1-b7145bd8bfe3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R31")
 					(unit 1)
@@ -53942,7 +53942,7 @@
 			(uuid "84b41b97-548e-4c32-afaf-f5f25b1d1a90")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0124")
 					(unit 1)
@@ -54249,7 +54249,7 @@
 			(uuid "71ac1b78-30eb-441d-8c90-920f0cf0f9ed")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U12")
 					(unit 1)
@@ -54547,7 +54547,7 @@
 			(uuid "ad55abb1-05e4-47c2-acb6-d38599ce67cb")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R2")
 					(unit 1)
@@ -54624,7 +54624,7 @@
 			(uuid "95db236b-2a82-4868-8cdf-318b06ef211c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR059")
 					(unit 1)
@@ -54700,7 +54700,7 @@
 			(uuid "fc4b9ea1-0141-42c7-9d94-4592c2319a8d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0106")
 					(unit 1)
@@ -54776,7 +54776,7 @@
 			(uuid "d00e541e-e9a0-4108-99f8-1ab99f783b55")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0165")
 					(unit 1)
@@ -54853,7 +54853,7 @@
 			(uuid "81984a54-eaf2-451f-8f16-cf96f299122d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0146")
 					(unit 1)
@@ -55151,7 +55151,7 @@
 			(uuid "bf62bf27-d3cc-4ae8-8166-8148abfe93f1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R38")
 					(unit 1)
@@ -55449,7 +55449,7 @@
 			(uuid "a3640b2b-22d2-4b63-96ac-dd535eba68c7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R70")
 					(unit 1)
@@ -55526,7 +55526,7 @@
 			(uuid "7bc418f1-a9ba-4f9d-8954-ad686bc2f4b0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0136")
 					(unit 1)
@@ -55824,7 +55824,7 @@
 			(uuid "29eab60e-1af0-4a72-b91c-5f807a43bc22")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R34")
 					(unit 1)
@@ -55901,7 +55901,7 @@
 			(uuid "07c14175-6f12-4f4e-9eaf-7dc045c23399")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR026")
 					(unit 1)
@@ -56142,7 +56142,7 @@
 			(uuid "20bfc2ef-5bc5-42c3-a71b-624b796f63a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV6")
 					(unit 1)
@@ -56404,7 +56404,7 @@
 			(uuid "c4a367b2-5505-4b28-bd3d-4d88c0d8a156")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C7")
 					(unit 1)
@@ -56702,7 +56702,7 @@
 			(uuid "bc2e7ad8-1600-4c31-9b1b-1deb0f816693")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R21")
 					(unit 1)
@@ -57000,7 +57000,7 @@
 			(uuid "6f4f42f0-4c51-4601-8497-9e2621dc3039")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R24")
 					(unit 1)
@@ -57077,7 +57077,7 @@
 			(uuid "9f87d130-2655-414c-b09d-e365831d9e1b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR085")
 					(unit 1)
@@ -57375,7 +57375,7 @@
 			(uuid "c4f19860-8da3-4e6e-bb86-ae0ed6661b7b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R81")
 					(unit 1)
@@ -57745,7 +57745,7 @@
 			(uuid "00be9509-7cdf-4f30-a95e-824406735555")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U4")
 					(unit 1)
@@ -57755,7 +57755,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 52.832 309.372 0)
+		(at 52.07 344.932 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -57766,7 +57766,7 @@
 		(fields_autoplaced yes)
 		(uuid "787a3944-599c-4e2e-a5e4-f65db1724bd6")
 		(property "Reference" "H5"
-			(at 56.388 308.1019 0)
+			(at 55.626 343.6619 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -57777,7 +57777,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 56.388 310.6419 0)
+			(at 55.626 346.2019 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -57788,7 +57788,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 52.832 309.372 0)
+			(at 52.07 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -57799,7 +57799,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.832 309.372 0)
+			(at 52.07 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -57810,7 +57810,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 52.832 309.372 0)
+			(at 52.07 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -57821,7 +57821,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H5")
 					(unit 1)
@@ -57899,7 +57899,7 @@
 			(uuid "48e4f4cd-1db1-45ff-b857-d72e01f06d2e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR080")
 					(unit 1)
@@ -57976,7 +57976,7 @@
 			(uuid "0ab89073-2e0a-4083-8efc-7ec3a62592c4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR033")
 					(unit 1)
@@ -58053,7 +58053,7 @@
 			(uuid "3d2b5bd8-4518-43fd-a9bc-66a27dc232a2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR035")
 					(unit 1)
@@ -58339,7 +58339,7 @@
 			(uuid "9153215a-742b-45c8-97a0-5a5f3c9d468e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D13")
 					(unit 1)
@@ -58415,7 +58415,7 @@
 			(uuid "df07d71e-bde5-4181-92b3-aaf12da9085d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR06")
 					(unit 1)
@@ -58752,7 +58752,7 @@
 			(uuid "18b00dad-ab15-49d8-837c-06fbf264cf8c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q3")
 					(unit 1)
@@ -59059,7 +59059,7 @@
 			(uuid "caa757c9-d6c2-45e1-94eb-7279bb90d3ff")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U10")
 					(unit 1)
@@ -59069,7 +59069,7 @@
 	)
 	(symbol
 		(lib_id "Spiky_Lui-altium-import:root_0_RC0402FR-07100KL_")
-		(at 160.02 50.8 180)
+		(at 43.18 228.6 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -59079,7 +59079,7 @@
 		(dnp no)
 		(uuid "7be7eea3-ad49-4b15-b073-4c2b69407cd4")
 		(property "Reference" "R90"
-			(at 162.052 48.006 0)
+			(at 45.212 225.806 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -59090,7 +59090,7 @@
 			)
 		)
 		(property "Value" "100kΩ"
-			(at 162.56 50.165 0)
+			(at 45.72 227.965 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -59101,7 +59101,7 @@
 			)
 		)
 		(property "Footprint" "R0402"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59112,7 +59112,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/RC0402FR-07100KL/61543.html"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59124,7 +59124,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59135,7 +59135,7 @@
 			)
 		)
 		(property "SYMBOL" "RC0402FR-07100KL"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59147,7 +59147,7 @@
 			)
 		)
 		(property "DEVICE" "RC0402FR-07100KL"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59159,7 +59159,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "厚膜电阻 100kΩ ±1% 62.5mW"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59171,7 +59171,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C60491"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59183,7 +59183,7 @@
 			)
 		)
 		(property "MANUFACTURER" "YAGEO(国巨)"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59195,7 +59195,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "RC0402FR-07100KL"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59207,7 +59207,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "0402"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59219,7 +59219,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59231,7 +59231,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59243,7 +59243,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59255,7 +59255,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59267,7 +59267,7 @@
 			)
 		)
 		(property "TYPE" "Thick Film Resistor"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59279,7 +59279,7 @@
 			)
 		)
 		(property "ALTIUM_VALUE" "100kΩ"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59291,7 +59291,7 @@
 			)
 		)
 		(property "TOLERANCE" "±1%"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59303,7 +59303,7 @@
 			)
 		)
 		(property "POWER(WATTS)" "62.5mW"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59315,7 +59315,7 @@
 			)
 		)
 		(property "VOLTAGE-SUPPLY(MAX)" "50V"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59327,7 +59327,7 @@
 			)
 		)
 		(property "TEMPERATURE COEFFICIENT" "±100ppm/℃"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59339,7 +59339,7 @@
 			)
 		)
 		(property "OPERATING TEMPERATURE" "-55℃~+155℃"
-			(at 160.02 50.8 0)
+			(at 43.18 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -59357,7 +59357,7 @@
 			(uuid "a62ce3e3-1860-42e4-b5c6-1612501da24e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R90")
 					(unit 1)
@@ -59433,7 +59433,7 @@
 			(uuid "caf9c5f3-6747-4896-b6b0-bf5bd671353b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR092")
 					(unit 1)
@@ -59731,7 +59731,7 @@
 			(uuid "f78a88ef-91bd-40d8-b20f-c2e03f690d6f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R12")
 					(unit 1)
@@ -59808,7 +59808,7 @@
 			(uuid "8845daed-cf2d-411f-a537-5d20fb31acc3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR065")
 					(unit 1)
@@ -59885,7 +59885,7 @@
 			(uuid "021a47ef-b894-4216-b80e-27aafc34f6e1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0153")
 					(unit 1)
@@ -60171,7 +60171,7 @@
 			(uuid "3a732a83-1241-4b45-afc5-2931659f525b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D17")
 					(unit 1)
@@ -60445,7 +60445,7 @@
 			(uuid "9dbb2e1f-e5a4-4e61-9efb-2b7dff49210f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "L1")
 					(unit 1)
@@ -60522,7 +60522,7 @@
 			(uuid "ef3b5b45-c79b-4a9b-ad65-d67c7a02cdc8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0140")
 					(unit 1)
@@ -60829,7 +60829,7 @@
 			(uuid "00b778d9-c582-49b4-8880-f21da31fb12d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U17")
 					(unit 1)
@@ -60905,7 +60905,7 @@
 			(uuid "dc927f9c-449e-4ec3-b5e5-a2a6fe2db290")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR073")
 					(unit 1)
@@ -61278,7 +61278,7 @@
 			(uuid "282e8397-0aa7-4d32-9701-2133eae65441")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U7")
 					(unit 1)
@@ -61354,7 +61354,7 @@
 			(uuid "abb235bd-a384-4123-ab16-1a63791f7118")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0128")
 					(unit 1)
@@ -61431,7 +61431,7 @@
 			(uuid "e91c8825-a458-43a9-910e-7cd9e7d78131")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR077")
 					(unit 1)
@@ -61729,7 +61729,7 @@
 			(uuid "b56f5e7a-79a4-466e-9d44-9ad2b4b6034d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R62")
 					(unit 1)
@@ -62124,7 +62124,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751883")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U19")
 					(unit 1)
@@ -62461,7 +62461,7 @@
 			(uuid "2d0ceae5-a3d5-42bb-85bb-0445a18141c0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q1")
 					(unit 1)
@@ -62723,7 +62723,7 @@
 			(uuid "72d586ce-7eb6-409a-9a16-88c245a12f62")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C5")
 					(unit 1)
@@ -63117,7 +63117,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751884")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U3")
 					(unit 2)
@@ -63351,7 +63351,7 @@
 			(uuid "46fab7b3-4796-48b7-b120-54c3281c13dd")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C29")
 					(unit 1)
@@ -63613,7 +63613,7 @@
 			(uuid "d7b21ff2-7899-455c-828f-f2d99b3a4777")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C34")
 					(unit 1)
@@ -63899,7 +63899,7 @@
 			(uuid "44cc7129-903d-4369-af00-69416bdfa492")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D6")
 					(unit 1)
@@ -63975,7 +63975,7 @@
 			(uuid "ddb46ddc-9efb-4105-9acf-5faea863c323")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR078")
 					(unit 1)
@@ -64237,7 +64237,7 @@
 			(uuid "29a4f99d-909e-4627-a32d-96b65ec71eee")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C19")
 					(unit 1)
@@ -64523,7 +64523,7 @@
 			(uuid "e588f6a0-9652-45aa-a83d-bd998b6ce1a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D20")
 					(unit 1)
@@ -64533,7 +64533,7 @@
 	)
 	(symbol
 		(lib_id "power:+2V5")
-		(at 177.8 325.12 90)
+		(at 110.49 195.58 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -64543,7 +64543,7 @@
 		(dnp no)
 		(uuid "8def2c5b-0d21-4600-80ab-d6df0b6b8658")
 		(property "Reference" "#PWR0126"
-			(at 181.61 325.12 0)
+			(at 114.3 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -64554,7 +64554,7 @@
 			)
 		)
 		(property "Value" "V_Peak_Ref"
-			(at 174.625 325.12 90)
+			(at 107.315 195.58 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -64565,7 +64565,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 177.8 325.12 0)
+			(at 110.49 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -64576,7 +64576,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 177.8 325.12 0)
+			(at 110.49 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -64587,7 +64587,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+2V5\""
-			(at 177.8 325.12 0)
+			(at 110.49 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -64601,7 +64601,7 @@
 			(uuid "50de0b66-4271-4b0b-b9e8-2beec5082fbc")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0126")
 					(unit 1)
@@ -64899,7 +64899,7 @@
 			(uuid "4bda507c-7874-4ccc-903c-845054cd1b35")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R56")
 					(unit 1)
@@ -64975,7 +64975,7 @@
 			(uuid "ca992aad-e1e9-48a2-9d0f-462eb61f0799")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR096")
 					(unit 1)
@@ -65051,7 +65051,7 @@
 			(uuid "b545d595-6903-48a7-9f50-33dde89856b1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR042")
 					(unit 1)
@@ -65128,7 +65128,7 @@
 			(uuid "f9a6c69c-30fb-4146-9745-2697400c2623")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0150")
 					(unit 1)
@@ -65205,7 +65205,7 @@
 			(uuid "f650d55f-e69e-4c4f-a1b5-1edacc37b310")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR01")
 					(unit 1)
@@ -65282,7 +65282,7 @@
 			(uuid "416d561e-c1d0-4b9b-8cf6-89d4030553c1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0102")
 					(unit 1)
@@ -65580,7 +65580,7 @@
 			(uuid "a4b3935b-ba1f-4577-b91e-11f4a458550d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R17")
 					(unit 1)
@@ -65878,7 +65878,7 @@
 			(uuid "30acbf9a-4fc1-46be-9ea6-5efc755c86aa")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R72")
 					(unit 1)
@@ -65955,7 +65955,7 @@
 			(uuid "8a072d5e-6679-492b-9b6f-7d8285a9bf30")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0107")
 					(unit 1)
@@ -66033,7 +66033,7 @@
 			(uuid "dc59f24c-fe0b-45d8-bb3f-dc0775c1e7bb")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR016")
 					(unit 1)
@@ -66109,7 +66109,7 @@
 			(uuid "614fa079-2b3a-41cf-8a29-e116a81a9914")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR03")
 					(unit 1)
@@ -66407,7 +66407,7 @@
 			(uuid "169b6901-302e-4bc0-860d-7c591db0acb2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R47")
 					(unit 1)
@@ -66705,7 +66705,7 @@
 			(uuid "1d93c334-77a7-4fcd-8b9c-3342113e87ee")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R44")
 					(unit 1)
@@ -66967,7 +66967,7 @@
 			(uuid "4757092f-2234-4594-b9f4-de848ba7f1a6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C36")
 					(unit 1)
@@ -67223,7 +67223,7 @@
 			(uuid "4a1fc1ae-12c7-43df-88ad-85df322a0436")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D9")
 					(unit 1)
@@ -67233,7 +67233,7 @@
 	)
 	(symbol
 		(lib_id "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import:root_0_CL05B104KO5NNNC_")
-		(at 167.64 55.88 90)
+		(at 50.8 233.68 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -67243,7 +67243,7 @@
 		(dnp no)
 		(uuid "96c8b0f6-b06f-4e16-84fb-f99a096620a5")
 		(property "Reference" "C38"
-			(at 167.259 53.34 90)
+			(at 50.419 231.14 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -67254,7 +67254,7 @@
 			)
 		)
 		(property "Value" "22nF"
-			(at 167.259 57.15 90)
+			(at 50.419 234.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -67265,7 +67265,7 @@
 			)
 		)
 		(property "Footprint" "C0402"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67276,7 +67276,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67288,7 +67288,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67299,7 +67299,7 @@
 			)
 		)
 		(property "SYMBOL" "CL05B104KO5NNNC"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67311,7 +67311,7 @@
 			)
 		)
 		(property "DEVICE" "CL05B104KO5NNNC"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67323,7 +67323,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "100nF ±10% 16V"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67335,7 +67335,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C1525"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67347,7 +67347,7 @@
 			)
 		)
 		(property "MANUFACTURER" "SAMSUNG(三星)"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67359,7 +67359,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "CL05B104KO5NNNC"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67371,7 +67371,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "0402"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67383,7 +67383,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Basic Part"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67395,7 +67395,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67407,7 +67407,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67419,7 +67419,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67431,7 +67431,7 @@
 			)
 		)
 		(property "ALTIUM_VALUE" "100nF"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67443,7 +67443,7 @@
 			)
 		)
 		(property "TOLERANCE" "±10%"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67455,7 +67455,7 @@
 			)
 		)
 		(property "VOLTAGE RATING" "16V"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67467,7 +67467,7 @@
 			)
 		)
 		(property "TEMPERATURE COEFFICIENT" "X7R"
-			(at 167.64 55.88 0)
+			(at 50.8 233.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -67485,7 +67485,7 @@
 			(uuid "c6757386-b252-4205-8585-90f1a6fbbf4e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C38")
 					(unit 1)
@@ -67562,7 +67562,7 @@
 			(uuid "24e41c5b-1cc9-45a2-a521-3f3b17cff4bb")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR052")
 					(unit 1)
@@ -67860,7 +67860,7 @@
 			(uuid "fc7e3dd9-e7cb-4c7b-8ca9-defd09757277")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D18")
 					(unit 1)
@@ -68158,7 +68158,7 @@
 			(uuid "70fd777f-fe13-4726-b8fa-debbe9a699b0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R36")
 					(unit 1)
@@ -68528,7 +68528,7 @@
 			(uuid "deda6b10-0686-40f0-8bac-2b04a5acdc5f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U5")
 					(unit 1)
@@ -68605,7 +68605,7 @@
 			(uuid "ed538561-d848-4128-821e-f956ecf0b138")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0119")
 					(unit 1)
@@ -68891,7 +68891,7 @@
 			(uuid "3173ba21-cf23-4a4e-84a3-31e4cd185938")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D11")
 					(unit 1)
@@ -68969,7 +68969,7 @@
 			(uuid "f706d6a9-4782-4c70-aaeb-a10a4d279f76")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0169")
 					(unit 1)
@@ -69267,7 +69267,7 @@
 			(uuid "ad7dc795-1cab-4dd4-8f5d-d61978234ed5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R6")
 					(unit 1)
@@ -69343,7 +69343,7 @@
 			(uuid "80427693-250d-4612-98b0-490c0f43ae67")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR090")
 					(unit 1)
@@ -69420,7 +69420,7 @@
 			(uuid "c51e3c67-9936-4dcd-891c-5a1c77bbb30c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR028")
 					(unit 1)
@@ -69718,7 +69718,7 @@
 			(uuid "1f806517-1ac6-4a6b-b7e7-2d418695c565")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R53")
 					(unit 1)
@@ -69980,7 +69980,7 @@
 			(uuid "dfc1a673-1b0e-48b7-b334-6f33f1d358ba")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C33")
 					(unit 1)
@@ -70278,7 +70278,7 @@
 			(uuid "72334779-f48e-4885-8d58-67c6b154f05d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R35")
 					(unit 1)
@@ -70705,7 +70705,7 @@
 			(uuid "42185814-84bf-44d2-b1f6-5f8e99848e90")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U8")
 					(unit 1)
@@ -70783,7 +70783,7 @@
 			(uuid "48655bd4-0c8a-4f54-b7c9-7ee7c9d806f8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0167")
 					(unit 1)
@@ -71045,7 +71045,7 @@
 			(uuid "fb1f15ff-d8a6-4eb2-8e19-590fb8dc3bb2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C28")
 					(unit 1)
@@ -71122,7 +71122,7 @@
 			(uuid "b46e41cf-3afd-4db1-a0d1-6b978318b2ef")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0122")
 					(unit 1)
@@ -71420,7 +71420,7 @@
 			(uuid "6414880c-0c60-4497-bf9b-c67a2bb97385")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R19")
 					(unit 1)
@@ -71497,7 +71497,7 @@
 			(uuid "869dd776-ead7-4317-b896-d1402557c012")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0154")
 					(unit 1)
@@ -71795,7 +71795,7 @@
 			(uuid "4288f4b0-f4ec-483b-9771-e5ab02b72e83")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R1")
 					(unit 1)
@@ -71872,7 +71872,7 @@
 			(uuid "7e44940e-06f9-42a6-8973-a16475cb2f18")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0105")
 					(unit 1)
@@ -71948,7 +71948,7 @@
 			(uuid "e9afc303-eb41-41a4-aca8-7eefba92cdf1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0130")
 					(unit 1)
@@ -72342,7 +72342,7 @@
 			(uuid "61294a19-b610-486f-9627-04bc21751885")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U3")
 					(unit 4)
@@ -72352,7 +72352,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 32.512 309.372 0)
+		(at 31.75 344.932 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -72363,7 +72363,7 @@
 		(fields_autoplaced yes)
 		(uuid "a4ed5ffd-ad75-4090-bae4-accf15dd3012")
 		(property "Reference" "H4"
-			(at 36.068 308.1019 0)
+			(at 35.306 343.6619 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -72374,7 +72374,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 36.068 310.6419 0)
+			(at 35.306 346.2019 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -72385,7 +72385,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 32.512 309.372 0)
+			(at 31.75 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -72396,7 +72396,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 32.512 309.372 0)
+			(at 31.75 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -72407,7 +72407,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 32.512 309.372 0)
+			(at 31.75 344.932 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -72418,7 +72418,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H4")
 					(unit 1)
@@ -72813,7 +72813,7 @@
 			(uuid "c52d45e1-7b37-4cbb-a19a-1061b6d64779")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U1")
 					(unit 2)
@@ -72889,7 +72889,7 @@
 			(uuid "4e8915f0-d64f-4375-abf1-d556160c6256")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR036")
 					(unit 1)
@@ -72965,7 +72965,7 @@
 			(uuid "997cb58f-be27-4ba1-9e15-f11555e6f479")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR027")
 					(unit 1)
@@ -73272,7 +73272,7 @@
 			(uuid "7d91d633-80d9-4a59-ac37-e4449db53f9e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U16")
 					(unit 1)
@@ -73570,7 +73570,7 @@
 			(uuid "1c1b0953-316f-4846-83ab-719d21b33fc6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R8")
 					(unit 1)
@@ -73868,7 +73868,7 @@
 			(uuid "4fa4a48b-a1a0-468b-8586-de4e340b1f6f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R65")
 					(unit 1)
@@ -74239,7 +74239,7 @@
 			(uuid "8d919af5-036c-49f5-9a73-e27e884401f2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U6")
 					(unit 2)
@@ -74501,7 +74501,7 @@
 			(uuid "9df95af5-5c47-4cd4-a4ff-e8a1c849b97a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C20")
 					(unit 1)
@@ -74511,7 +74511,7 @@
 	)
 	(symbol
 		(lib_id "MCP6004T-I_ST1_MCP6004T-I_ST-altium-import:root_0_MCP6004T-I/ST_")
-		(at 190.5 322.58 0)
+		(at 123.19 193.04 0)
 		(unit 2)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -74521,7 +74521,7 @@
 		(dnp no)
 		(uuid "a9942918-ff1f-4c20-945e-6b274323546c")
 		(property "Reference" "U2"
-			(at 187.706 323.469 0)
+			(at 120.396 193.929 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -74532,7 +74532,7 @@
 			)
 		)
 		(property "Value" "MCP6004T-I/ST"
-			(at 185.674 318.135 0)
+			(at 118.364 188.595 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -74543,7 +74543,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74554,7 +74554,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20170919/C125816_1505787101798976759.pdf"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74566,7 +74566,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74577,7 +74577,7 @@
 			)
 		)
 		(property "SYMBOL" "MCP6004T-I/ST"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74589,7 +74589,7 @@
 			)
 		)
 		(property "DEVICE" "MCP6004T-I/ST"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74601,7 +74601,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "MCP6004T-I/ST"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74613,7 +74613,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C50282"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74625,7 +74625,7 @@
 			)
 		)
 		(property "MANUFACTURER" "MICROCHIP(美国微芯)"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74637,7 +74637,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "MCP6004T-I/ST"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74649,7 +74649,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "TSSOP-14"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74661,7 +74661,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74673,7 +74673,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74685,7 +74685,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74697,7 +74697,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74709,7 +74709,7 @@
 			)
 		)
 		(property "NUMBER OF CIRCUITS" "Four channels"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74721,7 +74721,7 @@
 			)
 		)
 		(property "MAXIMUM POWER SUPPLY RANGE (VDD-VSS)" "6V"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74733,7 +74733,7 @@
 			)
 		)
 		(property "RAIL TO RAIL" "Rail-to-rail input, rail-to-rail output"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74745,7 +74745,7 @@
 			)
 		)
 		(property "GAIN BANDWIDTH PRODUCT(GBP)" "1MHz"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74757,7 +74757,7 @@
 			)
 		)
 		(property "VOLTAGE - INPUT OFFSET(VOS)" "4.5mV"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74769,7 +74769,7 @@
 			)
 		)
 		(property "INPUT OFFSET VOLTAGE DRIFT (VOS TC)" "2uV/℃"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74781,7 +74781,7 @@
 			)
 		)
 		(property "SLEW RATE(SR)" "0.6V/us"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74793,7 +74793,7 @@
 			)
 		)
 		(property "CURRENT - INPUT BIAS(IB)" "1pA"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74805,7 +74805,7 @@
 			)
 		)
 		(property "NOISE DENSITY(EN)" "28nV/√Hz@1kHz"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74817,7 +74817,7 @@
 			)
 		)
 		(property "COMMON MODE REJECTION RATIO (CMRR)" "76dB"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74829,7 +74829,7 @@
 			)
 		)
 		(property "OUTPUT CURRENT" "23mA"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74841,7 +74841,7 @@
 			)
 		)
 		(property "OPERATING TEMPERATURE" "-40℃~+85℃"
-			(at 190.5 322.58 0)
+			(at 123.19 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -74895,7 +74895,7 @@
 			(uuid "5282e573-c7a1-4895-9f68-4c2482697731")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U2")
 					(unit 2)
@@ -75157,7 +75157,7 @@
 			(uuid "abd3d194-504a-48a7-8a22-0f35b1805db1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C24")
 					(unit 1)
@@ -75308,7 +75308,7 @@
 			(uuid "26c463c8-b91a-4a01-aa0d-ff50dd1b41da")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "SW1")
 					(unit 1)
@@ -75384,7 +75384,7 @@
 			(uuid "30776ec7-7633-4fd2-b0cd-7b6c132479c3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0134")
 					(unit 1)
@@ -75625,7 +75625,7 @@
 			(uuid "51f4463c-5c50-4121-921a-78794301f352")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV9")
 					(unit 1)
@@ -75635,7 +75635,7 @@
 	)
 	(symbol
 		(lib_id "PJ-320B1_PJ-320B-altium-import:root_0_PJ-320B贴片_")
-		(at 36.83 266.7 0)
+		(at 34.036 302.26 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -75646,7 +75646,7 @@
 		(dnp no)
 		(uuid "ae6e7ccf-dae6-42cb-87a3-85a67948f03f")
 		(property "Reference" "J4"
-			(at 30.988 258.064 0)
+			(at 28.194 293.624 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -75657,7 +75657,7 @@
 			)
 		)
 		(property "Value" "Syn2 Input"
-			(at 36.195 257.81 0)
+			(at 33.401 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -75668,7 +75668,7 @@
 			)
 		)
 		(property "Footprint" "Maxime:AUDIO-SMD_PJ-320B"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75679,7 +75679,7 @@
 			)
 		)
 		(property "Datasheet" "https://atta.szlcsc.com/upload/public/pdf/source/20180120/C18594_15164110647051284730.pdf"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75691,7 +75691,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75702,7 +75702,7 @@
 			)
 		)
 		(property "SYMBOL" "PJ-320B"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75714,7 +75714,7 @@
 			)
 		)
 		(property "DEVICE" "PJ-320B贴片"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75726,7 +75726,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "3.5mm耳机座"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75738,7 +75738,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C18594"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75750,7 +75750,7 @@
 			)
 		)
 		(property "MANUFACTURER" "BOOMELE(博穆精密)"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75762,7 +75762,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "PJ-320B贴片"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75774,7 +75774,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SMD"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75786,7 +75786,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75798,7 +75798,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75810,7 +75810,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75822,7 +75822,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75834,7 +75834,7 @@
 			)
 		)
 		(property "CONNECTOR TYPE" "3.5mm耳机座"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75846,7 +75846,7 @@
 			)
 		)
 		(property "CURRENT RATING (MAX)" "200mA"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75858,7 +75858,7 @@
 			)
 		)
 		(property "VOLTAGE RATING (MAX)" "30V"
-			(at 36.83 266.7 0)
+			(at 34.036 302.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -75879,7 +75879,7 @@
 			(uuid "738b729c-f680-4467-8afc-8c2b7783c80c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "J4")
 					(unit 1)
@@ -76177,7 +76177,7 @@
 			(uuid "e65e010f-972a-4e43-b8a0-62db7af99c73")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R41")
 					(unit 1)
@@ -76475,7 +76475,7 @@
 			(uuid "38886707-ba98-414e-890c-bce865bd088e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R28")
 					(unit 1)
@@ -76869,7 +76869,7 @@
 			(uuid "5282e573-c7a1-4895-9f68-4c2482697732")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U2")
 					(unit 4)
@@ -76947,7 +76947,7 @@
 			(uuid "31e30b79-364e-48e0-873c-d0bfbcb5f661")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR09")
 					(unit 1)
@@ -77209,7 +77209,7 @@
 			(uuid "20fb0ae9-fb43-4014-9036-36ef66f1235b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C2")
 					(unit 1)
@@ -77507,7 +77507,7 @@
 			(uuid "c15693e0-66da-40df-9288-c669bad6ff43")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R5")
 					(unit 1)
@@ -77584,7 +77584,7 @@
 			(uuid "78d66c1f-a8c7-4ad2-aaf2-4909cd6ce032")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0120")
 					(unit 1)
@@ -77661,7 +77661,7 @@
 			(uuid "4cc3d30d-c853-4f06-a774-64b40f1cb5e3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0129")
 					(unit 1)
@@ -77738,7 +77738,7 @@
 			(uuid "5ec724e2-013d-4162-97ee-d590bf156a10")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0156")
 					(unit 1)
@@ -78108,7 +78108,7 @@
 			(uuid "36f69148-0e1b-43f7-8f28-c9f5c1336d73")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U6")
 					(unit 3)
@@ -78430,7 +78430,7 @@
 			(uuid "82081696-d19f-4cb9-bed0-0d174f74e9bf")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D4")
 					(unit 1)
@@ -78440,7 +78440,7 @@
 	)
 	(symbol
 		(lib_id "power:+2V5")
-		(at 45.72 364.49 90)
+		(at 111.76 228.6 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -78450,7 +78450,7 @@
 		(dnp no)
 		(uuid "b5336c3f-ed1a-4e09-b35e-e7056f9a64d6")
 		(property "Reference" "#PWR0176"
-			(at 49.53 364.49 0)
+			(at 115.57 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -78461,7 +78461,7 @@
 			)
 		)
 		(property "Value" "V_Peak_Drive"
-			(at 42.545 364.49 90)
+			(at 108.585 228.6 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -78472,7 +78472,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 364.49 0)
+			(at 111.76 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -78483,7 +78483,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 364.49 0)
+			(at 111.76 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -78494,7 +78494,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+2V5\""
-			(at 45.72 364.49 0)
+			(at 111.76 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -78508,7 +78508,7 @@
 			(uuid "a311abc6-3c70-4d16-a9a6-26ad8ee3222e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0176")
 					(unit 1)
@@ -78806,7 +78806,7 @@
 			(uuid "cfaa5324-6376-4b93-8c30-66681243ffe8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R39")
 					(unit 1)
@@ -78884,7 +78884,7 @@
 			(uuid "f891e3ac-26a0-425d-83db-8dbc8d051254")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR041")
 					(unit 1)
@@ -78961,7 +78961,7 @@
 			(uuid "af17541d-de1d-456d-8559-05efedd76224")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR097")
 					(unit 1)
@@ -79038,7 +79038,7 @@
 			(uuid "82effc0f-4533-48d5-ba7f-356e7d1e663e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0131")
 					(unit 1)
@@ -79048,7 +79048,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 52.832 304.292 0)
+		(at 52.07 339.852 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -79059,7 +79059,7 @@
 		(fields_autoplaced yes)
 		(uuid "b7ad3006-ed1c-426e-bce6-19c021a771bd")
 		(property "Reference" "H2"
-			(at 56.388 303.0219 0)
+			(at 55.626 338.5819 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -79070,7 +79070,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 56.388 305.5619 0)
+			(at 55.626 341.1219 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -79081,7 +79081,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 52.832 304.292 0)
+			(at 52.07 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79092,7 +79092,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.832 304.292 0)
+			(at 52.07 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79103,7 +79103,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 52.832 304.292 0)
+			(at 52.07 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79114,7 +79114,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H2")
 					(unit 1)
@@ -79124,7 +79124,7 @@
 	)
 	(symbol
 		(lib_id "BAT54WS L91_BAT54WS L9-altium-import:root_0_BAT54WS L9_")
-		(at 175.26 45.72 270)
+		(at 58.42 223.52 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -79134,7 +79134,7 @@
 		(dnp no)
 		(uuid "b873347e-fff7-4498-a485-2e3afef52bfe")
 		(property "Reference" "D21"
-			(at 175.895 42.926 90)
+			(at 59.055 220.726 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -79145,7 +79145,7 @@
 			)
 		)
 		(property "Value" "BAT54WS L9"
-			(at 177.165 46.101 90)
+			(at 60.325 223.901 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -79156,7 +79156,7 @@
 			)
 		)
 		(property "Footprint" "SOD-323_L1.8-W1.3-LS2.5-RD"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79167,7 +79167,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/BAT54WS%2520L9/23356.html"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79179,7 +79179,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79190,7 +79190,7 @@
 			)
 		)
 		(property "SYMBOL" "BAT54WS L9"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79202,7 +79202,7 @@
 			)
 		)
 		(property "DEVICE" "BAT54WS L9"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79214,7 +79214,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "电压:30V 电流:100mA"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79226,7 +79226,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C22629"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79238,7 +79238,7 @@
 			)
 		)
 		(property "MANUFACTURER" "CJ(江苏长电/长晶)"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79250,7 +79250,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "BAT54WS L9"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79262,7 +79262,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SOD-323"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79274,7 +79274,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79286,7 +79286,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79298,7 +79298,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79310,7 +79310,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79322,7 +79322,7 @@
 			)
 		)
 		(property "DIODE CONFIGURATION" "Independent"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79334,7 +79334,7 @@
 			)
 		)
 		(property "VOLTAGE - FORWARD(VF@IF)" "1V@100mA"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79346,7 +79346,7 @@
 			)
 		)
 		(property "VOLTAGE - DC REVERSE(VR)" "30V"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79358,7 +79358,7 @@
 			)
 		)
 		(property "CURRENT - RECTIFIED" "100mA"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79370,7 +79370,7 @@
 			)
 		)
 		(property "REVERSE LEAKAGE CURRENT (IR)" "2uA@25V"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79382,7 +79382,7 @@
 			)
 		)
 		(property "NON-REPETITIVE PEAK FORWARD SURGE CURRENT" "600mA"
-			(at 175.26 45.72 0)
+			(at 58.42 223.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79400,7 +79400,7 @@
 			(uuid "0be6998c-973e-468d-bc27-adc074796bf0")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D21")
 					(unit 1)
@@ -79477,7 +79477,7 @@
 			(uuid "560d0940-bbf8-44cf-94df-5cfb496ba55f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0143")
 					(unit 1)
@@ -79554,7 +79554,7 @@
 			(uuid "5390c11e-ca9f-42a3-b144-66fdcb419722")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0159")
 					(unit 1)
@@ -79631,7 +79631,7 @@
 			(uuid "d5136710-62fc-47d1-a1b6-6bf8bf8e8b57")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0123")
 					(unit 1)
@@ -79708,7 +79708,7 @@
 			(uuid "4a46eedd-18b1-48fc-8ece-e6be64f03b81")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR034")
 					(unit 1)
@@ -80103,7 +80103,7 @@
 			(uuid "caecac04-b91c-4f6f-9863-f9e3bfef9be3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U2")
 					(unit 3)
@@ -80180,7 +80180,7 @@
 			(uuid "36e91fff-5021-48f2-8c48-7663741a5811")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR043")
 					(unit 1)
@@ -80442,7 +80442,7 @@
 			(uuid "393e4fe4-fb89-494d-a536-62594f70c4ec")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C22")
 					(unit 1)
@@ -80740,7 +80740,7 @@
 			(uuid "b28ecab1-8ea0-4f14-a8e6-4a21894015b6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D1")
 					(unit 1)
@@ -80817,7 +80817,7 @@
 			(uuid "d59ee58e-083a-4cb0-a4fb-c84ff49b0b91")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR064")
 					(unit 1)
@@ -80827,7 +80827,7 @@
 	)
 	(symbol
 		(lib_id "TS5A3166DCKR1_TS5A3166DCKR-altium-import:root_0_TS5A3166DCKR_")
-		(at 66.04 367.03 0)
+		(at 132.08 231.14 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -80837,7 +80837,7 @@
 		(dnp no)
 		(uuid "c4629f3a-98ab-449b-b400-31e3504f1eee")
 		(property "Reference" "U20"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -80848,7 +80848,7 @@
 			)
 		)
 		(property "Value" "TS5A3166DCKR"
-			(at 58.42 361.315 0)
+			(at 124.46 225.425 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -80859,7 +80859,7 @@
 			)
 		)
 		(property "Footprint" "SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80870,7 +80870,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/cn/lit/gpn/ts5a3166"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80882,7 +80882,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80893,7 +80893,7 @@
 			)
 		)
 		(property "SYMBOL" "TS5A3166DCKR"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80905,7 +80905,7 @@
 			)
 		)
 		(property "DEVICE" "TS5A3166DCKR"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80917,7 +80917,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "TS5A3166 0.9-Ω SPST 模拟开关"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80929,7 +80929,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C133819"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80941,7 +80941,7 @@
 			)
 		)
 		(property "MANUFACTURER" "TI(德州仪器)"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80953,7 +80953,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "TS5A3166DCKR"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80965,7 +80965,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "SC-70-5"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80977,7 +80977,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -80989,7 +80989,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81001,7 +81001,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81013,7 +81013,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81025,7 +81025,7 @@
 			)
 		)
 		(property "SWITCH CIRCUIT" "SPST(SPST)"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81037,7 +81037,7 @@
 			)
 		)
 		(property "NUMBER OF CHANNELS" "1"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81049,7 +81049,7 @@
 			)
 		)
 		(property "SUPPLY VOLTAGE" "1.65V~5.5V"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81061,7 +81061,7 @@
 			)
 		)
 		(property "TURN-ON TIME" "12ns"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81073,7 +81073,7 @@
 			)
 		)
 		(property "ON-STATE RESISTANCE (MAX)" "1.1Ω"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81085,7 +81085,7 @@
 			)
 		)
 		(property "TURN-OFF TIME" "18.5ns"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81097,7 +81097,7 @@
 			)
 		)
 		(property "OPERATING TEMPERATURE" "-40℃~+85℃"
-			(at 66.04 367.03 0)
+			(at 132.08 231.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81124,7 +81124,7 @@
 			(uuid "f77bf726-0cd1-4bd2-acd3-bada385815f7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U20")
 					(unit 1)
@@ -81422,7 +81422,7 @@
 			(uuid "0f2764c6-9db7-4f1e-8330-33470726b388")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R74")
 					(unit 1)
@@ -81499,7 +81499,7 @@
 			(uuid "413fd755-32a0-49a6-9620-1060d0a3d7ae")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR091")
 					(unit 1)
@@ -81575,7 +81575,7 @@
 			(uuid "0dd2cf03-2c11-48f7-a338-0bad31fa929b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0121")
 					(unit 1)
@@ -81652,7 +81652,7 @@
 			(uuid "be6d4825-7eb1-4169-9367-cedc64f4da69")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR050")
 					(unit 1)
@@ -81729,7 +81729,7 @@
 			(uuid "e8742d53-bab8-4f08-82c7-1ea0cbf2b6ce")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR075")
 					(unit 1)
@@ -81806,7 +81806,7 @@
 			(uuid "992b00d9-b7b4-47c1-acfc-8021dd940c8c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0142")
 					(unit 1)
@@ -81883,7 +81883,7 @@
 			(uuid "4f17d690-86fc-408f-ae1b-c8beabb1213f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0160")
 					(unit 1)
@@ -81893,7 +81893,7 @@
 	)
 	(symbol
 		(lib_id "Spiky_Lui-altium-import:root_0_RC0402FR-0710KL_")
-		(at 50.8 364.49 180)
+		(at 116.84 228.6 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -81903,7 +81903,7 @@
 		(dnp no)
 		(uuid "cbac4200-ebef-4b23-9e37-716ac22a342f")
 		(property "Reference" "R91"
-			(at 52.832 361.696 0)
+			(at 118.872 225.806 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -81914,7 +81914,7 @@
 			)
 		)
 		(property "Value" "10kΩ"
-			(at 52.705 363.855 0)
+			(at 118.745 227.965 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -81925,7 +81925,7 @@
 			)
 		)
 		(property "Footprint" "R0402"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81936,7 +81936,7 @@
 			)
 		)
 		(property "Datasheet" "https://item.szlcsc.com/datasheet/RC0402FR-0710KL/61542.html"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81948,7 +81948,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81959,7 +81959,7 @@
 			)
 		)
 		(property "SYMBOL" "RC0402FR-0710KL"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81971,7 +81971,7 @@
 			)
 		)
 		(property "DEVICE" "RC0402FR-0710KL"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81983,7 +81983,7 @@
 			)
 		)
 		(property "LCSC PART NAME" "厚膜电阻 10kΩ ±1% 62.5mW"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81995,7 +81995,7 @@
 			)
 		)
 		(property "SUPPLIER PART" "C60490"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82007,7 +82007,7 @@
 			)
 		)
 		(property "MANUFACTURER" "YAGEO(国巨)"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82019,7 +82019,7 @@
 			)
 		)
 		(property "MANUFACTURER PART" "RC0402FR-0710KL"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82031,7 +82031,7 @@
 			)
 		)
 		(property "SUPPLIER FOOTPRINT" "0402"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82043,7 +82043,7 @@
 			)
 		)
 		(property "JLCPCB PART CLASS" "Extended Part"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82055,7 +82055,7 @@
 			)
 		)
 		(property "SUPPLIER" "LCSC"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82067,7 +82067,7 @@
 			)
 		)
 		(property "ADD INTO BOM" "yes"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82079,7 +82079,7 @@
 			)
 		)
 		(property "CONVERT TO PCB" "yes"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82091,7 +82091,7 @@
 			)
 		)
 		(property "TYPE" "Thick Film Resistor"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82103,7 +82103,7 @@
 			)
 		)
 		(property "ALTIUM_VALUE" "10kΩ"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82115,7 +82115,7 @@
 			)
 		)
 		(property "TOLERANCE" "±1%"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82127,7 +82127,7 @@
 			)
 		)
 		(property "POWER(WATTS)" "62.5mW"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82139,7 +82139,7 @@
 			)
 		)
 		(property "VOLTAGE-SUPPLY(MAX)" "50V"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82151,7 +82151,7 @@
 			)
 		)
 		(property "TEMPERATURE COEFFICIENT" "±100ppm/℃"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82163,7 +82163,7 @@
 			)
 		)
 		(property "OPERATING TEMPERATURE" "-55℃~+155℃"
-			(at 50.8 364.49 0)
+			(at 116.84 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -82181,7 +82181,7 @@
 			(uuid "84d597b8-d72c-4a9f-8e34-009d3f4e4922")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R91")
 					(unit 1)
@@ -82479,7 +82479,7 @@
 			(uuid "a1cfbe32-0ef8-4ef4-b1b2-4edfd5df56ec")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R10")
 					(unit 1)
@@ -82741,7 +82741,7 @@
 			(uuid "5f50d25a-9d9e-433c-ba8c-f2be2abd0153")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C16")
 					(unit 1)
@@ -82818,7 +82818,7 @@
 			(uuid "b728166e-6366-42d9-be97-a6c27b5e95c5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR081")
 					(unit 1)
@@ -83080,7 +83080,7 @@
 			(uuid "cfef9ae0-ce6b-4868-877f-0b0a045c8586")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C3")
 					(unit 1)
@@ -83366,7 +83366,7 @@
 			(uuid "119dd065-c3be-44af-b2fd-0a51475ae8ab")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D12")
 					(unit 1)
@@ -83664,7 +83664,7 @@
 			(uuid "204cfcce-f844-48c6-a3f4-6cae31e12775")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R51")
 					(unit 1)
@@ -83990,7 +83990,7 @@
 			(uuid "298bb042-35d9-48df-acc5-29fc5c04d109")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q8")
 					(unit 1)
@@ -84066,7 +84066,7 @@
 			(uuid "44b151f2-4c92-425f-9183-6e3ba644d390")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR029")
 					(unit 1)
@@ -84144,7 +84144,7 @@
 			(uuid "2c3c90f9-9341-4712-a537-3f0403dd167f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR010")
 					(unit 1)
@@ -84406,7 +84406,7 @@
 			(uuid "55189909-ba49-473e-8c9f-2f4fe07a5345")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C35")
 					(unit 1)
@@ -84704,7 +84704,7 @@
 			(uuid "e99786b3-a94a-491b-b462-dec55edd6fe1")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R83")
 					(unit 1)
@@ -84781,7 +84781,7 @@
 			(uuid "4ff192be-7eeb-4295-933f-720a145b2834")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR013")
 					(unit 1)
@@ -84858,7 +84858,7 @@
 			(uuid "580d8506-a0e6-4702-8ebe-f3f7d3744fa8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR055")
 					(unit 1)
@@ -84934,7 +84934,7 @@
 			(uuid "0d284b98-f5c2-4b97-ac6f-40d2365bee65")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR089")
 					(unit 1)
@@ -85220,7 +85220,7 @@
 			(uuid "924bf24b-e81a-432c-beb3-f211165e6655")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "D3")
 					(unit 1)
@@ -85518,7 +85518,7 @@
 			(uuid "06c5e868-beac-455b-aafa-9a5c6ee66d7f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R68")
 					(unit 1)
@@ -85759,7 +85759,7 @@
 			(uuid "1ccba31a-1bd1-4ecc-9f3a-9ca60c3764a8")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV8")
 					(unit 1)
@@ -86021,7 +86021,7 @@
 			(uuid "1d28034f-77a3-49ec-845f-abadbcc05b69")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C23")
 					(unit 1)
@@ -86319,7 +86319,7 @@
 			(uuid "a4ba2ad4-4ddb-4df2-8cf7-7b54fec09249")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R75")
 					(unit 1)
@@ -86617,7 +86617,7 @@
 			(uuid "7913dbda-03da-49ff-91c1-6cc719bf9ec9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R69")
 					(unit 1)
@@ -86954,7 +86954,7 @@
 			(uuid "58963145-5396-4886-823d-73e776841156")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q4")
 					(unit 1)
@@ -87031,7 +87031,7 @@
 			(uuid "7416c198-af98-42cc-bdd5-596459d70d14")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR094")
 					(unit 1)
@@ -87293,7 +87293,7 @@
 			(uuid "e2aa6c75-57eb-4b8b-be97-768de6ac67d2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C25")
 					(unit 1)
@@ -87618,7 +87618,7 @@
 			(uuid "42432108-47b6-46ad-96be-e3947253da62")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q2")
 					(unit 1)
@@ -87695,7 +87695,7 @@
 			(uuid "140eac4a-77f7-4ebc-969a-90bd8ebfc8d6")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0145")
 					(unit 1)
@@ -87936,7 +87936,7 @@
 			(uuid "9bcd5d16-ccdc-47ad-b4d1-10d48843eefb")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV1")
 					(unit 1)
@@ -87946,7 +87946,7 @@
 	)
 	(symbol
 		(lib_id "power:+2V5")
-		(at 205.74 322.58 270)
+		(at 138.43 193.04 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -87956,7 +87956,7 @@
 		(dnp no)
 		(uuid "dbfb99ce-ec3b-4630-ba46-3a82645cd1bf")
 		(property "Reference" "#PWR0174"
-			(at 201.93 322.58 0)
+			(at 134.62 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -87967,7 +87967,7 @@
 			)
 		)
 		(property "Value" "V_Peak_Drive"
-			(at 208.915 322.58 90)
+			(at 141.605 193.04 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -87978,7 +87978,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 205.74 322.58 0)
+			(at 138.43 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -87989,7 +87989,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 205.74 322.58 0)
+			(at 138.43 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88000,7 +88000,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+2V5\""
-			(at 205.74 322.58 0)
+			(at 138.43 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88014,7 +88014,7 @@
 			(uuid "487601e9-98d8-4afa-b5de-63325103b069")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0174")
 					(unit 1)
@@ -88092,7 +88092,7 @@
 			(uuid "8b07875b-0a77-4a12-93f9-ad6c4a70c8a4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR030")
 					(unit 1)
@@ -88169,7 +88169,7 @@
 			(uuid "c072289c-8736-483a-9fad-4422f191eb61")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0162")
 					(unit 1)
@@ -88179,7 +88179,7 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
-		(at 84.328 364.49 270)
+		(at 150.368 228.6 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -88189,7 +88189,7 @@
 		(dnp no)
 		(uuid "de7b3b0f-9166-4b7d-bccf-0f0f5d91162a")
 		(property "Reference" "#PWR0151"
-			(at 80.518 364.49 0)
+			(at 146.558 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88200,7 +88200,7 @@
 			)
 		)
 		(property "Value" "VDD"
-			(at 89.535 364.617 90)
+			(at 155.575 228.727 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -88210,7 +88210,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 84.328 364.49 0)
+			(at 150.368 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88221,7 +88221,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 84.328 364.49 0)
+			(at 150.368 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88232,7 +88232,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 84.328 364.49 0)
+			(at 150.368 228.6 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -88245,7 +88245,7 @@
 			(uuid "4095f00e-1994-4255-b7d0-4757f3eff172")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0151")
 					(unit 1)
@@ -88507,7 +88507,7 @@
 			(uuid "c735f96a-4a6e-493c-8df4-0f3385eebce7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C17")
 					(unit 1)
@@ -88805,7 +88805,7 @@
 			(uuid "47f19609-1fe9-4d92-87cf-5b03cc0607b5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R3")
 					(unit 1)
@@ -89103,7 +89103,7 @@
 			(uuid "67f78369-6aba-4830-879d-9d7d9ffd458a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R27")
 					(unit 1)
@@ -89473,7 +89473,7 @@
 			(uuid "8d919af5-036c-49f5-9a73-e27e884401f3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U4")
 					(unit 2)
@@ -89771,7 +89771,7 @@
 			(uuid "9abf4d48-4d06-418f-a4a3-cb9347ebc290")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R73")
 					(unit 1)
@@ -90069,7 +90069,7 @@
 			(uuid "c6e8ead1-062a-4ec0-b52d-4430570ee90b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R7")
 					(unit 1)
@@ -90079,7 +90079,7 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
-		(at 175.26 40.64 0)
+		(at 58.42 218.44 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -90089,7 +90089,7 @@
 		(dnp no)
 		(uuid "e0fd22d4-84cc-40cd-9fd7-af131c8d068a")
 		(property "Reference" "#PWR0172"
-			(at 175.26 44.45 0)
+			(at 58.42 222.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -90100,7 +90100,7 @@
 			)
 		)
 		(property "Value" "VDD"
-			(at 175.26 36.83 0)
+			(at 58.42 214.63 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -90110,7 +90110,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 40.64 0)
+			(at 58.42 218.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -90121,7 +90121,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 175.26 40.64 0)
+			(at 58.42 218.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -90132,7 +90132,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 175.26 40.64 0)
+			(at 58.42 218.44 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -90145,7 +90145,7 @@
 			(uuid "daa6bfaf-c9d2-41ce-a0f8-4a6bcbbdb30b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0172")
 					(unit 1)
@@ -90221,7 +90221,7 @@
 			(uuid "bdf0758d-2793-4cb5-9e4a-7d79b828aafc")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0163")
 					(unit 1)
@@ -90297,7 +90297,7 @@
 			(uuid "ff7a6c54-022f-4c74-ae37-90a345cc2b0a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0155")
 					(unit 1)
@@ -90604,7 +90604,7 @@
 			(uuid "e2dea9f7-995a-4361-8648-aecc3bee5403")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U9")
 					(unit 1)
@@ -90866,7 +90866,7 @@
 			(uuid "f455cdfa-0dba-4d55-a8b1-4a7232320c58")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C8")
 					(unit 1)
@@ -90942,7 +90942,7 @@
 			(uuid "b84ec426-e185-43c3-9c8c-b273a285fa84")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR074")
 					(unit 1)
@@ -91240,7 +91240,7 @@
 			(uuid "b206493e-5d0e-4146-9a5e-56c6a4dfb838")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R52")
 					(unit 1)
@@ -91316,7 +91316,7 @@
 			(uuid "46a5a9da-0c7f-438b-80cd-e2a37a05c38a")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR058")
 					(unit 1)
@@ -91614,7 +91614,7 @@
 			(uuid "6dbccf60-38bc-49d4-8115-47af94fa3642")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R32")
 					(unit 1)
@@ -91690,7 +91690,7 @@
 			(uuid "ca91ad20-c86d-416b-a781-ab3a5040cea9")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR099")
 					(unit 1)
@@ -91766,7 +91766,7 @@
 			(uuid "8c19c9e4-767d-4d26-90ad-f9fc53d093fc")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR012")
 					(unit 1)
@@ -92064,7 +92064,7 @@
 			(uuid "bd778849-0ab8-4491-a954-806a1fde3d86")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R42")
 					(unit 1)
@@ -92371,7 +92371,7 @@
 			(uuid "bb44378f-00d7-4ef3-b527-7408f70375ee")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "U15")
 					(unit 1)
@@ -92448,7 +92448,7 @@
 			(uuid "de156dff-97a0-4c2f-9a14-1bbf5f96a8f5")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0100")
 					(unit 1)
@@ -92710,7 +92710,7 @@
 			(uuid "22767954-39fa-4e10-b924-3f852509f507")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C1")
 					(unit 1)
@@ -92788,7 +92788,7 @@
 			(uuid "9ed0316a-0fa2-4f0e-9bf7-726c7c6c2c4e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0170")
 					(unit 1)
@@ -93086,7 +93086,7 @@
 			(uuid "7b53b9ac-cc25-4283-a989-587cbd89d2a3")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R22")
 					(unit 1)
@@ -93384,7 +93384,7 @@
 			(uuid "14d46de3-87a4-4ae5-ad30-be98ac3b6f2e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R57")
 					(unit 1)
@@ -93682,7 +93682,7 @@
 			(uuid "60d2e238-2262-4ee9-b25f-31780875b6b2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R16")
 					(unit 1)
@@ -93980,7 +93980,7 @@
 			(uuid "42264753-7d34-4998-98d3-157da815072f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R43")
 					(unit 1)
@@ -94057,7 +94057,7 @@
 			(uuid "d1586619-d79a-4725-9951-761fecb50e1e")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0110")
 					(unit 1)
@@ -94067,7 +94067,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
-		(at 175.26 60.96 0)
+		(at 58.42 238.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -94077,7 +94077,7 @@
 		(dnp no)
 		(uuid "eec59229-556c-4365-8c78-38c03e0432de")
 		(property "Reference" "#PWR0173"
-			(at 175.26 67.31 0)
+			(at 58.42 245.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -94088,7 +94088,7 @@
 			)
 		)
 		(property "Value" "GNDREF"
-			(at 175.26 65.532 0)
+			(at 58.42 243.332 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -94098,7 +94098,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 60.96 0)
+			(at 58.42 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -94109,7 +94109,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 175.26 60.96 0)
+			(at 58.42 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -94120,7 +94120,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 175.26 60.96 0)
+			(at 58.42 238.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -94134,7 +94134,7 @@
 			(uuid "7f4f9f71-60cb-4dbf-a734-c4a2ae67b6ea")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0173")
 					(unit 1)
@@ -94212,7 +94212,7 @@
 			(uuid "aaca4896-5704-4f7f-9a5b-16272c26fbe7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0168")
 					(unit 1)
@@ -94474,7 +94474,7 @@
 			(uuid "2913f1e5-f815-4d7e-9433-bcda145268aa")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C12")
 					(unit 1)
@@ -94715,7 +94715,7 @@
 			(uuid "d638dfe5-74cd-44e8-8e0f-5d3c570d3a3f")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV4")
 					(unit 1)
@@ -94792,7 +94792,7 @@
 			(uuid "f6c16995-2e40-4312-9a38-da10e860b23c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR023")
 					(unit 1)
@@ -95090,7 +95090,7 @@
 			(uuid "87d7f66c-2acf-44c4-9445-e3bb14bad27c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R87")
 					(unit 1)
@@ -95388,7 +95388,7 @@
 			(uuid "e9a111d2-3958-48e0-8e87-d704530cffd2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R66")
 					(unit 1)
@@ -95629,7 +95629,7 @@
 			(uuid "60a4ec37-36f4-4b86-bcf8-1744d5eb27d4")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV3")
 					(unit 1)
@@ -95707,7 +95707,7 @@
 			(uuid "1ce28261-364d-4d97-8201-5309b68b9f74")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR04")
 					(unit 1)
@@ -95784,7 +95784,7 @@
 			(uuid "616efb29-7e1e-48b2-b75c-adb00de39d50")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR02")
 					(unit 1)
@@ -95794,7 +95794,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 32.512 304.292 0)
+		(at 31.75 339.852 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -95805,7 +95805,7 @@
 		(fields_autoplaced yes)
 		(uuid "f507aaee-9ace-4bc0-9cec-9c94424eb6f0")
 		(property "Reference" "H1"
-			(at 36.068 303.0219 0)
+			(at 35.306 338.5819 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -95816,7 +95816,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 36.068 305.5619 0)
+			(at 35.306 341.1219 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -95827,7 +95827,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 32.512 304.292 0)
+			(at 31.75 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -95838,7 +95838,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 32.512 304.292 0)
+			(at 31.75 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -95849,7 +95849,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 32.512 304.292 0)
+			(at 31.75 339.852 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -95860,7 +95860,7 @@
 			)
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "H1")
 					(unit 1)
@@ -95937,7 +95937,7 @@
 			(uuid "2d9bcdf5-33a7-4e5c-b906-233f075e7001")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0101")
 					(unit 1)
@@ -96235,7 +96235,7 @@
 			(uuid "33edc81f-cff3-4ca6-8569-c0e48ffc2776")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R48")
 					(unit 1)
@@ -96533,7 +96533,7 @@
 			(uuid "32f30969-7d34-48e6-9eea-4b0ad5c42bb2")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R14")
 					(unit 1)
@@ -96831,7 +96831,7 @@
 			(uuid "a8502fbb-04e4-49ad-ab6e-2e40b076d735")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R50")
 					(unit 1)
@@ -96907,7 +96907,7 @@
 			(uuid "0a057f56-c91f-450f-9492-08265a2e2319")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0104")
 					(unit 1)
@@ -97169,7 +97169,7 @@
 			(uuid "c04ffc54-b9da-456e-939c-ee429db6d36b")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C27")
 					(unit 1)
@@ -97247,7 +97247,7 @@
 			(uuid "f8cf0187-ba61-4fa9-9da1-b7d446633bb7")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR086")
 					(unit 1)
@@ -97545,7 +97545,7 @@
 			(uuid "94ada4a9-0d05-4a93-8732-9eb5be1b962d")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R37")
 					(unit 1)
@@ -97843,7 +97843,7 @@
 			(uuid "708007bd-386e-4f37-a477-2261b9a71101")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R13")
 					(unit 1)
@@ -97920,7 +97920,7 @@
 			(uuid "6e7b9d3e-14b8-4836-8218-9c7a71de3829")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR061")
 					(unit 1)
@@ -97998,7 +97998,7 @@
 			(uuid "15e3045c-716d-44a9-bf39-bae60d86457c")
 		)
 		(instances
-			(project "Spiky_Lui2"
+			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0133")
 					(unit 1)
