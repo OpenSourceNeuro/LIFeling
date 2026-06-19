@@ -568,6 +568,212 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "1_P1-altium-import:root_0_REF35102QDBVR_"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "root_0_REF35102QDBVR__1_0"
+				(rectangle
+					(start -7.62 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0)
+						(type solid)
+						(color 160 0 0 1)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -6.35 3.81)
+					(radius 0.381)
+					(stroke
+						(width 0)
+						(type solid)
+						(color 160 0 0 1)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "VIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "NR"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "VREF"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "BAT54WS L91_BAT54WS L9-altium-import:root_0_BAT54WS L9_"
 			(pin_numbers
 				(hide yes)
@@ -9955,9 +10161,9 @@
 		)
 		(uuid "5792ad62-c2c3-4a81-b23a-0c299280d0e2")
 	)
-	(text "Stimulus_Ext is converted into a local current command:  \n	The external analog stimulus is ESD-protected and lightly filtered intoV_Stim_Cmd  \n	V_Leak is used as the zero-current reference, \n	→ Commands above V_Leak are depolarising \n	→ Commands below V_Leak are hyperpolarising\n\nProduces an approximate current-clamp style stimulus current into the membrane"
+	(text "Stimulus_Ext is converted into a local current command:  \n	The external analog stimulus is ESD-protected and lightly filtered intoV_Stim_Cmd  \n	V_Stim_Zero_1V024 is used as the zero-current reference.\n    Stimulus_Ext is a command voltage: \n	→ 1.024 V = zero injected current\n	→ above 1.024 V = depolarising\n    → below 1.024 V = hyperpolarising\n\nProduces an approximate current-clamp style stimulus current into the membrane"
 		(exclude_from_sim no)
-		(at 668.147 374.015 0)
+		(at 667.512 375.92 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10657,9 +10863,9 @@
 		)
 		(uuid "dca60c30-f0f7-47dd-a9bc-ee7d3bfaaefa")
 	)
-	(text "Servoed Stimulus Driver"
+	(text "Servoed Stimulus Driver\nV_Stim_Drive = Vm_Int + 0.5 × (V_Stim_Cmd - V_Stim_Zero_1V024)"
 		(exclude_from_sim no)
-		(at 756.285 335.28 0)
+		(at 754.38 330.708 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10691,9 +10897,9 @@
 		)
 		(uuid "e958b90f-77ca-4a32-aae2-23fd3f63810e")
 	)
-	(text "Stimulus injection strength"
+	(text "Stimulus injection strength\nI_inj = (V_Stim_Drive - Vm_Int) / R88\nI_inj = (V_Stim_Cmd - 1.024 V) / (2 × R88)"
 		(exclude_from_sim no)
-		(at 807.72 339.09 0)
+		(at 807.72 336.296 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10867,6 +11073,12 @@
 		(uuid "200f3f09-a519-4335-8272-b0313d80941e")
 	)
 	(junction
+		(at 655.32 383.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "20680137-36db-4842-b23a-9ca67ebc41db")
+	)
+	(junction
 		(at 561.34 237.49)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11015,6 +11227,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "592c77ec-3169-4a0d-b5c1-7a1611c122cc")
+	)
+	(junction
+		(at 655.32 378.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "59e87d98-2847-455b-a810-6b6d955298cb")
 	)
 	(junction
 		(at 474.98 212.725)
@@ -11213,6 +11431,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "95ecf9d2-b294-487d-bb73-bf2e25f92a76")
+	)
+	(junction
+		(at 650.24 383.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "96eb0492-7642-41ca-a8a5-5c3639492312")
 	)
 	(junction
 		(at 33.02 91.44)
@@ -11473,6 +11697,12 @@
 		(uuid "df558914-7399-49c0-83db-c262e496cae8")
 	)
 	(junction
+		(at 660.4 383.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e2b4b852-4309-4335-8e95-0ad512cca2df")
+	)
+	(junction
 		(at 236.22 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11507,6 +11737,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f40e27bc-e431-4644-b0bb-a22a81fc0f46")
+	)
+	(junction
+		(at 660.4 378.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f4dd9f2a-c50c-4600-8a74-f64e2f7e4489")
 	)
 	(junction
 		(at 429.26 101.6)
@@ -11813,6 +12049,16 @@
 			(type default)
 		)
 		(uuid "0b458322-22a6-4298-bd6e-799028775f60")
+	)
+	(wire
+		(pts
+			(xy 624.84 383.54) (xy 624.84 391.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c5031c5-ce6a-4e6e-a997-e3cda9669e4d")
 	)
 	(wire
 		(pts
@@ -12156,6 +12402,16 @@
 	)
 	(wire
 		(pts
+			(xy 660.4 363.22) (xy 660.4 365.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ac09c10-a891-4560-bd8b-2b4947fe7f34")
+	)
+	(wire
+		(pts
 			(xy 302.26 287.02) (xy 307.34 287.02)
 		)
 		(stroke
@@ -12353,6 +12609,16 @@
 			(type default)
 		)
 		(uuid "2533a0a9-e001-44cb-87c8-683abbe5ebb8")
+	)
+	(wire
+		(pts
+			(xy 655.32 395.986) (xy 655.32 398.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "259a405b-48c4-40ac-bec5-f9ea610cca29")
 	)
 	(wire
 		(pts
@@ -12563,6 +12829,16 @@
 			(type default)
 		)
 		(uuid "2e74ba56-9cfa-42a4-9434-90c2e76fc047")
+	)
+	(wire
+		(pts
+			(xy 652.78 381) (xy 647.7 381)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f2c6457-6673-4126-843c-7e9fc37544e9")
 	)
 	(wire
 		(pts
@@ -12796,6 +13072,16 @@
 	)
 	(wire
 		(pts
+			(xy 655.32 375.92) (xy 655.32 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "395ca669-9569-474b-8258-6205c67ede0f")
+	)
+	(wire
+		(pts
 			(xy 485.14 101.6) (xy 490.22 101.6)
 		)
 		(stroke
@@ -12863,6 +13149,16 @@
 			(type default)
 		)
 		(uuid "3bdbc5ac-91cc-4555-a9c1-c7a37ca14ce2")
+	)
+	(wire
+		(pts
+			(xy 660.4 375.92) (xy 660.4 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c77bced-961b-4371-a09e-43ffbbc6a3cc")
 	)
 	(wire
 		(pts
@@ -13036,6 +13332,16 @@
 	)
 	(wire
 		(pts
+			(xy 662.94 381) (xy 673.354 381)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42f438ed-42a3-4946-bda7-62da1973c6fa")
+	)
+	(wire
+		(pts
 			(xy 165.354 81.28) (xy 152.654 81.28)
 		)
 		(stroke
@@ -13093,6 +13399,16 @@
 			(type default)
 		)
 		(uuid "45fc5e0d-d91d-4d37-8c8c-ddf5068279ae")
+	)
+	(wire
+		(pts
+			(xy 650.24 383.54) (xy 650.24 391.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "461cb575-8e04-47fb-a8b1-a124fafeb9b4")
 	)
 	(wire
 		(pts
@@ -13436,6 +13752,16 @@
 	)
 	(wire
 		(pts
+			(xy 650.24 383.54) (xy 647.7 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50970317-7464-4022-9874-c7a8cccad339")
+	)
+	(wire
+		(pts
 			(xy 274.32 177.165) (xy 279.4 177.165)
 		)
 		(stroke
@@ -13653,6 +13979,16 @@
 			(type default)
 		)
 		(uuid "587b6df5-a14c-4a0e-bdf6-c4be0a2baeca")
+	)
+	(wire
+		(pts
+			(xy 650.24 383.54) (xy 655.32 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5899968f-14c3-4733-b8f3-34166cb0fcfe")
 	)
 	(wire
 		(pts
@@ -14056,6 +14392,16 @@
 	)
 	(wire
 		(pts
+			(xy 627.38 381) (xy 624.84 381)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "647e6ccc-3662-4681-a603-7b9156036d56")
+	)
+	(wire
+		(pts
 			(xy 678.18 45.72) (xy 678.18 38.1)
 		)
 		(stroke
@@ -14103,6 +14449,16 @@
 			(type default)
 		)
 		(uuid "663b20ed-c773-4b79-8bfa-7e64f59f549c")
+	)
+	(wire
+		(pts
+			(xy 693.42 330.2) (xy 693.42 340.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66b5a89a-dc74-4177-b6cc-aa8bf96db42b")
 	)
 	(wire
 		(pts
@@ -14356,6 +14712,16 @@
 	)
 	(wire
 		(pts
+			(xy 690.88 330.2) (xy 693.42 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "714097a3-30d7-41eb-893a-3f7cb1cbdc2b")
+	)
+	(wire
+		(pts
 			(xy 457.2 106.68) (xy 462.28 106.68)
 		)
 		(stroke
@@ -14416,6 +14782,16 @@
 	)
 	(wire
 		(pts
+			(xy 660.4 383.54) (xy 655.32 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72bbace8-ec80-4c63-a3da-8fdb18750bfa")
+	)
+	(wire
+		(pts
 			(xy 147.32 233.68) (xy 142.24 233.68)
 		)
 		(stroke
@@ -14443,6 +14819,16 @@
 			(type default)
 		)
 		(uuid "73c369e4-7297-4beb-9e02-f00f81dd4498")
+	)
+	(wire
+		(pts
+			(xy 655.32 363.22) (xy 655.32 365.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73d8dcfe-0c78-4407-adf4-59d4b9ebfc8e")
 	)
 	(wire
 		(pts
@@ -14563,6 +14949,16 @@
 			(type default)
 		)
 		(uuid "78bf9e7a-5ba1-4aa3-8f98-cdb9b14aef06")
+	)
+	(wire
+		(pts
+			(xy 655.32 383.54) (xy 655.32 385.826)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78c45148-d90d-438e-a273-52015ecfc5a9")
 	)
 	(wire
 		(pts
@@ -14746,6 +15142,16 @@
 	)
 	(wire
 		(pts
+			(xy 655.32 378.46) (xy 647.7 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80836aab-a654-4538-9b29-879764f62d76")
+	)
+	(wire
+		(pts
 			(xy 33.02 96.52) (xy 33.02 101.6)
 		)
 		(stroke
@@ -14753,6 +15159,16 @@
 			(type default)
 		)
 		(uuid "8155b47e-e9b9-4567-a202-fba9a5fefd58")
+	)
+	(wire
+		(pts
+			(xy 660.4 385.826) (xy 660.4 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "81c9e6f0-eb9d-4ec8-9fbe-02080646ef61")
 	)
 	(wire
 		(pts
@@ -15456,6 +15872,16 @@
 	)
 	(wire
 		(pts
+			(xy 624.84 391.16) (xy 650.24 391.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a53772b4-9d16-4d07-a8c1-20b088986191")
+	)
+	(wire
+		(pts
 			(xy 429.26 50.8) (xy 426.466 50.8)
 		)
 		(stroke
@@ -15786,6 +16212,16 @@
 	)
 	(wire
 		(pts
+			(xy 678.18 330.2) (xy 680.72 330.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b531a046-6e75-460a-bc07-f2abb788ff69")
+	)
+	(wire
+		(pts
 			(xy 30.48 91.44) (xy 33.02 91.44)
 		)
 		(stroke
@@ -16013,6 +16449,16 @@
 			(type default)
 		)
 		(uuid "bf29c1ac-54b4-40b7-843b-3d302bbde37a")
+	)
+	(wire
+		(pts
+			(xy 627.38 383.54) (xy 624.84 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bfaca7e8-98f9-4728-a049-bd9c61034278")
 	)
 	(wire
 		(pts
@@ -16706,6 +17152,26 @@
 	)
 	(wire
 		(pts
+			(xy 660.4 378.46) (xy 655.32 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd57e3e1-32ad-44e4-a5f1-e64b0ba15487")
+	)
+	(wire
+		(pts
+			(xy 660.4 398.78) (xy 660.4 395.986)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddc8ffa7-6a3b-4abf-a420-9a8595e6b3dd")
+	)
+	(wire
+		(pts
 			(xy 236.22 119.38) (xy 236.22 122.555)
 		)
 		(stroke
@@ -16783,6 +17249,16 @@
 			(type default)
 		)
 		(uuid "e09f9de3-686f-43bc-b94c-ad649b391aae")
+	)
+	(wire
+		(pts
+			(xy 627.38 378.46) (xy 624.84 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0c86b40-0a2d-42a2-b5a5-29c5b20f653d")
 	)
 	(wire
 		(pts
@@ -16993,6 +17469,16 @@
 			(type default)
 		)
 		(uuid "ea68796b-c1a6-4b88-b2c7-9aa2bbd88f8a")
+	)
+	(wire
+		(pts
+			(xy 673.1 378.46) (xy 660.4 378.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb31eeef-4591-4f67-a0ed-ce4af130a8b9")
 	)
 	(wire
 		(pts
@@ -17423,6 +17909,16 @@
 			(type default)
 		)
 		(uuid "fec3994f-adc1-486e-bf92-42e162210f6a")
+	)
+	(wire
+		(pts
+			(xy 673.1 383.54) (xy 670.56 383.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff14abb0-e487-490d-a122-791a028c6624")
 	)
 	(wire
 		(pts
@@ -20189,30 +20685,6 @@
 			)
 		)
 	)
-	(global_label "V_Leak"
-		(shape input)
-		(at 726.44 345.44 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "fb22363e-44b9-4218-9e1c-19d2468f9a5c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 717.1048 345.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "V_Syn_State"
 		(shape input)
 		(at 721.36 180.34 0)
@@ -21591,6 +22063,82 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "C13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 678.18 330.2 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "032fd412-b8e6-497c-b133-5fe1c1a48cb3")
+		(property "Reference" "#PWR0187"
+			(at 681.99 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "V_Stim_Zero_1V024"
+			(at 665.226 330.2 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 678.18 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 678.18 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 678.18 330.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "87dd2b92-3876-493d-8d71-c8cfb2242f32")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0187")
 					(unit 1)
 				)
 			)
@@ -23677,6 +24225,268 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "Q7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import:root_0_CL05B104KO5NNNC_")
+		(at 655.32 370.84 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "07daa216-5fc9-4ad9-bfe1-033ad442efa8")
+		(property "Reference" "C41"
+			(at 651.51 370.078 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100nF"
+			(at 650.494 372.872 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "C0402"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "CL05B104KO5NNNC"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "CL05B104KO5NNNC"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "100nF ±10% 16V"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C1525"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "SAMSUNG(三星)"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "CL05B104KO5NNNC"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Basic Part"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "100nF"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±10%"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE RATING" "16V"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "X7R"
+			(at 655.32 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "1"
+			(uuid "87e2e909-f478-45f5-a7fd-2c25d2cc7610")
+		)
+		(pin "2"
+			(uuid "7975f987-9ec3-4c4c-9c42-4828c0d83577")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "C41")
 					(unit 1)
 				)
 			)
@@ -26041,6 +26851,82 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
+		(at 726.44 345.44 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0c8c8c53-4773-459d-8c34-aeb725d3cbcf")
+		(property "Reference" "#PWR0185"
+			(at 730.25 345.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "V_Stim_Zero_1V024"
+			(at 713.486 345.44 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 726.44 345.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 726.44 345.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 726.44 345.44 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c9d161ca-09b8-4d77-83b4-17e780e13f49")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0185")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
 		(at 538.48 40.894 0)
 		(unit 1)
 		(body_style 1)
@@ -26717,6 +27603,268 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import:root_0_CL05B104KO5NNNC_")
+		(at 657.86 381 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "10b4822d-3409-4d9b-a6a3-07e52623f8da")
+		(property "Reference" "C40"
+			(at 657.098 379.222 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100nF"
+			(at 663.448 379.476 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "C0402"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "CL05B104KO5NNNC"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "CL05B104KO5NNNC"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "100nF ±10% 16V"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C1525"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "SAMSUNG(三星)"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "CL05B104KO5NNNC"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Basic Part"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "100nF"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±10%"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE RATING" "16V"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "X7R"
+			(at 657.86 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "1"
+			(uuid "45aae970-766e-4b16-8d0e-a05b74bf9ffb")
+		)
+		(pin "2"
+			(uuid "e2c3a2f2-0574-4a49-89b4-fe8acb91cea2")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "C40")
 					(unit 1)
 				)
 			)
@@ -30982,6 +32130,83 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
+		(at 624.84 381 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1f6924cb-9b0c-4c88-894f-26d9b8d67338")
+		(property "Reference" "#PWR0177"
+			(at 618.49 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 617.982 381 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 624.84 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 624.84 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 624.84 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d8e1b491-b9ce-4fe2-b1ea-5b8e7df8d5a2")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0177")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
 		(at 289.56 106.68 270)
 		(unit 1)
 		(body_style 1)
@@ -31129,6 +32354,304 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR038")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "RC0402FR-071ML1_RC0402FR-071ML-altium-import:root_0_RC0402FR-071ML_")
+		(at 685.8 330.2 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "21469171-7416-465a-a04e-954eaabe28c4")
+		(property "Reference" "R93"
+			(at 684.022 333.248 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "1MΩ"
+			(at 684.276 330.835 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "R0402"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/RC0402FR-071ML/149349.html"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "RC0402FR-071ML"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "RC0402FR-071ML"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "厚膜电阻 1MΩ ±1% 62.5mW"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C138033"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "YAGEO(国巨)"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "RC0402FR-071ML"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Extended Part"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TYPE" "Thick Film Resistor"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "1MΩ"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±1%"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "POWER(WATTS)" "62.5mW"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE-SUPPLY(MAX)" "50V"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "±100ppm/℃"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OPERATING TEMPERATURE" "-55℃~+155℃"
+			(at 685.8 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "2"
+			(uuid "dec76915-a898-4a0c-ac64-2ca45b93e204")
+		)
+		(pin "1"
+			(uuid "3fa4fce7-0fa6-4dda-961b-20ba34d0f1cb")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "R93")
 					(unit 1)
 				)
 			)
@@ -47986,6 +49509,304 @@
 		)
 	)
 	(symbol
+		(lib_id "RC0402FR-07100RL1_RC0402FR-07100RL-altium-import:root_0_RC0402FR-07100RL_")
+		(at 665.48 383.54 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5ca5a604-8ce2-49de-9dc0-098e96eba100")
+		(property "Reference" "R92"
+			(at 663.448 386.588 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100Ω"
+			(at 663.194 384.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "R0402"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/RC0402FR-07100RL/107447.html"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "RC0402FR-07100RL"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "RC0402FR-07100RL"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "厚膜电阻 100Ω ±1% 62.5mW"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C106232"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "YAGEO(国巨)"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "RC0402FR-07100RL"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Extended Part"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TYPE" "Thick Film Resistor"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "100Ω"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±1%"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "POWER(WATTS)" "62.5mW"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE-SUPPLY(MAX)" "50V"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "±100ppm/℃"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OPERATING TEMPERATURE" "-55℃~+155℃"
+			(at 665.48 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "1"
+			(uuid "03b55611-68ee-4d3a-abbd-344c0468921e")
+		)
+		(pin "2"
+			(uuid "5ce3e376-59fe-4852-8e72-cf062462e0ae")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "R92")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:VDD")
 		(at 782.32 71.12 0)
 		(unit 1)
@@ -48989,8 +50810,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "47kΩ"
-			(at 806.323 343.535 0)
+		(property "Value" "100kΩ"
+			(at 805.688 343.408 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -51277,6 +53098,83 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR084")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
+		(at 660.4 363.22 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "665f9365-d057-4c81-953d-feeabb40b055")
+		(property "Reference" "#PWR0184"
+			(at 660.4 356.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 663.702 359.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 660.4 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 660.4 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 660.4 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a5993086-1b8f-436a-b25e-f0a65cd9537c")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0184")
 					(unit 1)
 				)
 			)
@@ -55904,6 +57802,376 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "1_P1-altium-import:root_0_REF35102QDBVR_")
+		(at 637.54 381 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "730146a9-67a0-4eee-b461-cadaae3b0b6a")
+		(property "Reference" "U21"
+			(at 629.92 375.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "REF35102QDBVR"
+			(at 629.92 388.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "REF35102QDBVR"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "REF35102QDBVR"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "1.274V~6V 串联 2.6uA 12ppm/℃"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C6265001"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "TI(德州仪器)"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "REF35102QDBVR"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "SOT-23-6"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" ""
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OUTPUT TYPE" "Fixed"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE - SUPPLY" "1.274V~6V"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OUTPUT VOLTAGE" "1.024V"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OUTPUT CURRENT" "10mA"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±0.05%"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "12ppm/℃"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "REFERENCE TYPE" "Series"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "QUIESCENT CURRENT" "2.6uA"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "OPERATING TEMPERATURE" "-40℃~+125℃@(Ta)"
+			(at 637.54 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "REUSE BLOCK" ""
+			(at 482.6 490.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "GROUP ID" ""
+			(at 482.6 490.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CHANNEL ID" ""
+			(at 482.6 490.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "1"
+			(uuid "893157ae-1146-4229-9b30-15ad0eea04da")
+		)
+		(pin "2"
+			(uuid "2daffc0c-24ff-44b7-bc64-a36a6c87c0f3")
+		)
+		(pin "3"
+			(uuid "3be00f82-7b74-41b4-9357-890b19fd761a")
+		)
+		(pin "4"
+			(uuid "4da8a03e-aa31-4f85-a0da-5672ed040362")
+		)
+		(pin "5"
+			(uuid "16d1dd06-340f-4686-9d3e-ff765f3b3653")
+		)
+		(pin "6"
+			(uuid "1676e5d4-b041-4ca5-b502-dfb52cdd8c18")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "U21")
 					(unit 1)
 				)
 			)
@@ -65215,6 +67483,83 @@
 	)
 	(symbol
 		(lib_id "power:GNDREF")
+		(at 655.32 363.22 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "90e1feaa-d699-4811-a5d6-7b87cd25aa17")
+		(property "Reference" "#PWR0183"
+			(at 655.32 356.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 652.526 359.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 655.32 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 655.32 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 655.32 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "333b2559-fd02-4821-aa5b-10ed73dfe109")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0183")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
 		(at 459.74 88.9 180)
 		(unit 1)
 		(body_style 1)
@@ -73579,6 +75924,268 @@
 		)
 	)
 	(symbol
+		(lib_id "CL05A105KA5NQNC1_CL05A105KA5NQNC-altium-import:root_0_CL05A105KA5NQNC_")
+		(at 660.4 390.906 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a6dd932f-fc80-4751-a846-41f4b7e77f1f")
+		(property "Reference" "C43"
+			(at 660.4 388.366 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "1uF"
+			(at 659.765 392.176 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "C0402"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05A105KA5NQNC/53938.html"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "CL05A105KA5NQNC"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "CL05A105KA5NQNC"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "1uF ±10% 25V"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C52923"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "SAMSUNG(三星)"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "CL05A105KA5NQNC"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Basic Part"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "1uF"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±10%"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE RATING" "25V"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "X5R"
+			(at 660.4 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "2"
+			(uuid "a512c59d-a4bd-4e53-bbc8-9e077966ec66")
+		)
+		(pin "1"
+			(uuid "a99cbbc6-284d-45ab-8d95-935240be2b45")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "C43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Spiky_Lui-altium-import:root_0_RC0402FR-07100KL_")
 		(at 787.4 53.34 90)
 		(unit 1)
@@ -75387,6 +77994,83 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR0134")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
+		(at 660.4 398.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "acfbfb9c-e319-4283-9f46-b1fdf8d5307c")
+		(property "Reference" "#PWR0186"
+			(at 660.4 405.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 663.448 402.844 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 660.4 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 660.4 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 660.4 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cc23b288-f261-411c-a92a-c71d4add17b4")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0186")
 					(unit 1)
 				)
 			)
@@ -79563,6 +82247,82 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VDD")
+		(at 673.1 383.54 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bb7f23f5-06a2-493e-ad33-2b9cb18b29e1")
+		(property "Reference" "#PWR0180"
+			(at 669.29 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VDD"
+			(at 678.18 383.54 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 673.1 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 673.1 383.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 673.1 383.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "521ddb43-b2ad-4e30-868c-02a826235652")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0180")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDREF")
 		(at 538.48 88.646 180)
 		(unit 1)
@@ -80183,6 +82943,83 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
+		(at 673.354 381 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c1ef72b3-14e7-47b3-9aaf-59cc76658bab")
+		(property "Reference" "#PWR0182"
+			(at 679.704 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 680.212 381 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 673.354 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 673.354 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 673.354 381 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3bdde4a1-aae5-485e-ab4d-b0c0024696de")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0182")
 					(unit 1)
 				)
 			)
@@ -81425,6 +84262,83 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "R74")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
+		(at 624.84 378.46 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c6301a66-0ba0-48c0-a73d-3331c576dfc2")
+		(property "Reference" "#PWR0141"
+			(at 618.49 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 617.982 378.46 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 624.84 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 624.84 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 624.84 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "77481ad3-744e-4f36-8a1f-2a9645eee4bd")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0141")
 					(unit 1)
 				)
 			)
@@ -86626,6 +89540,268 @@
 		)
 	)
 	(symbol
+		(lib_id "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import:root_0_CL05B104KO5NNNC_")
+		(at 655.32 390.906 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d89cd61e-be6d-4561-b319-fad55f8b580c")
+		(property "Reference" "C9"
+			(at 655.32 388.366 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "100nF"
+			(at 655.32 392.176 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "C0402"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "CL05B104KO5NNNC"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "CL05B104KO5NNNC"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "100nF ±10% 16V"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C1525"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "SAMSUNG(三星)"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "CL05B104KO5NNNC"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Basic Part"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "100nF"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±10%"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE RATING" "16V"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "X7R"
+			(at 655.32 390.906 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "1"
+			(uuid "a644b801-02b7-417b-b4f5-cdaf2eb3924e")
+		)
+		(pin "2"
+			(uuid "2e1d010e-5299-44e3-b4df-2a584a7d4d96")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "BSS138_C528951_BSS138_C52895-altium-import:root_0_BSS138_C52895_")
 		(at 461.01 308.61 270)
 		(unit 1)
@@ -87939,6 +91115,82 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "RV1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VDD")
+		(at 673.1 378.46 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "dbd069d0-9355-499b-9dc8-7629a1b3cb0f")
+		(property "Reference" "#PWR0181"
+			(at 669.29 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "V_Stim_Zero_1V024"
+			(at 686.054 378.46 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 673.1 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 673.1 378.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 673.1 378.46 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c4f68caf-a752-4fcd-babb-72eed3e58b30")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0181")
 					(unit 1)
 				)
 			)
@@ -93095,6 +96347,268 @@
 		)
 	)
 	(symbol
+		(lib_id "CL05A105KA5NQNC1_CL05A105KA5NQNC-altium-import:root_0_CL05A105KA5NQNC_")
+		(at 660.4 370.84 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e99c6255-eace-4ce2-8297-f9fe0ae21ba8")
+		(property "Reference" "C42"
+			(at 660.4 368.3 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Value" "1uF"
+			(at 659.765 372.11 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Footprint" "C0402"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://item.szlcsc.com/datasheet/CL05A105KA5NQNC/53938.html"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Description" ""
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "SYMBOL" "CL05A105KA5NQNC"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "DEVICE" "CL05A105KA5NQNC"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "LCSC PART NAME" "1uF ±10% 25V"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER PART" "C52923"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER" "SAMSUNG(三星)"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "MANUFACTURER PART" "CL05A105KA5NQNC"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER FOOTPRINT" "0402"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "JLCPCB PART CLASS" "Basic Part"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "SUPPLIER" "LCSC"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ADD INTO BOM" "yes"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "CONVERT TO PCB" "yes"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "ALTIUM_VALUE" "1uF"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TOLERANCE" "±10%"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "VOLTAGE RATING" "25V"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "TEMPERATURE COEFFICIENT" "X5R"
+			(at 660.4 370.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(pin "2"
+			(uuid "407ac00f-8de1-4439-bd00-b9ee150e4c80")
+		)
+		(pin "1"
+			(uuid "54f2fe07-28dc-4396-9da2-7c5754f6c222")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "C42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Spiky_Lui-altium-import:root_0_RC0402FR-0710KL_")
 		(at 476.25 337.82 270)
 		(unit 1)
@@ -95787,6 +99301,83 @@
 			(project "LIFeling"
 				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDREF")
+		(at 655.32 398.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f4bb0c66-6128-45eb-adff-615978ec6e49")
+		(property "Reference" "#PWR0179"
+			(at 655.32 405.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDREF"
+			(at 652.272 402.844 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 655.32 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 655.32 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
+			(at 655.32 398.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b57419db-c186-4c82-aedc-04ab0d1d6227")
+		)
+		(instances
+			(project "LIFeling"
+				(path "/ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
+					(reference "#PWR0179")
 					(unit 1)
 				)
 			)
