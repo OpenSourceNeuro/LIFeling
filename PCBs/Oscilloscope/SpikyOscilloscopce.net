@@ -1,9 +1,9 @@
 (export
 	(version "E")
 	(design
-		(source "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\PCBs\\Oscilloscope\\SpikyOscilloscopce.kicad_sch")
-		(date "2026-06-19T01:39:50")
-		(tool "Eeschema 10.0.1")
+		(source "C:\\Users\\mzimm\\Documents\\GitHub\\Spiky-Lu.i\\PCBs\\Oscilloscope\\SpikyOscilloscopce.kicad_sch")
+		(date "2026-06-22T00:21:25")
+		(tool "Eeschema 10.0.3")
 		(sheet
 			(number "1")
 			(name "/")
@@ -1212,6 +1212,191 @@
 			)
 		)
 		(comp
+			(ref "C8")
+			(value "3.3nF")
+			(footprint "C0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB332/108304.html")
+			(description "Capacitance:3.3nF Tolerance:±10% Tolerance:±10% Voltage Rating:50V Temperature Coefficient:X7R")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB332")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB332")
+				(field
+					(name "REUSE BLOCK")
+				)
+				(field
+					(name "GROUP ID")
+				)
+				(field
+					(name "CHANNEL ID")
+				)
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB332")
+				(field
+					(name "ALTIUM_VALUE") "3.3nF")
+				(field
+					(name "SUPPLIER PART") "C107088")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "LCSC PART NAME") "3.3nF ±10% 50V")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "ADDINBOM") "yes")
+				(field
+					(name "CONVERTTOPCB") "yes")
+				(field
+					(name "FOOTPRINTNAME") "C0603")
+				(field
+					(name "MODELID") "624118aa3cc7497086c383c2d72e0852Â0819f05c4eef4c71ace90d822a990e87")
+				(field
+					(name "MODELNAME") "C0603_L1.6-W0.8-H0.8")
+				(field
+					(name "MODELTRANSFORM") "62.992,31.496,0,0,0,0,0,0,0")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Footprint") "C0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB332/108304.html")
+				(field
+					(name "Description") "Capacitance:3.3nF Tolerance:±10% Tolerance:±10% Voltage Rating:50V Temperature Coefficient:X7R")
+			)
+			(libsource
+				(lib "Potentiometer_mount_4LED-altium-import")
+				(part "root_0_CC0603KRX7R9BB332_")
+				(description "Capacitance:3.3nF Tolerance:±10% Tolerance:±10% Voltage Rating:50V Temperature Coefficient:X7R")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB332")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB332")
+			)
+			(property
+				(name "REUSE BLOCK")
+				(value "")
+			)
+			(property
+				(name "GROUP ID")
+				(value "")
+			)
+			(property
+				(name "CHANNEL ID")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB332")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "3.3nF")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "C107088")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "3.3nF ±10% 50V")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "ADDINBOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERTTOPCB")
+				(value "yes")
+			)
+			(property
+				(name "FOOTPRINTNAME")
+				(value "C0603")
+			)
+			(property
+				(name "MODELID")
+				(value "624118aa3cc7497086c383c2d72e0852Â0819f05c4eef4c71ace90d822a990e87")
+			)
+			(property
+				(name "MODELNAME")
+				(value "C0603_L1.6-W0.8-H0.8")
+			)
+			(property
+				(name "MODELTRANSFORM")
+				(value "62.992,31.496,0,0,0,0,0,0,0")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "be74fbf0-f2d6-48af-b8c2-55441154b364")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "C9")
 			(value "2.2nF")
 			(footprint "C0603")
@@ -1373,31 +1558,31 @@
 			)
 		)
 		(comp
-			(ref "C10")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
+			(ref "C12")
+			(value "10uF")
+			(footprint "C1206")
+			(datasheet "https://item.szlcsc.com/datasheet/1206B106K100NT/176483.html")
 			(fields
 				(field
-					(name "SYMBOL") "0603B223K500NT")
+					(name "SYMBOL") "1206B106K100NT")
 				(field
-					(name "DEVICE") "0603B223K500NT")
+					(name "DEVICE") "1206B106K100NT")
 				(field
 					(name "SUPPLIER") "LCSC")
 				(field
 					(name "MANUFACTURER") "FH(风华)")
 				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
+					(name "MANUFACTURER PART") "1206B106K100NT")
 				(field
-					(name "ALTIUM_VALUE") "22nF")
+					(name "ALTIUM_VALUE") "10uF")
 				(field
-					(name "SUPPLIER PART") "C77571")
+					(name "SUPPLIER PART") "C165101")
 				(field
 					(name "JLCPCB PART CLASS") "Extended Part")
 				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
+					(name "LCSC PART NAME") "10uF ±10% 10V")
 				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
+					(name "SUPPLIER FOOTPRINT") "1206")
 				(field
 					(name "ADD INTO BOM") "yes")
 				(field
@@ -1405,7 +1590,7 @@
 				(field
 					(name "TOLERANCE") "±10%")
 				(field
-					(name "VOLTAGE RATING") "50V")
+					(name "VOLTAGE RATING") "10V")
 				(field
 					(name "TEMPERATURE COEFFICIENT") "X7R")
 				(field
@@ -1418,25 +1603,25 @@
 					(name "CHANNEL ID")
 				)
 				(field
-					(name "Footprint") "C0603")
+					(name "Footprint") "C1206")
 				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/1206B106K100NT/176483.html")
 				(field
 					(name "Description")
 				)
 			)
 			(libsource
 				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
+				(part "root_0_1206B106K100NT_")
 				(description "")
 			)
 			(property
 				(name "SYMBOL")
-				(value "0603B223K500NT")
+				(value "1206B106K100NT")
 			)
 			(property
 				(name "DEVICE")
-				(value "0603B223K500NT")
+				(value "1206B106K100NT")
 			)
 			(property
 				(name "SUPPLIER")
@@ -1448,15 +1633,15 @@
 			)
 			(property
 				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
+				(value "1206B106K100NT")
 			)
 			(property
 				(name "ALTIUM_VALUE")
-				(value "22nF")
+				(value "10uF")
 			)
 			(property
 				(name "SUPPLIER PART")
-				(value "C77571")
+				(value "C165101")
 			)
 			(property
 				(name "JLCPCB PART CLASS")
@@ -1464,11 +1649,11 @@
 			)
 			(property
 				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
+				(value "10uF ±10% 10V")
 			)
 			(property
 				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
+				(value "1206")
 			)
 			(property
 				(name "ADD INTO BOM")
@@ -1484,7 +1669,7 @@
 			)
 			(property
 				(name "VOLTAGE RATING")
-				(value "50V")
+				(value "10V")
 			)
 			(property
 				(name "TEMPERATURE COEFFICIENT")
@@ -1512,59 +1697,59 @@
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "*C0603*")
+				(value "*C1206*")
 			)
 			(sheetpath
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "de4c38fd-2cfb-4b35-a55e-cf54a22ee735")
+			(tstamps "fb7beb82-aeaf-422d-97e5-4b5fb4104589")
 			(units
 				(unit
 					(name "A")
 					(pins
 						(pin
-							(num "1")
+							(num "2")
 						)
 						(pin
-							(num "2")
+							(num "1")
 						)
 					)
 				)
 			)
 		)
 		(comp
-			(ref "C11")
-			(value "22nF")
+			(ref "C13")
+			(value "100nF")
 			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
+			(datasheet "https://item.szlcsc.com/datasheet/C0603C104J5RAC7867/501007.html")
 			(fields
 				(field
-					(name "SYMBOL") "0603B223K500NT")
+					(name "SYMBOL") "C0603C104J5RAC")
 				(field
-					(name "DEVICE") "0603B223K500NT")
+					(name "DEVICE") "C0603C104J5RAC7867_C490602")
 				(field
-					(name "SUPPLIER") "LCSC")
+					(name "LCSC PART NAME") "100nF ±5% 50V")
 				(field
-					(name "MANUFACTURER") "FH(风华)")
+					(name "SUPPLIER PART") "C490602")
 				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
+					(name "MANUFACTURER") "KEMET(基美)")
 				(field
-					(name "ALTIUM_VALUE") "22nF")
+					(name "MANUFACTURER PART") "C0603C104J5RAC7867")
 				(field
-					(name "SUPPLIER PART") "C77571")
+					(name "SUPPLIER FOOTPRINT") "0603")
 				(field
 					(name "JLCPCB PART CLASS") "Extended Part")
 				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
+					(name "SUPPLIER") "LCSC")
 				(field
 					(name "ADD INTO BOM") "yes")
 				(field
 					(name "CONVERT TO PCB") "yes")
 				(field
-					(name "TOLERANCE") "±10%")
+					(name "ALTIUM_VALUE") "100nF")
+				(field
+					(name "TOLERANCE") "±5%")
 				(field
 					(name "VOLTAGE RATING") "50V")
 				(field
@@ -1581,55 +1766,51 @@
 				(field
 					(name "Footprint") "C0603")
 				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/C0603C104J5RAC7867/501007.html")
 				(field
 					(name "Description")
 				)
 			)
 			(libsource
 				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
+				(part "root_0_C0603C104J5RAC7867_C490602_")
 				(description "")
 			)
 			(property
 				(name "SYMBOL")
-				(value "0603B223K500NT")
+				(value "C0603C104J5RAC")
 			)
 			(property
 				(name "DEVICE")
-				(value "0603B223K500NT")
+				(value "C0603C104J5RAC7867_C490602")
 			)
 			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
+				(name "LCSC PART NAME")
+				(value "100nF ±5% 50V")
 			)
 			(property
 				(name "SUPPLIER PART")
-				(value "C77571")
+				(value "C490602")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "KEMET(基美)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "C0603C104J5RAC7867")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
 			)
 			(property
 				(name "JLCPCB PART CLASS")
 				(value "Extended Part")
 			)
 			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
+				(name "SUPPLIER")
+				(value "LCSC")
 			)
 			(property
 				(name "ADD INTO BOM")
@@ -1640,8 +1821,12 @@
 				(value "yes")
 			)
 			(property
+				(name "ALTIUM_VALUE")
+				(value "100nF")
+			)
+			(property
 				(name "TOLERANCE")
-				(value "±10%")
+				(value "±5%")
 			)
 			(property
 				(name "VOLTAGE RATING")
@@ -1679,329 +1864,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6b8e0589-f192-4e4b-b10e-96a664a0c009")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C17")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-			(fields
-				(field
-					(name "SYMBOL") "0603B223K500NT")
-				(field
-					(name "DEVICE") "0603B223K500NT")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "MANUFACTURER") "FH(风华)")
-				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
-				(field
-					(name "ALTIUM_VALUE") "22nF")
-				(field
-					(name "SUPPLIER PART") "C77571")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "REUSE BLOCK")
-				)
-				(field
-					(name "GROUP ID")
-				)
-				(field
-					(name "CHANNEL ID")
-				)
-				(field
-					(name "Footprint") "C0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "DEVICE")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "C77571")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "REUSE BLOCK")
-				(value "")
-			)
-			(property
-				(name "GROUP ID")
-				(value "")
-			)
-			(property
-				(name "CHANNEL ID")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "af00e3e6-2a41-4cd6-b753-370057f963ee")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C18")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-			(fields
-				(field
-					(name "SYMBOL") "0603B223K500NT")
-				(field
-					(name "DEVICE") "0603B223K500NT")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "MANUFACTURER") "FH(风华)")
-				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
-				(field
-					(name "ALTIUM_VALUE") "22nF")
-				(field
-					(name "SUPPLIER PART") "C77571")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "REUSE BLOCK")
-				)
-				(field
-					(name "GROUP ID")
-				)
-				(field
-					(name "CHANNEL ID")
-				)
-				(field
-					(name "Footprint") "C0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "DEVICE")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "C77571")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "REUSE BLOCK")
-				(value "")
-			)
-			(property
-				(name "GROUP ID")
-				(value "")
-			)
-			(property
-				(name "CHANNEL ID")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "be6488e7-869f-4631-9223-774cf7ee3472")
+			(tstamps "dc9d6994-08a7-47db-9d44-c64a488765b7")
 			(units
 				(unit
 					(name "A")
@@ -2368,489 +2231,6 @@
 				(tstamps "/")
 			)
 			(tstamps "7db97e56-419b-4e32-9cd1-915de5dad024")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C25")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-			(fields
-				(field
-					(name "SYMBOL") "0603B223K500NT")
-				(field
-					(name "DEVICE") "0603B223K500NT")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "MANUFACTURER") "FH(风华)")
-				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
-				(field
-					(name "ALTIUM_VALUE") "22nF")
-				(field
-					(name "SUPPLIER PART") "C77571")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "REUSE BLOCK")
-				)
-				(field
-					(name "GROUP ID")
-				)
-				(field
-					(name "CHANNEL ID")
-				)
-				(field
-					(name "Footprint") "C0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "DEVICE")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "C77571")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "REUSE BLOCK")
-				(value "")
-			)
-			(property
-				(name "GROUP ID")
-				(value "")
-			)
-			(property
-				(name "CHANNEL ID")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "681c178f-8093-42c2-ad4e-53f3cfa97979")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C28")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-			(fields
-				(field
-					(name "SYMBOL") "0603B223K500NT")
-				(field
-					(name "DEVICE") "0603B223K500NT")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "MANUFACTURER") "FH(风华)")
-				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
-				(field
-					(name "ALTIUM_VALUE") "22nF")
-				(field
-					(name "SUPPLIER PART") "C77571")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "REUSE BLOCK")
-				)
-				(field
-					(name "GROUP ID")
-				)
-				(field
-					(name "CHANNEL ID")
-				)
-				(field
-					(name "Footprint") "C0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "DEVICE")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "C77571")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "REUSE BLOCK")
-				(value "")
-			)
-			(property
-				(name "GROUP ID")
-				(value "")
-			)
-			(property
-				(name "CHANNEL ID")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "fb2b3cae-56da-48fd-8c03-25ab5e803ac5")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C29")
-			(value "22nF")
-			(footprint "C0603")
-			(datasheet "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-			(fields
-				(field
-					(name "SYMBOL") "0603B223K500NT")
-				(field
-					(name "DEVICE") "0603B223K500NT")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "MANUFACTURER") "FH(风华)")
-				(field
-					(name "MANUFACTURER PART") "0603B223K500NT")
-				(field
-					(name "ALTIUM_VALUE") "22nF")
-				(field
-					(name "SUPPLIER PART") "C77571")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "LCSC PART NAME") "22nF ±10% 50V")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "REUSE BLOCK")
-				)
-				(field
-					(name "GROUP ID")
-				)
-				(field
-					(name "CHANNEL ID")
-				)
-				(field
-					(name "Footprint") "C0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603B223K500NT/78700.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "1_P1-altium-import")
-				(part "root_0_0603B223K500NT_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "DEVICE")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "FH(风华)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "0603B223K500NT")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "22nF")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "C77571")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "22nF ±10% 50V")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "REUSE BLOCK")
-				(value "")
-			)
-			(property
-				(name "GROUP ID")
-				(value "")
-			)
-			(property
-				(name "CHANNEL ID")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "f735af5b-32b4-4374-a524-57b67ad472c2")
 			(units
 				(unit
 					(name "A")
@@ -6527,6 +5907,209 @@
 			)
 		)
 		(comp
+			(ref "C87")
+			(value "1uF")
+			(footprint "JLCPCB:C_0805")
+			(datasheet "https://item.szlcsc.com/datasheet/CL21B105KBFNNNE/29074.html")
+			(fields
+				(field
+					(name "SYMBOL") "CL21B105KBFNNNE")
+				(field
+					(name "DEVICE") "CL21B105KBFNNNE")
+				(field
+					(name "LCSC PART NAME") "1uF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C28323")
+				(field
+					(name "MANUFACTURER") "SAMSUNG(三星)")
+				(field
+					(name "MANUFACTURER PART") "CL21B105KBFNNNE")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0805")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "1uF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0805")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL21B105KBFNNNE/29074.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CL21B105KBFNNNE1_CL21B105KBFNNNE-altium-import")
+				(part "root_0_CL21B105KBFNNNE_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CL21B105KBFNNNE")
+			)
+			(property
+				(name "DEVICE")
+				(value "CL21B105KBFNNNE")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "1uF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C28323")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "SAMSUNG(三星)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CL21B105KBFNNNE")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0805")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "1uF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0805*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "23852655-1508-42cb-ae47-00968e37df22")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "C88")
 			(value "22uF")
 			(footprint "JLCPCB:C_1206")
@@ -7121,209 +6704,6 @@
 				(tstamps "/")
 			)
 			(tstamps "3a2e62ae-54d9-4fab-a40c-80c25f9d0b9c")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "C91")
-			(value "100nF")
-			(footprint "JLCPCB:C_0603")
-			(datasheet "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
-			(fields
-				(field
-					(name "SYMBOL") "CL10B104KB8NNNC")
-				(field
-					(name "DEVICE") "CL10B104KB8NNNC")
-				(field
-					(name "LCSC PART NAME") "100nF ±10% 50V")
-				(field
-					(name "LCSC Part #") "C1591")
-				(field
-					(name "MANUFACTURER") "SAMSUNG(三星)")
-				(field
-					(name "MANUFACTURER PART") "CL10B104KB8NNNC")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0603")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "ALTIUM_VALUE") "100nF")
-				(field
-					(name "TOLERANCE") "±10%")
-				(field
-					(name "VOLTAGE RATING") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "X7R")
-				(field
-					(name "Capacitance")
-				)
-				(field
-					(name "DC Resistance (DCR)")
-				)
-				(field
-					(name "Frequency - Self Resonant")
-				)
-				(field
-					(name "Inductance")
-				)
-				(field
-					(name "Q @ Freq")
-				)
-				(field
-					(name "Rated Current")
-				)
-				(field
-					(name "Resistance")
-				)
-				(field
-					(name "LCSC")
-				)
-				(field
-					(name "SUPPLIER PART")
-				)
-				(field
-					(name "Footprint") "JLCPCB:C_0603")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "CL10B104KB8NNNC1_CL10B104KB8NNNC (2)-altium-import")
-				(part "root_0_CL10B104KB8NNNC_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "CL10B104KB8NNNC")
-			)
-			(property
-				(name "DEVICE")
-				(value "CL10B104KB8NNNC")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "100nF ±10% 50V")
-			)
-			(property
-				(name "LCSC Part #")
-				(value "C1591")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "SAMSUNG(三星)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "CL10B104KB8NNNC")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0603")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "100nF")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±10%")
-			)
-			(property
-				(name "VOLTAGE RATING")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "X7R")
-			)
-			(property
-				(name "Capacitance")
-				(value "")
-			)
-			(property
-				(name "DC Resistance (DCR)")
-				(value "")
-			)
-			(property
-				(name "Frequency - Self Resonant")
-				(value "")
-			)
-			(property
-				(name "Inductance")
-				(value "")
-			)
-			(property
-				(name "Q @ Freq")
-				(value "")
-			)
-			(property
-				(name "Rated Current")
-				(value "")
-			)
-			(property
-				(name "Resistance")
-				(value "")
-			)
-			(property
-				(name "LCSC")
-				(value "")
-			)
-			(property
-				(name "SUPPLIER PART")
-				(value "")
-			)
-			(property
-				(name "Sheetname")
-				(value "SpikyOscilloscopce")
-			)
-			(property
-				(name "Sheetfile")
-				(value "SpikyOscilloscopce.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*C0603*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "c79604f8-17a5-4ca9-8de7-eb9b86d5a653")
 			(units
 				(unit
 					(name "A")
@@ -8145,6 +7525,209 @@
 						)
 						(pin
 							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C96")
+			(value "100nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
+			(fields
+				(field
+					(name "SYMBOL") "CL10B104KB8NNNC")
+				(field
+					(name "DEVICE") "CL10B104KB8NNNC")
+				(field
+					(name "LCSC PART NAME") "100nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C1591")
+				(field
+					(name "MANUFACTURER") "SAMSUNG(三星)")
+				(field
+					(name "MANUFACTURER PART") "CL10B104KB8NNNC")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "100nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CL10B104KB8NNNC1_CL10B104KB8NNNC (2)-altium-import")
+				(part "root_0_CL10B104KB8NNNC_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "DEVICE")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "100nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C1591")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "SAMSUNG(三星)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "100nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2ac9bae9-daa2-492c-bf2e-6f0a5e049d02")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
 						)
 					)
 				)
@@ -17601,6 +17184,412 @@
 			)
 		)
 		(comp
+			(ref "C170")
+			(value "10uF")
+			(footprint "JLCPCB:C_0805")
+			(datasheet "https://item.szlcsc.com/datasheet/CL21A106KBYQNNE/3277789.html")
+			(fields
+				(field
+					(name "SYMBOL") "CL21A106KBYQNNE")
+				(field
+					(name "DEVICE") "CL21A106KBYQNNE")
+				(field
+					(name "LCSC PART NAME") "10uF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C2932476")
+				(field
+					(name "MANUFACTURER") "SAMSUNG(三星)")
+				(field
+					(name "MANUFACTURER PART") "CL21A106KBYQNNE")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0805")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10uF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X5R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0805")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL21A106KBYQNNE/3277789.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CL21A106KBYQNNE1_CL21A106KBYQNNE-altium-import")
+				(part "root_0_CL21A106KBYQNNE_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CL21A106KBYQNNE")
+			)
+			(property
+				(name "DEVICE")
+				(value "CL21A106KBYQNNE")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10uF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C2932476")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "SAMSUNG(三星)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CL21A106KBYQNNE")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0805")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10uF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X5R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0805*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9b4b2f6d-1ff4-491a-b641-142b5607313a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C171")
+			(value "100nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
+			(fields
+				(field
+					(name "SYMBOL") "CL10B104KB8NNNC")
+				(field
+					(name "DEVICE") "CL10B104KB8NNNC")
+				(field
+					(name "LCSC PART NAME") "100nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C1591")
+				(field
+					(name "MANUFACTURER") "SAMSUNG(三星)")
+				(field
+					(name "MANUFACTURER PART") "CL10B104KB8NNNC")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "100nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL10B104KB8NNNC/1943.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CL10B104KB8NNNC1_CL10B104KB8NNNC (2)-altium-import")
+				(part "root_0_CL10B104KB8NNNC_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "DEVICE")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "100nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C1591")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "SAMSUNG(三星)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CL10B104KB8NNNC")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "100nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "020a7263-0d85-4e5d-8246-92a70637618b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "C172")
 			(value "10nF")
 			(footprint "JLCPCB:C_0603")
@@ -17992,6 +17981,1427 @@
 				(tstamps "/")
 			)
 			(tstamps "15b6a34b-51c7-4fa7-a0cb-e7a56a67da7f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C174")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "84a03fca-5b41-4016-956f-2868a14443a2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C175")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ccb96f9c-fe68-455d-aec8-040f74b52834")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C176")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f77782e1-0441-4d31-9bdd-7a63e93bfa75")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C177")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "aed1b978-96e7-443f-b788-c5f6217f3566")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C178")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f7f7febd-f9f1-4ebf-87cd-984ebbca3e71")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C179")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dc4ec3fb-3211-4af2-bc7d-35336eadc67f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C180")
+			(value "10nF")
+			(footprint "JLCPCB:C_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+			(fields
+				(field
+					(name "SYMBOL") "CC0603KRX7R9BB103")
+				(field
+					(name "DEVICE") "CC0603KRX7R9BB103")
+				(field
+					(name "LCSC PART NAME") "10nF ±10% 50V")
+				(field
+					(name "LCSC Part #") "C100042")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "CC0603KRX7R9BB103")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "10nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "50V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:C_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB103/101256.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CC0603KRX7R9BB1031_CC0603KRX7R9BB103 (1)-altium-import")
+				(part "root_0_CC0603KRX7R9BB103_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "DEVICE")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10nF ±10% 50V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C100042")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CC0603KRX7R9BB103")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "50V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6ef4c140-3e93-418f-a474-e70b55d95fd7")
 			(units
 				(unit
 					(name "A")
@@ -25460,6 +26870,530 @@
 			)
 		)
 		(comp
+			(ref "H9")
+			(value "MountingHole_Pad")
+			(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+			(description "Mounting Hole with connection")
+			(fields
+				(field
+					(name "Field13")
+				)
+				(field
+					(name "Power Supply Rejection Ratio (Psrr)")
+				)
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Mounting Hole with connection")
+			)
+			(libsource
+				(lib "Mechanical")
+				(part "MountingHole_Pad")
+				(description "Mounting Hole with connection")
+			)
+			(property
+				(name "Field13")
+				(value "")
+			)
+			(property
+				(name "Power Supply Rejection Ratio (Psrr)")
+				(value "")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "ki_keywords")
+				(value "mounting hole")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "MountingHole*Pad*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "17a8700a-b4fd-4e03-ad0b-5522dd2f56f1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H10")
+			(value "MountingHole_Pad")
+			(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+			(description "Mounting Hole with connection")
+			(fields
+				(field
+					(name "Field13")
+				)
+				(field
+					(name "Power Supply Rejection Ratio (Psrr)")
+				)
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Mounting Hole with connection")
+			)
+			(libsource
+				(lib "Mechanical")
+				(part "MountingHole_Pad")
+				(description "Mounting Hole with connection")
+			)
+			(property
+				(name "Field13")
+				(value "")
+			)
+			(property
+				(name "Power Supply Rejection Ratio (Psrr)")
+				(value "")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "ki_keywords")
+				(value "mounting hole")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "MountingHole*Pad*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "3958cd46-bcaf-4ace-a6a1-e4fbfb931372")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H11")
+			(value "MountingHole_Pad")
+			(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+			(description "Mounting Hole with connection")
+			(fields
+				(field
+					(name "Field13")
+				)
+				(field
+					(name "Power Supply Rejection Ratio (Psrr)")
+				)
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Mounting Hole with connection")
+			)
+			(libsource
+				(lib "Mechanical")
+				(part "MountingHole_Pad")
+				(description "Mounting Hole with connection")
+			)
+			(property
+				(name "Field13")
+				(value "")
+			)
+			(property
+				(name "Power Supply Rejection Ratio (Psrr)")
+				(value "")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "ki_keywords")
+				(value "mounting hole")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "MountingHole*Pad*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6c1c4895-8dbe-4eaf-84a5-fb6e76db90ee")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H12")
+			(value "MountingHole_Pad")
+			(footprint "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+			(description "Mounting Hole with connection")
+			(fields
+				(field
+					(name "Field13")
+				)
+				(field
+					(name "Power Supply Rejection Ratio (Psrr)")
+				)
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Mounting Hole with connection")
+			)
+			(libsource
+				(lib "Mechanical")
+				(part "MountingHole_Pad")
+				(description "Mounting Hole with connection")
+			)
+			(property
+				(name "Field13")
+				(value "")
+			)
+			(property
+				(name "Power Supply Rejection Ratio (Psrr)")
+				(value "")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "ki_keywords")
+				(value "mounting hole")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "MountingHole*Pad*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "97a33407-8ea5-4acb-b16e-4bb2b1b63ac6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "J1")
 			(value "Conn_02x20_Top_Bottom")
 			(footprint "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical")
@@ -29447,6 +31381,187 @@
 				(tstamps "/")
 			)
 			(tstamps "2ecca33d-d14e-4494-8a7f-debcd72ad250")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R3")
+			(value "820Ω")
+			(footprint "R0603")
+			(datasheet "https://atta.szlcsc.com/upload/public/pdf/source/20180821/C275644_0D56F95EFF785E7D9A1FEF436B37DA78.pdf")
+			(fields
+				(field
+					(name "SYMBOL") "RC0603FR-07820RL")
+				(field
+					(name "DEVICE") "RC0603FR-07820RL")
+				(field
+					(name "LCSC PART NAME") "厚膜电阻 820Ω ±1% 100mW")
+				(field
+					(name "SUPPLIER PART") "C114638")
+				(field
+					(name "MANUFACTURER") "YAGEO(国巨)")
+				(field
+					(name "MANUFACTURER PART") "RC0603FR-07820RL")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistors")
+				(field
+					(name "ALTIUM_VALUE") "820Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)")
+				)
+				(field
+					(name "OVERLOAD VOLTAGE (MAX)")
+				)
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE RANGE") "-55℃~+155℃")
+				(field
+					(name "REUSE BLOCK")
+				)
+				(field
+					(name "GROUP ID")
+				)
+				(field
+					(name "CHANNEL ID")
+				)
+				(field
+					(name "Footprint") "R0603")
+				(field
+					(name "Datasheet") "https://atta.szlcsc.com/upload/public/pdf/source/20180821/C275644_0D56F95EFF785E7D9A1FEF436B37DA78.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "1_P1-altium-import")
+				(part "root_0_RC0603FR-07820RL_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "RC0603FR-07820RL")
+			)
+			(property
+				(name "DEVICE")
+				(value "RC0603FR-07820RL")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "厚膜电阻 820Ω ±1% 100mW")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "C114638")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "YAGEO(国巨)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "RC0603FR-07820RL")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistors")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "820Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "")
+			)
+			(property
+				(name "OVERLOAD VOLTAGE (MAX)")
+				(value "")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE RANGE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "REUSE BLOCK")
+				(value "")
+			)
+			(property
+				(name "GROUP ID")
+				(value "")
+			)
+			(property
+				(name "CHANNEL ID")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d87ddac0-8c31-4d89-97d2-0b82799cb974")
 			(units
 				(unit
 					(name "A")
@@ -47814,6 +49929,448 @@
 			)
 		)
 		(comp
+			(ref "R178")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ab947b7b-f140-4353-bc75-cc7d6a430406")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R179")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "74b39dce-6723-4bb1-a986-14a6a6dcc3be")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "R180")
 			(value "100Ω")
 			(footprint "JLCPCB:R_0603")
@@ -48245,6 +50802,448 @@
 				(tstamps "/")
 			)
 			(tstamps "d582c497-7d76-4bd5-886f-3fcaa9f3649b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R182")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "72829777-b2e3-43ce-8377-824b0972d949")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R183")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a42498bd-f62d-451b-bf01-ab83bf18590d")
 			(units
 				(unit
 					(name "A")
@@ -49372,25 +52371,26 @@
 		)
 		(comp
 			(ref "R189")
-			(value "10kΩ")
+			(value "47Ω")
 			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
 			(fields
 				(field
-					(name "SYMBOL") "FRC0603F1002TS")
+					(name "SYMBOL") "0603WAF470JT5E")
 				(field
-					(name "DEVICE") "FRC0603F1002TS")
+					(name "DEVICE") "0603WAF470JT5E")
 				(field
-					(name "LCSC PART NAME") "10kΩ ±1% 100mW 厚膜电阻")
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
 				(field
-					(name "LCSC Part #") "C2906982")
+					(name "LCSC Part #") "C23182")
 				(field
-					(name "MANUFACTURER") "FOJAN(富捷)")
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
 				(field
-					(name "MANUFACTURER PART") "FRC0603F1002TS")
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
 				(field
 					(name "SUPPLIER FOOTPRINT") "0603")
 				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
+					(name "JLCPCB PART CLASS") "Basic Part")
 				(field
 					(name "SUPPLIER") "LCSC")
 				(field
@@ -49400,7 +52400,7 @@
 				(field
 					(name "TYPE") "Thick Film Resistor")
 				(field
-					(name "ALTIUM_VALUE") "10kΩ")
+					(name "ALTIUM_VALUE") "47Ω")
 				(field
 					(name "TOLERANCE") "±1%")
 				(field
@@ -49441,40 +52441,39 @@
 				(field
 					(name "Footprint") "JLCPCB:R_0603")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
 				(field
 					(name "Description")
 				)
 			)
 			(libsource
-				(lib "FRC0603F1002TS1_FRC0603F1002TS-altium-import")
-				(part "root_0_FRC0603F1002TS_")
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
 				(description "")
 			)
 			(property
 				(name "SYMBOL")
-				(value "FRC0603F1002TS")
+				(value "0603WAF470JT5E")
 			)
 			(property
 				(name "DEVICE")
-				(value "FRC0603F1002TS")
+				(value "0603WAF470JT5E")
 			)
 			(property
 				(name "LCSC PART NAME")
-				(value "10kΩ ±1% 100mW 厚膜电阻")
+				(value "47Ω ±1% 100mW 厚膜电阻")
 			)
 			(property
 				(name "LCSC Part #")
-				(value "C2906982")
+				(value "C23182")
 			)
 			(property
 				(name "MANUFACTURER")
-				(value "FOJAN(富捷)")
+				(value "UNI-ROYAL(厚声)")
 			)
 			(property
 				(name "MANUFACTURER PART")
-				(value "FRC0603F1002TS")
+				(value "0603WAF470JT5E")
 			)
 			(property
 				(name "SUPPLIER FOOTPRINT")
@@ -49482,7 +52481,7 @@
 			)
 			(property
 				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
+				(value "Basic Part")
 			)
 			(property
 				(name "SUPPLIER")
@@ -49502,7 +52501,7 @@
 			)
 			(property
 				(name "ALTIUM_VALUE")
-				(value "10kΩ")
+				(value "47Ω")
 			)
 			(property
 				(name "TOLERANCE")
@@ -49576,7 +52575,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f74aa2ca-4433-40dc-ad33-d178e7c85232")
+			(tstamps "81ce2470-98ea-4b7f-bf52-edbb6856e4cc")
 			(units
 				(unit
 					(name "A")
@@ -63543,6 +66542,1111 @@
 			)
 		)
 		(comp
+			(ref "R254")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f23f1a3e-9b64-4052-bfb8-69b8e0e11204")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R255")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "cfa84064-6892-4d25-a77b-6cc83eaf1b43")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R256")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "993c9de1-0a2b-48c0-bdfd-ff1298b9776f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R257")
+			(value "47Ω")
+			(footprint "JLCPCB:R_0603")
+			(datasheet "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+			(fields
+				(field
+					(name "SYMBOL") "0603WAF470JT5E")
+				(field
+					(name "DEVICE") "0603WAF470JT5E")
+				(field
+					(name "LCSC PART NAME") "47Ω ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C23182")
+				(field
+					(name "MANUFACTURER") "UNI-ROYAL(厚声)")
+				(field
+					(name "MANUFACTURER PART") "0603WAF470JT5E")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "47Ω")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/0603WAF470JT5E/23909.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "0603WAF470JT5E1_0603WAF470JT5E-altium-import")
+				(part "root_0_0603WAF470JT5E_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "DEVICE")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "47Ω ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C23182")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "UNI-ROYAL(厚声)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "0603WAF470JT5E")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "47Ω")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1d7e1d81-6c93-4fe5-bac3-2a0176b75ed6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R258")
+			(value "10kΩ")
+			(footprint "JLCPCB:R_0603")
+			(fields
+				(field
+					(name "SYMBOL") "FRC0603F1002TS")
+				(field
+					(name "DEVICE") "FRC0603F1002TS")
+				(field
+					(name "LCSC PART NAME") "10kΩ ±1% 100mW 厚膜电阻")
+				(field
+					(name "LCSC Part #") "C2906982")
+				(field
+					(name "MANUFACTURER") "FOJAN(富捷)")
+				(field
+					(name "MANUFACTURER PART") "FRC0603F1002TS")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0603")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "TYPE") "Thick Film Resistor")
+				(field
+					(name "ALTIUM_VALUE") "10kΩ")
+				(field
+					(name "TOLERANCE") "±1%")
+				(field
+					(name "POWER(WATTS)") "100mW")
+				(field
+					(name "VOLTAGE-SUPPLY(MAX)") "75V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
+				(field
+					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
+				(field
+					(name "Capacitance")
+				)
+				(field
+					(name "DC Resistance (DCR)")
+				)
+				(field
+					(name "Frequency - Self Resonant")
+				)
+				(field
+					(name "Inductance")
+				)
+				(field
+					(name "Q @ Freq")
+				)
+				(field
+					(name "Rated Current")
+				)
+				(field
+					(name "Resistance")
+				)
+				(field
+					(name "LCSC")
+				)
+				(field
+					(name "SUPPLIER PART")
+				)
+				(field
+					(name "Footprint") "JLCPCB:R_0603")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "FRC0603F1002TS1_FRC0603F1002TS-altium-import")
+				(part "root_0_FRC0603F1002TS_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "FRC0603F1002TS")
+			)
+			(property
+				(name "DEVICE")
+				(value "FRC0603F1002TS")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "10kΩ ±1% 100mW 厚膜电阻")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C2906982")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "FOJAN(富捷)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "FRC0603F1002TS")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0603")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "TYPE")
+				(value "Thick Film Resistor")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "10kΩ")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±1%")
+			)
+			(property
+				(name "POWER(WATTS)")
+				(value "100mW")
+			)
+			(property
+				(name "VOLTAGE-SUPPLY(MAX)")
+				(value "75V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "±100ppm/℃")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-55℃~+155℃")
+			)
+			(property
+				(name "Capacitance")
+				(value "")
+			)
+			(property
+				(name "DC Resistance (DCR)")
+				(value "")
+			)
+			(property
+				(name "Frequency - Self Resonant")
+				(value "")
+			)
+			(property
+				(name "Inductance")
+				(value "")
+			)
+			(property
+				(name "Q @ Freq")
+				(value "")
+			)
+			(property
+				(name "Rated Current")
+				(value "")
+			)
+			(property
+				(name "Resistance")
+				(value "")
+			)
+			(property
+				(name "LCSC")
+				(value "")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*R0603*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b62f05c6-a62a-4c87-8af6-db3d0a26313d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "SW12")
 			(value "SKHHLVA010")
 			(footprint "Maxime:KEY-TH_4P-L7.5-W6.8-P4.50-LS7.2")
@@ -67369,6 +71473,305 @@
 						)
 						(pin
 							(num "7")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U4")
+			(value "MCP23S17T-E/SO")
+			(footprint "SOIC-28_L17.9-W7.5-P1.27-LS10.3-BL")
+			(datasheet "https://item.szlcsc.com/datasheet/MCP23S17T-E%252FSO/155625.html")
+			(fields
+				(field
+					(name "SYMBOL") "MCP23S17T-E/SO")
+				(field
+					(name "DEVICE") "MCP23S17T-E/SO")
+				(field
+					(name "LCSC PART NAME") "带串行接口的16位IO扩展器")
+				(field
+					(name "SUPPLIER PART") "C144293")
+				(field
+					(name "MANUFACTURER") "MICROCHIP(美国微芯)")
+				(field
+					(name "MANUFACTURER PART") "MCP23S17T-E/SO")
+				(field
+					(name "SUPPLIER FOOTPRINT") "SOIC-28-300mil")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "INTERFACE") "SPI")
+				(field
+					(name "NUMBER OF I/O") "16")
+				(field
+					(name "INTERRUPT OUTPUT") "Interrupt Output")
+				(field
+					(name "OUTPUT TYPE") "-")
+				(field
+					(name "CURRENT - OUTPUT LOW(IOL)") "8mA")
+				(field
+					(name "CURRENT - OUTPUT HIGH(IOH)") "3mA")
+				(field
+					(name "CLOCK FREQUENCY") "10MHz")
+				(field
+					(name "NUMBER OF SUPPORTING DEVICES") "8")
+				(field
+					(name "QUIESCENT SUPPLY CURRENT") "3uA")
+				(field
+					(name "OUTPUT LOGIC LEVEL - HIGH") "-")
+				(field
+					(name "OUTPUT LOGIC LEVEL - LOW") "600mV")
+				(field
+					(name "FEATURES") "Reset function；Cascading and address extension")
+				(field
+					(name "VOLTAGE - SUPPLY") "1.8V~5.5V")
+				(field
+					(name "OPERATING TEMPERATURE") "-40℃~+125℃")
+				(field
+					(name "REUSE BLOCK")
+				)
+				(field
+					(name "GROUP ID")
+				)
+				(field
+					(name "CHANNEL ID")
+				)
+				(field
+					(name "Footprint") "SOIC-28_L17.9-W7.5-P1.27-LS10.3-BL")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/MCP23S17T-E%252FSO/155625.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "1_P1-altium-import")
+				(part "root_0_MCP23S17T-E/SO_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "MCP23S17T-E/SO")
+			)
+			(property
+				(name "DEVICE")
+				(value "MCP23S17T-E/SO")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "带串行接口的16位IO扩展器")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "C144293")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "MICROCHIP(美国微芯)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "MCP23S17T-E/SO")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "SOIC-28-300mil")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "INTERFACE")
+				(value "SPI")
+			)
+			(property
+				(name "NUMBER OF I/O")
+				(value "16")
+			)
+			(property
+				(name "INTERRUPT OUTPUT")
+				(value "Interrupt Output")
+			)
+			(property
+				(name "OUTPUT TYPE")
+				(value "-")
+			)
+			(property
+				(name "CURRENT - OUTPUT LOW(IOL)")
+				(value "8mA")
+			)
+			(property
+				(name "CURRENT - OUTPUT HIGH(IOH)")
+				(value "3mA")
+			)
+			(property
+				(name "CLOCK FREQUENCY")
+				(value "10MHz")
+			)
+			(property
+				(name "NUMBER OF SUPPORTING DEVICES")
+				(value "8")
+			)
+			(property
+				(name "QUIESCENT SUPPLY CURRENT")
+				(value "3uA")
+			)
+			(property
+				(name "OUTPUT LOGIC LEVEL - HIGH")
+				(value "-")
+			)
+			(property
+				(name "OUTPUT LOGIC LEVEL - LOW")
+				(value "600mV")
+			)
+			(property
+				(name "FEATURES")
+				(value "Reset function；Cascading and address extension")
+			)
+			(property
+				(name "VOLTAGE - SUPPLY")
+				(value "1.8V~5.5V")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-40℃~+125℃")
+			)
+			(property
+				(name "REUSE BLOCK")
+				(value "")
+			)
+			(property
+				(name "GROUP ID")
+				(value "")
+			)
+			(property
+				(name "CHANNEL ID")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "SpikyOscilloscopce")
+			)
+			(property
+				(name "Sheetfile")
+				(value "SpikyOscilloscopce.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*SOIC-28_L17.9-W7.5-P1.27-LS10.3-BL*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6728ef49-fb77-411b-a7f8-07e7458eb3e2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
 						)
 					)
 				)
@@ -72271,6 +76674,42 @@
 		)
 		(libpart
 			(lib "1_P1-altium-import")
+			(part "root_0_RC0603FR-07820RL_")
+			(footprints
+				(fp "*R0603*")
+			)
+			(fields
+				(field
+					(name "Reference")
+				)
+				(field
+					(name "Value")
+				)
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "1_P1-altium-import")
 			(part "root_0_REF5020AIDR_")
 			(footprints
 				(fp "*SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL*")
@@ -73847,6 +78286,42 @@
 			)
 		)
 		(libpart
+			(lib "Potentiometer_mount_4LED-altium-import")
+			(part "root_0_CC0603KRX7R9BB332_")
+			(description "Capacitance:3.3nF Tolerance:±10% Tolerance:±10% Voltage Rating:50V Temperature Coefficient:X7R")
+			(footprints
+				(fp "*C0603*")
+			)
+			(fields
+				(field
+					(name "Reference")
+				)
+				(field
+					(name "Value")
+				)
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Capacitance:3.3nF Tolerance:±10% Tolerance:±10% Voltage Rating:50V Temperature Coefficient:X7R")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
 			(lib "RC0603FR-07100KL1_RC0603FR-07100KL (1)-altium-import")
 			(part "root_0_RC0603FR-07100KL_")
 			(footprints
@@ -74455,6 +78930,18 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C12")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C13")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "C160")
 				(pin "2")
 				(pinfunction "2_2")
@@ -74462,6 +78949,18 @@
 			)
 			(node
 				(ref "C161")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C170")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C171")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -74525,6 +79024,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "J1")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "J3")
 				(pin "2")
 				(pinfunction "Pin_2_2")
@@ -74552,12 +79057,6 @@
 				(ref "R161")
 				(pin "1")
 				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R189")
-				(pin "2")
-				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
@@ -74723,6 +79222,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "R258")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "R91")
 				(pin "2")
 				(pinfunction "2_2")
@@ -74756,6 +79261,18 @@
 				(ref "U3")
 				(pin "12")
 				(pinfunction "VDD_12")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "15")
+				(pinfunction "A0_15")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "9")
+				(pinfunction "VDD_9")
 				(pintype "passive")
 			)
 		)
@@ -75119,17 +79636,6 @@
 		)
 		(net
 			(code "4")
-			(name "+5V_DSYS")
-			(class "Default")
-			(node
-				(ref "TP6")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "5")
 			(name "+5V_SYS")
 			(class "Default")
 			(node
@@ -75181,6 +79687,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "TP6")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "U16")
 				(pin "2")
 				(pinfunction "VIN_2")
@@ -75200,7 +79712,7 @@
 			)
 		)
 		(net
-			(code "6")
+			(code "5")
 			(name "ADC_Vm1")
 			(class "Default")
 			(node
@@ -75223,7 +79735,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "6")
 			(name "ADC_Vm2")
 			(class "Default")
 			(node
@@ -75246,7 +79758,7 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "7")
 			(name "ADC_Vm3")
 			(class "Default")
 			(node
@@ -75269,7 +79781,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "8")
 			(name "ADC_Vm4")
 			(class "Default")
 			(node
@@ -75292,7 +79804,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "9")
 			(name "ADC_Vm5")
 			(class "Default")
 			(node
@@ -75315,7 +79827,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "10")
 			(name "ADC_Vm6")
 			(class "Default")
 			(node
@@ -75338,7 +79850,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "11")
 			(name "ADC_Vm7")
 			(class "Default")
 			(node
@@ -75361,7 +79873,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "12")
 			(name "ADC_Vm8")
 			(class "Default")
 			(node
@@ -75384,8 +79896,8 @@
 			)
 		)
 		(net
-			(code "14")
-			(name "Boot")
+			(code "13")
+			(name "BOOT")
 			(class "Default")
 			(node
 				(ref "C103")
@@ -75413,7 +79925,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "14")
 			(name "CC1")
 			(class "Default")
 			(node
@@ -75436,7 +79948,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "15")
 			(name "CC2")
 			(class "Default")
 			(node
@@ -75459,7 +79971,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "16")
 			(name "CHASSIS")
 			(class "Default")
 			(node
@@ -75467,6 +79979,24 @@
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
+			)
+			(node
+				(ref "H10")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "input")
+			)
+			(node
+				(ref "H11")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "input")
+			)
+			(node
+				(ref "H12")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "input")
 			)
 			(node
 				(ref "H5")
@@ -75488,6 +80018,12 @@
 			)
 			(node
 				(ref "H8")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "input")
+			)
+			(node
+				(ref "H9")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "input")
@@ -75518,7 +80054,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "17")
 			(name "CS_MCP23S17")
 			(class "Default")
 			(node
@@ -75533,9 +80069,15 @@
 				(pinfunction "CS#_11")
 				(pintype "passive")
 			)
+			(node
+				(ref "U4")
+				(pin "11")
+				(pinfunction "CS#_11")
+				(pintype "passive")
+			)
 		)
 		(net
-			(code "19")
+			(code "18")
 			(name "CS_MCP3208")
 			(class "Default")
 			(node
@@ -75552,7 +80094,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "19")
 			(name "CS_MCP4922_1{slash}2")
 			(class "Default")
 			(node
@@ -75569,7 +80111,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "20")
 			(name "CS_MCP4922_3{slash}4")
 			(class "Default")
 			(node
@@ -75586,7 +80128,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "21")
 			(name "CS_MCP4922_5{slash}6")
 			(class "Default")
 			(node
@@ -75603,7 +80145,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "22")
 			(name "CS_MCP4922_7{slash}8")
 			(class "Default")
 			(node
@@ -75616,6 +80158,41 @@
 				(ref "U20")
 				(pin "3")
 				(pinfunction "CS#_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "23")
+			(name "DAC_LDAC_N")
+			(class "Default")
+			(node
+				(ref "R187")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U14")
+				(pin "8")
+				(pinfunction "LDAC#_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "U17")
+				(pin "8")
+				(pinfunction "LDAC#_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "U20")
+				(pin "8")
+				(pinfunction "LDAC#_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "U7")
+				(pin "8")
+				(pinfunction "LDAC#_8")
 				(pintype "passive")
 			)
 		)
@@ -75673,45 +80250,10 @@
 		)
 		(net
 			(code "26")
-			(name "En")
-			(class "Default")
-			(node
-				(ref "C104")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R114")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "SW12")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U25")
-				(pin "3")
-				(pinfunction "EN_3")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "27")
 			(name "GNDA")
 			(class "Default")
 			(node
 				(ref "C1")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "C10")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -75724,12 +80266,6 @@
 			)
 			(node
 				(ref "C106")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "C11")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -75927,13 +80463,43 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "C17")
+				(ref "C174")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "C18")
+				(ref "C175")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C176")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C177")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C178")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C179")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C180")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -75946,24 +80512,6 @@
 			)
 			(node
 				(ref "C20")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "C25")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "C28")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "C29")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -76083,6 +80631,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C87")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "C89")
 				(pin "1")
 				(pinfunction "1_1")
@@ -76110,6 +80664,12 @@
 				(ref "C95")
 				(pin "2")
 				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C96")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -76491,7 +81051,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "27")
 			(name "GNDD")
 			(class "Default")
 			(node
@@ -76514,6 +81074,18 @@
 			)
 			(node
 				(ref "C104")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C12")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C13")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -76579,6 +81151,18 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C170")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C171")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "C172")
 				(pin "1")
 				(pinfunction "1_1")
@@ -76621,6 +81205,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C8")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C82")
 				(pin "1")
 				(pinfunction "1_1")
@@ -76640,12 +81230,6 @@
 			)
 			(node
 				(ref "C90")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "C91")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -76719,6 +81303,12 @@
 				(ref "R234")
 				(pin "1")
 				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
@@ -76849,14 +81439,14 @@
 			)
 			(node
 				(ref "U2")
-				(pin "7")
-				(pinfunction "ILM_7")
+				(pin "8")
+				(pinfunction "GND_8")
 				(pintype "passive")
 			)
 			(node
 				(ref "U2")
-				(pin "8")
-				(pinfunction "GND_8")
+				(pin "9")
+				(pinfunction "EP_9")
 				(pintype "passive")
 			)
 			(node
@@ -76901,9 +81491,27 @@
 				(pinfunction "PORT_3")
 				(pintype "passive")
 			)
+			(node
+				(ref "U4")
+				(pin "10")
+				(pinfunction "VSS_10")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "16")
+				(pinfunction "A1_16")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "17")
+				(pinfunction "A2_17")
+				(pintype "passive")
+			)
 		)
 		(net
-			(code "29")
+			(code "28")
 			(name "LCD_BL")
 			(class "Default")
 			(node
@@ -76920,7 +81528,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "29")
 			(name "LCD_CS")
 			(class "Default")
 			(node
@@ -76937,7 +81545,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "30")
 			(name "LCD_DB0")
 			(class "Default")
 			(node
@@ -76954,7 +81562,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "31")
 			(name "LCD_DB1")
 			(class "Default")
 			(node
@@ -76971,7 +81579,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "32")
 			(name "LCD_DB2")
 			(class "Default")
 			(node
@@ -76988,7 +81596,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "33")
 			(name "LCD_DB3")
 			(class "Default")
 			(node
@@ -77005,7 +81613,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "34")
 			(name "LCD_DB4")
 			(class "Default")
 			(node
@@ -77022,7 +81630,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "35")
 			(name "LCD_DB5")
 			(class "Default")
 			(node
@@ -77039,7 +81647,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "36")
 			(name "LCD_DB6")
 			(class "Default")
 			(node
@@ -77056,7 +81664,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "37")
 			(name "LCD_DB7")
 			(class "Default")
 			(node
@@ -77073,7 +81681,177 @@
 			)
 		)
 		(net
+			(code "38")
+			(name "LCD_DB8")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "7")
+				(pinfunction "Pin_7_7")
+				(pintype "passive")
+			)
+			(node
+				(ref "R178")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
 			(code "39")
+			(name "LCD_DB9")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "8")
+				(pinfunction "Pin_8_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "R179")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "40")
+			(name "LCD_DB10")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "9")
+				(pinfunction "Pin_9_9")
+				(pintype "passive")
+			)
+			(node
+				(ref "R182")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "41")
+			(name "LCD_DB11")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "10")
+				(pinfunction "Pin_10_10")
+				(pintype "passive")
+			)
+			(node
+				(ref "R255")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "42")
+			(name "LCD_DB12")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "11")
+				(pinfunction "Pin_11_11")
+				(pintype "passive")
+			)
+			(node
+				(ref "R257")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "LCD_DB13")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "12")
+				(pinfunction "Pin_12_12")
+				(pintype "passive")
+			)
+			(node
+				(ref "R256")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "44")
+			(name "LCD_DB14")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "13")
+				(pinfunction "Pin_13_13")
+				(pintype "passive")
+			)
+			(node
+				(ref "R183")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "45")
+			(name "LCD_DB15")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "14")
+				(pinfunction "Pin_14_14")
+				(pintype "passive")
+			)
+			(node
+				(ref "R254")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "46")
+			(name "LCD_Flash_CS")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "16")
+				(pinfunction "Pin_16_16")
+				(pintype "passive")
+			)
+			(node
+				(ref "R189")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "47")
+			(name "LCD_RESET")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "17")
+				(pinfunction "Pin_17_17")
+				(pintype "passive")
+			)
+			(node
+				(ref "R118")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "48")
 			(name "LCD_RS")
 			(class "Default")
 			(node
@@ -77090,24 +81868,7 @@
 			)
 		)
 		(net
-			(code "40")
-			(name "LCD_Reset")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "17")
-				(pinfunction "Pin_17_17")
-				(pintype "passive")
-			)
-			(node
-				(ref "R118")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "41")
+			(code "49")
 			(name "LCD_WR")
 			(class "Default")
 			(node
@@ -77124,42 +81885,7 @@
 			)
 		)
 		(net
-			(code "42")
-			(name "LDAC")
-			(class "Default")
-			(node
-				(ref "R187")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U14")
-				(pin "8")
-				(pinfunction "LDAC#_8")
-				(pintype "passive")
-			)
-			(node
-				(ref "U17")
-				(pin "8")
-				(pinfunction "LDAC#_8")
-				(pintype "passive")
-			)
-			(node
-				(ref "U20")
-				(pin "8")
-				(pinfunction "LDAC#_8")
-				(pintype "passive")
-			)
-			(node
-				(ref "U7")
-				(pin "8")
-				(pinfunction "LDAC#_8")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "43")
+			(code "50")
 			(name "Net-(C40-Pad1)")
 			(class "Default")
 			(node
@@ -77176,7 +81902,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "51")
 			(name "Net-(D31-Pad2)")
 			(class "Default")
 			(node
@@ -77192,7 +81918,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "52")
 			(name "Net-(D32-Pad2)")
 			(class "Default")
 			(node
@@ -77208,7 +81934,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "53")
 			(name "Net-(D34-IO1)")
 			(class "Default")
 			(node
@@ -77237,7 +81963,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "54")
 			(name "Net-(D34-IO2)")
 			(class "Default")
 			(node
@@ -77266,7 +81992,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "55")
 			(name "Net-(D36-IO1)")
 			(class "Default")
 			(node
@@ -77295,7 +82021,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "56")
 			(name "Net-(D36-IO2)")
 			(class "Default")
 			(node
@@ -77324,7 +82050,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "57")
 			(name "Net-(D39-IO1)")
 			(class "Default")
 			(node
@@ -77353,7 +82079,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "58")
 			(name "Net-(D39-IO2)")
 			(class "Default")
 			(node
@@ -77382,7 +82108,7 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "59")
 			(name "Net-(D40-IO1)")
 			(class "Default")
 			(node
@@ -77411,7 +82137,7 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "60")
 			(name "Net-(D40-IO2)")
 			(class "Default")
 			(node
@@ -77440,7 +82166,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "61")
 			(name "Net-(D45-IO1)")
 			(class "Default")
 			(node
@@ -77469,7 +82195,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "62")
 			(name "Net-(D45-IO2)")
 			(class "Default")
 			(node
@@ -77498,7 +82224,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "63")
 			(name "Net-(D46-IO1)")
 			(class "Default")
 			(node
@@ -77527,7 +82253,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "64")
 			(name "Net-(D46-IO2)")
 			(class "Default")
 			(node
@@ -77556,7 +82282,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "65")
 			(name "Net-(D47-IO1)")
 			(class "Default")
 			(node
@@ -77585,7 +82311,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "66")
 			(name "Net-(D47-IO2)")
 			(class "Default")
 			(node
@@ -77614,7 +82340,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "67")
 			(name "Net-(D48-IO1)")
 			(class "Default")
 			(node
@@ -77643,7 +82369,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "68")
 			(name "Net-(D48-IO2)")
 			(class "Default")
 			(node
@@ -77672,7 +82398,7 @@
 			)
 		)
 		(net
-			(code "62")
+			(code "69")
 			(name "Net-(D49-Pad1)")
 			(class "Default")
 			(node
@@ -77688,7 +82414,7 @@
 			)
 		)
 		(net
-			(code "63")
+			(code "70")
 			(name "Net-(D50-Pad1)")
 			(class "Default")
 			(node
@@ -77704,7 +82430,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "71")
 			(name "Net-(D51-Pad1)")
 			(class "Default")
 			(node
@@ -77720,7 +82446,7 @@
 			)
 		)
 		(net
-			(code "65")
+			(code "72")
 			(name "Net-(D52-Pad1)")
 			(class "Default")
 			(node
@@ -77736,7 +82462,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "73")
 			(name "Net-(D53-Pad1)")
 			(class "Default")
 			(node
@@ -77752,7 +82478,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "74")
 			(name "Net-(D54-Pad1)")
 			(class "Default")
 			(node
@@ -77768,7 +82494,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "75")
 			(name "Net-(D55-Pad1)")
 			(class "Default")
 			(node
@@ -77784,7 +82510,7 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "76")
 			(name "Net-(D56-Pad1)")
 			(class "Default")
 			(node
@@ -77800,7 +82526,7 @@
 			)
 		)
 		(net
-			(code "70")
+			(code "77")
 			(name "Net-(J1-Pin_6)")
 			(class "Default")
 			(node
@@ -77817,7 +82543,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "78")
 			(name "Net-(R136-Pad1)")
 			(class "Default")
 			(node
@@ -77840,7 +82566,7 @@
 			)
 		)
 		(net
-			(code "72")
+			(code "79")
 			(name "Net-(R139-Pad1)")
 			(class "Default")
 			(node
@@ -77863,7 +82589,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "80")
 			(name "Net-(R142-Pad1)")
 			(class "Default")
 			(node
@@ -77886,7 +82612,7 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "81")
 			(name "Net-(R143-Pad1)")
 			(class "Default")
 			(node
@@ -77909,7 +82635,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "82")
 			(name "Net-(R148-Pad1)")
 			(class "Default")
 			(node
@@ -77932,7 +82658,7 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "83")
 			(name "Net-(R149-Pad1)")
 			(class "Default")
 			(node
@@ -77955,7 +82681,7 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "84")
 			(name "Net-(R150-Pad1)")
 			(class "Default")
 			(node
@@ -77978,7 +82704,7 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "85")
 			(name "Net-(R151-Pad1)")
 			(class "Default")
 			(node
@@ -78001,7 +82727,7 @@
 			)
 		)
 		(net
-			(code "79")
+			(code "86")
 			(name "Net-(SW13-A)")
 			(class "Default")
 			(node
@@ -78018,24 +82744,7 @@
 			)
 		)
 		(net
-			(code "80")
-			(name "Net-(U1-RESET#)")
-			(class "Default")
-			(node
-				(ref "R189")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "18")
-				(pinfunction "RESET#_18")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "81")
+			(code "87")
 			(name "Net-(U2-EN{slash}UVLO)")
 			(class "Default")
 			(node
@@ -78058,13 +82767,30 @@
 			)
 		)
 		(net
-			(code "82")
+			(code "88")
+			(name "Net-(U2-ILM)")
+			(class "Default")
+			(node
+				(ref "R3")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "7")
+				(pinfunction "ILM_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "89")
 			(name "Net-(U2-dVdt)")
 			(class "Default")
 			(node
-				(ref "C91")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "C8")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -78075,7 +82801,7 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "90")
 			(name "Net-(U3-VBUS_DET)")
 			(class "Default")
 			(node
@@ -78092,7 +82818,231 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "91")
+			(name "Net-(U4-GPA0)")
+			(class "Default")
+			(node
+				(ref "R126")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R252")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "21")
+				(pinfunction "GPA0_21")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "92")
+			(name "Net-(U4-GPA1)")
+			(class "Default")
+			(node
+				(ref "R123")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R251")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "22")
+				(pinfunction "GPA1_22")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "93")
+			(name "Net-(U4-GPA2)")
+			(class "Default")
+			(node
+				(ref "R124")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R253")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "23")
+				(pinfunction "GPA2_23")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "94")
+			(name "Net-(U4-GPA3)")
+			(class "Default")
+			(node
+				(ref "R219")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "24")
+				(pinfunction "GPA3_24")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "95")
+			(name "Net-(U4-GPA4)")
+			(class "Default")
+			(node
+				(ref "R215")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R216")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "25")
+				(pinfunction "GPA4_25")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "96")
+			(name "Net-(U4-GPB0)")
+			(class "Default")
+			(node
+				(ref "R117")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R223")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "1")
+				(pinfunction "GPB0_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "97")
+			(name "Net-(U4-GPB1)")
+			(class "Default")
+			(node
+				(ref "R118")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R224")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "2")
+				(pinfunction "GPB1_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "98")
+			(name "Net-(U4-GPB2)")
+			(class "Default")
+			(node
+				(ref "R163")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R199")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "3")
+				(pinfunction "GPB2_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "99")
+			(name "Net-(U4-GPB3)")
+			(class "Default")
+			(node
+				(ref "R220")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R234")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "4")
+				(pinfunction "GPB3_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "100")
+			(name "Net-(U4-GPB4)")
+			(class "Default")
+			(node
+				(ref "R187")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R258")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "5")
+				(pinfunction "GPB4_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "101")
 			(name "Net-(U5-VINA-)")
 			(class "Default")
 			(node
@@ -78115,7 +83065,7 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "102")
 			(name "Net-(U5-VINB-)")
 			(class "Default")
 			(node
@@ -78138,7 +83088,7 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "103")
 			(name "Net-(U5-VINC-)")
 			(class "Default")
 			(node
@@ -78161,7 +83111,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "104")
 			(name "Net-(U5-VIND-)")
 			(class "Default")
 			(node
@@ -78184,7 +83134,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "105")
 			(name "Net-(U7-VOUTA)")
 			(class "Default")
 			(node
@@ -78201,7 +83151,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "106")
 			(name "Net-(U7-VOUTB)")
 			(class "Default")
 			(node
@@ -78218,7 +83168,7 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "107")
 			(name "Net-(U13-VINA-)")
 			(class "Default")
 			(node
@@ -78241,7 +83191,7 @@
 			)
 		)
 		(net
-			(code "91")
+			(code "108")
 			(name "Net-(U13-VINB-)")
 			(class "Default")
 			(node
@@ -78264,7 +83214,7 @@
 			)
 		)
 		(net
-			(code "92")
+			(code "109")
 			(name "Net-(U13-VINC-)")
 			(class "Default")
 			(node
@@ -78287,7 +83237,7 @@
 			)
 		)
 		(net
-			(code "93")
+			(code "110")
 			(name "Net-(U13-VIND-)")
 			(class "Default")
 			(node
@@ -78310,7 +83260,7 @@
 			)
 		)
 		(net
-			(code "94")
+			(code "111")
 			(name "Net-(U14-VOUTA)")
 			(class "Default")
 			(node
@@ -78327,7 +83277,7 @@
 			)
 		)
 		(net
-			(code "95")
+			(code "112")
 			(name "Net-(U14-VOUTB)")
 			(class "Default")
 			(node
@@ -78344,7 +83294,7 @@
 			)
 		)
 		(net
-			(code "96")
+			(code "113")
 			(name "Net-(U16-SW)")
 			(class "Default")
 			(node
@@ -78361,7 +83311,7 @@
 			)
 		)
 		(net
-			(code "97")
+			(code "114")
 			(name "Net-(U17-VOUTA)")
 			(class "Default")
 			(node
@@ -78378,7 +83328,7 @@
 			)
 		)
 		(net
-			(code "98")
+			(code "115")
 			(name "Net-(U17-VOUTB)")
 			(class "Default")
 			(node
@@ -78395,7 +83345,7 @@
 			)
 		)
 		(net
-			(code "99")
+			(code "116")
 			(name "Net-(U20-VOUTA)")
 			(class "Default")
 			(node
@@ -78412,7 +83362,7 @@
 			)
 		)
 		(net
-			(code "100")
+			(code "117")
 			(name "Net-(U20-VOUTB)")
 			(class "Default")
 			(node
@@ -78429,19 +83379,13 @@
 			)
 		)
 		(net
-			(code "101")
+			(code "118")
 			(name "Net-(U25-IO1)")
 			(class "Default")
 			(node
-				(ref "R117")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R223")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R178")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -78452,19 +83396,13 @@
 			)
 		)
 		(net
-			(code "102")
+			(code "119")
 			(name "Net-(U25-IO2)")
 			(class "Default")
 			(node
-				(ref "R118")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R224")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R179")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -78475,30 +83413,7 @@
 			)
 		)
 		(net
-			(code "103")
-			(name "Net-(U25-IO3)")
-			(class "Default")
-			(node
-				(ref "R126")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R252")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U25")
-				(pin "15")
-				(pinfunction "IO3_15")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "104")
+			(code "120")
 			(name "Net-(U25-IO4)")
 			(class "Default")
 			(node
@@ -78521,7 +83436,7 @@
 			)
 		)
 		(net
-			(code "105")
+			(code "121")
 			(name "Net-(U25-IO5)")
 			(class "Default")
 			(node
@@ -78544,7 +83459,7 @@
 			)
 		)
 		(net
-			(code "106")
+			(code "122")
 			(name "Net-(U25-IO6)")
 			(class "Default")
 			(node
@@ -78567,7 +83482,7 @@
 			)
 		)
 		(net
-			(code "107")
+			(code "123")
 			(name "Net-(U25-IO7)")
 			(class "Default")
 			(node
@@ -78590,13 +83505,13 @@
 			)
 		)
 		(net
-			(code "108")
+			(code "124")
 			(name "Net-(U25-IO8)")
 			(class "Default")
 			(node
-				(ref "R187")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R189")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -78613,7 +83528,7 @@
 			)
 		)
 		(net
-			(code "109")
+			(code "125")
 			(name "Net-(U25-IO9)")
 			(class "Default")
 			(node
@@ -78642,7 +83557,7 @@
 			)
 		)
 		(net
-			(code "110")
+			(code "126")
 			(name "Net-(U25-IO10)")
 			(class "Default")
 			(node
@@ -78671,7 +83586,7 @@
 			)
 		)
 		(net
-			(code "111")
+			(code "127")
 			(name "Net-(U25-IO11)")
 			(class "Default")
 			(node
@@ -78694,7 +83609,7 @@
 			)
 		)
 		(net
-			(code "112")
+			(code "128")
 			(name "Net-(U25-IO12)")
 			(class "Default")
 			(node
@@ -78711,7 +83626,7 @@
 			)
 		)
 		(net
-			(code "113")
+			(code "129")
 			(name "Net-(U25-IO13)")
 			(class "Default")
 			(node
@@ -78734,7 +83649,7 @@
 			)
 		)
 		(net
-			(code "114")
+			(code "130")
 			(name "Net-(U25-IO14)")
 			(class "Default")
 			(node
@@ -78757,7 +83672,7 @@
 			)
 		)
 		(net
-			(code "115")
+			(code "131")
 			(name "Net-(U25-IO15)")
 			(class "Default")
 			(node
@@ -78780,7 +83695,7 @@
 			)
 		)
 		(net
-			(code "116")
+			(code "132")
 			(name "Net-(U25-IO16)")
 			(class "Default")
 			(node
@@ -78803,19 +83718,13 @@
 			)
 		)
 		(net
-			(code "117")
+			(code "133")
 			(name "Net-(U25-IO17)")
 			(class "Default")
 			(node
-				(ref "R163")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R199")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R182")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -78826,7 +83735,7 @@
 			)
 		)
 		(net
-			(code "118")
+			(code "134")
 			(name "Net-(U25-IO18)")
 			(class "Default")
 			(node
@@ -78843,7 +83752,7 @@
 			)
 		)
 		(net
-			(code "119")
+			(code "135")
 			(name "Net-(U25-IO19)")
 			(class "Default")
 			(node
@@ -78860,7 +83769,7 @@
 			)
 		)
 		(net
-			(code "120")
+			(code "136")
 			(name "Net-(U25-IO20)")
 			(class "Default")
 			(node
@@ -78877,7 +83786,7 @@
 			)
 		)
 		(net
-			(code "121")
+			(code "137")
 			(name "Net-(U25-IO21)")
 			(class "Default")
 			(node
@@ -78894,7 +83803,7 @@
 			)
 		)
 		(net
-			(code "122")
+			(code "138")
 			(name "Net-(U25-IO35)")
 			(class "Default")
 			(node
@@ -78911,7 +83820,7 @@
 			)
 		)
 		(net
-			(code "123")
+			(code "139")
 			(name "Net-(U25-IO36)")
 			(class "Default")
 			(node
@@ -78928,7 +83837,7 @@
 			)
 		)
 		(net
-			(code "124")
+			(code "140")
 			(name "Net-(U25-IO37)")
 			(class "Default")
 			(node
@@ -78945,7 +83854,7 @@
 			)
 		)
 		(net
-			(code "125")
+			(code "141")
 			(name "Net-(U25-IO38)")
 			(class "Default")
 			(node
@@ -78962,11 +83871,11 @@
 			)
 		)
 		(net
-			(code "126")
+			(code "142")
 			(name "Net-(U25-IO39)")
 			(class "Default")
 			(node
-				(ref "R219")
+				(ref "R255")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -78979,19 +83888,13 @@
 			)
 		)
 		(net
-			(code "127")
+			(code "143")
 			(name "Net-(U25-IO40)")
 			(class "Default")
 			(node
-				(ref "R220")
+				(ref "R257")
 				(pin "1")
 				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R234")
-				(pin "2")
-				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
@@ -79002,7 +83905,7 @@
 			)
 		)
 		(net
-			(code "128")
+			(code "144")
 			(name "Net-(U25-IO41)")
 			(class "Default")
 			(node
@@ -79025,19 +83928,13 @@
 			)
 		)
 		(net
-			(code "129")
+			(code "145")
 			(name "Net-(U25-IO42)")
 			(class "Default")
 			(node
-				(ref "R215")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R216")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R256")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -79048,7 +83945,7 @@
 			)
 		)
 		(net
-			(code "130")
+			(code "146")
 			(name "Net-(U25-IO45)")
 			(class "Default")
 			(node
@@ -79071,7 +83968,7 @@
 			)
 		)
 		(net
-			(code "131")
+			(code "147")
 			(name "Net-(U25-IO46)")
 			(class "Default")
 			(node
@@ -79094,7 +83991,7 @@
 			)
 		)
 		(net
-			(code "132")
+			(code "148")
 			(name "Net-(U25-IO47)")
 			(class "Default")
 			(node
@@ -79111,7 +84008,7 @@
 			)
 		)
 		(net
-			(code "133")
+			(code "149")
 			(name "Net-(U25-IO48)")
 			(class "Default")
 			(node
@@ -79128,19 +84025,13 @@
 			)
 		)
 		(net
-			(code "134")
+			(code "150")
 			(name "Net-(U25-RXD0)")
 			(class "Default")
 			(node
-				(ref "R124")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R253")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R254")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -79151,19 +84042,13 @@
 			)
 		)
 		(net
-			(code "135")
+			(code "151")
 			(name "Net-(U25-TXD0)")
 			(class "Default")
 			(node
-				(ref "R123")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R251")
-				(pin "2")
-				(pinfunction "2_2")
+				(ref "R183")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -79174,7 +84059,7 @@
 			)
 		)
 		(net
-			(code "136")
+			(code "152")
 			(name "Net-(U26-TRIM{slash}NR)")
 			(class "Default")
 			(node
@@ -79191,7 +84076,7 @@
 			)
 		)
 		(net
-			(code "137")
+			(code "153")
 			(name "Net-(U29-IN1)")
 			(class "Default")
 			(node
@@ -79214,7 +84099,7 @@
 			)
 		)
 		(net
-			(code "138")
+			(code "154")
 			(name "Net-(U29-IN2)")
 			(class "Default")
 			(node
@@ -79237,7 +84122,7 @@
 			)
 		)
 		(net
-			(code "139")
+			(code "155")
 			(name "Net-(U33-IN1)")
 			(class "Default")
 			(node
@@ -79260,7 +84145,7 @@
 			)
 		)
 		(net
-			(code "140")
+			(code "156")
 			(name "Net-(U33-IN2)")
 			(class "Default")
 			(node
@@ -79283,7 +84168,7 @@
 			)
 		)
 		(net
-			(code "141")
+			(code "157")
 			(name "Net-(U34-IN1)")
 			(class "Default")
 			(node
@@ -79306,7 +84191,7 @@
 			)
 		)
 		(net
-			(code "142")
+			(code "158")
 			(name "Net-(U34-IN2)")
 			(class "Default")
 			(node
@@ -79329,7 +84214,7 @@
 			)
 		)
 		(net
-			(code "143")
+			(code "159")
 			(name "Net-(U35-IN1)")
 			(class "Default")
 			(node
@@ -79352,7 +84237,7 @@
 			)
 		)
 		(net
-			(code "144")
+			(code "160")
 			(name "Net-(U35-IN2)")
 			(class "Default")
 			(node
@@ -79375,8 +84260,8 @@
 			)
 		)
 		(net
-			(code "145")
-			(name "Rot_OutA")
+			(code "161")
+			(name "ROT_A")
 			(class "Default")
 			(node
 				(ref "J3")
@@ -79392,8 +84277,8 @@
 			)
 		)
 		(net
-			(code "146")
-			(name "Rot_OutB")
+			(code "162")
+			(name "ROT_B")
 			(class "Default")
 			(node
 				(ref "J3")
@@ -79409,8 +84294,8 @@
 			)
 		)
 		(net
-			(code "147")
-			(name "Rot_Switch")
+			(code "163")
+			(name "ROT_SW")
 			(class "Default")
 			(node
 				(ref "J3")
@@ -79426,7 +84311,7 @@
 			)
 		)
 		(net
-			(code "148")
+			(code "164")
 			(name "SD_CS")
 			(class "Default")
 			(node
@@ -79443,7 +84328,7 @@
 			)
 		)
 		(net
-			(code "149")
+			(code "165")
 			(name "SPI_MISO")
 			(class "Default")
 			(node
@@ -79476,9 +84361,15 @@
 				(pinfunction "DOUT_12")
 				(pintype "passive")
 			)
+			(node
+				(ref "U4")
+				(pin "14")
+				(pinfunction "SO_14")
+				(pintype "passive")
+			)
 		)
 		(net
-			(code "150")
+			(code "166")
 			(name "SPI_MOSI")
 			(class "Default")
 			(node
@@ -79530,6 +84421,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "U4")
+				(pin "13")
+				(pinfunction "SI_13")
+				(pintype "passive")
+			)
+			(node
 				(ref "U7")
 				(pin "5")
 				(pinfunction "SDI_5")
@@ -79537,7 +84434,7 @@
 			)
 		)
 		(net
-			(code "151")
+			(code "167")
 			(name "SPI_SCK")
 			(class "Default")
 			(node
@@ -79589,6 +84486,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "U4")
+				(pin "12")
+				(pinfunction "SCK_12")
+				(pintype "passive")
+			)
+			(node
 				(ref "U7")
 				(pin "4")
 				(pinfunction "SCK_4")
@@ -79596,7 +84499,7 @@
 			)
 		)
 		(net
-			(code "152")
+			(code "168")
 			(name "STIM1_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79625,7 +84528,7 @@
 			)
 		)
 		(net
-			(code "153")
+			(code "169")
 			(name "STIM1_EN_CMD")
 			(class "Default")
 			(node
@@ -79642,7 +84545,7 @@
 			)
 		)
 		(net
-			(code "154")
+			(code "170")
 			(name "STIM2_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79671,7 +84574,7 @@
 			)
 		)
 		(net
-			(code "155")
+			(code "171")
 			(name "STIM2_EN_CMD")
 			(class "Default")
 			(node
@@ -79688,7 +84591,7 @@
 			)
 		)
 		(net
-			(code "156")
+			(code "172")
 			(name "STIM3_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79717,7 +84620,7 @@
 			)
 		)
 		(net
-			(code "157")
+			(code "173")
 			(name "STIM3_EN_CMD")
 			(class "Default")
 			(node
@@ -79734,7 +84637,7 @@
 			)
 		)
 		(net
-			(code "158")
+			(code "174")
 			(name "STIM4_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79763,7 +84666,7 @@
 			)
 		)
 		(net
-			(code "159")
+			(code "175")
 			(name "STIM4_EN_CMD")
 			(class "Default")
 			(node
@@ -79780,7 +84683,7 @@
 			)
 		)
 		(net
-			(code "160")
+			(code "176")
 			(name "STIM5_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79809,7 +84712,7 @@
 			)
 		)
 		(net
-			(code "161")
+			(code "177")
 			(name "STIM5_EN_CMD")
 			(class "Default")
 			(node
@@ -79826,7 +84729,7 @@
 			)
 		)
 		(net
-			(code "162")
+			(code "178")
 			(name "STIM6_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79855,7 +84758,7 @@
 			)
 		)
 		(net
-			(code "163")
+			(code "179")
 			(name "STIM6_EN_CMD")
 			(class "Default")
 			(node
@@ -79872,7 +84775,7 @@
 			)
 		)
 		(net
-			(code "164")
+			(code "180")
 			(name "STIM7_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79901,7 +84804,7 @@
 			)
 		)
 		(net
-			(code "165")
+			(code "181")
 			(name "STIM7_EN_CMD")
 			(class "Default")
 			(node
@@ -79918,7 +84821,7 @@
 			)
 		)
 		(net
-			(code "166")
+			(code "182")
 			(name "STIM8_ARM_SENSE_N")
 			(class "Default")
 			(node
@@ -79947,7 +84850,7 @@
 			)
 		)
 		(net
-			(code "167")
+			(code "183")
 			(name "STIM8_EN_CMD")
 			(class "Default")
 			(node
@@ -79964,7 +84867,48 @@
 			)
 		)
 		(net
-			(code "168")
+			(code "184")
+			(name "SYS_RESET")
+			(class "Default")
+			(node
+				(ref "C104")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R114")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW12")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "18")
+				(pinfunction "RESET#_18")
+				(pintype "passive")
+			)
+			(node
+				(ref "U25")
+				(pin "3")
+				(pinfunction "EN_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "18")
+				(pinfunction "RESET#_18")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "185")
 			(name "Stim1_Enable")
 			(class "Default")
 			(node
@@ -79981,7 +84925,7 @@
 			)
 		)
 		(net
-			(code "169")
+			(code "186")
 			(name "Stim1_Filtered")
 			(class "Default")
 			(node
@@ -80004,7 +84948,7 @@
 			)
 		)
 		(net
-			(code "170")
+			(code "187")
 			(name "Stim1_Output")
 			(class "Default")
 			(node
@@ -80021,7 +84965,7 @@
 			)
 		)
 		(net
-			(code "171")
+			(code "188")
 			(name "Stim2_Enable")
 			(class "Default")
 			(node
@@ -80038,7 +84982,7 @@
 			)
 		)
 		(net
-			(code "172")
+			(code "189")
 			(name "Stim2_Filtered")
 			(class "Default")
 			(node
@@ -80061,7 +85005,7 @@
 			)
 		)
 		(net
-			(code "173")
+			(code "190")
 			(name "Stim2_Output")
 			(class "Default")
 			(node
@@ -80078,7 +85022,7 @@
 			)
 		)
 		(net
-			(code "174")
+			(code "191")
 			(name "Stim3_Enable")
 			(class "Default")
 			(node
@@ -80095,7 +85039,7 @@
 			)
 		)
 		(net
-			(code "175")
+			(code "192")
 			(name "Stim3_Filtered")
 			(class "Default")
 			(node
@@ -80118,7 +85062,7 @@
 			)
 		)
 		(net
-			(code "176")
+			(code "193")
 			(name "Stim3_Output")
 			(class "Default")
 			(node
@@ -80135,7 +85079,7 @@
 			)
 		)
 		(net
-			(code "177")
+			(code "194")
 			(name "Stim4_Enable")
 			(class "Default")
 			(node
@@ -80152,7 +85096,7 @@
 			)
 		)
 		(net
-			(code "178")
+			(code "195")
 			(name "Stim4_Filtered")
 			(class "Default")
 			(node
@@ -80175,7 +85119,7 @@
 			)
 		)
 		(net
-			(code "179")
+			(code "196")
 			(name "Stim4_Output")
 			(class "Default")
 			(node
@@ -80192,7 +85136,7 @@
 			)
 		)
 		(net
-			(code "180")
+			(code "197")
 			(name "Stim5_Enable")
 			(class "Default")
 			(node
@@ -80209,7 +85153,7 @@
 			)
 		)
 		(net
-			(code "181")
+			(code "198")
 			(name "Stim5_Filtered")
 			(class "Default")
 			(node
@@ -80232,7 +85176,7 @@
 			)
 		)
 		(net
-			(code "182")
+			(code "199")
 			(name "Stim5_Output")
 			(class "Default")
 			(node
@@ -80249,7 +85193,7 @@
 			)
 		)
 		(net
-			(code "183")
+			(code "200")
 			(name "Stim6_Enable")
 			(class "Default")
 			(node
@@ -80266,7 +85210,7 @@
 			)
 		)
 		(net
-			(code "184")
+			(code "201")
 			(name "Stim6_Filtered")
 			(class "Default")
 			(node
@@ -80289,7 +85233,7 @@
 			)
 		)
 		(net
-			(code "185")
+			(code "202")
 			(name "Stim6_Output")
 			(class "Default")
 			(node
@@ -80306,7 +85250,7 @@
 			)
 		)
 		(net
-			(code "186")
+			(code "203")
 			(name "Stim7_Enable")
 			(class "Default")
 			(node
@@ -80323,7 +85267,7 @@
 			)
 		)
 		(net
-			(code "187")
+			(code "204")
 			(name "Stim7_Filtered")
 			(class "Default")
 			(node
@@ -80346,7 +85290,7 @@
 			)
 		)
 		(net
-			(code "188")
+			(code "205")
 			(name "Stim7_Output")
 			(class "Default")
 			(node
@@ -80363,7 +85307,7 @@
 			)
 		)
 		(net
-			(code "189")
+			(code "206")
 			(name "Stim8_Enable")
 			(class "Default")
 			(node
@@ -80380,7 +85324,7 @@
 			)
 		)
 		(net
-			(code "190")
+			(code "207")
 			(name "Stim8_Filtered")
 			(class "Default")
 			(node
@@ -80403,7 +85347,7 @@
 			)
 		)
 		(net
-			(code "191")
+			(code "208")
 			(name "Stim8_Output")
 			(class "Default")
 			(node
@@ -80420,7 +85364,7 @@
 			)
 		)
 		(net
-			(code "192")
+			(code "209")
 			(name "TOUCH_CS")
 			(class "Default")
 			(node
@@ -80437,7 +85381,7 @@
 			)
 		)
 		(net
-			(code "193")
+			(code "210")
 			(name "TOUCH_IRQ")
 			(class "Default")
 			(node
@@ -80454,7 +85398,7 @@
 			)
 		)
 		(net
-			(code "194")
+			(code "211")
 			(name "TUSB320_OUT1")
 			(class "Default")
 			(node
@@ -80471,7 +85415,7 @@
 			)
 		)
 		(net
-			(code "195")
+			(code "212")
 			(name "TUSB320_OUT2")
 			(class "Default")
 			(node
@@ -80488,7 +85432,7 @@
 			)
 		)
 		(net
-			(code "196")
+			(code "213")
 			(name "USB_D+")
 			(class "Default")
 			(node
@@ -80517,7 +85461,7 @@
 			)
 		)
 		(net
-			(code "197")
+			(code "214")
 			(name "USB_D-")
 			(class "Default")
 			(node
@@ -80546,9 +85490,21 @@
 			)
 		)
 		(net
-			(code "198")
+			(code "215")
 			(name "VBUS_RAW")
 			(class "Default")
+			(node
+				(ref "C87")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C96")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
 			(node
 				(ref "D29")
 				(pin "1")
@@ -80605,11 +85561,11 @@
 			)
 		)
 		(net
-			(code "199")
+			(code "216")
 			(name "Vm1_Input")
 			(class "Default")
 			(node
-				(ref "C29")
+				(ref "C174")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80634,11 +85590,11 @@
 			)
 		)
 		(net
-			(code "200")
+			(code "217")
 			(name "Vm2_Input")
 			(class "Default")
 			(node
-				(ref "C28")
+				(ref "C175")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80663,11 +85619,11 @@
 			)
 		)
 		(net
-			(code "201")
+			(code "218")
 			(name "Vm3_Input")
 			(class "Default")
 			(node
-				(ref "C25")
+				(ref "C176")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80692,7 +85648,7 @@
 			)
 		)
 		(net
-			(code "202")
+			(code "219")
 			(name "Vm4_Input")
 			(class "Default")
 			(node
@@ -80721,11 +85677,11 @@
 			)
 		)
 		(net
-			(code "203")
+			(code "220")
 			(name "Vm5_Input")
 			(class "Default")
 			(node
-				(ref "C18")
+				(ref "C177")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80750,11 +85706,11 @@
 			)
 		)
 		(net
-			(code "204")
+			(code "221")
 			(name "Vm6_Input")
 			(class "Default")
 			(node
-				(ref "C17")
+				(ref "C178")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80779,11 +85735,11 @@
 			)
 		)
 		(net
-			(code "205")
+			(code "222")
 			(name "Vm7_Input")
 			(class "Default")
 			(node
-				(ref "C11")
+				(ref "C179")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80808,11 +85764,11 @@
 			)
 		)
 		(net
-			(code "206")
+			(code "223")
 			(name "Vm8_Input")
 			(class "Default")
 			(node
-				(ref "C10")
+				(ref "C180")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -80837,7 +85793,7 @@
 			)
 		)
 		(net
-			(code "207")
+			(code "224")
 			(name "Vref_2V048")
 			(class "Default")
 			(node
@@ -80980,18 +85936,7 @@
 			)
 		)
 		(net
-			(code "208")
-			(name "unconnected-(J1-Pin_2-Pad2)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "2")
-				(pinfunction "Pin_2_2")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "209")
+			(code "226")
 			(name "unconnected-(J1-Pin_3-Pad3)")
 			(class "Default")
 			(node
@@ -81002,106 +85947,7 @@
 			)
 		)
 		(net
-			(code "210")
-			(name "unconnected-(J1-Pin_7-Pad7)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "7")
-				(pinfunction "Pin_7_7")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "211")
-			(name "unconnected-(J1-Pin_8-Pad8)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "8")
-				(pinfunction "Pin_8_8")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "212")
-			(name "unconnected-(J1-Pin_9-Pad9)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "9")
-				(pinfunction "Pin_9_9")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "213")
-			(name "unconnected-(J1-Pin_10-Pad10)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "10")
-				(pinfunction "Pin_10_10")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "214")
-			(name "unconnected-(J1-Pin_11-Pad11)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "11")
-				(pinfunction "Pin_11_11")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "215")
-			(name "unconnected-(J1-Pin_12-Pad12)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "12")
-				(pinfunction "Pin_12_12")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "216")
-			(name "unconnected-(J1-Pin_13-Pad13)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "13")
-				(pinfunction "Pin_13_13")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "217")
-			(name "unconnected-(J1-Pin_14-Pad14)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "14")
-				(pinfunction "Pin_14_14")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "218")
-			(name "unconnected-(J1-Pin_16-Pad16)")
-			(class "Default")
-			(node
-				(ref "J1")
-				(pin "16")
-				(pinfunction "Pin_16_16")
-				(pintype "passive+no_connect")
-			)
-		)
-		(net
-			(code "219")
+			(code "227")
 			(name "unconnected-(J1-Pin_20-Pad20)")
 			(class "Default")
 			(node
@@ -81112,7 +85958,7 @@
 			)
 		)
 		(net
-			(code "220")
+			(code "228")
 			(name "unconnected-(J1-Pin_32-Pad32)")
 			(class "Default")
 			(node
@@ -81123,7 +85969,7 @@
 			)
 		)
 		(net
-			(code "221")
+			(code "229")
 			(name "unconnected-(J1-Pin_39-Pad39)")
 			(class "Default")
 			(node
@@ -81134,7 +85980,7 @@
 			)
 		)
 		(net
-			(code "222")
+			(code "230")
 			(name "unconnected-(J1-Pin_40-Pad40)")
 			(class "Default")
 			(node
@@ -81145,7 +85991,7 @@
 			)
 		)
 		(net
-			(code "223")
+			(code "231")
 			(name "unconnected-(J12-SBU1-PadA8)")
 			(class "Default")
 			(node
@@ -81156,7 +86002,7 @@
 			)
 		)
 		(net
-			(code "224")
+			(code "232")
 			(name "unconnected-(J12-SBU2-PadB8)")
 			(class "Default")
 			(node
@@ -81167,7 +86013,7 @@
 			)
 		)
 		(net
-			(code "225")
+			(code "233")
 			(name "unconnected-(SW14-A-Pad1)")
 			(class "Default")
 			(node
@@ -81178,7 +86024,7 @@
 			)
 		)
 		(net
-			(code "226")
+			(code "234")
 			(name "unconnected-(SW14-A-Pad4)")
 			(class "Default")
 			(node
@@ -81189,7 +86035,7 @@
 			)
 		)
 		(net
-			(code "227")
+			(code "235")
 			(name "unconnected-(SW15-A-Pad1)")
 			(class "Default")
 			(node
@@ -81200,7 +86046,7 @@
 			)
 		)
 		(net
-			(code "228")
+			(code "236")
 			(name "unconnected-(SW15-A-Pad4)")
 			(class "Default")
 			(node
@@ -81211,7 +86057,7 @@
 			)
 		)
 		(net
-			(code "229")
+			(code "237")
 			(name "unconnected-(SW16-A-Pad1)")
 			(class "Default")
 			(node
@@ -81222,7 +86068,7 @@
 			)
 		)
 		(net
-			(code "230")
+			(code "238")
 			(name "unconnected-(SW16-A-Pad4)")
 			(class "Default")
 			(node
@@ -81233,7 +86079,7 @@
 			)
 		)
 		(net
-			(code "231")
+			(code "239")
 			(name "unconnected-(SW17-A-Pad1)")
 			(class "Default")
 			(node
@@ -81244,7 +86090,7 @@
 			)
 		)
 		(net
-			(code "232")
+			(code "240")
 			(name "unconnected-(SW17-A-Pad4)")
 			(class "Default")
 			(node
@@ -81255,7 +86101,7 @@
 			)
 		)
 		(net
-			(code "233")
+			(code "241")
 			(name "unconnected-(SW18-A-Pad1)")
 			(class "Default")
 			(node
@@ -81266,7 +86112,7 @@
 			)
 		)
 		(net
-			(code "234")
+			(code "242")
 			(name "unconnected-(SW18-A-Pad4)")
 			(class "Default")
 			(node
@@ -81277,7 +86123,7 @@
 			)
 		)
 		(net
-			(code "235")
+			(code "243")
 			(name "unconnected-(SW19-A-Pad1)")
 			(class "Default")
 			(node
@@ -81288,7 +86134,7 @@
 			)
 		)
 		(net
-			(code "236")
+			(code "244")
 			(name "unconnected-(SW19-A-Pad4)")
 			(class "Default")
 			(node
@@ -81299,7 +86145,7 @@
 			)
 		)
 		(net
-			(code "237")
+			(code "245")
 			(name "unconnected-(SW20-A-Pad1)")
 			(class "Default")
 			(node
@@ -81310,7 +86156,7 @@
 			)
 		)
 		(net
-			(code "238")
+			(code "246")
 			(name "unconnected-(SW20-A-Pad4)")
 			(class "Default")
 			(node
@@ -81321,7 +86167,7 @@
 			)
 		)
 		(net
-			(code "239")
+			(code "247")
 			(name "unconnected-(SW21-A-Pad1)")
 			(class "Default")
 			(node
@@ -81332,7 +86178,7 @@
 			)
 		)
 		(net
-			(code "240")
+			(code "248")
 			(name "unconnected-(SW21-A-Pad4)")
 			(class "Default")
 			(node
@@ -81343,7 +86189,7 @@
 			)
 		)
 		(net
-			(code "241")
+			(code "249")
 			(name "unconnected-(U1-INTA-Pad20)")
 			(class "Default")
 			(node
@@ -81354,7 +86200,7 @@
 			)
 		)
 		(net
-			(code "242")
+			(code "250")
 			(name "unconnected-(U1-INTB-Pad19)")
 			(class "Default")
 			(node
@@ -81365,18 +86211,7 @@
 			)
 		)
 		(net
-			(code "243")
-			(name "unconnected-(U2-EP-Pad9)")
-			(class "Default")
-			(node
-				(ref "U2")
-				(pin "9")
-				(pinfunction "EP_9")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "244")
+			(code "251")
 			(name "unconnected-(U3-ADDR-Pad5)")
 			(class "Default")
 			(node
@@ -81387,7 +86222,7 @@
 			)
 		)
 		(net
-			(code "245")
+			(code "252")
 			(name "unconnected-(U3-ID-Pad9)")
 			(class "Default")
 			(node
@@ -81398,7 +86233,7 @@
 			)
 		)
 		(net
-			(code "246")
+			(code "253")
 			(name "unconnected-(U3-INT_N{slash}OUT3-Pad6)")
 			(class "Default")
 			(node
@@ -81409,7 +86244,95 @@
 			)
 		)
 		(net
-			(code "247")
+			(code "254")
+			(name "unconnected-(U4-GPA5-Pad26)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "26")
+				(pinfunction "GPA5_26")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "255")
+			(name "unconnected-(U4-GPA6-Pad27)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "27")
+				(pinfunction "GPA6_27")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "256")
+			(name "unconnected-(U4-GPA7-Pad28)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "28")
+				(pinfunction "GPA7_28")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "257")
+			(name "unconnected-(U4-GPB5-Pad6)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "6")
+				(pinfunction "GPB5_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "258")
+			(name "unconnected-(U4-GPB6-Pad7)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "7")
+				(pinfunction "GPB6_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "259")
+			(name "unconnected-(U4-GPB7-Pad8)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "8")
+				(pinfunction "GPB7_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "260")
+			(name "unconnected-(U4-INTA-Pad20)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "20")
+				(pinfunction "INTA_20")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "261")
+			(name "unconnected-(U4-INTB-Pad19)")
+			(class "Default")
+			(node
+				(ref "U4")
+				(pin "19")
+				(pinfunction "INTB_19")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "262")
 			(name "unconnected-(U7-NC-Pad2)")
 			(class "Default")
 			(node
@@ -81420,7 +86343,7 @@
 			)
 		)
 		(net
-			(code "248")
+			(code "263")
 			(name "unconnected-(U7-NC-Pad6)")
 			(class "Default")
 			(node
@@ -81431,7 +86354,7 @@
 			)
 		)
 		(net
-			(code "249")
+			(code "264")
 			(name "unconnected-(U7-NC-Pad7)")
 			(class "Default")
 			(node
@@ -81442,7 +86365,7 @@
 			)
 		)
 		(net
-			(code "250")
+			(code "265")
 			(name "unconnected-(U14-NC-Pad2)")
 			(class "Default")
 			(node
@@ -81453,7 +86376,7 @@
 			)
 		)
 		(net
-			(code "251")
+			(code "266")
 			(name "unconnected-(U14-NC-Pad6)")
 			(class "Default")
 			(node
@@ -81464,7 +86387,7 @@
 			)
 		)
 		(net
-			(code "252")
+			(code "267")
 			(name "unconnected-(U14-NC-Pad7)")
 			(class "Default")
 			(node
@@ -81475,7 +86398,7 @@
 			)
 		)
 		(net
-			(code "253")
+			(code "268")
 			(name "unconnected-(U15-NC-Pad4)")
 			(class "Default")
 			(node
@@ -81486,7 +86409,7 @@
 			)
 		)
 		(net
-			(code "254")
+			(code "269")
 			(name "unconnected-(U16-PG-Pad8)")
 			(class "Default")
 			(node
@@ -81497,7 +86420,7 @@
 			)
 		)
 		(net
-			(code "255")
+			(code "270")
 			(name "unconnected-(U17-NC-Pad2)")
 			(class "Default")
 			(node
@@ -81508,7 +86431,7 @@
 			)
 		)
 		(net
-			(code "256")
+			(code "271")
 			(name "unconnected-(U17-NC-Pad6)")
 			(class "Default")
 			(node
@@ -81519,7 +86442,7 @@
 			)
 		)
 		(net
-			(code "257")
+			(code "272")
 			(name "unconnected-(U17-NC-Pad7)")
 			(class "Default")
 			(node
@@ -81530,7 +86453,7 @@
 			)
 		)
 		(net
-			(code "258")
+			(code "273")
 			(name "unconnected-(U20-NC-Pad2)")
 			(class "Default")
 			(node
@@ -81541,7 +86464,7 @@
 			)
 		)
 		(net
-			(code "259")
+			(code "274")
 			(name "unconnected-(U20-NC-Pad6)")
 			(class "Default")
 			(node
@@ -81552,7 +86475,7 @@
 			)
 		)
 		(net
-			(code "260")
+			(code "275")
 			(name "unconnected-(U20-NC-Pad7)")
 			(class "Default")
 			(node
@@ -81563,7 +86486,18 @@
 			)
 		)
 		(net
-			(code "261")
+			(code "276")
+			(name "unconnected-(U25-IO3-Pad15)")
+			(class "Default")
+			(node
+				(ref "U25")
+				(pin "15")
+				(pinfunction "IO3_15")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "277")
 			(name "unconnected-(U26-DNC-Pad1)")
 			(class "Default")
 			(node
@@ -81574,7 +86508,7 @@
 			)
 		)
 		(net
-			(code "262")
+			(code "278")
 			(name "unconnected-(U26-DNC-Pad8)")
 			(class "Default")
 			(node
@@ -81585,7 +86519,7 @@
 			)
 		)
 		(net
-			(code "263")
+			(code "279")
 			(name "unconnected-(U26-NC-Pad7)")
 			(class "Default")
 			(node
@@ -81596,7 +86530,7 @@
 			)
 		)
 		(net
-			(code "264")
+			(code "280")
 			(name "unconnected-(U26-TEMP-Pad3)")
 			(class "Default")
 			(node
