@@ -68,7 +68,7 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
-SCRIPT_VERSION = "validation-suite-v5-readme"
+SCRIPT_VERSION = "validation-suite-v6-readme-walkthrough"
 
 import numpy as np
 
@@ -546,9 +546,9 @@ def add_diodes(lines: list[str], design: Design) -> None:
     add_diode(lines, "D22_DISPLAY_LOW", "GNDREF", "Vm_Display_In", "BAT54_FALLBACK", "D22 display low clamp")
 
     # RGB LED D9, common anode at VDD, cathodes named R-/G-/B- in the netlist.
-    lines.append(f"D_D9_R {node("VDD")} {node("Net-(D9-R-)")} LED_RED_FALLBACK      $ D9 red LED, common anode VDD")
-    lines.append(f"D_D9_G {node("VDD")} {node("Net-(D9-G-)")} LED_GREEN_FALLBACK    $ D9 green LED, common anode VDD")
-    lines.append(f"D_D9_B {node("VDD")} {node("Net-(D9-B-)")} LED_BLUE_FALLBACK     $ D9 blue LED, common anode VDD")
+    lines.append(f"D_D9_R {node('VDD')} {node('Net-(D9-R-)')} LED_RED_FALLBACK      $ D9 red LED, common anode VDD")
+    lines.append(f"D_D9_G {node('VDD')} {node('Net-(D9-G-)')} LED_GREEN_FALLBACK    $ D9 green LED, common anode VDD")
+    lines.append(f"D_D9_B {node('VDD')} {node('Net-(D9-B-)')} LED_BLUE_FALLBACK     $ D9 blue LED, common anode VDD")
     lines.append("")
 
 
@@ -1697,11 +1697,98 @@ def make_validation_verdict(output_dir: Path) -> tuple[Path, Path, Path]:
     return verdict_md, verdict_csv, metrics_csv
 
 
+def _is_blank_or_nan(value) -> bool:
+    """Return True for values that should not be rendered literally in Markdown."""
+    if value is None:
+        return True
+    try:
+        if pd is not None and pd.isna(value):
+            return True
+    except Exception:
+        pass
+    if isinstance(value, str):
+        return value.strip().lower() in {"", "nan", "none", "nat"}
+    return False
+
+
 def _md_cell(value) -> str:
-    text = "" if value is None else str(value)
+    if _is_blank_or_nan(value):
+        return ""
+    text = str(value)
     text = text.replace("|", "\\|")
     text = text.replace("\n", " ")
     return text
+
+
+def _plain(value, fallback: str = "") -> str:
+    return fallback if _is_blank_or_nan(value) else str(value)
+
+
+def _fmt_sig(value, digits: int = 4) -> str:
+    val = _safe_float(value)
+    if not np.isfinite(val):
+        return ""
+    return f"{val:.{digits}g}"
+
+
+def _fmt_v(value, digits: int = 4) -> str:
+    text = _fmt_sig(value, digits)
+    return f"{text} V" if text else ""
+
+
+def _fmt_mv(value, digits: int = 4) -> str:
+    val = _safe_float(value)
+    if not np.isfinite(val):
+        return ""
+    return f"{val * 1e3:.{digits}g} mV"
+
+
+def _fmt_ms(value, digits: int = 4) -> str:
+    text = _fmt_sig(value, digits)
+    return f"{text} ms" if text else ""
+
+
+def _fmt_ma(value, digits: int = 4) -> str:
+    text = _fmt_sig(value, digits)
+    return f"{text} mA" if text else ""
+
+
+def _fmt_count(value) -> str:
+    val = _safe_float(value)
+    if not np.isfinite(val):
+        return ""
+    return str(int(round(val)))
+
+
+def _fmt_range(row, signal: str, unit: str = "V", digits: int = 4) -> str:
+    if row is None:
+        return ""
+    mn = _safe_float(row.get(f"{signal}_min"))
+    mx = _safe_float(row.get(f"{signal}_max"))
+    if not (np.isfinite(mn) and np.isfinite(mx)):
+        return ""
+    if abs(mx - mn) < 1e-9:
+        return f"{mx:.{digits}g} {unit}"
+    return f"{mn:.{digits}g}–{mx:.{digits}g} {unit}"
+
+
+def _metric_value(value: str) -> str:
+    return _md_cell(value) if value else ""
+
+
+def _add_metric_table(lines: list[str], metrics: list[tuple[str, str]]) -> None:
+    clean = [(label, value) for label, value in metrics if value]
+    if not clean:
+        lines.append("No numerical diagnostics were available for this step.")
+        lines.append("")
+        return
+    lines += [
+        "| Quantity | Latest validation result |",
+        "|---|---:|",
+    ]
+    for label, value in clean:
+        lines.append(f"| {_md_cell(label)} | {_metric_value(value)} |")
+    lines.append("")
 
 
 def _rel_markdown_path(target: Path, readme_path: Path) -> str:
@@ -1712,71 +1799,187 @@ def _rel_markdown_path(target: Path, readme_path: Path) -> str:
         return Path(target).as_posix()
 
 
-def _readme_plot_lines(output_dir: Path, readme_path: Path) -> list[str]:
+def _load_validation_summary(output_dir: Path):
+    if pd is None:
+        raise RuntimeError("pandas is required for README validation generation")
+    path = Path(output_dir) / "validation_diagnostics_summary.csv"
+    if not path.exists():
+        raise FileNotFoundError(f"Cannot find diagnostics summary: {path}")
+    return pd.read_csv(path)
+
+
+def _load_coverage(output_dir: Path):
+    if pd is None:
+        raise RuntimeError("pandas is required for README validation generation")
+    path = Path(output_dir) / "component_model_coverage.csv"
+    if not path.exists():
+        return pd.DataFrame()
+    return pd.read_csv(path)
+
+
+def _load_verdict(output_dir: Path):
+    path = Path(output_dir) / "LIFeling_validation_verdict.csv"
+    if not path.exists() or pd is None:
+        return pd.DataFrame()
+    df = pd.read_csv(path)
+    return df.fillna("")
+
+
+def _coverage_counts(coverage) -> dict[str, int]:
+    if coverage is None or coverage.empty or "status" not in coverage.columns:
+        return {}
+    return {str(k): int(v) for k, v in coverage["status"].astype(str).value_counts().sort_index().items()}
+
+
+def _coverage_text(coverage) -> str:
+    counts = _coverage_counts(coverage)
+    if not counts:
+        return "No component coverage table was available."
+    preferred = ["electrical", "behavioural", "terminal", "mechanical", "unclassified"]
+    parts = []
+    for key in preferred:
+        if key in counts:
+            parts.append(f"{key}: {counts[key]}")
+    for key, val in counts.items():
+        if key not in preferred:
+            parts.append(f"{key}: {val}")
+    return "; ".join(parts)
+
+
+def _verdict_lookup(verdict_df, contains_text: str) -> tuple[str, str, str]:
+    if verdict_df is None or verdict_df.empty or "block" not in verdict_df.columns:
+        return "", "", ""
+    mask = verdict_df["block"].astype(str).str.contains(contains_text, case=False, regex=False, na=False)
+    rows = verdict_df[mask]
+    if rows.empty:
+        return "", "", ""
+    row = rows.iloc[0]
+    return _plain(row.get("verdict")), _plain(row.get("evidence")), _plain(row.get("caveat"))
+
+
+def _overall_verdict(verdict_df, suite: dict[str, str]) -> str:
+    failed = _safe_float(suite.get("failed_runs", ""))
+    if np.isfinite(failed) and failed > 0:
+        return "FAIL"
+    if verdict_df is not None and not verdict_df.empty and "verdict" in verdict_df.columns:
+        values = [str(v).upper() for v in verdict_df["verdict"].dropna().tolist()]
+        if any(v == "FAIL" for v in values):
+            return "FAIL"
+        if any(v == "WARNING" for v in values):
+            return "PASS WITH WARNINGS"
+        if values:
+            return "PASS"
+    if np.isfinite(failed) and failed == 0:
+        return "PASS"
+    return "UNKNOWN"
+
+
+def _find_row(summary, label_fragment: str):
+    row = _first_row(summary, label_fragment)
+    if row is not None:
+        return row
+    # Fallback for labels with numerical prefixes, suffix hashes, or shortened fragments.
+    if summary is None or summary.empty or "run_label" not in summary.columns:
+        return None
+    fragment = label_fragment.lower()
+    rows = summary[summary["run_label"].astype(str).str.lower().str.contains(fragment, regex=False, na=False)]
+    return None if rows.empty else rows.iloc[0]
+
+
+
+def _first_available_row(summary, *fragments: str):
+    for fragment in fragments:
+        row = _find_row(summary, fragment)
+        if row is not None:
+            return row
+    return None
+
+
+def _find_latest_plot(output_dir: Path, label_fragment: str, kind: str) -> Path | None:
+    """Find the newest matching plot without producing broken Markdown links.
+
+    kind="vm" selects companion *_vmint_vmext.png plots.
+    kind="full" selects the full multi-trace PNG for the same run.
+    """
     output_dir = Path(output_dir)
     if not output_dir.exists():
-        return []
+        return None
+    fragment = label_fragment.lower()
+    matches: list[Path] = []
+    for path in output_dir.glob("*.png"):
+        name = path.name.lower()
+        if fragment not in name:
+            continue
+        is_vm_only = name.endswith("_vmint_vmext.png")
+        if kind == "vm" and not is_vm_only:
+            continue
+        if kind == "full" and is_vm_only:
+            continue
+        matches.append(path)
+    if not matches:
+        return None
+    return sorted(matches, key=lambda p: p.stat().st_mtime, reverse=True)[0]
 
-    pngs = sorted(output_dir.glob("*.png"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if not pngs:
-        return []
 
-    wanted = [
-        ("Baseline self-spiking", "baseline_self_spiking_coin"),
-        ("Debug self-spiking", "debug_self_spiking_short"),
-        ("Synapse midpoint zero-effect", "synapse_midpoint_zero_effect_single"),
-        ("Excitatory synapse", "synapse_excitatory_single_high"),
-        ("Inhibitory synapse", "synapse_inhibitory_single_low"),
-        ("Positive external stimulus", "external_stimulus_positive_subthreshold"),
-        ("Cold start", "cold_start_self_spiking_coin"),
+def _append_plot(lines: list[str], output_dir: Path, readme_path: Path, label: str, fragment: str, kind: str) -> None:
+    plot = _find_latest_plot(output_dir, fragment, kind)
+    if plot is None:
+        plot_desc = "Vm_Int/Vm_Ext" if kind == "vm" else "full trace"
+        lines.append(f"Plot: no {plot_desc} PNG was found for run-label fragment `{fragment}`.")
+        lines.append("")
+        return
+    rel = _rel_markdown_path(plot, readme_path)
+    suffix = "Vm_Int and Vm_Ext" if kind == "vm" else "full trace set"
+    lines.append(f"![{label} — {suffix}]({rel})")
+    lines.append("")
+
+
+def _append_step_header(lines: list[str], number: int, title: str) -> None:
+    lines += [
+        f"### Step {number}: {title}",
+        "",
     ]
 
-    lines: list[str] = []
-    used: set[Path] = set()
 
-    def find_one(fragment: str, vm_only: bool) -> Path | None:
-        matches = []
-        for p in pngs:
-            name = p.name
-            if fragment not in name:
-                continue
-            is_vm = name.endswith("_vmint_vmext.png")
-            if vm_only and not is_vm:
-                continue
-            if (not vm_only) and is_vm:
-                continue
-            matches.append(p)
-        return matches[0] if matches else None
+def _append_evidence(lines: list[str], fragment: str, signals: list[str], verdict: str, caveat: str = "") -> None:
+    lines.append(f"**Evidence source.** Run-label fragment: `{fragment}`.")
+    if signals:
+        lines.append(f"**Key signals.** {', '.join(f'`{s}`' for s in signals)}.")
+    if verdict:
+        verdict_line = f"**Verdict.** {verdict}."
+        if caveat:
+            verdict_line += f" {caveat}"
+        lines.append(verdict_line)
+    lines.append("")
 
-    for title, fragment in wanted:
-        vm = find_one(fragment, vm_only=True)
-        full = find_one(fragment, vm_only=False)
-        if vm is None and full is None:
-            continue
 
-        lines.append(f"#### {title}")
-        lines.append("")
+def _delta_max(row, reference_row, signal: str = "Vm_Int") -> float:
+    if row is None or reference_row is None:
+        return float("nan")
+    return _safe_float(row.get(f"{signal}_max")) - _safe_float(reference_row.get(f"{signal}_max"))
 
-        if vm is not None:
-            used.add(vm)
-            lines.append(f"![{title} — Vm_Int and Vm_Ext]({_rel_markdown_path(vm, readme_path)})")
-            lines.append("")
 
-        if full is not None:
-            used.add(full)
-            lines.append(f"![{title} — full trace set]({_rel_markdown_path(full, readme_path)})")
-            lines.append("")
+def _sweep_count(summary, fragment: str) -> int:
+    if summary is None or summary.empty or "run_label" not in summary.columns:
+        return 0
+    return int(summary["run_label"].astype(str).str.contains(fragment, case=False, regex=False, na=False).sum())
 
-    if not lines:
-        lines.append("#### Most recent plots")
-        lines.append("")
-        for p in pngs[:6]:
-            used.add(p)
-            title = p.stem.replace("_", " ")
-            lines.append(f"![{title}]({_rel_markdown_path(p, readme_path)})")
-            lines.append("")
 
-    return lines
+def _sweep_observation(summary, fragment: str, kind: str) -> str:
+    if summary is None or summary.empty or "run_label" not in summary.columns:
+        return ""
+    rows = summary[summary["run_label"].astype(str).str.contains(fragment, case=False, regex=False, na=False)]
+    if rows.empty:
+        return ""
+    if kind == "rv1":
+        return f"AP edges changed from {_fmt_count(rows.iloc[0].get('AP_rising_edges'))} to {_fmt_count(rows.iloc[-1].get('AP_rising_edges'))}."
+    if kind == "rv2":
+        vals = [_safe_float(v) for v in rows.get("AP_mean_period_ms", [])]
+        finite = [f"{v:.4g} ms" for v in vals if np.isfinite(v)]
+        return "Finite AP periods: " + ", ".join(finite) + "." if finite else "No finite AP period was extracted."
+    if kind in {"rv3", "rv4", "rv5", "syn"}:
+        return f"{len(rows)} runs completed."
+    return f"{len(rows)} runs completed."
 
 
 def build_readme_validation_section(output_dir: Path, readme_path: Path) -> str:
@@ -1784,8 +1987,22 @@ def build_readme_validation_section(output_dir: Path, readme_path: Path) -> str:
     readme_path = Path(readme_path)
 
     verdict_md, verdict_csv, metrics_csv = make_validation_verdict(output_dir)
-    verdict_df = pd.read_csv(verdict_csv) if verdict_csv.exists() else pd.DataFrame()
+    summary = _load_validation_summary(output_dir)
+    coverage = _load_coverage(output_dir)
+    verdict_df = _load_verdict(output_dir)
     suite = _read_validation_suite_status(output_dir)
+    overall = _overall_verdict(verdict_df, suite)
+
+    baseline = _first_available_row(summary, "02_baseline_self_spiking_coin", "baseline_self_spiking_coin")
+    debug = _first_available_row(summary, "03_debug_self_spiking_short", "debug_self_spiking_short")
+    cold = _first_available_row(summary, "04_cold_start_self_spiking_coin", "cold_start_self_spiking_coin")
+    quiet = _first_available_row(summary, "05_quiet_subthreshold_no_synapse", "quiet_subthreshold")
+    midpoint = _first_available_row(summary, "06_synapse_midpoint_zero_effect_single", "synapse_midpoint")
+    excit = _first_available_row(summary, "07_synapse_excitatory_single_high", "synapse_excitatory")
+    inhib = _first_available_row(summary, "08_synapse_inhibitory_single_low", "synapse_inhibitory")
+    stim_pos = _first_available_row(summary, "09_external_stimulus_positive_subthreshold", "external_stimulus_positive")
+    stim_neg = _first_available_row(summary, "10_external_stimulus_negative_subthreshold", "external_stimulus_negative")
+    low_batt = _first_available_row(summary, "12_low_battery_high_impedance_stress", "low_battery")
 
     rel_output = _rel_markdown_path(output_dir, readme_path)
     rel_summary = _rel_markdown_path(output_dir / "validation_diagnostics_summary.csv", readme_path)
@@ -1794,27 +2011,288 @@ def build_readme_validation_section(output_dir: Path, readme_path: Path) -> str:
     rel_verdict_csv = _rel_markdown_path(verdict_csv, readme_path)
     rel_metrics_csv = _rel_markdown_path(metrics_csv, readme_path)
 
-    lines = [
+    lines: list[str] = [
         README_AUTOGEN_START,
         "",
-        "## Auto-generated SPICE validation snapshot",
+        "## Auto-generated SPICE validation walkthrough",
         "",
-        "This section is generated by `Spice.py` from the latest validation files in `LIFeling_pyspice_output/`. Do not edit it by hand; rerun the validation suite or `Spice.py --update-readme-only` instead.",
+        "This section is generated from the latest files in `LIFeling_pyspice_output/`. Do not edit it by hand; rerun the validation suite or run `Spice.py --update-readme-only` to regenerate it.",
+        "",
+        "The validation suite uses `Spice.py` to build a controlled behavioural SPICE model from the KiCad netlist, run ngspice simulations, write numerical diagnostics, and turn those outputs into documentation of the circuit behaviour. The goal is not only to check whether the simulations ran, but to explain what each validation run demonstrates about the LIFeling analogue neuron.",
+        "",
+        "### Latest validation-suite status",
         "",
         f"- Script version: `{SCRIPT_VERSION}`",
-    ]
-
-    if suite.get("start"):
-        lines.append(f"- Suite start: `{suite['start']}`")
-    if suite.get("end"):
-        lines.append(f"- Suite end: `{suite['end']}`")
-    if suite.get("total_runs") or suite.get("failed_runs"):
-        lines.append(f"- Suite result: `{suite.get('total_runs', 'unknown')}` total steps, `{suite.get('failed_runs', 'unknown')}` failed")
-
-    lines += [
+        f"- Suite start: `{_plain(suite.get('start'), 'not recorded')}`",
+        f"- Suite end: `{_plain(suite.get('end'), 'not recorded')}`",
+        f"- Total runs: `{_plain(suite.get('total_runs'), 'unknown')}`",
+        f"- Failed runs: `{_plain(suite.get('failed_runs'), 'unknown')}`",
+        f"- Overall verdict: **{overall}**",
         f"- Output folder: [`{rel_output}`]({rel_output})",
         "",
-        "### Generated validation artifacts",
+        "### Model scope and limitations",
+        "",
+        "This is a functional behavioural model. Passive components are instantiated from the KiCad netlist, while active devices such as op-amps, comparators, analogue switches, the boost converter, and protection devices are represented by stable behavioural approximations. That is deliberate: the model is meant to validate circuit function, signal polarity, timing, operating ranges, and interactions between subcircuits.",
+        "",
+        "It is not a full transistor-level or vendor-accurate simulation of every integrated circuit. It does not prove PCB parasitics, real comparator propagation delay, op-amp output-current limits, battery chemistry, contact resistance, or classroom fault tolerance. Before treating the hardware as physically proven, the simulated behaviours below still need to be checked on the assembled PCB with oscilloscope measurements and realistic loading.",
+        "",
+    ]
+
+    # Step 1
+    cov_verdict, cov_evidence, cov_caveat = _verdict_lookup(verdict_df, "Component model coverage")
+    _append_step_header(lines, 1, "Netlist-driven model and component coverage")
+    lines += [
+        "**What is being tested.** This step checks that the schematic components exported from KiCad are either electrically included in the generated model or explicitly accounted for as behavioural, terminal, or mechanical entries.",
+        "",
+        "**Why it matters.** A SPICE validation is only useful if it remains tied to the actual schematic. Coverage makes model drift visible: a missing resistor, an unaccounted analogue switch, or an unclassified connector can otherwise make the simulation look healthy while no longer representing the board.",
+        "",
+        "**Evidence source.** `component_model_coverage.csv`.",
+        "",
+    ]
+    _add_metric_table(lines, [("Coverage by model class", _coverage_text(coverage))])
+    if cov_verdict:
+        lines.append(f"**Verdict.** {cov_verdict}. {cov_caveat}".rstrip())
+        lines.append("")
+    lines.append("No plot is required for this step because it is a model-coverage check rather than a transient waveform check.")
+    lines.append("")
+
+    # Step 2
+    ref_verdict, _, ref_caveat = _verdict_lookup(verdict_df, "Reference rails")
+    _append_step_header(lines, 2, "Reference rails and supply model")
+    lines += [
+        "**What is being tested.** The baseline self-spiking coin-cell run checks the 2.048 V reference, the derived 1.024 V midpoint reference, and the simplified coin-cell supply model under normal oscillating operation.",
+        "",
+        "**Why it matters.** The LIFeling analogue neuron depends on stable references: the 2.048 V rail defines the upper analogue reference, while the 1.024 V midpoint is used as a neutral centre for several functions. Supply sag is also important because a weak coin cell can move comparator thresholds and reduce pulse amplitudes.",
+        "",
+    ]
+    _append_evidence(lines, "02_baseline_self_spiking_coin", ["VREF_2V048", "VREF_1V024", "VDD", "Vm_Int", "AP"], ref_verdict, ref_caveat)
+    _add_metric_table(lines, [
+        ("VREF_2V048 range", _fmt_range(baseline, "VREF_2V048")),
+        ("VREF_1V024 range", _fmt_range(baseline, "VREF_1V024")),
+        ("VDD range", _fmt_range(baseline, "VDD")),
+        ("Maximum VDD sag from battery model", _fmt_v(baseline.get("VDD_sag_max") if baseline is not None else None)),
+        ("Estimated peak battery current", _fmt_ma(baseline.get("Battery_current_peak_mA_est") if baseline is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Reference rails and baseline supply behaviour", "02_baseline_self_spiking_coin", "full")
+
+    # Step 3
+    core_verdict, _, core_caveat = _verdict_lookup(verdict_df, "Core LIF oscillation")
+    _append_step_header(lines, 3, "Baseline LIF behaviour")
+    lines += [
+        "**What is being tested.** The baseline run checks that the membrane integrates toward threshold, fires repeatedly, resets, and exposes a usable external Vm output.",
+        "",
+        "**Why it matters.** This is the core LIFeling behaviour: `Vm_Int` is the internal membrane computation node, `Vm_Ext` is the live output presented to the outside world, `V_Threshold` defines the firing point, and the AP/reset path must return the membrane to a repeatable state instead of latching.",
+        "",
+    ]
+    _append_evidence(lines, "02_baseline_self_spiking_coin", ["Vm_Int", "Vm_Ext", "V_Threshold", "AP", "Reset_Window", "Spike_Out"], core_verdict, core_caveat)
+    _add_metric_table(lines, [
+        ("Vm_Int range", _fmt_range(baseline, "Vm_Int")),
+        ("Vm_Ext range", _fmt_range(baseline, "Vm_Ext")),
+        ("V_Threshold range", _fmt_range(baseline, "V_Threshold")),
+        ("AP rising edges", _fmt_count(baseline.get("AP_rising_edges") if baseline is not None else None)),
+        ("Reset_Window rising edges", _fmt_count(baseline.get("Reset_Window_rising_edges") if baseline is not None else None)),
+        ("Spike_Out rising edges", _fmt_count(baseline.get("Spike_Out_rising_edges") if baseline is not None else None)),
+        ("Mean AP period", _fmt_ms(baseline.get("AP_mean_period_ms") if baseline is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Baseline LIF behaviour", "02_baseline_self_spiking_coin", "vm")
+
+    # Step 4
+    _append_step_header(lines, 4, "Spike-generation and reset timing")
+    lines += [
+        "**What is being tested.** The debug self-spiking run saves the internal timing signals that turn a threshold crossing into an AP pulse, a peak/display event, a reset window, and an external spike output.",
+        "",
+        "**Why it matters.** The membrane waveform alone cannot show whether the timing chain is healthy. The AP, `Spike_Pulse`, `Peak_Window`, `Reset_Window`, and `Spike_Out` traces make it possible to detect missing pulses, pulse-count mismatches, or reset windows that fail to close.",
+        "",
+    ]
+    _append_evidence(lines, "03_debug_self_spiking_short", ["AP", "Spike_Pulse", "Peak_Window", "Reset_Window", "Spike_Out"], core_verdict, core_caveat)
+    _add_metric_table(lines, [
+        ("AP rising edges", _fmt_count(debug.get("AP_rising_edges") if debug is not None else None)),
+        ("Spike_Pulse rising edges", _fmt_count(debug.get("Spike_Pulse_rising_edges") if debug is not None else None)),
+        ("Peak_Window rising edges", _fmt_count(debug.get("Peak_Window_rising_edges") if debug is not None else None)),
+        ("Reset_Window rising edges", _fmt_count(debug.get("Reset_Window_rising_edges") if debug is not None else None)),
+        ("Spike_Out rising edges", _fmt_count(debug.get("Spike_Out_rising_edges") if debug is not None else None)),
+        ("Mean AP period", _fmt_ms(debug.get("AP_mean_period_ms") if debug is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Spike-generation and reset timing", "03_debug_self_spiking_short", "full")
+
+    # Step 5
+    quiet_verdict, _, quiet_caveat = _verdict_lookup(verdict_df, "Quiet subthreshold")
+    _append_step_header(lines, 5, "Quiet subthreshold condition")
+    lines += [
+        "**What is being tested.** This run lowers the operating point so that the neuron should remain below threshold when no synapse is active.",
+        "",
+        "**Why it matters.** A controllable teaching neuron must be able to stay silent. If the model spikes in this condition, the leak reference, threshold, reset bias, or hidden stimulus path may be unintentionally driving the membrane.",
+        "",
+    ]
+    _append_evidence(lines, "05_quiet_subthreshold_no_synapse", ["Vm_Int", "Vm_Ext", "V_Threshold", "AP"], quiet_verdict, quiet_caveat)
+    _add_metric_table(lines, [
+        ("Vm_Int maximum", _fmt_v(quiet.get("Vm_Int_max") if quiet is not None else None)),
+        ("Vm_Ext maximum", _fmt_v(quiet.get("Vm_Ext_max") if quiet is not None else None)),
+        ("AP rising edges", _fmt_count(quiet.get("AP_rising_edges") if quiet is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Quiet subthreshold condition", "05_quiet_subthreshold_no_synapse", "vm")
+
+    # Step 6
+    mid_verdict, _, mid_caveat = _verdict_lookup(verdict_df, "Synapse midpoint")
+    mid_delta = _delta_max(midpoint, quiet, "Vm_Int")
+    _append_step_header(lines, 6, "Synapse midpoint zero-effect")
+    lines += [
+        "**What is being tested.** The synaptic state is set near the 1.024 V midpoint, where the centred synapse drive should be neutral.",
+        "",
+        "**Why it matters.** The signed synapse architecture should not inject excitation or inhibition when the synaptic state is at its midpoint. This is the condition that lets a connected synapse be electrically present without significantly perturbing the membrane.",
+        "",
+    ]
+    _append_evidence(lines, "06_synapse_midpoint_zero_effect_single", ["V_Syn_State", "VREF_1V024", "Vm_Int", "Vm_Ext", "AP"], mid_verdict, mid_caveat)
+    _add_metric_table(lines, [
+        ("V_Syn_State range", _fmt_range(midpoint, "V_Syn_State")),
+        ("Vm_Int maximum", _fmt_v(midpoint.get("Vm_Int_max") if midpoint is not None else None)),
+        ("Delta versus quiet Vm_Int maximum", _fmt_mv(mid_delta)),
+        ("AP rising edges", _fmt_count(midpoint.get("AP_rising_edges") if midpoint is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Synapse midpoint zero-effect", "06_synapse_midpoint_zero_effect_single", "vm")
+
+    # Step 7
+    exc_verdict, _, exc_caveat = _verdict_lookup(verdict_df, "Excitatory synapse")
+    exc_delta = _delta_max(excit, quiet, "Vm_Int")
+    _append_step_header(lines, 7, "Excitatory synapse")
+    lines += [
+        "**What is being tested.** The synaptic set voltage is driven high so that the synapse should push the membrane in the excitatory direction.",
+        "",
+        "**Why it matters.** A high synaptic state should raise `Vm_Int` relative to the quiet subthreshold case. This validates the sign of the centred synapse drive and the injection path into the membrane node.",
+        "",
+    ]
+    _append_evidence(lines, "07_synapse_excitatory_single_high", ["V_Syn_State", "/V_Syn_Drive", "Vm_Int", "Vm_Ext"], exc_verdict, exc_caveat)
+    _add_metric_table(lines, [
+        ("V_Syn_State range", _fmt_range(excit, "V_Syn_State")),
+        ("Vm_Int maximum", _fmt_v(excit.get("Vm_Int_max") if excit is not None else None)),
+        ("Delta versus quiet Vm_Int maximum", _fmt_mv(exc_delta)),
+        ("AP rising edges", _fmt_count(excit.get("AP_rising_edges") if excit is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Excitatory synapse", "07_synapse_excitatory_single_high", "vm")
+
+    # Step 8
+    inh_verdict, _, inh_caveat = _verdict_lookup(verdict_df, "Inhibitory synapse")
+    base_period = _safe_float(baseline.get("AP_mean_period_ms") if baseline is not None else None)
+    inh_period = _safe_float(inhib.get("AP_mean_period_ms") if inhib is not None else None)
+    period_delta = inh_period - base_period if np.isfinite(base_period) and np.isfinite(inh_period) else float("nan")
+    _append_step_header(lines, 8, "Inhibitory synapse")
+    lines += [
+        "**What is being tested.** The synaptic set voltage is driven low while the neuron is otherwise in a self-spiking configuration.",
+        "",
+        "**Why it matters.** Inhibition should reduce excitability. In this validation suite, the clearest numerical sign is a longer AP period than the baseline self-spiking run, meaning the membrane takes longer to reach threshold.",
+        "",
+    ]
+    _append_evidence(lines, "08_synapse_inhibitory_single_low", ["V_Syn_State", "Vm_Int", "Vm_Ext", "AP"], inh_verdict, inh_caveat)
+    _add_metric_table(lines, [
+        ("Baseline mean AP period", _fmt_ms(base_period)),
+        ("Inhibitory mean AP period", _fmt_ms(inh_period)),
+        ("Period increase", _fmt_ms(period_delta)),
+        ("Inhibitory AP rising edges", _fmt_count(inhib.get("AP_rising_edges") if inhib is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Inhibitory synapse", "08_synapse_inhibitory_single_low", "vm")
+
+    # Step 9
+    cold_verdict, _, cold_caveat = _verdict_lookup(verdict_df, "Cold-start")
+    _append_step_header(lines, 9, "Cold-start behaviour")
+    lines += [
+        "**What is being tested.** The cold-start run begins from discharged or low initial conditions rather than from the normal biased operating point.",
+        "",
+        "**Why it matters.** This is a power-on robustness check. It helps separate normal operating behaviour from startup transients and shows whether the model can recover into a valid oscillating regime after initial conditions are unfavourable.",
+        "",
+    ]
+    _append_evidence(lines, "04_cold_start_self_spiking_coin", ["VDD", "Vm_Int", "Vm_Ext", "AP", "Reset_Window"], cold_verdict, cold_caveat)
+    _add_metric_table(lines, [
+        ("Vm_Int range", _fmt_range(cold, "Vm_Int")),
+        ("Vm_Ext range", _fmt_range(cold, "Vm_Ext")),
+        ("AP rising edges", _fmt_count(cold.get("AP_rising_edges") if cold is not None else None)),
+        ("Estimated peak battery current", _fmt_ma(cold.get("Battery_current_peak_mA_est") if cold is not None else None)),
+    ])
+    _append_plot(lines, output_dir, readme_path, "Cold-start behaviour", "04_cold_start_self_spiking_coin", "vm")
+
+    # Step 10
+    low_verdict, _, low_caveat = _verdict_lookup(verdict_df, "Low-battery")
+    _append_step_header(lines, 10, "Low-battery / high-impedance stress")
+    lines += [
+        "**What is being tested.** This stress run lowers the battery voltage and raises the source resistance to test whether the simplified supply model sags enough to disturb spike generation.",
+        "",
+        "**Why it matters.** Coin-cell impedance can reduce pulse amplitude and upset comparator-level assumptions. A run can still be useful even when it warns: the warning identifies where the validation threshold no longer matches the reduced signal level.",
+        "",
+    ]
+    _append_evidence(lines, "12_low_battery_high_impedance_stress", ["VDD", "Vm_Int", "Spike_Pulse", "AP", "Spike_Out"], low_verdict, low_caveat)
+    _add_metric_table(lines, [
+        ("VDD range", _fmt_range(low_batt, "VDD")),
+        ("Maximum VDD sag from battery model", _fmt_v(low_batt.get("VDD_sag_max") if low_batt is not None else None)),
+        ("Estimated peak battery current", _fmt_ma(low_batt.get("Battery_current_peak_mA_est") if low_batt is not None else None)),
+        ("Spike_Pulse maximum", _fmt_v(low_batt.get("Spike_Pulse_max") if low_batt is not None else None)),
+        ("Spike_Pulse rising edges counted above 1 V", _fmt_count(low_batt.get("Spike_Pulse_rising_edges") if low_batt is not None else None)),
+    ])
+    if low_caveat:
+        lines.append(f"Note: {low_caveat}")
+        lines.append("")
+    _append_plot(lines, output_dir, readme_path, "Low-battery / high-impedance stress", "12_low_battery_high_impedance_stress", "full")
+
+    # Step 11
+    stim_verdict, _, stim_caveat = _verdict_lookup(verdict_df, "External stimulus path")
+    pos_delta = _delta_max(stim_pos, quiet, "Vm_Int")
+    neg_delta = _delta_max(stim_neg, quiet, "Vm_Int")
+    _append_step_header(lines, 11, "External stimulus path")
+    lines += [
+        "**What is being tested.** The positive and negative external stimulus runs check whether a command applied at `Stimulus_Ext` changes the membrane through the stimulus-drive path.",
+        "",
+        "**Why it matters.** The stimulus input is intended to be a controlled way to bias or perturb the neuron from outside the board. Polarity matters: a positive command should not accidentally behave like an inhibitory command unless that inversion is explicitly intended and documented.",
+        "",
+    ]
+    _append_evidence(lines, "09_external_stimulus_positive_subthreshold / 10_external_stimulus_negative_subthreshold", ["Stimulus_Ext", "V_Stim_Drive", "Vm_Int", "Vm_Ext"], stim_verdict, stim_caveat)
+    _add_metric_table(lines, [
+        ("Positive stimulus Vm_Int maximum", _fmt_v(stim_pos.get("Vm_Int_max") if stim_pos is not None else None)),
+        ("Positive stimulus delta versus quiet", _fmt_mv(pos_delta)),
+        ("Negative stimulus Vm_Int maximum", _fmt_v(stim_neg.get("Vm_Int_max") if stim_neg is not None else None)),
+        ("Negative stimulus delta versus quiet", _fmt_mv(neg_delta)),
+        ("Positive V_Stim_Drive range", _fmt_range(stim_pos, "V_Stim_Drive")),
+        ("Negative V_Stim_Drive range", _fmt_range(stim_neg, "V_Stim_Drive")),
+    ])
+    if np.isfinite(pos_delta) and np.isfinite(neg_delta) and pos_delta < 0 and neg_delta < 0:
+        lines.append("Current interpretation: both positive and negative stimulus commands suppress `Vm_Int` in the latest diagnostics, so this block remains a warning rather than a confirmed bidirectional stimulus transfer.")
+        lines.append("")
+    lines.append("Next validation improvement: add a dedicated `Stimulus_Ext -> V_Stim_Drive -> Vm_Int` transfer sweep so the polarity, gain, and linear range of the stimulus path are documented directly.")
+    lines.append("")
+    _append_plot(lines, output_dir, readme_path, "Positive external stimulus", "09_external_stimulus_positive_subthreshold", "vm")
+    _append_plot(lines, output_dir, readme_path, "Negative external stimulus", "10_external_stimulus_negative_subthreshold", "vm")
+
+    # Step 12
+    _append_step_header(lines, 12, "Parameter sweeps")
+    lines += [
+        "**What is being tested.** The sweep runs vary the front-panel controls and synaptic set levels to check that the model responds in the expected direction across more than one operating point.",
+        "",
+        "**Why it matters.** A single successful waveform can hide a wrong knob direction or a narrow operating point. Sweeps make the controls easier to interpret for readers and provide regression metrics for future schematic changes.",
+        "",
+        "| Sweep | Expected control meaning | Runs found | Latest observation | Verdict |",
+        "|---|---|---:|---|---|",
+    ]
+    sweep_specs = [
+        ("RV1 leak/reference", "Moves the leak reference and therefore the ease of reaching threshold.", "rv1_leak_threshold_sweep", "rv1", "RV1 leak/reference sweep"),
+        ("RV2 leak-rate", "Changes membrane leak conductance and therefore the charging/discharging rate.", "rv2_leak_rate_sweep", "rv2", "RV2 leak-rate sweep"),
+        ("RV3 adaptation", "Changes the adaptation path strength or recovery behaviour.", "rv3_adaptation_sweep", "rv3", "RV3 adaptation sweep"),
+        ("RV4 capacitance bank", "Selects the effective membrane capacitance and therefore the time scale.", "rv4_capacitance_bank_sweep", "rv4", "RV4 capacitance-bank sweep"),
+        ("RV5 synaptic decay", "Changes how quickly the synaptic state returns toward its neutral/leak value.", "rv5_synaptic_decay_sweep", "rv5", "RV5 synaptic decay sweep"),
+        ("Synaptic sign/weight", "Checks that low, midpoint, and high synaptic set values move the state in the expected direction.", "synaptic_sign_weight_sweep", "syn", "Synaptic sign/weight sweep"),
+    ]
+    for name, expected, fragment, kind, verdict_key in sweep_specs:
+        verdict, evidence, caveat = _verdict_lookup(verdict_df, verdict_key)
+        count = _sweep_count(summary, fragment)
+        observation = _sweep_observation(summary, fragment, kind)
+        verdict_txt = verdict
+        if caveat:
+            verdict_txt = f"{verdict_txt}; {caveat}" if verdict_txt else caveat
+        if evidence and not observation:
+            observation = evidence
+        lines.append(f"| {_md_cell(name)} | {_md_cell(expected)} | {count} | {_md_cell(observation)} | {_md_cell(verdict_txt)} |")
+    lines.append("")
+
+    lines += [
+        "### Files generated by the validation suite",
+        "",
+        "These files are kept as separate artifacts so the README can stay readable while the raw numerical results remain available for inspection and regression checks.",
         "",
         f"- [Diagnostics summary CSV]({rel_summary})",
         f"- [Component model coverage CSV]({rel_coverage})",
@@ -1822,37 +2300,6 @@ def build_readme_validation_section(output_dir: Path, readme_path: Path) -> str:
         f"- [Block-level validation verdict CSV]({rel_verdict_csv})",
         f"- [Key validation metrics CSV]({rel_metrics_csv})",
         "",
-        "### Block-level verdict",
-        "",
-    ]
-
-    if not verdict_df.empty:
-        lines += [
-            "| Circuit block | Verdict | Evidence | Caveat |",
-            "|---|---|---|---|",
-        ]
-        for _, row in verdict_df.iterrows():
-            lines.append(
-                f"| {_md_cell(row.get('block', ''))} | **{_md_cell(row.get('verdict', ''))}** | "
-                f"{_md_cell(row.get('evidence', ''))} | {_md_cell(row.get('caveat', ''))} |"
-            )
-    else:
-        lines.append("No verdict table was available.")
-
-    lines += [
-        "",
-        "### Representative generated plots",
-        "",
-    ]
-
-    plot_lines = _readme_plot_lines(output_dir, readme_path)
-    if plot_lines:
-        lines.extend(plot_lines)
-    else:
-        lines.append("No PNG plots were found in the output folder.")
-        lines.append("")
-
-    lines += [
         README_AUTOGEN_END,
         "",
     ]

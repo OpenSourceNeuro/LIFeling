@@ -1,6 +1,6 @@
 # LIFeling SPICE validation verdict
 
-Script version: `validation-suite-v5-readme`
+Script version: `validation-suite-v6-readme-walkthrough`
 Overall verdict: **PASS WITH WARNINGS**
 
 Validation suite: `43` total steps, `0` failed.

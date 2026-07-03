@@ -159,6 +159,29 @@ function Invoke-LoggedProcess {
     return $exitCode
 }
 
+function Test-SuiteLogReady {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) { return $false }
+    $content = Get-Content -LiteralPath $Path -Raw -ErrorAction SilentlyContinue
+    if ($null -eq $content) { return $false }
+    return (($content -match '(?m)^END:') -and ($content -match '(?m)^TOTAL RUNS:') -and ($content -match '(?m)^FAILED RUNS:'))
+}
+
+function Copy-LatestSuiteLogs {
+    param(
+        [string]$SourcePath,
+        [string[]]$Destinations
+    )
+    foreach ($dest in $Destinations) {
+        if ([string]::IsNullOrWhiteSpace($dest)) { continue }
+        $parent = Split-Path -Parent $dest
+        if (-not [string]::IsNullOrWhiteSpace($parent) -and -not (Test-Path -LiteralPath $parent)) {
+            New-Item -ItemType Directory -Path $parent | Out-Null
+        }
+        Copy-Item -LiteralPath $SourcePath -Destination $dest -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Add-PythonRun {
     param([string]$Name, [string[]]$RunArgs)
     [void]$script:Runs.Add(@{ Name = $Name; Args = @($RunArgs) })
@@ -216,6 +239,7 @@ $script:ResolvedLogDir = (Resolve-Path -LiteralPath $LogDir).Path
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $SuiteLog = Join-Path $script:ResolvedLogDir ("validation_suite_{0}.txt" -f $stamp)
 $LatestSuiteLog = Join-Path $script:ResolvedLogDir "validation_suite_latest.txt"
+$LatestSuiteLogRoot = Join-Path $ResolvedOutputDir "validation_suite_latest.txt"
 
 Append-Line $SuiteLog "LIFeling SPICE validation suite"
 Append-Line $SuiteLog ("START: {0:o}" -f (Get-Date))
@@ -450,7 +474,7 @@ foreach ($run in $Runs) {
         if (-not $ContinueOnError) {
             Append-Line $SuiteLog ""
             Append-Line $SuiteLog ("ABORTED: {0:o}" -f (Get-Date))
-            Copy-Item -LiteralPath $SuiteLog -Destination $LatestSuiteLog -Force -ErrorAction SilentlyContinue
+            Copy-LatestSuiteLogs -SourcePath $SuiteLog -Destinations @($LatestSuiteLog, $LatestSuiteLogRoot)
             throw
         }
     }
@@ -478,10 +502,16 @@ Append-Line $SuiteLog ""
 Append-Line $SuiteLog ("END: {0:o}" -f (Get-Date))
 Append-Line $SuiteLog ("TOTAL RUNS: {0}" -f $total)
 Append-Line $SuiteLog ("FAILED RUNS: {0}" -f $failed)
-Copy-Item -LiteralPath $SuiteLog -Destination $LatestSuiteLog -Force -ErrorAction SilentlyContinue
+Copy-LatestSuiteLogs -SourcePath $SuiteLog -Destinations @($LatestSuiteLog, $LatestSuiteLogRoot)
 
 if (-not $NoReadmeUpdate) {
     try {
+        if ((-not (Test-SuiteLogReady -Path $LatestSuiteLog)) -or (-not (Test-SuiteLogReady -Path $LatestSuiteLogRoot))) {
+            throw "README update skipped because validation_suite_latest.txt is not finalised with END, TOTAL RUNS, and FAILED RUNS."
+        }
+        Append-Line $SuiteLog "README update starting from finalised validation_suite_latest.txt."
+        Write-Host "README update starting from finalised validation suite log."
+
         $ReadmeArgs = @(
             $SpicePy,
             "--update-readme-only",
@@ -497,19 +527,19 @@ if (-not $NoReadmeUpdate) {
             -SuiteLog $SuiteLog)
 
         Append-Line $SuiteLog ("README updated: {0}" -f $ResolvedReadmePath)
-        Copy-Item -LiteralPath $SuiteLog -Destination $LatestSuiteLog -Force -ErrorAction SilentlyContinue
+        Copy-LatestSuiteLogs -SourcePath $SuiteLog -Destinations @($LatestSuiteLog, $LatestSuiteLogRoot)
         Write-Host "README updated: $ResolvedReadmePath"
     }
     catch {
         Append-Line $SuiteLog ("WARNING: Could not update README: {0}" -f $_.Exception.Message)
-        Copy-Item -LiteralPath $SuiteLog -Destination $LatestSuiteLog -Force -ErrorAction SilentlyContinue
+        Copy-LatestSuiteLogs -SourcePath $SuiteLog -Destinations @($LatestSuiteLog, $LatestSuiteLogRoot)
         Write-Host "WARNING: Could not update README: $($_.Exception.Message)"
         if (-not $ContinueOnError) { throw }
     }
 }
 else {
     Append-Line $SuiteLog "README update skipped because -NoReadmeUpdate was provided."
-    Copy-Item -LiteralPath $SuiteLog -Destination $LatestSuiteLog -Force -ErrorAction SilentlyContinue
+    Copy-LatestSuiteLogs -SourcePath $SuiteLog -Destinations @($LatestSuiteLog, $LatestSuiteLogRoot)
 }
 
 Write-Host ""
@@ -521,6 +551,7 @@ Write-Host "Output folder:    $ResolvedOutputDir"
 Write-Host "README:           $ResolvedReadmePath"
 Write-Host "Suite log:        $SuiteLog"
 Write-Host "Latest suite log: $LatestSuiteLog"
+Write-Host "Latest suite log in output: $LatestSuiteLogRoot"
 Write-Host "Run logs:         $script:ResolvedLogDir"
 if (Test-Path -LiteralPath $SummaryCsv) { Write-Host "Diagnostics CSV:  $SummaryCsv" }
 Write-Host ("=" * 100)
