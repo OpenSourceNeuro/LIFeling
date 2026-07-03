@@ -1,0 +1,64 @@
+﻿LIFeling SPICE validation suite
+START: 2026-07-03T16:12:51.6199691+02:00
+PythonExe: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\.venv\Scripts\python.exe
+SpicePy: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\Spice.py
+WorkDir: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE
+OutputDir: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output
+NgspiceBinary: auto
+ContinueOnError: False
+Quick: False
+SkipKnobSweeps: False
+SkipSynapseSweeps: False
+SkipStressRuns: False
+
+Every ngspice run should generate both a full plot and a companion *_vmint_vmext.png plot.
+
+STATUS	RUN	EXIT/ELAPSED/LOG
+PASS	01_00_python_compile	Exit=0	Elapsed=0.1s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\01_00_python_compile.console.txt
+PASS	02_01_write_only_full_schematic_debug	Exit=0	Elapsed=0.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\02_01_write_only_full_schematic_debug.console.txt
+PASS	03_02_baseline_self_spiking_coin	Exit=0	Elapsed=14.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\03_02_baseline_self_spiking_coin.console.txt
+PASS	04_03_debug_self_spiking_short	Exit=0	Elapsed=6.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\04_03_debug_self_spiking_short.console.txt
+PASS	05_04_cold_start_self_spiking_coin	Exit=0	Elapsed=11.7s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\05_04_cold_start_self_spiking_coin.console.txt
+PASS	06_05_quiet_subthreshold_no_synapse	Exit=0	Elapsed=3.7s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\06_05_quiet_subthreshold_no_synapse.console.txt
+PASS	07_06_synapse_midpoint_zero_effect_single	Exit=0	Elapsed=3.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\07_06_synapse_midpoint_zero_effect_single.console.txt
+PASS	08_07_synapse_excitatory_single_high	Exit=0	Elapsed=3.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\08_07_synapse_excitatory_single_high.console.txt
+PASS	09_08_synapse_inhibitory_single_low	Exit=0	Elapsed=6.3s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\09_08_synapse_inhibitory_single_low.console.txt
+PASS	10_09_external_stimulus_positive_subthreshold	Exit=0	Elapsed=3.7s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\10_09_external_stimulus_positive_subthreshold.console.txt
+PASS	11_10_external_stimulus_negative_subthreshold	Exit=0	Elapsed=3.5s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\11_10_external_stimulus_negative_subthreshold.console.txt
+PASS	12_11_ideal_supply_reference_run	Exit=0	Elapsed=6.0s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\12_11_ideal_supply_reference_run.console.txt
+PASS	13_12_low_battery_high_impedance_stress	Exit=0	Elapsed=9.3s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\13_12_low_battery_high_impedance_stress.console.txt
+PASS	14_13_synapse_repeating_staggered_high_stress	Exit=0	Elapsed=18.5s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\14_13_synapse_repeating_staggered_high_stress.console.txt
+PASS	15_14_synapse_repeating_simultaneous_high_stress	Exit=0	Elapsed=17.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\15_14_synapse_repeating_simultaneous_high_stress.console.txt
+PASS	16_15_synapse_repeating_simultaneous_low_stress	Exit=0	Elapsed=17.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\16_15_synapse_repeating_simultaneous_low_stress.console.txt
+PASS	17_rv1_leak_threshold_sweep_0p25	Exit=0	Elapsed=6.3s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\17_rv1_leak_threshold_sweep_0p25.console.txt
+PASS	18_rv1_leak_threshold_sweep_0p35	Exit=0	Elapsed=5.5s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\18_rv1_leak_threshold_sweep_0p35.console.txt
+PASS	19_rv1_leak_threshold_sweep_0p50	Exit=0	Elapsed=6.0s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\19_rv1_leak_threshold_sweep_0p50.console.txt
+PASS	20_rv1_leak_threshold_sweep_0p70	Exit=0	Elapsed=7.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\20_rv1_leak_threshold_sweep_0p70.console.txt
+PASS	21_rv1_leak_threshold_sweep_0p90	Exit=0	Elapsed=7.8s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\21_rv1_leak_threshold_sweep_0p90.console.txt
+PASS	22_rv2_leak_rate_sweep_0p20	Exit=0	Elapsed=7.3s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\22_rv2_leak_rate_sweep_0p20.console.txt
+PASS	23_rv2_leak_rate_sweep_0p50	Exit=0	Elapsed=10.5s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\23_rv2_leak_rate_sweep_0p50.console.txt
+PASS	24_rv2_leak_rate_sweep_0p80	Exit=0	Elapsed=10.1s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\24_rv2_leak_rate_sweep_0p80.console.txt
+PASS	25_rv3_adaptation_sweep_0p20	Exit=0	Elapsed=9.9s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\25_rv3_adaptation_sweep_0p20.console.txt
+PASS	26_rv3_adaptation_sweep_0p50	Exit=0	Elapsed=10.1s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\26_rv3_adaptation_sweep_0p50.console.txt
+PASS	27_rv3_adaptation_sweep_0p80	Exit=0	Elapsed=10.0s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\27_rv3_adaptation_sweep_0p80.console.txt
+PASS	28_rv3_adaptation_sweep_1p00	Exit=0	Elapsed=10.0s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\28_rv3_adaptation_sweep_1p00.console.txt
+PASS	29_rv4_capacitance_bank_sweep_0p10	Exit=0	Elapsed=12.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\29_rv4_capacitance_bank_sweep_0p10.console.txt
+PASS	30_rv4_capacitance_bank_sweep_0p30	Exit=0	Elapsed=10.0s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\30_rv4_capacitance_bank_sweep_0p30.console.txt
+PASS	31_rv4_capacitance_bank_sweep_0p50	Exit=0	Elapsed=10.8s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\31_rv4_capacitance_bank_sweep_0p50.console.txt
+PASS	32_rv4_capacitance_bank_sweep_0p70	Exit=0	Elapsed=10.2s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\32_rv4_capacitance_bank_sweep_0p70.console.txt
+PASS	33_rv4_capacitance_bank_sweep_0p90	Exit=0	Elapsed=10.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\33_rv4_capacitance_bank_sweep_0p90.console.txt
+PASS	34_rv5_synaptic_decay_sweep_0p10	Exit=0	Elapsed=5.3s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\34_rv5_synaptic_decay_sweep_0p10.console.txt
+PASS	35_rv5_synaptic_decay_sweep_0p30	Exit=0	Elapsed=4.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\35_rv5_synaptic_decay_sweep_0p30.console.txt
+PASS	36_rv5_synaptic_decay_sweep_0p50	Exit=0	Elapsed=4.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\36_rv5_synaptic_decay_sweep_0p50.console.txt
+PASS	37_rv5_synaptic_decay_sweep_0p80	Exit=0	Elapsed=4.7s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\37_rv5_synaptic_decay_sweep_0p80.console.txt
+PASS	38_rv5_synaptic_decay_sweep_1p00	Exit=0	Elapsed=4.9s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\38_rv5_synaptic_decay_sweep_1p00.console.txt
+PASS	39_synaptic_sign_weight_sweep_0p00	Exit=0	Elapsed=4.9s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\39_synaptic_sign_weight_sweep_0p00.console.txt
+PASS	40_synaptic_sign_weight_sweep_0p25	Exit=0	Elapsed=4.7s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\40_synaptic_sign_weight_sweep_0p25.console.txt
+PASS	41_synaptic_sign_weight_sweep_0p50	Exit=0	Elapsed=5.4s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\41_synaptic_sign_weight_sweep_0p50.console.txt
+PASS	42_synaptic_sign_weight_sweep_0p75	Exit=0	Elapsed=4.6s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\42_synaptic_sign_weight_sweep_0p75.console.txt
+PASS	43_synaptic_sign_weight_sweep_1p00	Exit=0	Elapsed=4.8s	Log=C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_logs\43_synaptic_sign_weight_sweep_1p00.console.txt
+Diagnostics summary: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\LIFeling_pyspice_output\validation_diagnostics_summary.csv
+
+END: 2026-07-03T16:18:21.8422475+02:00
+TOTAL RUNS: 43
+FAILED RUNS: 0

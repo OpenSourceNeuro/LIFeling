@@ -1,35 +1,63 @@
 #!/usr/bin/env python3
 """
-LIFeling Vm simulation with Python + ngspice/PySpice.
+LIFeling full-schematic behavioural SPICE generator/simulator.
 
-This script models the Vm-relevant LIF subcircuit of the current KiCad design:
+This file replaces the older hand-maintained Vm-only model with a netlist-driven
+model aligned to the current KiCad files exported on 2026-07-02.
 
-    passive               : raw/buffered V_Leak_Ref_Max, V_Leak reference, RV2 leak path, RV4/Cm selection, Vm_Int
-    threshold             : U6B TLV7044, Q1, AP, /Rising_AP, Spike_Pulse, D20 clamp
-    threshold_reset       : U6A/U6C TLV7044, peak/reset windows, reset injection path,
-                            Vm peak injection through U14/R49, display-spike synthesis through
-                            U20/R90/R91/C38, Vm_Ext output buffer, Spike_Out driver
-    threshold_reset_adapt : U1B/U1C/U1D, /Vkick, Vw adaptation shaping, Q2
+Design intent
+-------------
+The script reads LIFeling.net directly, extracts the actual component values and
+net names, and then generates an ngspice deck in which every schematic component
+is either electrically modelled or explicitly listed as mechanical / connector
+metadata. This avoids silent drift between the KiCad schematic and the Python
+SPICE model.
 
-This is not a complete KiCad-generated netlist. It is a controlled behavioural
-SPICE model using KiCad-aligned component names and SPICE-safe node aliases.
+Model scope
+-----------
+The model is intentionally behavioural, not a vendor-accurate transistor-level
+simulation of every IC. The analogue function is preserved at circuit-block level:
 
-Default plotting uses a compact "core" trace set: user-level diagnostic nodes
-only. Use --trace-set debug to include internal transistor/MOSFET nodes.
+  * BT1/SW1/VDD coin-cell supply and local decoupling.
+  * U7 boost approximated as an ideal boosted rail for the Vm output buffer.
+  * U21 REF3020 2.048 V reference and U22 buffered 1.024 V reference.
+  * RV1/U1A leak reference and membrane leak path RV2/R35.
+  * RV4/T1..T4/U4/U5/U9..U13 selected membrane-capacitor bank.
+  * U6D/Q1 AP gate, AP differentiator, Spike_Pulse clamp network.
+  * U6A/U14 peak injection and U6C/Q3..Q6 reset injection.
+  * U1B/U1C/U1D/Q2 adaptation network.
+  * U3/U15..U18/RV5/R82..R87 centred synaptic state drive. The synapse is
+    zero-effect when V_Syn_State = VREF_1V024.
+  * U6B/R90..R97 external stimulus drive path.
+  * U8 Vm_Ext live output and U19 Spike_Out output.
+  * D1/D18/D19 ESD devices as small capacitive/leakage loads.
+  * D9 RGB LED and Q7/Q8 LED drivers as approximate LED/BJT/MOSFET loads.
+  * J1..J6 connectors as named external nodes; optional sources can be attached
+    from the command line.
+  * H1..H6 mounting holes are included in the coverage report as mechanical-only.
 
-Power-up handling is split into two explicit modes:
+Running
+-------
+Typical deck generation only:
 
-    --startup-mode operating : VDD decoupling and reset timer start precharged;
-                               use for normal behaviour, sweeps, and synapse tests.
-    --startup-mode cold      : VDD decoupling, reset timer, and Vm start discharged;
-                               use for power-on/startup stress tests.
+    python Spice_LIFeling_updated.py --write-only
+
+Run ngspice if it is installed:
+
+    python Spice_LIFeling_updated.py --run
+
+Enable synaptic input pulse examples:
+
+    python Spice_LIFeling_updated.py --run --syn1-enable --syn1-delay 80m --syn1-width 5m
+
+The generated .cir file contains detailed comments mapping each functional block
+back to the exact KiCad references and labels.
 """
-
 
 from __future__ import annotations
 
 import argparse
-import contextlib
+import csv
 import dataclasses
 import hashlib
 import os
@@ -38,341 +66,282 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
-from typing import Literal
+from typing import Iterable
 
-import matplotlib.pyplot as plt
+SCRIPT_VERSION = "validation-suite-v5-readme"
+
 import numpy as np
-import pandas as pd
 
-# -----------------------------------------------------------------------------
-# User-editable vendor model configuration
-# -----------------------------------------------------------------------------
+try:
+    import pandas as pd
+except Exception:  # pragma: no cover
+    pd = None
+
+try:
+    import matplotlib.pyplot as plt
+except Exception:  # pragma: no cover
+    plt = None
+
 
 THIS_DIR = Path(__file__).resolve().parent
-MODEL_DIR = THIS_DIR / "models"
+DEFAULT_NETLIST = THIS_DIR / "LIFeling.net"
 OUTPUT_DIR = THIS_DIR / "LIFeling_pyspice_output"
 
-# Op-amp: schematic U1/U2/U19 = MCP6004T-I/ST.
-MCP6004_LIB = MODEL_DIR / "MCP6001.txt"
-MCP6004_SUBCKT_NAME = "MCP6001"
-
-# Comparator: schematic U4/U5/U6 = TLV7044PWR.
-TLV7044_LIB = MODEL_DIR / "TLV7044.lib"
-TLV7044_SUBCKT_NAME = "TLV7044"
-
-# MOSFET: schematic Q1/Q3/Q4/Q5/Q6/Q7 = BSS138.
-BSS138_LIB = MODEL_DIR / "BSS138.lib"
-BSS138_MODEL_NAME = "BSS138"
-
-# BJT: schematic Q2 = MMBT3904.
-MMBT3904_LIB = MODEL_DIR / "MMBT3904.spice.txt"
-MMBT3904_MODEL_NAME = "DI_MMBT3904"
-
-# Signal diodes: schematic D4/D5/D7 = 1N4148WS.
-DIODE_1N4148_LIB = MODEL_DIR / "1n4148_spice.lib"
-DIODE_1N4148_NAME = "1N4148"
-DIODE_1N4148_IS_SUBCKT = True
-
-# Spike diode and new explicit negative clamp: schematic D8 and D20 = RB521S30T1G.
-RB521S30_LIB = MODEL_DIR / "RB521S30.lib"
-RB521S30_NAME = "RB521S30"
-RB521S30_IS_SUBCKT = False
 
 # -----------------------------------------------------------------------------
-# SPICE-safe aliases for KiCad nets
+# KiCad netlist parsing
 # -----------------------------------------------------------------------------
 
-GND = "0"          # KiCad: GNDREF
-VDD = "VDD"        # KiCad: local circuit rail after optional battery impedance
-VBAT_RAW = "VBAT_RAW"  # Ideal source side of the optional coin-cell model
 
-# Passive / references.
-V_LEAK_REF_MAX_RAW = "V_Leak_Ref_Max_Raw"  # KiCad: R4/R5 raw divider node before U2A buffer
-V_LEAK_REF_MAX = "V_Leak_Ref_Max"          # KiCad: U2A buffered output feeding RV1 and RV6..RV9
-V_LEAK_REF = "V_Leak_ref"                  # KiCad: /V_Leak_ref
-V_LEAK = "V_Leak"                        # KiCad: V_Leak
-VM = "Vm_Int"                            # KiCad: Vm_Int
-RV2_PIN1 = "RV2_pin1"                    # KiCad: Net-(R32-Pad1)
-V_RESET_REF = "V_Reset_Ref"              # KiCad: V_Reset_Ref
-RESET_INJ = "Reset_Injection_Drive"      # KiCad: /Reset_Injection_Drive
-V_PEAK_REF = "V_Peak_Ref"                # KiCad: V_Peak_Ref, R8/R9 divider
-V_PEAK_DRIVE = "V_Peak_Drive"            # KiCad: Net-(U2C-VINC-), U2C buffered V_Peak_Ref
-PEAK_INJECT_NO = "Peak_Injection_NO"     # KiCad: Net-(U14-NO), between U14 NO and R49
+def iter_sexp_blocks(text: str, pattern: str) -> Iterable[str]:
+    """Yield balanced S-expression blocks whose start matches *pattern*.
 
-# Vm external/live-plot output driver and display-spike synthesis.
-VM_DISPLAY_IN = "Vm_Display_In"          # KiCad: display-synthesised Vm input to U8 IN+
-DISPLAY_SPIKE_NO = "Display_Spike_NO"    # KiCad: Net-(U20-NO), V_Peak_Drive side of display switch
-VM_DRV = "Vm_DRV"                        # KiCad: Vm_DRV, U8 output before R1
-VM_FB = "Vm_FB"                          # KiCad: Vm_FB, U8 inverting input
-VM_EXT = "Vm_Ext"                        # KiCad: Vm_Ext, external/live analog Vm output
-
-# Threshold / AP / spike.
-V_THRESHOLD = "V_Threshold"              # KiCad: V_Threshold
-THRESHOLD_COMP_OUT = "Threshold_Comparator_Out"  # KiCad: /Threshold_Comparator_Out
-AP = "AP"                                # KiCad: AP
-RISING_AP = "Rising_AP"                  # KiCad: /Rising_AP
-SPIKE_PULSE = "Spike_Pulse"              # KiCad: Spike_Pulse
-U6D_OUT = "U6D_Out"                      # KiCad: Net-(U6D-OUTD), Spike_Out comparator output
-SPIKE_OUT = "Spike_Out"                  # KiCad: Spike_Out jack node
-V_LOGIC_MID = "V_Logic_Mid"              # KiCad: V_Logic_Mid, reused by U6D output driver
-
-# Peak/reset windows.
-PEAK_WINDOW = "Peak_Window"              # KiCad: Peak_Window
-RESET_WINDOW = "Reset_Window"            # KiCad: Reset_Window
-U6C_PLUS = "U6C_INC_plus"                # KiCad: Net-(U6C-INC+)
-U6C_MINUS = "U6C_INC_minus"              # KiCad: Net-(U6C-INC-)
-RESET_TIMER_DISCHARGE = "Reset_Timer_Discharge"    # KiCad: Reset_Timer_Discharge
-RESET_INJECTION_ENABLE = "Reset_Injection_Enable"  # KiCad: /Reset_Injection_Enable
-RESET_REF_GATED = "Reset_Ref_Gated"                # KiCad: Reset_Ref_Gated
-RESET_CURRENT_NODE = "Reset_Current_Node"          # KiCad: Reset_Current_Node
-
-# Adaptation.
-ADAPT_KICK_DRIVE = "Adapt_Kick_Drive"      # KiCad: Adapt_Kick_Drive
-VKICK = "Vkick"                          # KiCad: /Vkick
-VW = "Vw"                                # KiCad: Vw
-RV3_BOTTOM = "RV3_bottom"                # KiCad: Net-(R42-Pad1)
-VW_BUFF = "Vw_buff"                      # KiCad: Vw_buff
-ADAPT_BASE = "Adapt_Base"                  # KiCad: Adapt_Base
-ADAPT_CURRENT_SINK = "Adapt_Current_Sink"  # KiCad: Adapt_Current_Sink
-ADAPT_U1B_PLUS = "Adapt_U1B_plus"          # KiCad: Net-(U1B-VINB+), Vm/Vkick sensing node
-ADAPT_U1B_MINUS = "Adapt_U1B_minus"        # KiCad: Net-(U1B-VINB-), V_Leak/output feedback node
-ADAPT_U1B_OUT = "Adapt_U1B_out"            # KiCad: Net-(U1B-VOUTB)
-ADAPT_U1B_DIODE_A = "Adapt_U1B_diode_A"    # KiCad: Net-(D6-A), anode side of D6
-
-# Optional external stimulus input.
-STIMULUS_EXT = "Stimulus_Ext"            # KiCad: Stimulus_Ext
-V_STIM_CMD = "V_Stim_Cmd"                # KiCad: V_Stim_Cmd
-V_STIM_DRIVE = "V_Stim_Drive"            # KiCad: V_Stim_Drive
-V_STIM_PLUS = "V_Stim_plus"               # KiCad: Net-(U19B-VINB+), R84/R85 summing node
-V_STIM_MINUS = "V_Stim_minus"             # KiCad: Net-(U19B-VINB-), R86/R87 feedback node
-
-# Synaptic input/state circuit.
-SYN1_SPIKE = "Syn1_Spike"
-SYN2_SPIKE = "Syn2_Spike"
-SYN3_SPIKE = "Syn3_Spike"
-SYN4_SPIKE = "Syn4_Spike"
-
-SYN1_IN = "Syn1_Input"                  # KiCad: Net-(D10-A), after R66/R65/D10/D11 clamp
-SYN2_IN = "Syn2_Input"                  # KiCad: Net-(D12-A)
-SYN3_IN = "Syn3_Input"                  # KiCad: Net-(D14-A)
-SYN4_IN = "Syn4_Input"                  # KiCad: Net-(D16-A)
-
-U15_IN = "U15_IN"                       # KiCad: Net-(U15-IN)
-U16_IN = "U16_IN"                       # KiCad: Net-(U16-IN)
-U17_IN = "U17_IN"                       # KiCad: Net-(U17-IN)
-U18_IN = "U18_IN"                       # KiCad: Net-(U18-IN)
-
-SYN1_SET_RAW = "Syn1_Set_raw"           # KiCad: Net-(U3A-VINB+) / RV6 wiper
-SYN2_SET_RAW = "Syn2_Set_raw"           # KiCad: Net-(U3B-VINC+) / RV7 wiper
-SYN3_SET_RAW = "Syn3_Set_raw"           # KiCad: Net-(U3C-VIND+) / RV8 wiper
-SYN4_SET_RAW = "Syn4_Set_raw"           # KiCad: Net-(U3D-VINA+) / RV9 wiper
-
-V_SYN1_SET = "V_Syn1_Set"
-V_SYN2_SET = "V_Syn2_Set"
-V_SYN3_SET = "V_Syn3_Set"
-V_SYN4_SET = "V_Syn4_Set"
-
-SYN1_NO = "Syn1_NO"                     # KiCad: Net-(U15-NO)
-SYN2_NO = "Syn2_NO"                     # KiCad: Net-(U16-NO)
-SYN3_NO = "Syn3_NO"                     # KiCad: Net-(U17-NO)
-SYN4_NO = "Syn4_NO"                     # KiCad: Net-(U18-NO)
-
-V_SYN_STATE = "V_Syn_State"
-RV5_DECAY = "RV5_decay"                 # KiCad: Net-(R79-Pad2), RV5 pins 1/2
-V_SYN_DRIVE = "V_Syn_Drive"             # Behavioural alias for KiCad Net-(U2C-VIND-) / U2D output feeding R80
+    KiCad's exported .net file is an S-expression document. A tiny balanced-block
+    scanner is sufficient here and avoids adding a dependency just to read refs,
+    values, pins and net names.
+    """
+    for match in re.finditer(pattern, text):
+        start = match.start()
+        depth = 0
+        in_quote = False
+        escaped = False
+        for idx in range(start, len(text)):
+            char = text[idx]
+            if in_quote:
+                if escaped:
+                    escaped = False
+                elif char == "\\":
+                    escaped = True
+                elif char == '"':
+                    in_quote = False
+            else:
+                if char == '"':
+                    in_quote = True
+                elif char == "(":
+                    depth += 1
+                elif char == ")":
+                    depth -= 1
+                    if depth == 0:
+                        yield text[start : idx + 1]
+                        break
 
 
-@dataclasses.dataclass(frozen=True)
-class Trace:
-    """One saved/plotted/printed voltage trace."""
-
-    key: str
-    node: str
-    label: str
+def sexp_value(block: str, key: str, default: str = "") -> str:
+    match = re.search(rf"\({re.escape(key)}\s+\"([^\"]*)\"\)", block)
+    return match.group(1) if match else default
 
 
-# Compact trace set: intended for normal circuit interpretation and CSV export.
-# The CSV is deliberately kept focused on live-plot/visualisation signals rather
-# than every internal debug node. The results text file still contains the run
-# header and validation diagnostics for the same saved traces.
-CORE_BASE_TRACES = [
-    Trace("VM_EXT", VM_EXT, "Vm_Ext"),
-    Trace("VM", VM, "Vm_Int"),
-    Trace("VLEAK", V_LEAK, "V_Leak"),
-]
+@dataclasses.dataclass
+class Component:
+    ref: str
+    value: str
+    footprint: str
+    fields: dict[str, str]
+    pins: dict[str, str] = dataclasses.field(default_factory=dict)
+    pinfunctions: dict[str, str] = dataclasses.field(default_factory=dict)
 
-CORE_SUPPLY_TRACES = [
-    Trace("VDD", VDD, "VDD"),
-]
 
-DEBUG_SUPPLY_TRACES = [
-    Trace("VBAT_RAW", VBAT_RAW, "Vbat raw"),
-]
+@dataclasses.dataclass
+class Design:
+    components: dict[str, Component]
+    nets: dict[str, list[tuple[str, str, str]]]
+    net_of_pin: dict[tuple[str, str], str]
 
-CORE_THRESHOLD_TRACES = [
-    Trace("VTHRESH", V_THRESHOLD, "V_Threshold"),
-    Trace("AP", AP, "AP"),
-    Trace("SPIKE_PULSE", SPIKE_PULSE, "Spike_Pulse"),
-]
 
-CORE_RESET_TRACES = [
-    Trace("SPIKE_OUT", SPIKE_OUT, "Spike_Out"),
-    Trace("PEAK_WINDOW", PEAK_WINDOW, "Peak_Window"),
-    Trace("RESET_WINDOW", RESET_WINDOW, "Reset_Window"),
-]
+def parse_kicad_netlist(path: Path) -> Design:
+    text = path.read_text(encoding="utf-8", errors="replace")
 
-CORE_ADAPT_TRACES = [
-    Trace("VW", VW, "Vw"),
-    Trace("VW_BUFF", VW_BUFF, "Vw_buff"),
-]
+    components: dict[str, Component] = {}
+    for block in iter_sexp_blocks(text, r"\n\s*\(comp\s"):
+        ref = sexp_value(block, "ref")
+        value = sexp_value(block, "value")
+        footprint = sexp_value(block, "footprint")
+        fields: dict[str, str] = {}
+        for name, val in re.findall(
+            r"\(property\s*\(name\s+\"([^\"]+)\"\)\s*\(value\s+\"?([^\"\)\n]*)\"?\)\s*\)",
+            block,
+        ):
+            fields[name] = val
+        for name, val in re.findall(r"\(field\s*\(name\s+\"([^\"]+)\"\)\s+\"([^\"]*)\"\)", block):
+            fields[name] = val
+        if ref:
+            components[ref] = Component(ref=ref, value=value, footprint=footprint, fields=fields)
 
-CORE_STIM_TRACES = [
-    Trace("STIMULUS_EXT", STIMULUS_EXT, "Stimulus_Ext"),
-    Trace("V_STIM_DRIVE", V_STIM_DRIVE, "V_Stim_Drive"),
-]
+    nets: dict[str, list[tuple[str, str, str]]] = {}
+    net_of_pin: dict[tuple[str, str], str] = {}
+    for block in iter_sexp_blocks(text, r"\n\s*\(net\s"):
+        net_name = sexp_value(block, "name")
+        nodes: list[tuple[str, str, str]] = []
+        for node_block in iter_sexp_blocks(block, r"\n\s*\(node\s"):
+            ref = sexp_value(node_block, "ref")
+            pin = sexp_value(node_block, "pin")
+            pinfunction = sexp_value(node_block, "pinfunction")
+            if ref and pin:
+                nodes.append((ref, pin, pinfunction))
+                net_of_pin[(ref, pin)] = net_name
+        nets[net_name] = nodes
 
-# Debug/validation traces are intentionally compact: enough to validate the
-# important blocks without bloating every CSV with all switch and transistor nets.
-DEBUG_BASE_TRACES = [
-    Trace("VM_DISPLAY_IN", VM_DISPLAY_IN, "Vm_Display_In"),
-    Trace("VLEAK_REF_MAX_RAW", V_LEAK_REF_MAX_RAW, "V_Leak_Ref_Max_Raw"),
-    Trace("VLEAK_REF_MAX", V_LEAK_REF_MAX, "V_Leak_Ref_Max buffered"),
-    Trace("V_PEAK_REF", V_PEAK_REF, "V_Peak_Ref"),
-    Trace("V_PEAK_DRIVE", V_PEAK_DRIVE, "V_Peak_Drive"),
-    Trace("PEAK_INJECT_NO", PEAK_INJECT_NO, "Peak injection switch NO"),
-    Trace("V_RESET_REF", V_RESET_REF, "V_Reset_Ref"),
-]
+    for (ref, pin), net_name in net_of_pin.items():
+        if ref in components:
+            components[ref].pins[pin] = net_name
+            # Recover pinfunction from the net table.
+            for node_ref, node_pin, pinfunction in nets[net_name]:
+                if node_ref == ref and node_pin == pin:
+                    components[ref].pinfunctions[pin] = pinfunction
+                    break
 
-DEBUG_THRESHOLD_TRACES = [
-    Trace("THRESHOLD_COMP_OUT", THRESHOLD_COMP_OUT, "/Threshold_Comparator_Out"),
-]
+    return Design(components=components, nets=nets, net_of_pin=net_of_pin)
 
-DEBUG_RESET_TRACES = [
-    Trace("DISPLAY_SPIKE_NO", DISPLAY_SPIKE_NO, "Display spike switch NO"),
-    Trace("U6D_OUT", U6D_OUT, "U6D spike-output driver"),
-    Trace("RESET_TIMER", U6C_MINUS, "Reset timer / U6C-"),
-    Trace("RESET_REF_NODE", U6C_PLUS, "Reset comparator ref / U6C+"),
-    Trace("RESET_INJECTION_ENABLE", RESET_INJECTION_ENABLE, "/Reset_Injection_Enable"),
-    Trace("RESET_REF_GATED", RESET_REF_GATED, "Reset_Ref_Gated"),
-]
 
-DEBUG_ADAPT_TRACES = [
-    Trace("ADAPT_U1B_OUT", ADAPT_U1B_OUT, "U1B adaptation shaper output"),
-    Trace("ADAPT_KICK_DRIVE", ADAPT_KICK_DRIVE, "Adapt_Kick_Drive"),
-    Trace("ADAPT_BASE", ADAPT_BASE, "Adapt_Base"),
-    Trace("ADAPT_CURRENT_SINK", ADAPT_CURRENT_SINK, "Adapt_Current_Sink"),
-]
+# -----------------------------------------------------------------------------
+# Value and node formatting
+# -----------------------------------------------------------------------------
 
-DEBUG_STIM_TRACES = [
-    Trace("V_STIM_CMD", V_STIM_CMD, "V_Stim_Cmd"),
-    Trace("V_STIM_PLUS", V_STIM_PLUS, "U19B stimulus plus input"),
-    Trace("V_STIM_MINUS", V_STIM_MINUS, "U19B stimulus minus input"),
-]
 
-CORE_SYNAPSE_TRACES = [
-    Trace("V_SYN_STATE", V_SYN_STATE, "V_Syn_State"),
-]
+def component_sort_key(ref: str) -> tuple[str, int, str]:
+    match = re.match(r"([A-Za-z]+)(\d+)(.*)", ref)
+    if not match:
+        return (ref, 0, "")
+    return (match.group(1), int(match.group(2)), match.group(3))
 
-CORE_SYNAPSE1_TRACES = [
-    Trace("SYN1_SPIKE", SYN1_SPIKE, "Syn1_Spike"),
-    Trace("V_SYN1_SET", V_SYN1_SET, "V_Syn1_Set"),
-]
-CORE_SYNAPSE2_TRACES = [
-    Trace("SYN2_SPIKE", SYN2_SPIKE, "Syn2_Spike"),
-    Trace("V_SYN2_SET", V_SYN2_SET, "V_Syn2_Set"),
-]
-CORE_SYNAPSE3_TRACES = [
-    Trace("SYN3_SPIKE", SYN3_SPIKE, "Syn3_Spike"),
-    Trace("V_SYN3_SET", V_SYN3_SET, "V_Syn3_Set"),
-]
-CORE_SYNAPSE4_TRACES = [
-    Trace("SYN4_SPIKE", SYN4_SPIKE, "Syn4_Spike"),
-    Trace("V_SYN4_SET", V_SYN4_SET, "V_Syn4_Set"),
-]
 
-DEBUG_SYNAPSE_COMMON_TRACES = [
-    Trace("V_SYN_DRIVE", V_SYN_DRIVE, "V_Syn_Drive"),
-    Trace("RV5_DECAY", RV5_DECAY, "Net-(R79-Pad2) / RV5 pins 1/2"),
-]
+def spice_node_name(kicad_net: str) -> str:
+    """Return a SPICE-safe node alias while keeping GNDREF as node 0."""
+    if kicad_net in {"GNDREF", "GND", "0"}:
+        return "0"
+    text = kicad_net
+    text = text.replace("+", "P_")
+    text = text.replace("/", "N_")
+    text = text.replace("-", "_")
+    text = text.replace("(", "_").replace(")", "_")
+    text = text.replace("[", "_").replace("]", "_")
+    text = text.replace(".", "_")
+    text = re.sub(r"[^A-Za-z0-9_]+", "_", text)
+    text = re.sub(r"_+", "_", text).strip("_")
+    if not text:
+        text = "NODE"
+    if text[0].isdigit():
+        text = "N_" + text
+    return text
 
-# These full per-channel switch internals are intentionally no longer saved by
-# default. Add them temporarily here if you need TS5A3166-level characterisation.
-DEBUG_SYNAPSE1_TRACES: list[Trace] = []
-DEBUG_SYNAPSE2_TRACES: list[Trace] = []
-DEBUG_SYNAPSE3_TRACES: list[Trace] = []
-DEBUG_SYNAPSE4_TRACES: list[Trace] = []
+
+def n(design: Design, ref: str, pin: str) -> str:
+    return spice_node_name(design.components[ref].pins[pin])
+
+
+def node(kicad_net: str) -> str:
+    return spice_node_name(kicad_net)
+
+
+def pin_net(design: Design, ref: str, pin: str) -> str:
+    return design.components[ref].pins[pin]
+
+
+def normalize_value(value: str, kind: str) -> str:
+    """Convert KiCad values such as 220kΩ, 10uF, 2.2uH to ngspice values."""
+    raw = value.strip()
+    raw = raw.replace("Ω", "").replace("Ω", "")
+    raw = raw.replace("µ", "u").replace("μ", "u")
+    raw = raw.replace(" ", "")
+    raw = raw.replace("F", "") if kind == "C" else raw
+    raw = raw.replace("H", "") if kind == "L" else raw
+
+    # SPICE interprets m as milli, so explicit mega must be Meg.
+    match = re.fullmatch(r"([+-]?[0-9]*\.?[0-9]+)([A-Za-z]*)", raw)
+    if not match:
+        return raw
+    number, suffix = match.groups()
+    if suffix == "M":
+        suffix = "Meg"
+    return number + suffix
+
+
+def value_to_float(value: str, kind: str = "R") -> float:
+    text = normalize_value(value, kind)
+    match = re.fullmatch(r"([+-]?[0-9]*\.?[0-9]+)([A-Za-z]*)", text)
+    if not match:
+        raise ValueError(f"Cannot parse value {value!r}")
+    number = float(match.group(1))
+    suffix = match.group(2).lower()
+    scale = {
+        "": 1.0,
+        "f": 1e-15,
+        "p": 1e-12,
+        "n": 1e-9,
+        "u": 1e-6,
+        "m": 1e-3,
+        "k": 1e3,
+        "meg": 1e6,
+        "g": 1e9,
+    }
+    if suffix not in scale:
+        raise ValueError(f"Unsupported suffix {suffix!r} in {value!r}")
+    return number * scale[suffix]
+
+
+def fmt(value: float) -> str:
+    if abs(value) < 1e-15:
+        return "0"
+    return f"{value:.12g}"
+
+
+def safe_ref(ref: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_]", "_", ref)
+
+
+def safe_filename(text: str) -> str:
+    """Return a compact filesystem-safe token for run labels and output names."""
+    token = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(text).strip())
+    token = token.strip("._-")
+    return token[:80] if token else "run"
+
+
+# -----------------------------------------------------------------------------
+# Simulation configuration
+# -----------------------------------------------------------------------------
 
 
 @dataclasses.dataclass
 class SimConfig:
-    stage: Literal["passive", "threshold", "threshold_reset", "threshold_reset_adapt"] = "passive"
-    strict_vendor: bool = False
-    vdd: str = "3"
+    netlist: Path = DEFAULT_NETLIST
+    output_dir: Path = OUTPUT_DIR
+    run_label: str = ""
+    run: bool = False
+    write_only: bool = False
+    ngspice_binary: str = "auto"
 
-    # Supply / power-integrity model.
-    # ideal: VDD is driven by an ideal voltage source.
-    # coin:  VBAT_RAW -> Rbat -> VDD, with local decoupling on VDD.
-    supply_mode: Literal["ideal", "coin"] = "ideal"
-    vbat: str = "3"
+    supply_mode: str = "coin"       # coin or ideal
+    vbat: str = "3.0"
     rbat: str = "30"
-    cdec_local: str = "100n"
-    cdec_bulk: str = "10u"
-    cdec_reservoir: str = "47u"
-    cdec_esr: str = "0.2"
+    vdd_ideal: str = "3.0"
+    switch_on_resistance: str = "0.2"
+    vboost: str = "3.3"
 
-    # Initial-condition policy.
-    # operating: model an already-powered circuit, with VDD reservoirs and reset timer precharged.
-    # cold:      model power-on from discharged VDD reservoirs/reset timer/Vm.
-    startup_mode: Literal["operating", "cold"] = "operating"
+    startup_mode: str = "operating" # operating or cold
     ignore_start_ms: float = 0.0
-    cold_vm_initial: str = "0"
+    vm_initial: str = "0.60"
+    syn_initial: str = "1.024"
 
-    # Component tolerance model. Nominal mode preserves exact schematic values.
-    # Random mode applies deterministic per-component uniform variation using tol_seed.
-    tol_mode: Literal["nominal", "random"] = "nominal"
-    tol_seed: int = 1
-    res_tol_pct: float = 0.0
-    cap_tol_pct: float = 0.0
-    pot_tol_pct: float = 0.0
-
-    rv1_fraction: float = 0.5
-    rv2_fraction: float = 0.5
-    rv3_fraction: float = 0.5
-    rv4_fraction: float = 0.5
-
-    cmem_mode: Literal["manual", "rv4"] = "manual"
-    cmem: str = "2.2u"
-    vm_initial: str = "0.385"
-
-    tstop: str = "1"
+    tstop: str = "500m"
     tstep: str = "10u"
     maxstep: str = "10u"
 
-    probe: Literal["ideal", "scope10m", "probe1m"] = "ideal"
-    trace_set: Literal["core", "debug"] = "core"
+    rv1: float = 0.30
+    rv2: float = 0.50
+    rv3: float = 0.50
+    rv4: float = 0.50
+    rv5: float = 0.50
+    rv6: float = 0.50
+    rv7: float = 0.50
+    rv8: float = 0.50
+    rv9: float = 0.50
 
-    stim_dc: float | None = None
-
-    # Synaptic circuit model. Disabled by default so existing LIF validation is unchanged.
-    # schematic/buffered = current KiCad connectivity: R4/R5 -> V_Leak_Ref_Max_Raw -> U2A buffer
-    #                      -> V_Leak_Ref_Max, which feeds RV1 and RV6..RV9 pin 3.
-    # legacy_direct      = old comparison mode: RV6..RV9 use the raw divider node directly.
-    syn_ref_mode: Literal["schematic", "legacy_direct", "buffered"] = "schematic"
+    stimulus_ext: float | None = None
     syn1_enable: bool = False
     syn2_enable: bool = False
     syn3_enable: bool = False
     syn4_enable: bool = False
-
-    # RV5 controls V_Syn_State decay back toward V_Leak.
-    # RV6..RV9 control the set voltages for synapses 1..4.
-    rv5_fraction: float = 0.5
-    rv6_fraction: float = 0.5
-    rv7_fraction: float = 0.5
-    rv8_fraction: float = 0.5
-    rv9_fraction: float = 0.5
-
-    # Pulse sources injected at Syn*_Spike jack nets for simulation.
-    syn_amp: str = "3"
+    syn_amp: str = "3.0"
     syn_rise: str = "1u"
     syn_fall: str = "1u"
     syn1_delay: str = "80m"
@@ -388,1661 +357,757 @@ class SimConfig:
     syn4_width: str = "5m"
     syn4_period: str = "100m"
 
-    backend: Literal["pyspice", "ngspice-cli"] = "ngspice-cli"
-    ngspice_binary: str = "auto"
+    trace_debug: bool = False
 
-    sweep: bool = False
-    sweep_rv1: str = "0.3,0.5,0.7,1.0"
-    sweep_rv2: str = "0.2,0.5,0.8"
-    sweep_rv3: str = "0.2,0.5,0.8"
-    sweep_rv4: str = ""
-    sweep_vbat: str = ""
-    sweep_rbat: str = ""
+    make_validation_verdict: bool = False
+    update_readme: bool = False
+    update_readme_only: bool = False
+    readme_path: Path = THIS_DIR / "README.md"
 
-    @property
-    def bss138_model(self) -> str:
-        return BSS138_MODEL_NAME if self.strict_vendor else "BSS138_FALLBACK"
 
-    @property
-    def npn_model(self) -> str:
-        return MMBT3904_MODEL_NAME if self.strict_vendor else "MMBT3904_FALLBACK"
-
-    @property
-    def signal_diode_name(self) -> str:
-        return DIODE_1N4148_NAME if self.strict_vendor else "D1N4148_FALLBACK"
-
-    @property
-    def spike_diode_name(self) -> str:
-        return RB521S30_NAME if self.strict_vendor else "RB521S30_FALLBACK"
-
-    @property
-    def syn_diode_name(self) -> str:
-        # Synaptic input clamps are BAT54WS in the KiCad netlist. We use a
-        # compact Schottky fallback unless/until a BAT54 vendor model is added.
-        return "BAT54_FALLBACK"
+RV_ATTR = {
+    "RV1": "rv1",
+    "RV2": "rv2",
+    "RV3": "rv3",
+    "RV4": "rv4",
+    "RV5": "rv5",
+    "RV6": "rv6",
+    "RV7": "rv7",
+    "RV8": "rv8",
+    "RV9": "rv9",
+}
 
 
 # -----------------------------------------------------------------------------
-# Selection / naming helpers
+# SPICE deck builder helpers
 # -----------------------------------------------------------------------------
 
 
-def cmem_from_rv4(rv4: float) -> str:
-    """Idealised RV4 one-hot capacitance selector."""
-    rv4 = float(np.clip(rv4, 0.0, 1.0))
-    if rv4 < 0.2:
-        return "470n"
-    if rv4 < 0.4:
-        return "1u"
-    if rv4 < 0.6:
-        return "2.2u"
-    if rv4 < 0.8:
-        return "4.7u"
-    return "10u"
+def add_models(lines: list[str]) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Generic fallback device models",
+        "* -----------------------------------------------------------------------------",
+        ".model BSS138_FALLBACK NMOS(Level=1 Vto=1.2 Kp=2m Lambda=0.02 Rd=2 Rs=2)",
+        ".model MMBT3904_FALLBACK NPN(Is=6.7f Bf=250 Vaf=100 Ikf=0.1 Br=6 Cjc=4p Cje=8p Tf=300p Tr=50n)",
+        ".model D1N4148_FALLBACK D(Is=2.52n Rs=0.568 N=1.752 Cjo=2p M=0.4 Tt=4n)",
+        ".model RB521S30_FALLBACK D(Is=5u Rs=1 N=1.05 Cjo=10p Eg=0.69 Bv=30 Ibv=10u)",
+        ".model BAT54_FALLBACK D(Is=2u Rs=1 N=1.05 Cjo=10p Eg=0.69 Bv=30 Ibv=10u)",
+        ".model LED_RED_FALLBACK D(Is=10n Rs=20 N=2.0 Eg=1.8 Cjo=5p)",
+        ".model LED_GREEN_FALLBACK D(Is=10n Rs=20 N=2.2 Eg=2.1 Cjo=5p)",
+        ".model LED_BLUE_FALLBACK D(Is=10n Rs=20 N=2.8 Eg=2.7 Cjo=5p)",
+        ".model SW_TS5A3166 SW(Ron=0.9 Roff=1e12 Vt=1.5 Vh=0.05)",
+        ".model SW_OC SW(Ron=5 Roff=1e12 Vt=0 Vh=1m)",
+        "",
+    ]
 
 
-def selected_cmem_nominal(cfg: SimConfig) -> str:
-    """Selected membrane capacitor using the requested RV4 setting."""
-    return cmem_from_rv4(cfg.rv4_fraction) if cfg.cmem_mode == "rv4" else cfg.cmem
+def add_node_alias_comments(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* KiCad-net to SPICE-node aliases",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for net_name in sorted(design.nets):
+        lines.append(f"* {net_name}  ->  {spice_node_name(net_name)}")
+    lines.append("")
 
 
-def selected_cmem(cfg: SimConfig) -> str:
-    """Selected membrane capacitor after optional RV4 setting tolerance."""
-    if cfg.cmem_mode != "rv4":
-        return cfg.cmem
-    return cmem_from_rv4(effective_pot_fraction(cfg, "RV4", cfg.rv4_fraction))
-
-
-def synapse_enabled(cfg: SimConfig) -> bool:
-    return cfg.syn1_enable or cfg.syn2_enable or cfg.syn3_enable or cfg.syn4_enable
-
-
-def syn_state_initial_voltage(cfg: SimConfig) -> str:
-    # In operating mode, start V_Syn_State close to the membrane IC to avoid an
-    # artificial synaptic startup kick. In cold mode, keep it discharged.
-    # The state will then relax toward V_Leak through R79/RV5.
-    return cfg.vm_initial if cfg.startup_mode == "operating" else cfg.cold_vm_initial
-
-
-def synapse_pulse(delay: str, width: str, period: str, amp: str, rise: str, fall: str) -> str:
-    return f"PULSE(0 {amp} {delay} {rise} {fall} {width} {period})"
-
-
-def safe_tag(text: str) -> str:
-    """Make a short value safe for filenames."""
-    return (
-        str(text)
-        .strip()
-        .replace(" ", "")
-        .replace("/", "_")
-        .replace("\\", "_")
-        .replace(".", "p")
-        .replace("-", "m")
-        .replace("+", "p")
-    )
-
-
-def float_tag(value: float) -> str:
-    return f"{value:.3f}".replace(".", "p")
-
-
-def short_num(value: float | int | str) -> str:
-    """Compact filename-safe number token for sweep output paths.
-
-    This intentionally produces much shorter tokens than output_suffix(), because
-    long Windows paths can make ngspice fail before it writes a useful log file.
-    Examples:
-        1.0  -> "1"
-        0.5  -> "0p5"
-        3.2  -> "3p2"
-        -0.1 -> "m0p1"
-    """
-    try:
-        text = f"{float(value):g}"
-    except Exception:
-        text = str(value)
-
-    return (
-        text.strip()
-        .replace("-", "m")
-        .replace(".", "p")
-        .replace("+", "")
-        .replace(" ", "")
-        .replace("µ", "u")
-    )
-
-
-def stage_tag(stage: str) -> str:
-    """Short filename-safe stage tag."""
-    return {
-        "passive": "pass",
-        "threshold": "th",
-        "threshold_reset": "tr",
-        "threshold_reset_adapt": "tra",
-    }.get(stage, safe_tag(stage))
-
-
-def enabled_synapse_tag(cfg: SimConfig) -> str:
-    """Return compact enabled-synapse channel token, e.g. '1' or '1234'."""
-    return "".join(
-        str(i)
-        for i, enabled in enumerate(
-            [cfg.syn1_enable, cfg.syn2_enable, cfg.syn3_enable, cfg.syn4_enable],
-            start=1,
+def add_resistors(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* All fixed resistors from the KiCad netlist",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in sorted((r for r in design.components if re.fullmatch(r"R\d+", r)), key=component_sort_key):
+        comp = design.components[ref]
+        if "1" not in comp.pins or "2" not in comp.pins:
+            lines.append(f"* {ref} {comp.value}: skipped, incomplete resistor pins")
+            continue
+        value = normalize_value(comp.value, "R")
+        lines.append(
+            f"R_{ref} {n(design, ref, '1')} {n(design, ref, '2')} {value}"
+            f"    $ {ref}={comp.value}, {pin_net(design, ref, '1')} <-> {pin_net(design, ref, '2')}"
         )
-        if enabled
+    lines.append("")
+
+
+def add_capacitors(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* All capacitors from the KiCad netlist",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in sorted((r for r in design.components if re.fullmatch(r"C\d+", r)), key=component_sort_key):
+        comp = design.components[ref]
+        if "1" not in comp.pins or "2" not in comp.pins:
+            lines.append(f"* {ref} {comp.value}: skipped, incomplete capacitor pins")
+            continue
+        value = normalize_value(comp.value, "C")
+        lines.append(
+            f"C_{ref} {n(design, ref, '1')} {n(design, ref, '2')} {value}"
+            f"    $ {ref}={comp.value}, {pin_net(design, ref, '1')} <-> {pin_net(design, ref, '2')}"
+        )
+    lines.append("")
+
+
+def add_inductors(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* All inductors from the KiCad netlist",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in sorted((r for r in design.components if re.fullmatch(r"L\d+", r)), key=component_sort_key):
+        comp = design.components[ref]
+        if "1" not in comp.pins or "2" not in comp.pins:
+            lines.append(f"* {ref} {comp.value}: skipped, incomplete inductor pins")
+            continue
+        value = normalize_value(comp.value, "L")
+        lines.append(
+            f"L_{ref} {n(design, ref, '1')} {n(design, ref, '2')} {value}"
+            f"    $ {ref}={comp.value}, {pin_net(design, ref, '1')} <-> {pin_net(design, ref, '2')}"
+        )
+    lines.append("R_U7_SW_LEAK Net_U7_SW 0 1G    $ convergence leakage on TPS610995 switching node")
+    lines.append("")
+
+
+def add_potentiometers(lines: list[str], design: Design, cfg: SimConfig) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* All potentiometers as two explicit end-to-wiper resistances",
+        "* fraction=0 means wiper at pin1, fraction=1 means wiper at pin3",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in sorted((r for r in design.components if re.fullmatch(r"RV\d+", r)), key=component_sort_key):
+        comp = design.components[ref]
+        frac = float(np.clip(getattr(cfg, RV_ATTR[ref]), 1e-6, 1 - 1e-6))
+        total = value_to_float(comp.value, "R")
+        low = max(total * frac, 1e-6)
+        high = max(total * (1.0 - frac), 1e-6)
+        p1, p2, p3 = n(design, ref, "1"), n(design, ref, "2"), n(design, ref, "3")
+        lines.append(
+            f"* {ref}={comp.value}, fraction={frac:.4f}; "
+            f"pin1={pin_net(design, ref, '1')}, pin2={pin_net(design, ref, '2')}, pin3={pin_net(design, ref, '3')}"
+        )
+        if p1 != p2:
+            lines.append(f"R_{ref}_P1_W {p1} {p2} {fmt(low)}")
+        else:
+            lines.append(f"* R_{ref}_P1_W skipped because pin1 and pin2 are the same net")
+        if p2 != p3:
+            lines.append(f"R_{ref}_W_P3 {p2} {p3} {fmt(high)}")
+        else:
+            lines.append(f"* R_{ref}_W_P3 skipped because pin2 and pin3 are the same net")
+    lines.append("")
+
+
+def add_diode(lines: list[str], name: str, anode: str, cathode: str, model: str, comment: str = "") -> None:
+    suffix = f"    $ {comment}" if comment else ""
+    lines.append(f"D_{name} {node(anode)} {node(cathode)} {model}{suffix}")
+
+
+def add_diodes(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Diodes, Schottky clamps, ESD approximations, and RGB LED",
+        "* -----------------------------------------------------------------------------",
+        "* Pin-orientation note: diode orientation is assigned by circuit function and KiCad net labels,",
+        "* because imported symbols do not use one uniform pin-number convention.",
+    ]
+
+    # One-pin ESD protectors: do not hard-clamp normal 0..3 V signals to ground.
+    for ref, protected_net in [("D1", "Vm_Ext"), ("D18", "Spike_Out"), ("D19", "Stimulus_Ext")]:
+        lines.append(f"C_{ref}_ESD {node(protected_net)} 0 1p    $ {ref} TPD1E05U06DPYT capacitance approximation")
+        lines.append(f"R_{ref}_LEAK {node(protected_net)} 0 1G    $ {ref} leakage approximation")
+
+    # Vm_Int clamps.
+    add_diode(lines, "D2_VM_HIGH", "Vm_Int", "VDD", "BAT54_FALLBACK", "D2 high clamp: Vm_Int -> VDD")
+    add_diode(lines, "D3_VM_LOW", "GNDREF", "Vm_Int", "BAT54_FALLBACK", "D3 low clamp: GNDREF -> Vm_Int")
+
+    # Adaptation and spike-pulse shaping diodes.
+    add_diode(lines, "D4_VKICK_LOW", "GNDREF", "/Vkick", "D1N4148_FALLBACK", "D4 clamps negative /Vkick")
+    add_diode(lines, "D5_VKICK_TO_VW", "/Vkick", "Vw", "D1N4148_FALLBACK", "D5 /Vkick -> Vw")
+    add_diode(lines, "D6_ADAPT_TO_VW", "Net-(D6-A)", "Vw", "RB521S30_FALLBACK", "D6 Schottky adaptation injection")
+    add_diode(lines, "D7_VW_LOW", "GNDREF", "Vw", "D1N4148_FALLBACK", "D7 clamps negative Vw")
+    add_diode(lines, "D8_RISING_TO_SPIKE", "/Rising_AP", "Spike_Pulse", "RB521S30_FALLBACK", "D8 positive differentiator diode")
+    add_diode(lines, "D20_SPIKE_LOW", "GNDREF", "Spike_Pulse", "RB521S30_FALLBACK", "D20 negative Spike_Pulse clamp")
+
+    # Synaptic input clamps.
+    for idx, hi_ref, lo_ref, clamp_net in [
+        (1, "D10", "D11", "Net-(D10-A)"),
+        (2, "D12", "D13", "Net-(D12-A)"),
+        (3, "D14", "D15", "Net-(D14-A)"),
+        (4, "D16", "D17", "Net-(D16-A)"),
+    ]:
+        add_diode(lines, f"{hi_ref}_SYN{idx}_HIGH", clamp_net, "VDD", "BAT54_FALLBACK", f"{hi_ref} Syn{idx} high clamp")
+        add_diode(lines, f"{lo_ref}_SYN{idx}_LOW", "GNDREF", clamp_net, "BAT54_FALLBACK", f"{lo_ref} Syn{idx} low clamp")
+
+    # Vm_Display_In clamps.
+    add_diode(lines, "D21_DISPLAY_HIGH", "Vm_Display_In", "VDD", "BAT54_FALLBACK", "D21 display high clamp")
+    add_diode(lines, "D22_DISPLAY_LOW", "GNDREF", "Vm_Display_In", "BAT54_FALLBACK", "D22 display low clamp")
+
+    # RGB LED D9, common anode at VDD, cathodes named R-/G-/B- in the netlist.
+    lines.append(f"D_D9_R {node("VDD")} {node("Net-(D9-R-)")} LED_RED_FALLBACK      $ D9 red LED, common anode VDD")
+    lines.append(f"D_D9_G {node("VDD")} {node("Net-(D9-G-)")} LED_GREEN_FALLBACK    $ D9 green LED, common anode VDD")
+    lines.append(f"D_D9_B {node("VDD")} {node("Net-(D9-B-)")} LED_BLUE_FALLBACK     $ D9 blue LED, common anode VDD")
+    lines.append("")
+
+
+
+
+def add_voltage_driver(
+    lines: list[str],
+    name: str,
+    out_net: str,
+    expr: str,
+    *,
+    vpos_net: str = "VDD",
+    out_resistance: str = "100",
+    comment: str = "",
+) -> None:
+    """Add a stable closed-loop behavioural voltage driver.
+
+    This replaces high-gain ideal-op-amp loops in places where the surrounding
+    schematic resistors already define the closed-loop transfer function. Using
+    a bounded VCVS avoids ngspice initial-timepoint failures on nodes such as
+    Vm_Out_DRV while preserving the circuit-level gain and loading from the
+    real feedback resistors, which remain instantiated from the netlist.
+    """
+    raw = f"{safe_ref(name)}_RAW"
+    suffix = f"    $ {comment}" if comment else ""
+    lines.append(
+        f"B_{safe_ref(name)}_CL {raw} 0 "
+        f"V={{min(max(({expr}),0),V({node(vpos_net)}))}}"
+        f"{suffix}"
+    )
+    lines.append(f"R_{safe_ref(name)}_OUT {raw} {node(out_net)} {out_resistance}")
+
+def add_opamp(lines: list[str], name: str, out_net: str, minus_net: str, plus_net: str, vpos_net: str = "VDD") -> None:
+    raw = f"{safe_ref(name)}_RAW"
+    lines.append(
+        f"B_{name}_OP {raw} 0 V={{0.5*V({node(vpos_net)})*(1+tanh(1000*(V({node(plus_net)})-V({node(minus_net)}))))}}"
+    )
+    lines.append(f"R_{name}_OUT {raw} {node(out_net)} 100")
+
+
+def add_follower(lines: list[str], name: str, out_net: str, in_net: str) -> None:
+    lines.append(f"E_{name}_FOLLOW {node(out_net)} 0 {node(in_net)} 0 1")
+
+
+def add_oc_comparator(lines: list[str], name: str, out_net: str, plus_net: str, minus_net: str) -> None:
+    """Add a numerically stable open-drain comparator.
+
+    The first generated version used an ideal ngspice SW element for each
+    TLV7044/TLV7031 open-drain output. That is too discontinuous for feedback
+    cases such as U6B, where V_Stim_Drive is both the comparator output and part
+    of the inverting-input feedback network. At t=0 ngspice can land exactly on
+    the switching surface and abort with "Timestep too small ... s_u6b_stim_od".
+
+    This behavioural replacement preserves the open-drain topology: external
+    schematic pull-up resistors still pull the output high, and the comparator
+    only sinks current when V(minus) > V(plus). The sink conductance transitions
+    smoothly over roughly 10 mV, which avoids the initial-timepoint singularity
+    without changing the circuit-level intent.
+    """
+    out = node(out_net)
+    plus = node(plus_net)
+    minus = node(minus_net)
+    safe = safe_ref(name)
+    lines.append(
+        f"B_{safe}_OD_SINK {out} 0 "
+        f"I={{ V({out})*(1e-12 + (0.2-1e-12)*0.5*(1+tanh(200*(V({minus})-V({plus}))))) }}"
+        f"    $ {name}: smooth open-drain sink, low when {minus_net} > {plus_net}"
+    )
+    lines.append(f"C_{safe}_OD_NUM {out} 0 0.2p    $ tiny numerical output capacitance for {name}")
+
+
+def add_active_components(lines: list[str], design: Design, cfg: SimConfig) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Power sources and active IC behavioural models",
+        "* -----------------------------------------------------------------------------",
+        "* BT1/SW1: coin-cell source, optional internal resistance, and closed power switch.",
+    ]
+    if cfg.supply_mode == "ideal":
+        lines.append(f"V_IDEAL_VDD VDD 0 DC {cfg.vdd_ideal}    $ ideal lab-supply mode replacing BT1/SW1")
+        lines.append("R_BATT_UNUSED P_BATT 0 1G")
+    else:
+        lines.append(f"V_BT1_RAW VBAT_RAW 0 DC {cfg.vbat}       $ BT1 open-circuit coin-cell voltage")
+        lines.append(f"R_BT1_INTERNAL VBAT_RAW P_BATT {cfg.rbat} $ BT1 internal/source resistance")
+        lines.append(f"R_SW1_ON P_BATT VDD {cfg.switch_on_resistance} $ SW1 pin2(+BATT) -> pin1(VDD), ON position")
+    lines += [
+        "",
+        "* U7 TPS610995 boost converter approximation.",
+        "* The real switching converter, L1 and output capacitors are reduced to an ideal boosted rail.",
+        "* L1, C10, C11, C12 and C14 are still present as passive netlist components above.",
+        f"B_U7_BOOST Net_U7_VOUT 0 V={{ {cfg.vboost} }}",
+        "",
+        "* U21 REF3020AIDBZR 2.048 V precision reference.",
+        "* Output is clamped by VDD so brownout tests remain physically bounded.",
+        "B_U21_REF3020 VREF_2V048 0 V={min(2.048,max(0,V(VDD)))}",
+        "",
+        "* U22 TLV9001 buffer: VREF_1V024_RAW -> VREF_1V024.",
+    ]
+    add_follower(lines, "U22", "VREF_1V024", "VREF_1V024_RAW")
+
+    lines += [
+        "",
+        "* U1 MCP6004 analogue core.",
+        "* U1A leak buffer: /V_Leak_ref -> V_Leak.",
+    ]
+    add_follower(lines, "U1A", "V_Leak", "/V_Leak_ref")
+    lines.append("* U1B adaptation shaping amplifier with R41/R42/R43/R44/R45 feedback network.")
+    lines.append("* Closed-loop fallback: Vout = 3*V(Net-(U1A-VINB+)) - 2*V(V_Leak), from R43=100k/R44=200k.")
+    add_voltage_driver(
+        lines,
+        "U1B",
+        "Net-(U1A-VOUTB)",
+        "3*V(Net_U1A_VINBP)-2*V(V_Leak)",
+        out_resistance="100",
+        comment="U1B closed-loop adaptation shaper; avoids high-gain feedback convergence at t=0",
+    )
+    lines.append("* U1C AP follower driving /Adapt_Kick_Drive through C29 into /Vkick.")
+    add_follower(lines, "U1C", "/Adapt_Kick_Drive", "AP")
+    lines.append("* U1D adaptation-state buffer: Vw -> Vw_buff.")
+    add_follower(lines, "U1D", "Vw_buff", "Vw")
+
+    lines += [
+        "",
+        "* U2 MCP6004 reference, reset, peak, and centred synaptic-drive amplifiers.",
+        "* U2A: VREF_2V048 -> V_Leak_Ref_Max. This is the new global top reference for RV1.",
+    ]
+    add_follower(lines, "U2A", "V_Leak_Ref_Max", "VREF_2V048")
+    lines.append("* U2B: V_Reset_Ref -> /Reset_Injection_Drive.")
+    add_follower(lines, "U2B", "/Reset_Injection_Drive", "V_Reset_Ref")
+    lines.append("* U2C: V_Peak_Ref -> V_Peak_Drive.")
+    add_follower(lines, "U2C", "V_Peak_Drive", "V_Peak_Ref")
+    lines.append("* U2D: centred synapse drive using R83/R84/R85/R86 feedback.")
+    lines.append("* Closed-loop fallback with equal 1M resistors: /V_Syn_Drive = V_Syn_State + Vm_Int - VREF_1V024.")
+    lines.append("* Therefore the synapse injects zero current through R87 when V_Syn_State = VREF_1V024.")
+    add_voltage_driver(
+        lines,
+        "U2D",
+        "/V_Syn_Drive",
+        "V(V_Syn_State)+V(Vm_Int)-V(VREF_1V024)",
+        out_resistance="100",
+        comment="U2D closed-loop centred synapse driver; zero effect at 1.024 V state",
     )
 
+    lines += [
+        "",
+        "* U3 MCP6004 four synaptic set-voltage buffers from RV6..RV9.",
+    ]
+    add_follower(lines, "U3A_SYN1", "V_Syn1_Set", "Net-(U3A-VINB+)")
+    add_follower(lines, "U3B_SYN2", "V_Syn2_Set", "Net-(U3B-VINC+)")
+    add_follower(lines, "U3C_SYN3", "V_Syn3_Set", "Net-(U3C-VIND+)")
+    add_follower(lines, "U3D_SYN4", "V_Syn4_Set", "Net-(U3D-VINA+)")
 
-def enabled_synapse_timing(cfg: SimConfig) -> list[tuple[int, str, str, str]]:
-    """Return per-enabled-synapse pulse timing as (channel, delay, width, period)."""
-    channels = [
+    lines += [
+        "",
+        "* U8 TLV9001 Vm_Ext output driver powered from V_Boost.",
+        "* R3/R4 set the non-inverting gain; R2/C13/D1 form the protected external output.",
+    ]
+    lines.append("* Closed-loop fallback: Vm_Out_DRV = (1 + R3/R4)*Vm_Display_In = 1.1*Vm_Display_In.")
+    add_voltage_driver(
+        lines,
+        "U8",
+        "Vm_Out_DRV",
+        "1.1*V(Vm_Display_In)",
+        vpos_net="V_Boost",
+        out_resistance="25",
+        comment="U8 closed-loop Vm_Ext driver; removes high-gain loop at Vm_Out_DRV",
+    )
+
+    lines += [
+        "",
+        "* U4/U5 TLV7044 comparators implement RV4/Vsel capacitor-bank one-hot selection.",
+        "* S0 high for Vsel<T1; S1 high for T1<Vsel<T2; S2 high for T2<Vsel<T3;",
+        "* S3 high for T3<Vsel<T4; S4 high for Vsel>T4. Tied outputs are open-drain ANDs.",
+    ]
+    add_oc_comparator(lines, "U4A_S0", "S0", "T1", "Vsel")
+    add_oc_comparator(lines, "U4B_S1_LOW", "S1", "Vsel", "T1")
+    add_oc_comparator(lines, "U4C_S1_HIGH", "S1", "T2", "Vsel")
+    add_oc_comparator(lines, "U4D_S2_LOW", "S2", "Vsel", "T2")
+    add_oc_comparator(lines, "U5D_S2_HIGH", "S2", "T3", "Vsel")
+    add_oc_comparator(lines, "U5B_S3_LOW", "S3", "Vsel", "T3")
+    add_oc_comparator(lines, "U5C_S3_HIGH", "S3", "T4", "Vsel")
+    add_oc_comparator(lines, "U5A_S4", "S4", "Vsel", "T4")
+
+    lines += [
+        "",
+        "* U6 TLV7044 comparators.",
+        "* U6A Peak_Window: high when Spike_Pulse > V_Threshold.",
+    ]
+    add_oc_comparator(lines, "U6A_PEAK", "Peak_Window", "Spike_Pulse", "V_Threshold")
+    lines.append("* U6B external stimulus drive: high when the R92/R93 summing node exceeds the R94/R95 feedback node.")
+    add_oc_comparator(lines, "U6B_STIM", "V_Stim_Drive", "Net-(U6B-INB+)", "Net-(U6B-INB-)")
+    lines.append("* U6C Reset_Window: high while reset reference node exceeds the reset timer node.")
+    add_oc_comparator(lines, "U6C_RESET", "Reset_Window", "Net-(U6C-INC+)", "Net-(U6C-INC-)")
+    lines.append("* U6D /AP_Gate: high below threshold, released low when Vm_Int exceeds V_Threshold.")
+    add_oc_comparator(lines, "U6D_AP_GATE", "/AP_Gate", "V_Threshold", "Vm_Int")
+
+    lines += [
+        "",
+        "* U19 TLV7031 spike-output comparator: Peak_Window -> Spike_Out driver.",
+        "* R88 is the output pull-up and R89 is the 100 ohm series jack resistor.",
+    ]
+    add_oc_comparator(lines, "U19_SPIKE_OUT", "Net-(U19-OUT)", "Peak_Window", "V_Logic_Mid")
+    lines.append("")
+
+
+def add_switches(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* TS5A3166 analogue switches U9..U20",
+        "* KiCad pin mapping: pin1=NO, pin2=COM, pin3=GND, pin4=IN, pin5=VDD.",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in [f"U{i}" for i in range(9, 21)]:
+        comp = design.components.get(ref)
+        if not comp:
+            continue
+        no_net = pin_net(design, ref, "1")
+        com_net = pin_net(design, ref, "2")
+        ctrl_net = pin_net(design, ref, "4")
+        lines.append(
+            f"S_{ref} {node(com_net)} {node(no_net)} {node(ctrl_net)} 0 SW_TS5A3166"
+            f"    $ {ref}: COM={com_net}, NO={no_net}, IN={ctrl_net}"
+        )
+    lines.append("")
+
+
+def add_transistors(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Discrete transistors",
+        "* BSS138 imported footprint mapping used here: pin1=gate, pin2=source, pin3=drain.",
+        "* MMBT3904 imported footprint mapping used here: pin1=base, pin2=emitter, pin3=collector.",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for ref in sorted((r for r in design.components if re.fullmatch(r"Q\d+", r)), key=component_sort_key):
+        comp = design.components[ref]
+        value = comp.value.upper()
+        if "BSS138" in value:
+            gate = pin_net(design, ref, "1")
+            source = pin_net(design, ref, "2")
+            drain = pin_net(design, ref, "3")
+            lines.append(
+                f"M_{ref} {node(drain)} {node(gate)} {node(source)} {node(source)} BSS138_FALLBACK"
+                f"    $ {ref}: D={drain}, G={gate}, S={source}"
+            )
+        elif "3904" in value:
+            base = pin_net(design, ref, "1")
+            emitter = pin_net(design, ref, "2")
+            collector = pin_net(design, ref, "3")
+            lines.append(
+                f"Q_{ref} {node(collector)} {node(base)} {node(emitter)} MMBT3904_FALLBACK"
+                f"    $ {ref}: C={collector}, B={base}, E={emitter}"
+            )
+        else:
+            lines.append(f"* {ref}={comp.value}: transistor type not recognised, not electrically modelled")
+    lines.append("")
+
+
+def add_external_sources(lines: list[str], cfg: SimConfig) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Optional external jack stimulus sources",
+        "* -----------------------------------------------------------------------------",
+    ]
+    if cfg.stimulus_ext is None:
+        lines.append("* J1 ring Stimulus_Ext has no external source; schematic bias network defines it.")
+    else:
+        lines.append(f"V_STIM_EXT Stimulus_Ext 0 DC {cfg.stimulus_ext:.12g}    $ external DC source on J1 ring")
+
+    syn_specs = [
         (1, cfg.syn1_enable, cfg.syn1_delay, cfg.syn1_width, cfg.syn1_period),
         (2, cfg.syn2_enable, cfg.syn2_delay, cfg.syn2_width, cfg.syn2_period),
         (3, cfg.syn3_enable, cfg.syn3_delay, cfg.syn3_width, cfg.syn3_period),
         (4, cfg.syn4_enable, cfg.syn4_delay, cfg.syn4_width, cfg.syn4_period),
     ]
-    return [(idx, delay, width, period) for idx, enabled, delay, width, period in channels if enabled]
-
-
-def _all_equal(values: list[str]) -> bool:
-    return len(set(values)) <= 1
-
-
-def trace_tag(trace_set: str) -> str:
-    """Very short filename token for the selected trace set."""
-    return {"core": "c", "debug": "d"}.get(trace_set, safe_tag(trace_set)[:1] or "x")
-
-
-def startup_tag(startup_mode: str) -> str:
-    """Very short filename token for startup mode."""
-    return {"operating": "op", "cold": "cd"}.get(startup_mode, safe_tag(startup_mode)[:2])
-
-
-def value_list_tag(values: list[float | int | str]) -> str:
-    """Compact filename-safe token for a list of numeric/string values."""
-    return "-".join(short_num(value) for value in values)
-
-
-def timing_value_tag(value: str) -> str:
-    """Compact SPICE-time token for filenames.
-
-    SPICE uses m for milli and u for micro. For filename readability we keep
-    the suffix letter but remove repeated channel prefixes. Examples:
-        150m -> 150m
-        5m   -> 5m
-        1u   -> 1u
-    """
-    return short_num(value)
-
-
-def synapse_timing_tag(cfg: SimConfig) -> str:
-    """Short filename tag for enabled synaptic pulse timing.
-
-    The detailed timing is still printed in the run header. Filenames only need
-    enough human-readable information for quick recognition because the final
-    hash uniquely protects against collisions.
-    """
-    timing = enabled_synapse_timing(cfg)
-    if not timing:
-        return ""
-
-    delays = [delay for _, delay, _, _ in timing]
-    widths = [width for _, _, width, _ in timing]
-    periods = [period for _, _, _, period in timing]
-
-    parts: list[str] = []
-
-    # Delays are the most useful timing values to see in the filename. For
-    # staggered diagnostics, use d150m-180m-210m-240m instead of the previous
-    # d1150m_d2180m_d3210m_d4240m form.
-    if _all_equal(delays):
-        parts.append(f"d{timing_value_tag(delays[0])}")
-    else:
-        parts.append("d" + "-".join(timing_value_tag(delay) for delay in delays))
-
-    # Width is usually common across channels and diagnostically important.
-    if _all_equal(widths):
-        parts.append(f"w{timing_value_tag(widths[0])}")
-    else:
-        parts.append("w" + "-".join(timing_value_tag(width) for width in widths))
-
-    # Period is normally the default 100m. Omit it in that common case; the
-    # config hash still distinguishes non-obvious differences. Include it only
-    # when it is not the default or when channels differ.
-    if not _all_equal(periods) or periods[0] != "100m":
-        if _all_equal(periods):
-            parts.append(f"p{timing_value_tag(periods[0])}")
+    for idx, enabled, delay, width, period in syn_specs:
+        if enabled:
+            lines.append(
+                f"V_SYN{idx}_SPIKE Syn{idx}_Spike 0 PULSE(0 {cfg.syn_amp} {delay} {cfg.syn_rise} {cfg.syn_fall} {width} {period})"
+            )
         else:
-            parts.append("p" + "-".join(timing_value_tag(period) for period in periods))
-
-    return "_" + "_".join(parts)
-
-
-def run_identity_hash(cfg: SimConfig) -> str:
-    """Short stable hash of simulation-affecting options for filename safety.
-
-    The human-readable suffix intentionally remains compact, so this hash acts
-    as a final guard against accidental overwrites when two configurations differ
-    in a parameter not explicitly shown in the suffix. Backend/path/sweep fields
-    are excluded because they do not change the generated circuit behaviour.
-    """
-    data = dataclasses.asdict(cfg)
-    for key in (
-        "backend",
-        "ngspice_binary",
-        "sweep",
-        "sweep_rv1",
-        "sweep_rv2",
-        "sweep_rv3",
-        "sweep_rv4",
-        "sweep_vbat",
-        "sweep_rbat",
-    ):
-        data.pop(key, None)
-    payload = repr(sorted(data.items())).encode("utf-8")
-    return hashlib.sha1(payload).hexdigest()[:8]
+            lines.append(f"* Syn{idx}_Spike has no external pulse source in this run.")
+    lines.append("")
 
 
-def output_suffix(cfg: SimConfig) -> str:
-    """Short but collision-resistant output suffix for normal runs.
-
-    Earlier filenames encoded almost every synapse channel and timing parameter,
-    which pushed Windows paths over ngspice's comfort zone. This version keeps a
-    compact human-readable summary plus an 8-character configuration hash.
-    The printed header and generated .cir file remain the authoritative detailed
-    record of the run configuration.
-    """
-    cmem_value = selected_cmem(cfg)
-
-    suffix = (
-        f"{stage_tag(cfg.stage)}{trace_tag(cfg.trace_set)}"
-        f"_r{value_list_tag([cfg.rv1_fraction, cfg.rv2_fraction, cfg.rv3_fraction])}"
-    )
-
-    if cfg.cmem_mode == "rv4":
-        suffix += f"_m{short_num(cfg.rv4_fraction)}c{safe_tag(cmem_value)}"
-    else:
-        suffix += f"_c{safe_tag(cmem_value)}"
-
-    if cfg.supply_mode == "coin":
-        suffix += f"_b{short_num(cfg.vbat)}r{short_num(cfg.rbat)}"
-    else:
-        suffix += f"_v{short_num(cfg.vdd)}"
-
-    suffix += f"_{startup_tag(cfg.startup_mode)}"
-
-    if cfg.ignore_start_ms > 0:
-        suffix += f"_i{short_num(cfg.ignore_start_ms)}"
-
-    if cfg.tol_mode == "random":
-        suffix += (
-            f"_tol{cfg.tol_seed}"
-            f"r{short_num(cfg.res_tol_pct)}"
-            f"c{short_num(cfg.cap_tol_pct)}"
-            f"p{short_num(cfg.pot_tol_pct)}"
-        )
-
-    if cfg.stim_dc is not None:
-        suffix += f"_u{short_num(cfg.stim_dc)}"
-
-    if synapse_enabled(cfg):
-        syn_tag = enabled_synapse_tag(cfg)
-        suffix += f"_s{syn_tag}k{short_num(cfg.rv5_fraction)}"
-
-        if cfg.syn_ref_mode == "legacy_direct":
-            suffix += "R"
-        elif cfg.syn_ref_mode == "buffered":
-            suffix += "B"
-
-        syn_fracs: list[float] = []
-        if cfg.syn1_enable:
-            syn_fracs.append(cfg.rv6_fraction)
-        if cfg.syn2_enable:
-            syn_fracs.append(cfg.rv7_fraction)
-        if cfg.syn3_enable:
-            syn_fracs.append(cfg.rv8_fraction)
-        if cfg.syn4_enable:
-            syn_fracs.append(cfg.rv9_fraction)
-
-        if syn_fracs:
-            if len(set(round(float(v), 9) for v in syn_fracs)) == 1:
-                suffix += f"g{short_num(syn_fracs[0])}"
-            else:
-                suffix += f"g{value_list_tag(syn_fracs)}"
-
-        suffix += synapse_timing_tag(cfg)
-
-    suffix += f"_t{short_num(cfg.tstop)}"
-
-    if cfg.strict_vendor:
-        suffix += "_vend"
-
-    suffix += f"_h{run_identity_hash(cfg)}"
-
-    return suffix
-
-
-def dedupe_traces(traces: list[Trace]) -> list[Trace]:
-    """Keep first occurrence of each trace key/node pair to avoid duplicate .save/wrdata vectors."""
-    out: list[Trace] = []
-    seen: set[tuple[str, str]] = set()
-    for trace in traces:
-        sig = (trace.key, trace.node)
-        if sig in seen:
+def add_global_leakage(lines: list[str], design: Design) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Very weak leakage on every non-ground net for numerical convergence",
+        "* -----------------------------------------------------------------------------",
+    ]
+    for net_name in sorted(design.nets):
+        sp = spice_node_name(net_name)
+        if sp == "0":
             continue
-        seen.add(sig)
-        out.append(trace)
+        lines.append(f"R_LEAK_{sp} {sp} 0 10G")
+    lines.append("")
+
+
+def add_initial_conditions(lines: list[str], cfg: SimConfig) -> None:
+    lines += [
+        "* -----------------------------------------------------------------------------",
+        "* Initial conditions",
+        "* -----------------------------------------------------------------------------",
+    ]
+    if cfg.startup_mode == "cold":
+        lines.append("* Cold startup: capacitors begin discharged unless driven by independent sources.")
+        lines.append(f".ic V(Vm_Int)=0 V(V_Syn_State)=0 V(Vm_Display_In)=0")
+    else:
+        lines.append("* Operating startup: begin close to the expected biased analogue operating point.")
+        lines.append(
+            ".ic "
+            f"V(P_BATT)={cfg.vbat} V(VDD)={cfg.vbat} V(V_Boost)={cfg.vboost} "
+            "V(VREF_2V048)=2.048 V(VREF_1V024_RAW)=1.024 V(VREF_1V024)=1.024 "
+            f"V(Vm_Int)={cfg.vm_initial} V(Vm_Display_In)={cfg.vm_initial} V(V_Syn_State)={cfg.syn_initial} "
+            "V(V_Leak)=0.6 V(AP)=0 V(Peak_Window)=0 V(Reset_Window)=0"
+        )
+    lines.append("")
+
+
+def trace_nodes(cfg: SimConfig) -> list[str]:
+    core = [
+        "VDD",
+        "V_Boost",
+        "VREF_2V048",
+        "VREF_1V024",
+        "V_Leak_Ref_Max",
+        "/V_Leak_ref",
+        "V_Leak",
+        "Vm_Int",
+        "Vm_Display_In",
+        "Vm_Ext",
+        "V_Threshold",
+        "/AP_Gate",
+        "AP",
+        "/Rising_AP",
+        "Spike_Pulse",
+        "Peak_Window",
+        "Reset_Window",
+        "Spike_Out",
+        "V_Syn_State",
+        "/V_Syn_Drive",
+        "V_Stim_Cmd",
+        "V_Stim_Drive",
+        "Vw",
+        "Vw_buff",
+    ]
+    if cfg.trace_debug:
+        core += [
+            "T1", "T2", "T3", "T4", "Vsel", "S0", "S1", "S2", "S3", "S4",
+            "Net-(U6C-INC-)", "Net-(U6C-INC+)", "/Reset_Injection_Enable", "/Reset_Gated_Drive",
+            "V_Syn1_Set", "V_Syn2_Set", "V_Syn3_Set", "V_Syn4_Set",
+            "Net-(U2C-VIND+)", "Net-(U2C-VIND-)",
+        ]
+    # Deduplicate while preserving order.
+    out: list[str] = []
+    seen: set[str] = set()
+    for item in core:
+        sp = node(item)
+        if sp not in seen:
+            seen.add(sp)
+            out.append(item)
     return out
 
-def traces_for_config(cfg: SimConfig) -> list[Trace]:
-    """Single source of truth for .save, CSV parsing, plotting, and printing."""
-    traces = list(CORE_BASE_TRACES)
-    if cfg.supply_mode == "coin" or cfg.trace_set == "debug":
-        traces += CORE_SUPPLY_TRACES
 
-    if cfg.stage in {"threshold", "threshold_reset", "threshold_reset_adapt"}:
-        traces += CORE_THRESHOLD_TRACES
-    if cfg.stage in {"threshold_reset", "threshold_reset_adapt"}:
-        traces += CORE_RESET_TRACES
-    if cfg.stage == "threshold_reset_adapt":
-        traces += CORE_ADAPT_TRACES
-    if cfg.stim_dc is not None:
-        traces += CORE_STIM_TRACES
-
-    if synapse_enabled(cfg):
-        traces += CORE_SYNAPSE_TRACES
-        if cfg.syn1_enable:
-            traces += CORE_SYNAPSE1_TRACES
-        if cfg.syn2_enable:
-            traces += CORE_SYNAPSE2_TRACES
-        if cfg.syn3_enable:
-            traces += CORE_SYNAPSE3_TRACES
-        if cfg.syn4_enable:
-            traces += CORE_SYNAPSE4_TRACES
-
-    if cfg.trace_set == "debug":
-        # VBAT_RAW exists only when the optional coin-cell source-impedance
-        # model is active. In ideal-supply mode the generated deck contains
-        # VDD_SRC directly on VDD and no VBAT_RAW node, so do not ask ngspice
-        # to save/write V(VBAT_RAW) in that mode.
-        if cfg.supply_mode == "coin":
-            traces += DEBUG_SUPPLY_TRACES
-        traces += DEBUG_BASE_TRACES
-        if cfg.stage in {"threshold", "threshold_reset", "threshold_reset_adapt"}:
-            traces += DEBUG_THRESHOLD_TRACES
-        if cfg.stage in {"threshold_reset", "threshold_reset_adapt"}:
-            traces += DEBUG_RESET_TRACES
-        if cfg.stage == "threshold_reset_adapt":
-            traces += DEBUG_ADAPT_TRACES
-        traces += DEBUG_STIM_TRACES
-        if synapse_enabled(cfg):
-            traces += DEBUG_SYNAPSE_COMMON_TRACES
-            if cfg.syn1_enable:
-                traces += DEBUG_SYNAPSE1_TRACES
-            if cfg.syn2_enable:
-                traces += DEBUG_SYNAPSE2_TRACES
-            if cfg.syn3_enable:
-                traces += DEBUG_SYNAPSE3_TRACES
-            if cfg.syn4_enable:
-                traces += DEBUG_SYNAPSE4_TRACES
-
-    return dedupe_traces(traces)
-
-
-# -----------------------------------------------------------------------------
-# Generic utilities
-# -----------------------------------------------------------------------------
-
-
-def _to_float_suffix(value: str) -> float:
-    """Convert a simple SPICE value string to float, for derived values only."""
-    value = value.strip().replace("ohm", "").replace("ohm", "")
-    match = re.fullmatch(r"([0-9]*\.?[0-9]+)\s*([a-zA-Zuu]*)", value)
-    if not match:
-        raise ValueError(f"Cannot parse SPICE value: {value!r}")
-
-    base = float(match.group(1))
-    suffix = match.group(2).lower().replace("u", "u")
-    multipliers = {
-        "": 1.0,
-        "f": 1e-15,
-        "p": 1e-12,
-        "n": 1e-9,
-        "u": 1e-6,
-        "m": 1e-3,
-        "k": 1e3,
-        "meg": 1e6,
-        "g": 1e9,
-    }
-    if suffix not in multipliers:
-        raise ValueError(f"Unsupported suffix {suffix!r} in {value!r}")
-    return base * multipliers[suffix]
-
-
-
-
-def format_spice_number(value: float) -> str:
-    """Return a compact numeric SPICE value string."""
-    if value == 0:
-        return "0"
-    return f"{value:.12g}"
-
-
-def _stable_unit_interval(seed: int, key: str) -> float:
-    payload = f"{seed}:{key}".encode("utf-8")
-    digest = hashlib.sha256(payload).digest()
-    integer = int.from_bytes(digest[:8], "big")
-    return integer / float(2**64 - 1)
-
-
-def tolerance_factor(cfg: SimConfig, key: str, pct: float) -> float:
-    """Deterministic uniform tolerance factor for a named component."""
-    if cfg.tol_mode != "random" or pct <= 0:
-        return 1.0
-    u = _stable_unit_interval(cfg.tol_seed, key)
-    delta = (2.0 * u - 1.0) * pct / 100.0
-    return 1.0 + delta
-
-
-def toleranced_value(cfg: SimConfig, key: str, nominal: str, pct: float) -> str:
-    value = _to_float_suffix(nominal) * tolerance_factor(cfg, key, pct)
-    return format_spice_number(value)
-
-
-def r_value(cfg: SimConfig, key: str, nominal: str) -> str:
-    return toleranced_value(cfg, key, nominal, cfg.res_tol_pct)
-
-
-def c_value(cfg: SimConfig, key: str, nominal: str) -> str:
-    return toleranced_value(cfg, key, nominal, cfg.cap_tol_pct)
-
-
-def effective_pot_fraction(cfg: SimConfig, key: str, nominal_fraction: float) -> float:
-    """Effective control fraction after optional knob/wiper tolerance.
-
-    pot_tol_pct is interpreted as percent of full-scale travel. For example,
-    pot_tol_pct=5 gives a deterministic random offset in [-0.05, +0.05].
-    """
-    frac = float(nominal_fraction)
-    if cfg.tol_mode == "random" and cfg.pot_tol_pct > 0:
-        u = _stable_unit_interval(cfg.tol_seed, f"{key}_fraction")
-        frac += (2.0 * u - 1.0) * cfg.pot_tol_pct / 100.0
-    return float(np.clip(frac, 1e-6, 1 - 1e-6))
-
-
-def split_pot_toleranced(cfg: SimConfig, key: str, total: str, fraction: float) -> tuple[str, str]:
-    total_ohm = _to_float_suffix(total) * tolerance_factor(cfg, f"{key}_total", cfg.pot_tol_pct)
-    frac = effective_pot_fraction(cfg, key, fraction)
-    lower = total_ohm * frac
-    upper = total_ohm * (1.0 - frac)
-    return format_spice_number(lower), format_spice_number(upper)
-
-def split_pot(total: str, fraction: float) -> tuple[str, str]:
-    """Return lower and upper resistances for a three-terminal pot.
-
-    fraction = 0.0 means wiper at pin 1 / low end.
-    fraction = 1.0 means wiper at pin 3 / high end.
-    """
-    total_ohm = _to_float_suffix(total)
-    fraction = float(np.clip(fraction, 1e-6, 1 - 1e-6))
-    lower = total_ohm * fraction
-    upper = total_ohm * (1.0 - fraction)
-    return f"{lower:.12g}", f"{upper:.12g}"
-
-
-def pot_upper_segment(total: str, fraction: float) -> str:
-    """Resistance between pot wiper/pin1 side and pin3/high end."""
-    _, upper = split_pot(total, fraction)
-    return upper
-
-
-def detect_model_statement(path: Path, name: str) -> str | None:
-    """Return '.model' or '.subckt' if a model/subckt name is found in a file."""
-    if not path.exists():
-        return None
-    text = path.read_text(errors="ignore")
-    pattern_model = re.compile(rf"^\s*\.model\s+{re.escape(name)}\b", re.I | re.M)
-    pattern_subckt = re.compile(rf"^\s*\.subckt\s+{re.escape(name)}\b", re.I | re.M)
-    if pattern_model.search(text):
-        return ".model"
-    if pattern_subckt.search(text):
-        return ".subckt"
-    return None
-
-
-def include_line(path: Path) -> str:
-    p = str(path.resolve()).replace("\\", "/")
-    return f'.include "{p}"'
-
-
-def patched_mcp6001_model_for_ngspice(original_path: Path) -> Path:
-    """Create an ngspice-compatible patched copy of the Microchip MCP6001 model."""
-    if not original_path.exists():
-        raise FileNotFoundError(f"Cannot find MCP6001/MCP6004 model file: {original_path}")
-
-    patched_dir = OUTPUT_DIR / "patched_models"
-    patched_dir.mkdir(parents=True, exist_ok=True)
-    patched_path = patched_dir / "MCP6001_ngspice.lib"
-
-    text = original_path.read_text(errors="replace")
-    text = re.sub(
-        r"(?im)^(\s*r\S+\s+\S+\s+\S+\s+\S+)\s+tc\s+(\S+)\s+(\S+)\s*$",
-        r"\1 TC=\2,\3",
-        text,
-    )
-    patched_path.write_text(text)
-    return patched_path
-
-
-def find_ngspice_binary(requested: str) -> str:
-    """Find ngspice.exe robustly on Windows/PyCharm."""
-    requested = (requested or "").strip().strip('"')
-
-    if requested and requested.lower() not in {"auto", "ngspice", "ngspice.exe"}:
-        p = Path(requested)
-        if p.is_file():
-            return str(p)
-        found = shutil.which(requested)
-        if found:
-            return found
-
-    env_value = os.environ.get("NGSPICE_BINARY", "").strip().strip('"')
-    if env_value:
-        p = Path(env_value)
-        if p.is_file():
-            return str(p)
-        found = shutil.which(env_value)
-        if found:
-            return found
-
-    for name in ("ngspice", "ngspice.exe"):
-        found = shutil.which(name)
-        if found:
-            return found
-
-    common_paths = [
-        Path(r"C:\Spice64\bin\ngspice.exe"),
-        Path(r"C:\Spice64_d\bin\ngspice.exe"),
-        Path(r"C:\Program Files\ngspice\bin\ngspice.exe"),
-        Path(r"C:\Program Files (x86)\ngspice\bin\ngspice.exe"),
-        Path(r"C:\Program Files\KiCad\bin\ngspice.exe"),
-        Path(r"C:\Program Files\KiCad\10.0\bin\ngspice.exe"),
-        Path(r"C:\Program Files\KiCad\9.0\bin\ngspice.exe"),
-        Path(r"C:\Program Files\KiCad\8.0\bin\ngspice.exe"),
-        Path(r"C:\Users\mzimm\Documents\Spice64\bin\ngspice.exe"),
-        Path(r"C:\Users\mjyzi\Documents\Spice64\bin\ngspice.exe"),
-    ]
-
-    for p in common_paths:
-        if p.is_file():
-            return str(p)
-
-    searched = "\n".join(f"  - {p}" for p in common_paths)
-    raise FileNotFoundError(
-        "Could not find ngspice.exe.\n\n"
-        "Fix options:\n"
-        "  1. Install ngspice for Windows.\n"
-        "  2. Add the folder containing ngspice.exe to your Windows PATH.\n"
-        "  3. Or pass the exact path, for example:\n\n"
-        r'     --ngspice-binary "C:\Spice64\bin\ngspice.exe"' + "\n\n"
-        "The script also checked these common locations:\n"
-        f"{searched}\n"
-    )
-
-
-# -----------------------------------------------------------------------------
-# SPICE model includes, wrappers, and primitive helpers
-# -----------------------------------------------------------------------------
-
-
-def build_vendor_includes(cfg: SimConfig) -> list[str]:
-    """Return .include lines or fallback model definitions."""
-    lines: list[str] = []
-
-    if cfg.strict_vendor:
-        mcp6004_include = patched_mcp6001_model_for_ngspice(MCP6004_LIB)
-
-        required: list[tuple[Path, str, str]] = [(mcp6004_include, MCP6004_SUBCKT_NAME, ".subckt")]
-        include_paths: list[Path] = [mcp6004_include]
-
-        if cfg.stage in {"threshold", "threshold_reset", "threshold_reset_adapt"}:
-            required += [
-                (TLV7044_LIB, TLV7044_SUBCKT_NAME, ".subckt"),
-                (BSS138_LIB, BSS138_MODEL_NAME, ".model"),
-            ]
-            include_paths += [TLV7044_LIB, BSS138_LIB]
-
-            if RB521S30_IS_SUBCKT:
-                required.append((RB521S30_LIB, RB521S30_NAME, ".subckt"))
-            else:
-                required.append((RB521S30_LIB, RB521S30_NAME, ".model"))
-            include_paths.append(RB521S30_LIB)
-
-        if cfg.stage == "threshold_reset_adapt":
-            required += [(MMBT3904_LIB, MMBT3904_MODEL_NAME, ".model")]
-            include_paths.append(MMBT3904_LIB)
-
-            if DIODE_1N4148_IS_SUBCKT:
-                required.append((DIODE_1N4148_LIB, DIODE_1N4148_NAME, ".subckt"))
-            else:
-                required.append((DIODE_1N4148_LIB, DIODE_1N4148_NAME, ".model"))
-            include_paths.append(DIODE_1N4148_LIB)
-
-        missing: list[str] = []
-        for path, name, expected_kind in required:
-            kind = detect_model_statement(path, name)
-            if kind != expected_kind:
-                missing.append(f"{path} must contain {expected_kind} {name}")
-
-        if missing:
-            raise FileNotFoundError(
-                "Strict vendor mode requested, but these models were not found:\n"
-                + "\n".join(f"  - {m}" for m in missing)
-                + "\n\nPut the vendor model files in ./models/ and edit the *_LIB/*_NAME constants."
-            )
-
-        for path in dict.fromkeys(include_paths):
-            lines.append(include_line(path))
-    else:
-        lines += [
-            "* ---- Fallback models: replace with vendor models for final analysis ----",
-            ".model D1N4148_FALLBACK D(Is=2.52n Rs=0.568 N=1.752 Cjo=2p M=0.4 Eg=1.11 Tt=4n)",
-            ".model RB521S30_FALLBACK D(Is=5u Rs=1 N=1.05 Cjo=10p Eg=0.69 Bv=30 Ibv=10u)",
-            ".model BAT54_FALLBACK D(Is=2u Rs=1 N=1.05 Cjo=10p Eg=0.69 Bv=30 Ibv=10u)",
-            ".model MMBT3904_FALLBACK NPN(Is=6.7f Bf=250 Vaf=100 Ikf=0.1 Xtb=1.5 Br=6 Cjc=4p Cje=8p Tf=300p Tr=50n)",
-            ".model BSS138_FALLBACK NMOS(Level=1 Vto=1.2 Kp=2m Lambda=0.02 Rd=2 Rs=2)",
-            ".model SW_OC SW(Ron=10 Roff=1e12 Vt=0 Vh=1m)",
-            ".model SW_TS5A3166 SW(Ron=0.9 Roff=1e12 Vt=1.5 Vh=0.05)",
-        ]
-
-    return lines
-
-
-def build_vendor_wrappers(cfg: SimConfig) -> list[str]:
-    """Return wrappers for op-amp and comparator subcircuits.
-
-    Local wrapper APIs used by this deck:
-      MCP6004_UNIT OUT MINUS PLUS VDD VSS
-      TLV7044_UNIT OUT MINUS PLUS VDD VSS
-
-    The internal X... pin order may need adjustment to match the exact vendor
-    .SUBCKT line in your downloaded model file.
-    """
-    if not cfg.strict_vendor:
-        return []
-
-    lines = [
-        "* ---- Local wrappers around vendor macromodels ----",
-        "* MCP6004_UNIT wrapper API: OUT MINUS PLUS VDD VSS",
-        ".subckt MCP6004_UNIT OUT MINUS PLUS VDD VSS",
-        "* Common Microchip MCP6001 family order assumed here: PLUS MINUS VDD VSS OUT",
-        f"XAMP PLUS MINUS VDD VSS OUT {MCP6004_SUBCKT_NAME}",
-        ".ends MCP6004_UNIT",
-    ]
-
-    if cfg.stage in {"threshold", "threshold_reset", "threshold_reset_adapt"}:
-        lines += [
-            "",
-            "* TLV7044_UNIT wrapper API: OUT MINUS PLUS VDD VSS",
-            ".subckt TLV7044_UNIT OUT MINUS PLUS VDD VSS",
-            "* Adjust the order below if the TI model .SUBCKT uses another pin order.",
-            f"XCMP PLUS MINUS VDD VSS OUT {TLV7044_SUBCKT_NAME}",
-            ".ends TLV7044_UNIT",
-        ]
-
-    return lines
-
-
-def opamp_unit(
-    lines: list[str],
-    name: str,
-    out: str,
-    minus: str,
-    plus: str,
-    cfg: SimConfig,
-    *,
-    vpos: str = VDD,
-    out_res: str = "100",
-    vendor_ok: bool = True,
-) -> None:
-    """Add a generic rail-limited fallback op-amp stage.
-
-    Strict-vendor mode uses the MCP6004 wrapper where appropriate. Fallback mode
-    uses a smooth behavioural source followed by a small output resistance.
-
-    Important ngspice details:
-      * The PSpice-style limit(x, lo, hi) expression was not reliable in this
-        deck and previously allowed impossible tens-of-kilovolts outputs.
-      * Hard min(max(...)) clipping fixed the overvoltage but created a
-        convergence failure at t=0 when used inside unity-gain follower loops
-        such as U2A.
-      * The fallback below uses a differentiable tanh rail limiter. For true
-        followers, opamp_follower() uses a simple unity VCVS because the follower
-        input nodes are already kept within the analogue rails by the surrounding
-        circuit.
-    """
-    if cfg.strict_vendor and vendor_ok and vpos == VDD:
-        lines.append(f"X{name} {out} {minus} {plus} {VDD} {GND} MCP6004_UNIT")
-    else:
-        raw = f"{name}_raw"
-        gain = "1e3"
-        # Smooth 0..V(vpos) limiting:
-        #   Vraw = Vrail/2 * (1 + tanh(gain * (V+ - V-)))
-        # This is less ideal than a real macromodel, but it is bounded and much
-        # easier for ngspice to converge than a hard discontinuous clip.
-        lines.append(
-            f"B{name}_OP {raw} {GND} "
-            f"V={{0.5*V({vpos})*(1+tanh({gain}*(V({plus})-V({minus}))))}}"
-        )
-        lines.append(f"R{name}_OUT {raw} {out} {out_res}")
-
-
-def opamp_follower(lines: list[str], name: str, out: str, inp: str, cfg: SimConfig) -> None:
-    """Add a stable unity-gain follower approximation.
-
-    The buffered reference and state followers are low-risk unity buffers whose
-    inputs are produced by resistor dividers or bounded state nodes. A simple
-    unity VCVS is more robust than solving a high-gain behavioural feedback loop
-    at the initial timestep. Non-follower op-amp stages still use opamp_unit(),
-    which is explicitly rail-limited.
-    """
-    if cfg.strict_vendor:
-        lines.append(f"X{name} {out} {out} {inp} {VDD} {GND} MCP6004_UNIT")
-    else:
-        lines.append(f"E{name} {out} {GND} {inp} {GND} 1")
-
-
-def clamp_expr_to_vdd(expr: str, *, rail: str = VDD) -> str:
-    """Return an ngspice expression clipped to the local analogue rail.
-
-    This is used only for closed-loop equivalent output drivers, not inside
-    high-gain feedback loops. It keeps behavioural outputs within the physical
-    supply range while avoiding the convergence failures caused by explicitly
-    solving ideal op-amp feedback at t=0.
-    """
-    return f"min(max(({expr}),0),V({rail}))"
-
-
-def add_closed_loop_driver(
-    lines: list[str],
-    name: str,
-    out: str,
-    expr: str,
-    cfg: SimConfig,
-    *,
-    rail: str = VDD,
-    out_res: str = "25",
-) -> None:
-    """Add a bounded closed-loop behavioural op-amp output approximation."""
-    raw = f"{name}_raw"
-    lines.append(f"B{name} {raw} {GND} V={{ {clamp_expr_to_vdd(expr, rail=rail)} }}")
-    lines.append(f"R{name}_OUT {raw} {out} {out_res}")
-
-
-
-def add_esd_cap(lines: list[str], name: str, node: str, cfg: SimConfig) -> None:
-    """Approximate one-pin ESD/TVS devices as small capacitance plus leakage.
-
-    TPD1E05U06-style protection parts are not modelled as hard diodes here,
-    because clamping a normal 0-3 V signal to ground would be unrealistic for
-    this behavioural model. The capacitance/leakage approximation preserves the
-    small load relevant for transient visualisation.
-    """
-    lines.append(f"C{name}_ESD {node} {GND} {c_value(cfg, name + '_CESD', '1p')}")
-    lines.append(f"R{name}_LEAK {node} {GND} 1G")
-
-
-def tlv7044_oc(lines: list[str], name: str, out: str, minus: str, plus: str, cfg: SimConfig) -> None:
-    """Add a TLV7044 comparator model.
-
-    Fallback mode models the output as open-drain: OUT is pulled to ground when
-    V(minus) > V(plus). Pull-up resistors are external, matching the schematic.
-    """
-    if cfg.strict_vendor:
-        lines.append(f"X{name} {out} {minus} {plus} {VDD} {GND} TLV7044_UNIT")
-    else:
-        lines.append(f"S{name} {out} {GND} {minus} {plus} SW_OC")
-
-
-def add_model_or_subckt_diode(
-    lines: list[str],
-    name: str,
-    anode: str,
-    cathode: str,
-    model_or_subckt: str,
-    is_subckt: bool,
-) -> None:
-    """Add a diode. SPICE order is anode, cathode."""
-    if is_subckt:
-        lines.append(f"X{name} {anode} {cathode} {model_or_subckt}")
-    else:
-        lines.append(f"D{name} {anode} {cathode} {model_or_subckt}")
-
-
-def add_signal_diode(lines: list[str], name: str, anode: str, cathode: str, cfg: SimConfig) -> None:
-    add_model_or_subckt_diode(
-        lines,
-        name,
-        anode,
-        cathode,
-        cfg.signal_diode_name,
-        DIODE_1N4148_IS_SUBCKT if cfg.strict_vendor else False,
-    )
-
-
-def add_spike_schottky(lines: list[str], name: str, anode: str, cathode: str, cfg: SimConfig) -> None:
-    add_model_or_subckt_diode(
-        lines,
-        name,
-        anode,
-        cathode,
-        cfg.spike_diode_name,
-        RB521S30_IS_SUBCKT if cfg.strict_vendor else False,
-    )
-
-
-# -----------------------------------------------------------------------------
-# Netlist generation
-# -----------------------------------------------------------------------------
-
-
-def add_header(cfg: SimConfig) -> list[str]:
-    lines = [
-        f"* LIFeling Vm simulation: stage={cfg.stage}",
-        "* Generated by Spice.py",
-        "* KiCad GNDREF is mapped to ngspice ground node 0.",
+def build_deck(design: Design, cfg: SimConfig, csv_path: Path | None = None) -> str:
+    lines: list[str] = [
+        "* LIFeling full-schematic behavioural model",
+        f"* Source netlist: {cfg.netlist}",
+        "* Generated by Spice.py validation-suite-v4",
         ".option method=gear reltol=1e-4 abstol=1e-12 vntol=1e-6 chgtol=1e-14",
         ".option itl1=500 itl4=500",
+        ".option gmin=1e-12",
         ".temp 25",
         "",
     ]
-    lines += build_vendor_includes(cfg)
-    lines += [""]
-    lines += build_vendor_wrappers(cfg)
-    lines += [""]
-    return lines
+    add_models(lines)
+    add_node_alias_comments(lines, design)
+    add_resistors(lines, design)
+    add_potentiometers(lines, design, cfg)
+    add_capacitors(lines, design)
+    add_inductors(lines, design)
+    add_diodes(lines, design)
+    add_active_components(lines, design, cfg)
+    add_switches(lines, design)
+    add_transistors(lines, design)
+    add_external_sources(lines, cfg)
+    add_global_leakage(lines, design)
+    add_initial_conditions(lines, cfg)
 
-
-def add_cap_to_ground(
-    lines: list[str],
-    name: str,
-    node: str,
-    nominal_cap: str,
-    cfg: SimConfig,
-    *,
-    esr: str | None = None,
-    ic: str | None = None,
-) -> None:
-    """Add a capacitor to ground, optionally through a small ESR resistor."""
-    cap = c_value(cfg, name, nominal_cap)
-    if esr is not None and _to_float_suffix(esr) > 0:
-        cap_node = f"{name}_esr_node"
-        lines.append(f"R{name}_ESR {node} {cap_node} {esr}")
-        suffix = f" IC={ic}" if ic is not None else ""
-        lines.append(f"C{name} {cap_node} {GND} {cap}{suffix}")
-    else:
-        suffix = f" IC={ic}" if ic is not None else ""
-        lines.append(f"C{name} {node} {GND} {cap}{suffix}")
-
-
-def initial_supply_voltage(cfg: SimConfig) -> str:
-    """Nominal final supply voltage used for operating initial conditions."""
-    return cfg.vbat if cfg.supply_mode == "coin" else cfg.vdd
-
-
-def vdd_cap_initial_voltage(cfg: SimConfig) -> str:
-    """Initial voltage across local VDD decoupling capacitors."""
-    return initial_supply_voltage(cfg) if cfg.startup_mode == "operating" else "0"
-
-
-def reset_timer_initial_voltage(cfg: SimConfig) -> str:
-    """Initial voltage for C31 / U6C reset-timer node."""
-    return initial_supply_voltage(cfg) if cfg.startup_mode == "operating" else "0"
-
-
-def vm_initial_voltage(cfg: SimConfig) -> str:
-    """Initial voltage for the membrane capacitor."""
-    return cfg.vm_initial if cfg.startup_mode == "operating" else cfg.cold_vm_initial
-
-
-def add_supply_and_decoupling(lines: list[str], cfg: SimConfig) -> None:
-    """Add either an ideal VDD source or a coin-cell source impedance model."""
-    if cfg.supply_mode == "coin":
-        lines += [
-            "* ---- Non-ideal coin-cell supply model ----",
-            f"VBAT {VBAT_RAW} {GND} DC {cfg.vbat}",
-            f"RBAT {VBAT_RAW} {VDD} {cfg.rbat}",
-            "* Local VDD decoupling after the battery/internal-resistance node.",
-        ]
-    else:
-        lines += [
-            "* ---- Ideal supply model ----",
-            f"VDD_SRC {VDD} {GND} DC {cfg.vdd}",
-            "* Local VDD decoupling on ideal supply rail.",
-        ]
-
-    # A compact local-decoupling approximation. The three capacitors represent
-    # small IC bypass, board bulk, and optional reservoir storage respectively.
-    # In operating mode they start charged, avoiding artificial startup crossings.
-    # In cold mode they start discharged, letting us inspect power-on behaviour.
-    vdd_ic = vdd_cap_initial_voltage(cfg)
-    add_cap_to_ground(lines, "CDEC_LOCAL", VDD, cfg.cdec_local, cfg, esr=cfg.cdec_esr, ic=vdd_ic)
-    add_cap_to_ground(lines, "CDEC_BULK", VDD, cfg.cdec_bulk, cfg, esr=cfg.cdec_esr, ic=vdd_ic)
-    add_cap_to_ground(lines, "CDEC_RESERVOIR", VDD, cfg.cdec_reservoir, cfg, esr=cfg.cdec_esr, ic=vdd_ic)
-
-
-def add_references_and_passive_vm(lines: list[str], cfg: SimConfig) -> None:
-    rv1_low, rv1_high = split_pot_toleranced(cfg, "RV1", "50k", cfg.rv1_fraction)
-    rv2_low, rv2_high = split_pot_toleranced(cfg, "RV2", "50k", cfg.rv2_fraction)
-    cmem_value_nominal = selected_cmem(cfg)
-    cmem_value = c_value(cfg, "CMEM_SELECTED", cmem_value_nominal)
-
-    lines += ["* ---- Supply and reference dividers ----"]
-    add_supply_and_decoupling(lines, cfg)
-
+    traces = trace_nodes(cfg)
     lines += [
-        "",
-        "* Raw divider and global V_Leak_Ref_Max buffer.",
-        "* KiCad 2026-06-10: R4/R5 create V_Leak_Ref_Max_Raw; U2A buffers it to V_Leak_Ref_Max.",
-        "* V_Leak_Ref_Max then feeds every downstream use: RV1 pin3 and RV6..RV9 pin3.",
-        f"R4 {VDD} {V_LEAK_REF_MAX_RAW} {r_value(cfg, 'R4', '49.9k')}",
-        f"R5 {V_LEAK_REF_MAX_RAW} {GND} {r_value(cfg, 'R5', '100k')}",
-    ]
-    opamp_follower(lines, "U2A_LEAK_REF_MAX", V_LEAK_REF_MAX, V_LEAK_REF_MAX_RAW, cfg)
-
-    lines += [
-        "",
-        f"* RV1=50k: pin1=GNDREF, pin2=/V_Leak_ref, pin3=buffered V_Leak_Ref_Max; requested fraction={cfg.rv1_fraction:.3f}, effective fraction={effective_pot_fraction(cfg, 'RV1', cfg.rv1_fraction):.3f}",
-        f"RV1_LOW {V_LEAK_REF} {GND} {rv1_low}",
-        f"RV1_HIGH {V_LEAK_REF_MAX} {V_LEAK_REF} {rv1_high}",
-    ]
-    opamp_follower(lines, "U1A", V_LEAK, V_LEAK_REF, cfg)
-
-    lines += [
-        "",
-        "* Reset injection reference: R10=69.8k VDD->V_Reset_Ref, R11=10k V_Reset_Ref->GNDREF",
-        f"R10 {VDD} {V_RESET_REF} {r_value(cfg, 'R10', '69.8k')}",
-        f"R11 {V_RESET_REF} {GND} {r_value(cfg, 'R11', '10k')}",
-    ]
-    opamp_follower(lines, "U2B", RESET_INJ, V_RESET_REF, cfg)
-
-    lines += [
-        "",
-        "* Peak injection reference: R8=10k VDD->V_Peak_Ref, R9=100k V_Peak_Ref->GNDREF.",
-        "* U2C buffers V_Peak_Ref; U14/R49 later inject it into Vm_Int during Peak_Window.",
-        f"R8 {VDD} {V_PEAK_REF} {r_value(cfg, 'R8', '10k')}",
-        f"R9 {V_PEAK_REF} {GND} {r_value(cfg, 'R9', '100k')}",
-    ]
-    opamp_follower(lines, "U2C_PEAK", V_PEAK_DRIVE, V_PEAK_REF, cfg)
-
-    lines += [
-        "",
-        "* ---- Passive membrane core ----",
-        "* RV2 ground truth: pin1=Net-(R32-Pad1), pin2=Vm_Int, pin3=V_Leak, R32=1k pin1->Vm_Int.",
-        f"* RV2 requested fraction={cfg.rv2_fraction:.3f}, effective fraction={effective_pot_fraction(cfg, 'RV2', cfg.rv2_fraction):.3f}",
-        f"RV2_LOWER {RV2_PIN1} {VM} {rv2_low}",
-        f"R32 {RV2_PIN1} {VM} {r_value(cfg, 'R32', '1k')}",
-        f"RV2_UPPER {V_LEAK} {VM} {rv2_high}",
-        f"* Membrane capacitance selected by {'RV4' if cfg.cmem_mode == 'rv4' else '--cmem'}: nominal={cmem_value_nominal}, actual={cmem_value}",
-        f"CMEM_SELECTED {VM} {GND} {cmem_value} IC={vm_initial_voltage(cfg)}",
-        f"C26 {VM} {GND} {c_value(cfg, 'C26', '100p')}",
-        "* Vm_Int Schottky clamps from schematic: D2 to VDD and D3 to GNDREF.",
-    ]
-    add_model_or_subckt_diode(lines, "D2_VM_HIGH", VM, VDD, cfg.syn_diode_name, False)
-    add_model_or_subckt_diode(lines, "D3_VM_LOW", GND, VM, cfg.syn_diode_name, False)
-
-
-    if cfg.probe == "scope10m":
-        lines += [
-            "* 10x oscilloscope probe approximation",
-            f"RPROBE {VM} {GND} 10Meg",
-            f"CPROBE {VM} {GND} 15p",
-        ]
-    elif cfg.probe == "probe1m":
-        lines += [
-            "* 1 MOhm probe load",
-            f"RPROBE {VM} {GND} 1Meg",
-        ]
-
-    add_external_stimulus(lines, cfg)
-
-def add_external_stimulus(lines: list[str], cfg: SimConfig) -> None:
-    """Add a robust closed-loop equivalent of the U19B stimulus amplifier.
-
-    Schematic topology retained:
-      Stimulus_Ext -> R83 -> V_Stim_Cmd, C37 to ground
-      Vm_Int/V_Stim_Cmd -> R84/R85 -> U19B+
-      V_Leak/V_Stim_Drive -> R86/R87 -> U19B-
-      U19B output V_Stim_Drive -> R88 -> Vm_Int
-
-    The ideal op-amp feedback loop is not solved explicitly in fallback mode,
-    because it can make ngspice fail at the initial timestep. Instead we keep
-    the resistor network as loading and drive V_Stim_Drive from the closed-loop
-    ideal-op-amp equation:
-
-        Vout = (1 + R87/R86) * Vplus - (R87/R86) * V_Leak
-
-    The result is clipped to 0..VDD because the real amplifier cannot exceed its
-    local supply rails.
-    """
-    r86_value = r_value(cfg, 'R86', '200k')
-    r87_value = r_value(cfg, 'R87', '100k')
-    ratio = _to_float_suffix(r87_value) / _to_float_suffix(r86_value)
-    gain_plus = 1.0 + ratio
-
-    lines += [
-        "",
-        "* ---- External stimulus path: U19B closed-loop equivalent ----",
-    ]
-    if cfg.stim_dc is None:
-        lines += [
-            "* No external stimulus source requested; jack node is biased weakly only for SPICE convergence.",
-            f"RSTIM_EXT_BIAS {STIMULUS_EXT} {GND} 1G",
-        ]
-    else:
-        lines.append(f"VSTIM {STIMULUS_EXT} {GND} DC {cfg.stim_dc:.12g}")
-
-    lines += [
-        f"R83 {STIMULUS_EXT} {V_STIM_CMD} {r_value(cfg, 'R83', '1k')}",
-        f"C37 {V_STIM_CMD} {GND} {c_value(cfg, 'C37', '100p')}",
-        f"R84 {VM} {V_STIM_PLUS} {r_value(cfg, 'R84', '100k')}",
-        f"R85 {V_STIM_CMD} {V_STIM_PLUS} {r_value(cfg, 'R85', '200k')}",
-        f"R86 {V_LEAK} {V_STIM_MINUS} {r86_value}",
-        f"R87 {V_STIM_DRIVE} {V_STIM_MINUS} {r87_value}",
-    ]
-    add_closed_loop_driver(
-        lines,
-        "U19B_STIM_CL",
-        V_STIM_DRIVE,
-        f"{gain_plus:.12g}*V({V_STIM_PLUS})-{ratio:.12g}*V({V_LEAK})",
-        cfg,
-        out_res="100",
-    )
-    lines.append(f"R88 {V_STIM_DRIVE} {VM} {r_value(cfg, 'R88', '47k')}")
-    add_esd_cap(lines, "D19", STIMULUS_EXT, cfg)
-
-
-def add_threshold(lines: list[str], cfg: SimConfig) -> None:
-    lines += [
-        "",
-        "* ---- Threshold comparator U6B and AP/spike generation ----",
-        "* Ground truth: R6=24.3k VDD->V_Threshold, R7=10k V_Threshold->GNDREF.",
-        f"R6 {VDD} {V_THRESHOLD} {r_value(cfg, 'R6', '24.3k')}",
-        f"R7 {V_THRESHOLD} {GND} {r_value(cfg, 'R7', '10k')}",
-        "* U6B: INB+=V_Threshold, INB-=Vm_Int, OUTB=/Threshold_Comparator_Out.",
-        f"R33 {V_THRESHOLD} {THRESHOLD_COMP_OUT} {r_value(cfg, 'R33', '220k')}",
-        f"R34 {VDD} {THRESHOLD_COMP_OUT} {r_value(cfg, 'R34', '10k')}",
-    ]
-    tlv7044_oc(lines, "U6B", THRESHOLD_COMP_OUT, VM, V_THRESHOLD, cfg)
-
-    lines += [
-        "* Q1=BSS138: D=AP, G=/Threshold_Comparator_Out, S=GNDREF.",
-        f"R35 {VDD} {AP} {r_value(cfg, 'R35', '22k')}",
-        f"MQ1 {AP} {THRESHOLD_COMP_OUT} {GND} {GND} {cfg.bss138_model}",
-        "* C29=10nF AP->/Rising_AP, R46=100k /Rising_AP->GNDREF, D8=RB521S30T1G to Spike_Pulse.",
-        f"C29 {AP} {RISING_AP} {c_value(cfg, 'C29', '10n')}",
-        f"R46 {RISING_AP} {GND} {r_value(cfg, 'R46', '100k')}",
-    ]
-
-    # KiCad D8 pin 2 = /Rising_AP and pin 1 = Spike_Pulse. For this diode symbol,
-    # pin 2 is anode and pin 1 is cathode, so SPICE order is /Rising_AP -> Spike_Pulse.
-    add_spike_schottky(lines, "D8", RISING_AP, SPIKE_PULSE, cfg)
-    lines.append(f"R47 {SPIKE_PULSE} {GND} {r_value(cfg, 'R47', '1Meg')}")
-
-    lines += [
-        "* D20 external Schottky clamp added to schematic: anode=GNDREF, cathode=Spike_Pulse.",
-        "* It conducts when Spike_Pulse goes below GNDREF and protects U6A INA+.",
-        f"DD20 {GND} {SPIKE_PULSE} {cfg.spike_diode_name}",
-    ]
-
-
-def add_peak_and_reset(lines: list[str], cfg: SimConfig) -> None:
-    lines += [
-        "",
-        "* ---- Peak and reset windows: U6A/U6C and Q3-Q6 ----",
-        "* U6A: INA+=Spike_Pulse, INA-=V_Threshold, OUTA=Peak_Window; R48 pull-up.",
-        "* Fallback open-drain comparator pulls OUT low when V(-) > V(+).",
-        f"R48 {VDD} {PEAK_WINDOW} {r_value(cfg, 'R48', '100k')}",
-    ]
-    tlv7044_oc(lines, "U6A", PEAK_WINDOW, V_THRESHOLD, SPIKE_PULSE, cfg)
-
-    lines += [
-        "",
-        "* Vm peak-injection path: U14 closes when Peak_Window is high.",
-        "* Hardware: U2C buffered V_Peak_Ref -> R49 -> U14 NO/COM -> Vm_Int.",
-        f"R49 {V_PEAK_DRIVE} {PEAK_INJECT_NO} {r_value(cfg, 'R49', '10k')}",
-        f"SU14_PEAK {VM} {PEAK_INJECT_NO} {PEAK_WINDOW} {GND} SW_TS5A3166",
-        "",
-        "* Reset-window timing node: R50=22k VDD->Net-(U6C-INC-), C31=1uF to GNDREF.",
-        f"R50 {VDD} {U6C_MINUS} {r_value(cfg, 'R50', '22k')}",
-        f"C31 {U6C_MINUS} {GND} {c_value(cfg, 'C31', '1u')} IC={reset_timer_initial_voltage(cfg)}",
-        "* Q3=BSS138: D=Reset_Timer_Discharge, G=AP, S=GNDREF; R51=100R from RESET_TIMER_DISCHARGE to U6C_MINUS.",
-        f"MQ3 {RESET_TIMER_DISCHARGE} {AP} {GND} {GND} {cfg.bss138_model}",
-        f"R51 {RESET_TIMER_DISCHARGE} {U6C_MINUS} {r_value(cfg, 'R51', '100')}",
-        "",
-        "* U6C plus input network and reset-window pull-up.",
-        f"R53 {U6C_PLUS} {VDD} {r_value(cfg, 'R53', '27k')}",
-        f"R54 {U6C_PLUS} {RESET_WINDOW} {r_value(cfg, 'R54', '100k')}",
-        f"R55 {U6C_PLUS} {GND} {r_value(cfg, 'R55', '22k')}",
-        f"R52 {VDD} {RESET_WINDOW} {r_value(cfg, 'R52', '100k')}",
-    ]
-    tlv7044_oc(lines, "U6C", RESET_WINDOW, U6C_MINUS, U6C_PLUS, cfg)
-
-    lines += [
-        "",
-        "* Reset-current gate chain Q4/Q5/Q6.",
-        "* Q4=BSS138: D=/Reset_Injection_Enable, G=Peak_Window, S=GNDREF; R56 pull-up.",
-        f"R56 {VDD} {RESET_INJECTION_ENABLE} {r_value(cfg, 'R56', '100k')}",
-        f"MQ4 {RESET_INJECTION_ENABLE} {PEAK_WINDOW} {GND} {GND} {cfg.bss138_model}",
-        "* Q5=BSS138: G=/Reset_Injection_Enable, S=/Reset_Injection_Drive, D=Reset_Ref_Gated.",
-        f"MQ5 {RESET_REF_GATED} {RESET_INJECTION_ENABLE} {RESET_INJ} {RESET_INJ} {cfg.bss138_model}",
-        "* Q6=BSS138: G=Reset_Window, S=Reset_Ref_Gated, D=Reset_Current_Node; R57=10k to Vm_Int.",
-        f"MQ6 {RESET_CURRENT_NODE} {RESET_WINDOW} {RESET_REF_GATED} {RESET_REF_GATED} {cfg.bss138_model}",
-        f"R57 {RESET_CURRENT_NODE} {VM} {r_value(cfg, 'R57', '10k')}",
-        "",
-        "* Spike_Out driver: U6D compares Peak_Window against V_Logic_Mid; R81 pull-up and R82 series output.",
-        "* V_Logic_Mid is approximated with the schematic divider R12/R13 already used by U6D.",
-        f"R12_LOGIC {VDD} {V_LOGIC_MID} {r_value(cfg, 'R12', '100k')}",
-        f"R13_LOGIC {V_LOGIC_MID} {GND} {r_value(cfg, 'R13', '100k')}",
-        f"R81 {VDD} {U6D_OUT} {r_value(cfg, 'R81', '100k')}",
-    ]
-    tlv7044_oc(lines, "U6D_SPIKE_OUT", U6D_OUT, V_LOGIC_MID, PEAK_WINDOW, cfg)
-    lines += [
-        f"R82 {U6D_OUT} {SPIKE_OUT} {r_value(cfg, 'R82', '100')}",
-    ]
-    add_esd_cap(lines, "D18", SPIKE_OUT, cfg)
-
-
-def add_adaptation(lines: list[str], cfg: SimConfig) -> None:
-    rv3_low, rv3_high = split_pot_toleranced(cfg, "RV3", "100k", cfg.rv3_fraction)
-    u1c_ideal_out = "U1C_ideal_out"
-
-    r39_value = r_value(cfg, 'R39', '100k')
-    r40_value = r_value(cfg, 'R40', '200k')
-    u1b_ratio = _to_float_suffix(r40_value) / _to_float_suffix(r39_value)
-    u1b_gain_plus = 1.0 + u1b_ratio
-
-    lines += [
-        "",
-        "* ---- Adaptation path /Vw ----",
-        "* U1B adaptation-shaping amplifier from schematic, implemented as a closed-loop equivalent.",
-        "* This keeps the R37/R38/R39/R40 loading while avoiding an ideal op-amp feedback loop at t=0.",
-        f"R37 {VKICK} {ADAPT_U1B_PLUS} {r_value(cfg, 'R37', '200k')}",
-        f"R38 {ADAPT_U1B_PLUS} {VM} {r_value(cfg, 'R38', '100k')}",
-        f"R39 {V_LEAK} {ADAPT_U1B_MINUS} {r39_value}",
-        f"R40 {ADAPT_U1B_MINUS} {ADAPT_U1B_OUT} {r40_value}",
-    ]
-    add_closed_loop_driver(
-        lines,
-        "U1B_ADAPT_CL",
-        ADAPT_U1B_OUT,
-        f"{u1b_gain_plus:.12g}*V({ADAPT_U1B_PLUS})-{u1b_ratio:.12g}*V({V_LEAK})",
-        cfg,
-        out_res="100",
-    )
-    lines += [
-        f"R41 {ADAPT_U1B_OUT} {ADAPT_U1B_DIODE_A} {r_value(cfg, 'R41', '330k')}",
-    ]
-    add_spike_schottky(lines, "D6", ADAPT_U1B_DIODE_A, VW, cfg)
-
-    lines += [
-        "* U1C is a follower driven from AP: U1C+=AP, U1C-/OUT=Adapt_Kick_Drive.",
-    ]
-    opamp_follower(lines, "U1C", u1c_ideal_out, AP, cfg)
-
-    lines += [
-        "* Model-only U1C output resistance/current-limiting approximation.",
-        "* This prevents the ideal fallback op-amp from injecting unrealistic current into C27.",
-        f"RU1C_OUT {u1c_ideal_out} {ADAPT_KICK_DRIVE} {r_value(cfg, 'RU1C_OUT', '100')}",
-        "* C27=1uF between U1C output and /Vkick; R36=22k /Vkick->GNDREF.",
-        f"C27 {VKICK} {ADAPT_KICK_DRIVE} {c_value(cfg, 'C27', '1u')}",
-        f"R36 {VKICK} {GND} {r_value(cfg, 'R36', '22k')}",
-        "* Diode orientation from KiCad pins: D4 GNDREF->/Vkick, D5 /Vkick->Vw, D7 GNDREF->Vw.",
-    ]
-    add_signal_diode(lines, "D4", GND, VKICK, cfg)
-    add_signal_diode(lines, "D5", VKICK, VW, cfg)
-    add_signal_diode(lines, "D7", GND, VW, cfg)
-
-    lines += [
-        f"C28 {VW} {GND} {c_value(cfg, 'C28', '10u')} IC=0",
-        f"* RV3=100k: pins 1/2=Vw, pin3=Net-(R42-Pad1); requested fraction={cfg.rv3_fraction:.3f}, effective fraction={effective_pot_fraction(cfg, 'RV3', cfg.rv3_fraction):.3f}.",
-        f"RV3_LOWER {VW} {VW} {rv3_low}",
-        f"RV3_UPPER {VW} {RV3_BOTTOM} {rv3_high}",
-        f"R42 {RV3_BOTTOM} {GND} {r_value(cfg, 'R42', '100')}",
-    ]
-    opamp_follower(lines, "U1D", VW_BUFF, VW, cfg)
-
-    lines += [
-        "* Q2=MMBT3904 adaptation current path: R44/R45 base divider, R43 collector to Vm_Int.",
-        f"R44 {VW_BUFF} {ADAPT_BASE} {r_value(cfg, 'R44', '22k')}",
-        f"R45 {ADAPT_BASE} {GND} {r_value(cfg, 'R45', '100k')}",
-        f"Q2 {ADAPT_CURRENT_SINK} {ADAPT_BASE} {GND} {cfg.npn_model}",
-        f"R43 {VM} {ADAPT_CURRENT_SINK} {r_value(cfg, 'R43', '10k')}",
-    ]
-
-
-
-
-def add_synapse_input(
-    lines: list[str],
-    idx: int,
-    spike_node: str,
-    input_node: str,
-    switch_ctrl: str,
-    delay: str,
-    width: str,
-    period: str,
-    cfg: SimConfig,
-) -> None:
-    """Add one Syn*_Spike jack input, clamp, and TS5A3166 control node."""
-    r_spike = {1: "R66", 2: "R70", 3: "R74", 4: "R78"}[idx]
-    r_ctrl = {1: "R64", 2: "R68", 3: "R72", 4: "R76"}[idx]
-    r_pull = {1: "R65", 2: "R69", 3: "R73", 4: "R77"}[idx]
-    d_hi = {1: "D10", 2: "D12", 3: "D14", 4: "D16"}[idx]
-    d_lo = {1: "D11", 2: "D13", 3: "D15", 4: "D17"}[idx]
-
-    lines += [
-        f"* Syn{idx} spike input: jack net -> 22k -> clamp node -> 1k -> TS5A3166 IN.",
-        f"VSYN{idx} {spike_node} {GND} {synapse_pulse(delay, width, period, cfg.syn_amp, cfg.syn_rise, cfg.syn_fall)}",
-        f"{r_spike} {spike_node} {input_node} {r_value(cfg, r_spike, '22k')}",
-        f"{r_pull} {input_node} {GND} {r_value(cfg, r_pull, '100k')}",
-    ]
-    # BAT54 input clamps from the KiCad netlist:
-    # D10/D12/D14/D16: anode=input node, cathode=VDD.
-    # D11/D13/D15/D17: anode=GNDREF, cathode=input node.
-    add_model_or_subckt_diode(lines, d_hi, input_node, VDD, cfg.syn_diode_name, False)
-    add_model_or_subckt_diode(lines, d_lo, GND, input_node, cfg.syn_diode_name, False)
-    lines.append(f"{r_ctrl} {input_node} {switch_ctrl} {r_value(cfg, r_ctrl, '1k')}")
-
-
-def add_synapse_set_voltage(
-    lines: list[str],
-    idx: int,
-    rv_ref: str,
-    raw_node: str,
-    set_node: str,
-    fraction: float,
-    cfg: SimConfig,
-) -> None:
-    """Add RV6..RV9 set-voltage pot and U3 follower."""
-    low, high = split_pot_toleranced(cfg, rv_ref, "100k", fraction)
-    top_node = V_LEAK_REF_MAX_RAW if cfg.syn_ref_mode == "legacy_direct" else V_LEAK_REF_MAX
-    u3_name = {1: "U3B", 2: "U3C", 3: "U3D", 4: "U3A"}[idx]
-    lines += [
-        f"* {rv_ref}=100k: pin1=GNDREF, pin2=Syn{idx} set wiper, pin3={top_node}.",
-        f"* Syn{idx} set requested fraction={fraction:.3f}, effective fraction={effective_pot_fraction(cfg, rv_ref, fraction):.3f}",
-        f"{rv_ref}_LOW {raw_node} {GND} {low}",
-        f"{rv_ref}_HIGH {top_node} {raw_node} {high}",
-    ]
-    opamp_follower(lines, u3_name, set_node, raw_node, cfg)
-
-
-def add_synapse_switch_path(
-    lines: list[str],
-    idx: int,
-    set_node: str,
-    no_node: str,
-    switch_ctrl: str,
-    cfg: SimConfig,
-) -> None:
-    """Add TS5A3166 ideal switch and 22k injection resistor to V_Syn_State."""
-    uref = {1: "U15", 2: "U16", 3: "U17", 4: "U18"}[idx]
-    r_inject = {1: "R63", 2: "R67", 3: "R71", 4: "R75"}[idx]
-    lines += [
-        f"* {uref}=TS5A3166: COM=V_Syn{idx}_Set, NO=Net-({uref}-NO), IN=Syn{idx} control.",
-        f"S{uref} {set_node} {no_node} {switch_ctrl} {GND} SW_TS5A3166",
-        f"{r_inject} {no_node} {V_SYN_STATE} {r_value(cfg, r_inject, '22k')}",
-    ]
-
-
-def add_synaptic_circuits(lines: list[str], cfg: SimConfig) -> None:
-    """Add the synaptic state circuit and enabled Syn1..Syn4 spike-gated set paths.
-
-    This models the intended functional path from the KiCad netlist:
-      V_Leak_Ref_Max_Raw -> U2A buffer -> V_Leak_Ref_Max -> RV1/RV6..RV9 pin 3
-      Syn*_Spike -> clamp/filter -> TS5A3166 -> V_Syn*_Set -> 22k -> V_Syn_State
-      V_Syn_State -> U2D state buffer -> R80 -> Vm_Int
-
-    The updated netlist has no separate V_Syn_Ref node. U2A output/inverting
-    pins are the global V_Leak_Ref_Max rail, and the raw divider node is named
-    V_Leak_Ref_Max_Raw. The state-buffer net around U2 pins 12/13/14 is still
-    kept in the previously intended follower direction V_Syn_State -> V_Syn_Drive
-    -> R80 -> Vm_Int, because the exported netlist still appears to tie
-    output/inverting together and V_Syn_State to the non-inverting input.
-    """
-    if not synapse_enabled(cfg):
-        return
-
-    rv5_to_vleak = pot_upper_segment("100k", effective_pot_fraction(cfg, "RV5", cfg.rv5_fraction))
-    rv5_to_vleak = format_spice_number(_to_float_suffix(rv5_to_vleak) * tolerance_factor(cfg, "RV5_total", cfg.pot_tol_pct))
-
-    lines += [
-        "",
-        "* ---- Synaptic state and spike-gated input circuit ----",
-        "* C36/R79/RV5 form the synaptic state memory/decay path.",
-        f"C36 {V_SYN_STATE} {GND} {c_value(cfg, 'C36', '220n')} IC={syn_state_initial_voltage(cfg)}",
-        f"R79 {V_SYN_STATE} {RV5_DECAY} {r_value(cfg, 'R79', '10k')}",
-        f"RV5_DECAY_RES {RV5_DECAY} {V_LEAK} {rv5_to_vleak}",
-        "* Intended U2D follower: V_Syn_State -> V_Syn_Drive; R80 injects into Vm_Int.",
-    ]
-    opamp_follower(lines, "U2D_SYN", V_SYN_DRIVE, V_SYN_STATE, cfg)
-    lines.append(f"R80 {V_SYN_DRIVE} {VM} {r_value(cfg, 'R80', '47k')}")
-
-    if cfg.syn_ref_mode == "legacy_direct":
-        lines += [
-            "",
-            "* LEGACY/COMPARISON ONLY: RV6..RV9 pin 3 use the raw divider node directly.",
-            "* This bypasses U2A and does not match the 2026-06-10 KiCad netlist.",
-        ]
-    else:
-        lines += [
-            "",
-            "* Current KiCad reference connectivity already modeled in the passive/reference block:",
-            "* R4/R5 -> V_Leak_Ref_Max_Raw -> U2A buffer -> V_Leak_Ref_Max.",
-            "* RV6, RV7, RV8 and RV9 pin 3 are connected to buffered V_Leak_Ref_Max.",
-        ]
-
-    # Set-voltage buffers exist for all four channels because RV6..RV9 load the buffered reference rail.
-    add_synapse_set_voltage(lines, 1, "RV6", SYN1_SET_RAW, V_SYN1_SET, cfg.rv6_fraction, cfg)
-    add_synapse_set_voltage(lines, 2, "RV7", SYN2_SET_RAW, V_SYN2_SET, cfg.rv7_fraction, cfg)
-    add_synapse_set_voltage(lines, 3, "RV8", SYN3_SET_RAW, V_SYN3_SET, cfg.rv8_fraction, cfg)
-    add_synapse_set_voltage(lines, 4, "RV9", SYN4_SET_RAW, V_SYN4_SET, cfg.rv9_fraction, cfg)
-
-    if cfg.syn1_enable:
-        add_synapse_input(lines, 1, SYN1_SPIKE, SYN1_IN, U15_IN, cfg.syn1_delay, cfg.syn1_width, cfg.syn1_period, cfg)
-        add_synapse_switch_path(lines, 1, V_SYN1_SET, SYN1_NO, U15_IN, cfg)
-    if cfg.syn2_enable:
-        add_synapse_input(lines, 2, SYN2_SPIKE, SYN2_IN, U16_IN, cfg.syn2_delay, cfg.syn2_width, cfg.syn2_period, cfg)
-        add_synapse_switch_path(lines, 2, V_SYN2_SET, SYN2_NO, U16_IN, cfg)
-    if cfg.syn3_enable:
-        add_synapse_input(lines, 3, SYN3_SPIKE, SYN3_IN, U17_IN, cfg.syn3_delay, cfg.syn3_width, cfg.syn3_period, cfg)
-        add_synapse_switch_path(lines, 3, V_SYN3_SET, SYN3_NO, U17_IN, cfg)
-    if cfg.syn4_enable:
-        add_synapse_input(lines, 4, SYN4_SPIKE, SYN4_IN, U18_IN, cfg.syn4_delay, cfg.syn4_width, cfg.syn4_period, cfg)
-        add_synapse_switch_path(lines, 4, V_SYN4_SET, SYN4_NO, U18_IN, cfg)
-
-def add_vm_external_output(lines: list[str], cfg: SimConfig) -> None:
-    """Add U8/TLV9001 Vm_Ext output buffer with display-spike synthesis.
-
-    Latest KiCad display path:
-      Vm_Int -> R90=100k -> Vm_Display_In
-      Vm_Display_In -> C38=22n -> GNDREF
-      V_Peak_Drive -> R91=10k -> U20 NO
-      U20 COM -> Vm_Display_In
-      U20 IN  -> Peak_Window
-      D21 clamps Vm_Display_In to VDD, D22 clamps Vm_Display_In to GNDREF
-      Vm_Display_In -> U8 non-inverting input -> R1/C14 -> Vm_Ext
-
-    The key modelling intention is that Vm_Int remains the internal LIF
-    computation node, while Vm_Ext becomes a user-facing/display trace that
-    follows Vm_Int and receives an additional short spike-shaped pulse.
-
-    U8 is still represented as a bounded closed-loop equivalent rather than an
-    explicit ideal op-amp feedback loop, which keeps ngspice robust.
-    """
-    r2_value = r_value(cfg, 'R2', '10k')
-    r3_value = r_value(cfg, 'R3', '100k')
-    vmext_gain = 1.0 + _to_float_suffix(r2_value) / _to_float_suffix(r3_value)
-
-    lines += [
-        "",
-        "* ---- Vm_Ext display-spike synthesis and live-output driver ----",
-        "* New hardware: Vm_Int no longer drives U8 IN+ directly.",
-        "* R90 lets Vm_Display_In follow the internal membrane node without strongly loading Vm_Int.",
-        f"R90 {VM_DISPLAY_IN} {VM} {r_value(cfg, 'R90', '100k')}",
-        f"C38 {VM_DISPLAY_IN} {GND} {c_value(cfg, 'C38', '22n')} IC={vm_initial_voltage(cfg)}",
-        "* Display-node BAT54WS clamps: D21 high clamp to VDD, D22 low clamp to GNDREF.",
-    ]
-    add_model_or_subckt_diode(lines, "D21_DISPLAY_HIGH", VM_DISPLAY_IN, VDD, cfg.syn_diode_name, False)
-    add_model_or_subckt_diode(lines, "D22_DISPLAY_LOW", GND, VM_DISPLAY_IN, cfg.syn_diode_name, False)
-
-    if cfg.stage in {"threshold_reset", "threshold_reset_adapt"}:
-        lines += [
-            "* U20 display-spike switch: Peak_Window controls a short charge from buffered V_Peak_Drive.",
-            "* Peak_Window is used only as the switch control; V_Peak_Drive supplies the display-spike energy.",
-            f"R91 {V_PEAK_DRIVE} {DISPLAY_SPIKE_NO} {r_value(cfg, 'R91', '10k')}",
-            f"SU20_DISPLAY_SPIKE {VM_DISPLAY_IN} {DISPLAY_SPIKE_NO} {PEAK_WINDOW} {GND} SW_TS5A3166",
-        ]
-    else:
-        lines += [
-            "* Display-spike switch U20 is omitted in passive/threshold-only stages because Peak_Window",
-            "* is not instantiated in those reduced models. Vm_Display_In still follows Vm_Int through R90/C38.",
-        ]
-
-    lines += [
-        "",
-        "* U8 TLV9001 live-output buffer, closed-loop equivalent.",
-        "* Real U8 V+ is V_Boost; behavioural model powers it from VDD because boost is out of scope.",
-        f"R2 {VM_FB} {VM_DRV} {r2_value}",
-        f"R3 {GND} {VM_FB} {r3_value}",
-    ]
-    add_closed_loop_driver(
-        lines,
-        "U8_VM_EXT_CL",
-        VM_DRV,
-        f"{vmext_gain:.12g}*V({VM_DISPLAY_IN})",
-        cfg,
-        out_res="25",
-    )
-    lines += [
-        f"R1 {VM_DRV} {VM_EXT} {r_value(cfg, 'R1', '220')}",
-        f"C14 {VM_EXT} {GND} {c_value(cfg, 'C14', '100p')}",
-    ]
-    add_esd_cap(lines, "D1", VM_EXT, cfg)
-
-
-
-def build_spice_deck(cfg: SimConfig, *, for_cli: bool = False, csv_path: Path | None = None) -> str:
-    lines = add_header(cfg)
-    add_references_and_passive_vm(lines, cfg)
-    add_vm_external_output(lines, cfg)
-
-    if cfg.stage in {"threshold", "threshold_reset", "threshold_reset_adapt"}:
-        add_threshold(lines, cfg)
-    if cfg.stage in {"threshold_reset", "threshold_reset_adapt"}:
-        add_peak_and_reset(lines, cfg)
-    if cfg.stage == "threshold_reset_adapt":
-        add_adaptation(lines, cfg)
-    if synapse_enabled(cfg):
-        add_synaptic_circuits(lines, cfg)
-
-    traces = traces_for_config(cfg)
-    lines += [
-        "",
-        "* ---- Analysis ----",
+        "* -----------------------------------------------------------------------------",
+        "* Analysis",
+        "* -----------------------------------------------------------------------------",
         f".tran {cfg.tstep} {cfg.tstop} 0 {cfg.maxstep} uic",
-        ".save " + " ".join(f"V({trace.node})" for trace in traces),
+        ".save " + " ".join(f"V({node(net_name)})" for net_name in traces),
     ]
-
-    if for_cli:
-        assert csv_path is not None
-        csv = str(csv_path.resolve()).replace("\\", "/")
-        vector_expr = " ".join(f"v({trace.node})" for trace in traces)
+    if csv_path is not None:
+        csv_name = str(csv_path.resolve()).replace("\\", "/")
         lines += [
             ".control",
             "run",
-            f"wrdata {csv} {vector_expr}",
+            f"wrdata {csv_name} " + " ".join(f"v({node(net_name)})" for net_name in traces),
             "quit",
             ".endc",
         ]
-
     lines.append(".end")
     return "\n".join(lines) + "\n"
 
 
 # -----------------------------------------------------------------------------
-# Simulation runners
+# Coverage report
 # -----------------------------------------------------------------------------
 
 
-def run_with_pyspice(deck_path: Path, cfg: SimConfig) -> pd.DataFrame:
-    """Run using PySpice/ngspice and return selected traces as a DataFrame."""
-    try:
-        import PySpice.Logging.Logging as Logging
-        from PySpice.Spice import Simulation
-        from PySpice.Spice.Parser import SpiceParser
-    except Exception as exc:  # pragma: no cover
-        raise RuntimeError(
-            "PySpice is not importable. Install it with `pip install PySpice`, "
-            "or rerun with --backend ngspice-cli."
-        ) from exc
+def model_status(ref: str, comp: Component) -> tuple[str, str]:
+    if re.fullmatch(r"R\d+", ref):
+        return "electrical", "fixed resistor instantiated from netlist"
+    if re.fullmatch(r"RV\d+", ref):
+        return "electrical", "potentiometer split into two variable resistances"
+    if re.fullmatch(r"C\d+", ref):
+        return "electrical", "capacitor instantiated from netlist"
+    if re.fullmatch(r"L\d+", ref):
+        return "electrical", "inductor instantiated from netlist"
+    if re.fullmatch(r"D\d+", ref):
+        if ref in {"D1", "D18", "D19"}:
+            return "behavioural", "ESD protector approximated as capacitance plus leakage"
+        if ref == "D9":
+            return "behavioural", "RGB LED approximated with three generic LED diodes"
+        return "electrical", "diode/clamp instantiated with generic fallback model"
+    if re.fullmatch(r"Q\d+", ref):
+        return "behavioural", "BSS138/MMBT3904 generic transistor model"
+    if ref in {"U1", "U2", "U3", "U8", "U22"}:
+        return "behavioural", "op-amp channels modelled as followers or rail-limited amplifiers"
+    if ref in {"U4", "U5", "U6", "U19"}:
+        return "behavioural", "comparator channels modelled as smooth open-drain sinks with schematic pull-ups"
+    if ref in {f"U{i}" for i in range(9, 21)}:
+        return "behavioural", "TS5A3166 analogue switch model"
+    if ref == "U7":
+        return "behavioural", "TPS610995 boost converter approximated as ideal boosted rail"
+    if ref == "U21":
+        return "behavioural", "REF3020 approximated as ideal 2.048 V reference bounded by VDD"
+    if ref == "BT1":
+        return "behavioural", "coin-cell source with configurable internal resistance"
+    if ref == "SW1":
+        return "behavioural", "power switch approximated as configurable ON resistance"
+    if ref.startswith("J"):
+        return "terminal", "connector represented by its named external nets"
+    if ref.startswith("H"):
+        return "mechanical", "mounting hole; no electrical model required"
+    return "unclassified", "listed but no explicit model rule matched"
 
-    Logging.setup_logging()
-    Simulation.CircuitSimulator.DEFAULT_SIMULATOR = "ngspice-subprocess"
 
-    parser = SpiceParser(path=str(deck_path))
-    circuit = parser.build_circuit(ground=0)
-    simulator = circuit.simulator(temperature=25, nominal_temperature=25)
-
-    analysis = simulator.transient(
-        step_time=_to_float_suffix(cfg.tstep),
-        end_time=_to_float_suffix(cfg.tstop),
-    )
-
-    data = {"time_s": np.array(analysis.time, dtype=float)}
-    for trace in traces_for_config(cfg):
-        try:
-            data[trace.key] = np.array(analysis.nodes[trace.node.lower()], dtype=float)
-        except Exception:
-            data[trace.key] = np.full_like(data["time_s"], np.nan, dtype=float)
-    return pd.DataFrame(data)
+def write_coverage_report(design: Design, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["ref", "value", "footprint", "status", "model_note", "pins"])
+        for ref in sorted(design.components, key=component_sort_key):
+            comp = design.components[ref]
+            status, note = model_status(ref, comp)
+            pins = "; ".join(f"{pin}:{net}" for pin, net in sorted(comp.pins.items()))
+            writer.writerow([ref, comp.value, comp.footprint, status, note, pins])
 
 
-def run_with_ngspice_cli(deck_path: Path, csv_path: Path, cfg: SimConfig) -> pd.DataFrame:
-    ngspice_exe = find_ngspice_binary(cfg.ngspice_binary)
-    log_path = csv_path.with_suffix(".ngspice.log")
+# -----------------------------------------------------------------------------
+# ngspice execution and plotting
+# -----------------------------------------------------------------------------
 
-    print(f"Using ngspice binary: {ngspice_exe}")
-    print(f"ngspice log file:     {log_path}")
 
-    if csv_path.exists():
-        csv_path.unlink()
-    if log_path.exists():
-        log_path.unlink()
+def find_ngspice_binary(requested: str) -> str:
+    requested = requested.strip().strip('"')
+    if requested and requested.lower() not in {"auto", "ngspice", "ngspice.exe"}:
+        if Path(requested).is_file():
+            return requested
+        found = shutil.which(requested)
+        if found:
+            return found
+    for candidate in ["ngspice", "ngspice.exe"]:
+        found = shutil.which(candidate)
+        if found:
+            return found
+    common = [
+        Path(r"C:\Spice64\bin\ngspice.exe"),
+        Path(r"C:\Program Files\ngspice\bin\ngspice.exe"),
+        Path(r"C:\Program Files\KiCad\bin\ngspice.exe"),
+        Path(r"C:\Program Files\KiCad\10.0\bin\ngspice.exe"),
+    ]
+    for path in common:
+        if path.is_file():
+            return str(path)
+    raise FileNotFoundError("ngspice was not found. Install ngspice or pass --ngspice-binary <path>.")
 
-    proc = subprocess.run(
-        [ngspice_exe, "-b", "-o", str(log_path), str(deck_path)],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
 
-    stdout_text = proc.stdout or ""
-    stderr_text = proc.stderr or ""
-    log_text = log_path.read_text(errors="replace") if log_path.exists() else ""
-
-    if proc.returncode != 0:
-        raise RuntimeError(
-            f"ngspice failed with exit code {proc.returncode}\n\n"
-            f"Command:\n  {ngspice_exe} -b -o {log_path} {deck_path}\n\n"
-            f"STDOUT:\n{stdout_text}\n\nSTDERR:\n{stderr_text}\n\nNGSPICE LOG:\n{log_text}\n\n"
-            f"SPICE deck was:\n{deck_path}"
-        )
-
-    if not csv_path.exists():
-        raise FileNotFoundError(
-            f"ngspice ran but did not create the expected output file:\n{csv_path}\n\n"
-            f"Command:\n  {ngspice_exe} -b -o {log_path} {deck_path}\n\n"
-            f"STDOUT:\n{stdout_text}\n\nSTDERR:\n{stderr_text}\n\nNGSPICE LOG:\n{log_text}"
-        )
-
+def read_wrdata(csv_path: Path, traces: list[str]):
+    if pd is None:
+        raise RuntimeError("pandas is required to read ngspice wrdata output")
     raw = pd.read_csv(csv_path, sep=r"\s+", header=None, comment="*")
-    traces = traces_for_config(cfg)
-
     out = pd.DataFrame()
     out["time_s"] = raw.iloc[:, 0].astype(float)
-
     value_cols = list(range(1, raw.shape[1], 2))
-    if len(value_cols) < len(traces):
-        raise ValueError(
-            f"ngspice output has {len(value_cols)} value columns, but {len(traces)} traces were requested."
-        )
-
-    for trace, col in zip(traces, value_cols[: len(traces)]):
-        out[trace.key] = raw.iloc[:, col].astype(float)
-
+    for net_name, col in zip(traces, value_cols):
+        out[net_name] = raw.iloc[:, col].astype(float)
     return out
 
 
-# -----------------------------------------------------------------------------
-# Plotting and diagnostics
-# -----------------------------------------------------------------------------
-
-
-def plot_results(df: pd.DataFrame, cfg: SimConfig, png_path: Path) -> None:
-    """Plot every trace that will also be printed by print_diagnostics()."""
-    traces = traces_for_config(cfg)
+def plot_core(df, png_path: Path, title_suffix: str = "") -> None:
+    """Generate the full multi-trace validation plot for one run."""
+    if plt is None:
+        return
     t_ms = df["time_s"].to_numpy() * 1e3
-
+    plot_names = [
+        "Vm_Int", "Vm_Ext", "V_Threshold", "AP", "Spike_Pulse", "Peak_Window", "Reset_Window",
+        "V_Syn_State", "/V_Syn_Drive", "V_Stim_Drive", "Vw",
+    ]
     plt.figure(figsize=(13, 7))
-
-    for trace in traces:
-        if trace.key not in df or df[trace.key].isna().all():
-            continue
-        linewidth = 2.6 if trace.key in {"VM_EXT", "VM"} else 1.2
-        alpha = 1.0 if trace.key in {"VM_EXT", "VM"} else 0.85
-        plt.plot(t_ms, df[trace.key].to_numpy(), label=trace.label, linewidth=linewidth, alpha=alpha)
-
+    for name in plot_names:
+        if name in df:
+            plt.plot(t_ms, df[name].to_numpy(), label=name)
     plt.xlabel("Time (ms)")
     plt.ylabel("Voltage (V)")
-    supply_label = f"{cfg.supply_mode}, {cfg.startup_mode}"
-    plt.title(
-        f"LIFeling Vm - {cfg.stage}, {selected_cmem(cfg)}, "
-        f"RV1={cfg.rv1_fraction:.2f}, RV2={cfg.rv2_fraction:.2f}, RV3={cfg.rv3_fraction:.2f}, "
-        f"{supply_label}"
-    )
+    title = "LIFeling updated schematic behavioural model"
+    if title_suffix:
+        title += f" — {title_suffix}"
+    plt.title(title)
     plt.grid(True, alpha=0.3)
     plt.legend(loc="best", fontsize="small", ncol=2)
     plt.tight_layout()
     plt.savefig(png_path, dpi=180)
     plt.close()
 
-def plot_vm_only(df: pd.DataFrame, cfg: SimConfig, png_path: Path) -> None:
-    """Generate a clean comparison plot with both Vm_Int and Vm_Ext.
 
-    Vm_Int is the internal LIF computation node. Vm_Ext is the physical live
-    output after the display-spike synthesis and U8 output stage. Plotting both
-    together makes it clear how much of the visible spike is part of the
-    user-facing display overlay versus the internal membrane computation.
+def plot_vm_only(df, png_path: Path, title_suffix: str = "") -> None:
+    """Generate the companion plot containing only Vm_Int and Vm_Ext.
+
+    The validation suite intentionally writes this second plot for every normal
+    plot. Vm_Int is the internal computation node; Vm_Ext is the user-facing
+    live/display output after the display-spike overlay and U8 output driver.
     """
+    if plt is None:
+        return
     t_ms = df["time_s"].to_numpy() * 1e3
-
     plt.figure(figsize=(13, 5))
-
     plotted = False
-    if "VM" in df and not df["VM"].isna().all():
-        plt.plot(t_ms, df["VM"].to_numpy(), label="Vm_Int", linewidth=2.2, alpha=0.95)
+    if "Vm_Int" in df:
+        plt.plot(t_ms, df["Vm_Int"].to_numpy(), label="Vm_Int", linewidth=2.2)
         plotted = True
-    if "VM_EXT" in df and not df["VM_EXT"].isna().all():
-        plt.plot(t_ms, df["VM_EXT"].to_numpy(), label="Vm_Ext", linewidth=2.8, alpha=0.95)
+    if "Vm_Ext" in df:
+        plt.plot(t_ms, df["Vm_Ext"].to_numpy(), label="Vm_Ext", linewidth=2.4)
         plotted = True
-
     if not plotted:
-        plt.plot(t_ms, np.zeros_like(t_ms), label="No Vm trace available", linewidth=2.0)
-
+        plt.plot(t_ms, np.zeros_like(t_ms), label="Vm traces not saved")
     plt.xlabel("Time (ms)")
     plt.ylabel("Voltage (V)")
-    tol_label = ""
-    if cfg.tol_mode == "random":
-        tol_label = f", tol seed={cfg.tol_seed}"
-
-    if cfg.supply_mode == "coin":
-        supply_label = f", coin {cfg.vbat}V/{cfg.rbat}ohm, {cfg.startup_mode}"
-    else:
-        supply_label = f", ideal {cfg.vdd}V, {cfg.startup_mode}"
-
-    plt.title(
-        f"LIFeling Vm comparison (Vm_Int and Vm_Ext) - {cfg.stage}, {selected_cmem(cfg)}, "
-        f"RV1={cfg.rv1_fraction:.2f}, RV2={cfg.rv2_fraction:.2f}, RV3={cfg.rv3_fraction:.2f}"
-        f"{supply_label}{tol_label}"
-    )
-
-    # Fixed display range for easy comparison between simulations.
-    plt.ylim(0, 3)
-    plt.yticks(np.arange(0, 3.1, 0.5))
-
+    title = "LIFeling Vm_Int / Vm_Ext"
+    if title_suffix:
+        title += f" — {title_suffix}"
+    plt.title(title)
     plt.grid(True, alpha=0.3)
     plt.legend(loc="best")
     plt.tight_layout()
@@ -2050,791 +1115,908 @@ def plot_vm_only(df: pd.DataFrame, cfg: SimConfig, png_path: Path) -> None:
     plt.close()
 
 
-
-def print_node_summary(df: pd.DataFrame, key: str, display_name: str, t: np.ndarray) -> None:
-    if key not in df or df[key].isna().all():
-        return
-
-    y = df[key].to_numpy()
-    print(f"{display_name} start = {y[0]:.6g} V")
-    print(f"{display_name} end   = {y[-1]:.6g} V")
-    print(f"{display_name} min   = {np.nanmin(y):.6g} V")
-    print(f"{display_name} max   = {np.nanmax(y):.6g} V")
-
-    dy = np.abs(np.diff(y))
-    if len(dy) > 0 and np.nanmax(dy) > 0.1:
-        i = int(np.nanargmax(dy)) + 1
-        print(f"Largest {display_name} transition near t = {t[i] * 1e3:.6g} ms")
+def _analysis_window(df, cfg: SimConfig):
+    t = df["time_s"].to_numpy()
+    if cfg.ignore_start_ms <= 0:
+        return t, np.ones_like(t, dtype=bool)
+    return t, t >= cfg.ignore_start_ms / 1000.0
 
 
-def count_rising_edges(y: np.ndarray, threshold: float) -> int:
+def _rising_edge_count(y: np.ndarray, threshold: float = 1.0) -> int:
     if len(y) < 2:
         return 0
     above = y >= threshold
     return int(np.sum((~above[:-1]) & above[1:]))
 
 
-def analysis_mask(t: np.ndarray, cfg: SimConfig) -> np.ndarray:
-    """Mask for diagnostics after the requested startup-ignore interval."""
-    if cfg.ignore_start_ms <= 0:
-        return np.ones_like(t, dtype=bool)
-    return t >= cfg.ignore_start_ms / 1000.0
-
-
-def first_crossing_index(y: np.ndarray, ref: np.ndarray, mask: np.ndarray | None = None) -> int | None:
-    if mask is None:
-        idx = np.where(y >= ref)[0]
-    else:
-        idx = np.where((y >= ref) & mask)[0]
+def _first_crossing_ms(t: np.ndarray, a: np.ndarray, b: np.ndarray, mask: np.ndarray) -> float:
+    idx = np.where((a >= b) & mask)[0]
     if len(idx) == 0:
-        return None
-    return int(idx[0])
+        return float("nan")
+    return float(t[int(idx[0])] * 1e3)
 
 
-def crossing_count_after_mask(t: np.ndarray, y: np.ndarray, ref: np.ndarray, cfg: SimConfig) -> int:
-    mask = analysis_mask(t, cfg)
-    if not np.any(mask):
-        return 0
-    diff = y[mask] - ref[mask]
-    return count_rising_edges(diff, 0.0)
-
-
-def edge_count_after_mask(t: np.ndarray, y: np.ndarray, threshold: float, cfg: SimConfig) -> int:
-    mask = analysis_mask(t, cfg)
-    if not np.any(mask):
-        return 0
-    return count_rising_edges(y[mask], threshold)
-
-
-def _fmt_optional_ms(value_s: float | None) -> str:
-    """Format an optional time value in milliseconds for console output."""
-    if value_s is None or not np.isfinite(value_s):
-        return "n/a"
-    return f"{value_s * 1e3:.6g} ms"
-
-
-def _interp_threshold_time(t0: float, t1: float, y0: float, y1: float, threshold: float) -> float:
-    """Linearly interpolate the threshold-crossing time between two samples."""
-    if y1 == y0 or not np.isfinite(y0) or not np.isfinite(y1):
-        return float(t1)
-    frac = (threshold - y0) / (y1 - y0)
-    if not np.isfinite(frac):
-        return float(t1)
-    frac = float(np.clip(frac, 0.0, 1.0))
-    return float(t0 + frac * (t1 - t0))
-
-
-def digital_pulse_timing_stats(
-    t: np.ndarray,
-    y: np.ndarray,
-    cfg: SimConfig,
-    *,
-    threshold: float = 1.0,
-) -> dict[str, object]:
-    """Return timing statistics for a logic-like waveform after ignore_start_ms.
-
-    This is intended for comparator/window signals such as Reset_Window. It avoids
-    over-interpreting the final sample of a transient by reporting duty cycle,
-    last edge times, closed pulse widths, and whether the last pulse is still
-    open at the simulation endpoint.
-    """
-    mask = analysis_mask(t, cfg)
-    idx = np.flatnonzero(mask)
-
-    empty = {
-        "threshold": threshold,
-        "analysis_start_s": None,
-        "analysis_end_s": None,
-        "duration_s": 0.0,
-        "high_at_start": False,
-        "high_at_end": False,
-        "state_at_end": "UNKNOWN",
-        "rise_count": 0,
-        "fall_count": 0,
-        "last_rise_s": None,
-        "last_fall_s": None,
-        "open_high_duration_s": None,
-        "low_duration_since_last_fall_s": None,
-        "duty_cycle": float("nan"),
-        "closed_pulse_count": 0,
-        "pulse_width_mean_s": float("nan"),
-        "pulse_width_median_s": float("nan"),
-        "pulse_width_max_s": float("nan"),
-        "pulse_width_min_s": float("nan"),
-    }
-
+def _edge_period_ms(t: np.ndarray, y: np.ndarray, threshold: float, mask: np.ndarray) -> float:
+    if len(y) < 2:
+        return float("nan")
+    above = y >= threshold
+    idx = np.where((~above[:-1]) & above[1:] & mask[1:])[0] + 1
     if len(idx) < 2:
-        return empty
-
-    tw = np.asarray(t[idx], dtype=float)
-    yw = np.asarray(y[idx], dtype=float)
-    valid = np.isfinite(tw) & np.isfinite(yw)
-    tw = tw[valid]
-    yw = yw[valid]
-    if len(tw) < 2:
-        return empty
-
-    above = yw >= threshold
-    rise_locs = np.where((~above[:-1]) & above[1:])[0] + 1
-    fall_locs = np.where(above[:-1] & (~above[1:]))[0] + 1
-
-    rise_times = np.array(
-        [
-            _interp_threshold_time(tw[i - 1], tw[i], yw[i - 1], yw[i], threshold)
-            for i in rise_locs
-        ],
-        dtype=float,
-    )
-    fall_times = np.array(
-        [
-            _interp_threshold_time(tw[i - 1], tw[i], yw[i - 1], yw[i], threshold)
-            for i in fall_locs
-        ],
-        dtype=float,
-    )
-
-    total_time = float(tw[-1] - tw[0])
-    if total_time > 0:
-        interval_dt = np.diff(tw)
-        high_time = float(np.sum(interval_dt[above[:-1]]))
-        duty_cycle = high_time / total_time
-    else:
-        duty_cycle = float("nan")
-
-    closed_widths: list[float] = []
-    fall_cursor = 0
-    for r_loc, r_time in zip(rise_locs, rise_times):
-        while fall_cursor < len(fall_locs) and fall_locs[fall_cursor] <= r_loc:
-            fall_cursor += 1
-        if fall_cursor >= len(fall_locs):
-            break
-        width = float(fall_times[fall_cursor] - r_time)
-        if width >= 0:
-            closed_widths.append(width)
-        fall_cursor += 1
-
-    high_at_start = bool(above[0])
-    high_at_end = bool(above[-1])
-    if high_at_end:
-        if len(rise_locs):
-            open_start = float(rise_times[-1])
-        elif high_at_start:
-            open_start = float(tw[0])
-        else:
-            open_start = float("nan")
-        open_duration = float(tw[-1] - open_start) if np.isfinite(open_start) else None
-        low_since_fall = None
-    else:
-        open_duration = None
-        if len(fall_times):
-            low_since_fall = float(tw[-1] - fall_times[-1])
-        elif not high_at_start:
-            low_since_fall = total_time
-        else:
-            low_since_fall = None
-
-    widths = np.asarray(closed_widths, dtype=float)
-    if len(widths):
-        width_mean = float(np.mean(widths))
-        width_median = float(np.median(widths))
-        width_max = float(np.max(widths))
-        width_min = float(np.min(widths))
-    else:
-        width_mean = width_median = width_max = width_min = float("nan")
-
-    return {
-        "threshold": threshold,
-        "analysis_start_s": float(tw[0]),
-        "analysis_end_s": float(tw[-1]),
-        "duration_s": total_time,
-        "high_at_start": high_at_start,
-        "high_at_end": high_at_end,
-        "state_at_end": "HIGH" if high_at_end else "LOW",
-        "rise_count": int(len(rise_times)),
-        "fall_count": int(len(fall_times)),
-        "last_rise_s": float(rise_times[-1]) if len(rise_times) else None,
-        "last_fall_s": float(fall_times[-1]) if len(fall_times) else None,
-        "open_high_duration_s": open_duration,
-        "low_duration_since_last_fall_s": low_since_fall,
-        "duty_cycle": duty_cycle,
-        "closed_pulse_count": int(len(widths)),
-        "pulse_width_mean_s": width_mean,
-        "pulse_width_median_s": width_median,
-        "pulse_width_max_s": width_max,
-        "pulse_width_min_s": width_min,
-    }
+        return float("nan")
+    return float(np.mean(np.diff(t[idx])) * 1e3)
 
 
-def print_reset_window_timing_summary(df: pd.DataFrame, cfg: SimConfig) -> None:
-    """Print reset-window timing diagnostics independent of endpoint phase."""
-    if "RESET_WINDOW" not in df or df["RESET_WINDOW"].isna().all():
+def write_run_diagnostics(df, cfg: SimConfig, csv_path: Path, md_path: Path) -> None:
+    """Write compact numerical diagnostics for each validation run."""
+    if pd is None:
         return
-
-    t = df["time_s"].to_numpy()
-    reset = df["RESET_WINDOW"].to_numpy()
-    stats = digital_pulse_timing_stats(t, reset, cfg, threshold=1.0)
-
-    print("Reset_Window timing analysis >1 V after ignore:")
-    print(f"  State at end = {stats['state_at_end']}")
-    duty = stats["duty_cycle"]
-    if isinstance(duty, float) and np.isfinite(duty):
-        print(f"  Duty cycle after ignore = {100.0 * duty:.6g} %")
-    else:
-        print("  Duty cycle after ignore = n/a")
-    print(f"  Rising edges after ignore = {stats['rise_count']}")
-    print(f"  Falling edges after ignore = {stats['fall_count']}")
-    print(f"  Last rising edge after ignore = {_fmt_optional_ms(stats['last_rise_s'])}")
-    print(f"  Last falling edge after ignore = {_fmt_optional_ms(stats['last_fall_s'])}")
-
-    if stats["high_at_end"]:
-        print(f"  Open high pulse at end duration = {_fmt_optional_ms(stats['open_high_duration_s'])}")
-    else:
-        print(f"  Low time since last falling edge = {_fmt_optional_ms(stats['low_duration_since_last_fall_s'])}")
-
-    if stats["closed_pulse_count"]:
-        print(f"  Closed reset pulse count = {stats['closed_pulse_count']}")
-        print(f"  Reset pulse width median = {_fmt_optional_ms(stats['pulse_width_median_s'])}")
-        print(f"  Reset pulse width mean   = {_fmt_optional_ms(stats['pulse_width_mean_s'])}")
-        print(f"  Reset pulse width min    = {_fmt_optional_ms(stats['pulse_width_min_s'])}")
-        print(f"  Reset pulse width max    = {_fmt_optional_ms(stats['pulse_width_max_s'])}")
-    else:
-        print("  Closed reset pulse count = 0")
-
-
-def print_vdd_power_summary(df: pd.DataFrame, cfg: SimConfig) -> None:
-    """Report VDD sag and approximate battery current after startup-ignore."""
-    if cfg.supply_mode != "coin" or "VDD" not in df:
-        return
-
-    t = df["time_s"].to_numpy()
-    mask = analysis_mask(t, cfg)
+    t, mask = _analysis_window(df, cfg)
     if not np.any(mask):
-        return
-
-    vdd = df["VDD"].to_numpy()
-    vdd_window = vdd[mask]
-    vbat = _to_float_suffix(cfg.vbat)
-    rbat = _to_float_suffix(cfg.rbat)
-
-    vdd_min = float(np.nanmin(vdd_window))
-    vdd_max = float(np.nanmax(vdd_window))
-    vdd_end = float(vdd[-1])
-    sag = vbat - vdd_min
-    i_peak = sag / rbat if rbat > 0 else float("nan")
-
-    print(f"VDD analysis window starts at t = {cfg.ignore_start_ms:g} ms")
-    print(f"VDD min after ignore = {vdd_min:.6g} V")
-    print(f"VDD max after ignore = {vdd_max:.6g} V")
-    print(f"VDD end              = {vdd_end:.6g} V")
-    print(f"VDD sag from Vbat    = {sag:.6g} V")
-    print(f"Approx peak battery current after ignore = {i_peak * 1e3:.6g} mA")
-
-
-def print_event_summary(df: pd.DataFrame, cfg: SimConfig) -> None:
-    t = df["time_s"].to_numpy()
-    mask = analysis_mask(t, cfg)
-
-    if cfg.ignore_start_ms > 0:
-        print(f"Event analysis ignores t < {cfg.ignore_start_ms:g} ms.")
-
-    if "VM" in df and "VTHRESH" in df and not df["VTHRESH"].isna().all():
-        vm = df["VM"].to_numpy()
-        vth = df["VTHRESH"].to_numpy()
-
-        raw_count = count_rising_edges(vm - vth, 0.0)
-        filtered_count = crossing_count_after_mask(t, vm, vth, cfg)
-        print(f"Raw threshold crossing count = {raw_count}")
-        print(f"Threshold crossing count after ignore = {filtered_count}")
-
-        raw_i = first_crossing_index(vm, vth)
-        filtered_i = first_crossing_index(vm, vth, mask)
-
-        if raw_i is not None:
-            print(f"Raw first Vm_Int >= V_Threshold at t = {t[raw_i] * 1e3:.6g} ms")
-            print(f"Raw Vm_Int at crossing       = {vm[raw_i]:.6g} V")
-            print(f"Raw V_Threshold at crossing  = {vth[raw_i]:.6g} V")
-        else:
-            print("Raw Vm_Int never crossed V_Threshold.")
-
-        if cfg.ignore_start_ms > 0:
-            if filtered_i is not None:
-                print(f"First Vm_Int >= V_Threshold after ignore at t = {t[filtered_i] * 1e3:.6g} ms")
-                print(f"Vm_Int at crossing after ignore       = {vm[filtered_i]:.6g} V")
-                print(f"V_Threshold at crossing after ignore  = {vth[filtered_i]:.6g} V")
-            else:
-                print("Vm_Int never crossed V_Threshold after ignore.")
-
-    if "SPIKE_PULSE" in df:
-        spike = df["SPIKE_PULSE"].to_numpy()
-        print(f"Raw Spike_Pulse rising-edge count >1 V = {count_rising_edges(spike, 1.0)}")
-        print(f"Spike_Pulse rising-edge count >1 V after ignore = {edge_count_after_mask(t, spike, 1.0, cfg)}")
-
-    if "RESET_WINDOW" in df:
-        reset = df["RESET_WINDOW"].to_numpy()
-        print(f"Raw Reset_Window rising-edge count >1 V = {count_rising_edges(reset, 1.0)}")
-        print(f"Reset_Window rising-edge count >1 V after ignore = {edge_count_after_mask(t, reset, 1.0, cfg)}")
-        print_reset_window_timing_summary(df, cfg)
-
-    print_vdd_power_summary(df, cfg)
-
-
-def print_diagnostics(df: pd.DataFrame, cfg: SimConfig) -> None:
-    """Print diagnostics for exactly the same traces that are plotted."""
-    traces = traces_for_config(cfg)
-    t = df["time_s"].to_numpy()
-
-    for trace in traces:
-        print_node_summary(df, trace.key, trace.label, t)
-
-    print_event_summary(df, cfg)
-
-
-# -----------------------------------------------------------------------------
-# Sweep helpers
-# -----------------------------------------------------------------------------
-
-
-def parse_float_list(text: str) -> list[float]:
-    values = []
-    for item in text.split(","):
-        item = item.strip()
-        if item:
-            values.append(float(item))
-    if not values:
-        raise ValueError(f"Empty sweep list: {text!r}")
-    return values
-
-
-def parse_string_list(text: str) -> list[str]:
-    values = [item.strip() for item in text.split(",") if item.strip()]
-    if not values:
-        raise ValueError(f"Empty sweep list: {text!r}")
-    return values
-
-
-def summarise_run(df: pd.DataFrame, cfg: SimConfig, run_index: int, csv_path: Path, png_path: Path) -> dict[str, object]:
-    t = df["time_s"].to_numpy()
-    mask = analysis_mask(t, cfg)
-
-    vm = df["VM"].to_numpy() if "VM" in df else np.array([])
-    vm_ext = df["VM_EXT"].to_numpy() if "VM_EXT" in df else np.array([])
-    vth = df["VTHRESH"].to_numpy() if "VTHRESH" in df else np.full_like(t, np.nan)
-    spike = df["SPIKE_PULSE"].to_numpy() if "SPIKE_PULSE" in df else np.full_like(t, np.nan)
-    reset = df["RESET_WINDOW"].to_numpy() if "RESET_WINDOW" in df else np.full_like(t, np.nan)
-    vw = df["VW"].to_numpy() if "VW" in df else np.full_like(t, np.nan)
-    vdd = df["VDD"].to_numpy() if "VDD" in df else np.full_like(t, np.nan)
-
-    raw_crossing_count = count_rising_edges(vm - vth, 0.0) if len(vm) and len(vth) else 0
-    filtered_crossing_count = crossing_count_after_mask(t, vm, vth, cfg) if len(vm) and len(vth) else 0
-
-    raw_i = first_crossing_index(vm, vth) if len(vm) and len(vth) else None
-    filtered_i = first_crossing_index(vm, vth, mask) if len(vm) and len(vth) else None
-
-    raw_crossing_ms = float(t[raw_i] * 1e3) if raw_i is not None else float("nan")
-    filtered_crossing_ms = float(t[filtered_i] * 1e3) if filtered_i is not None else float("nan")
-
-    if len(vdd) and np.any(mask) and not np.all(np.isnan(vdd)):
-        vdd_window = vdd[mask]
-        vdd_min_after_ignore = float(np.nanmin(vdd_window))
-        vdd_max_after_ignore = float(np.nanmax(vdd_window))
-        if cfg.supply_mode == "coin":
-            vbat = _to_float_suffix(cfg.vbat)
-            rbat = _to_float_suffix(cfg.rbat)
-            vdd_sag_after_ignore = vbat - vdd_min_after_ignore
-            approx_i_mA_after_ignore = (vdd_sag_after_ignore / rbat * 1e3) if rbat > 0 else np.nan
-        else:
-            vdd_sag_after_ignore = np.nan
-            approx_i_mA_after_ignore = np.nan
-    else:
-        vdd_min_after_ignore = np.nan
-        vdd_max_after_ignore = np.nan
-        vdd_sag_after_ignore = np.nan
-        approx_i_mA_after_ignore = np.nan
-
-    if len(reset) and not np.all(np.isnan(reset)):
-        reset_stats = digital_pulse_timing_stats(t, reset, cfg, threshold=1.0)
-    else:
-        reset_stats = digital_pulse_timing_stats(t, np.full_like(t, np.nan), cfg, threshold=1.0)
-
-    return {
-        "run": run_index,
-        "stage": cfg.stage,
+        mask = np.ones_like(t, dtype=bool)
+    row: dict[str, object] = {
+        "script_version": SCRIPT_VERSION,
+        "run_label": cfg.run_label,
         "startup_mode": cfg.startup_mode,
         "ignore_start_ms": cfg.ignore_start_ms,
-        "rv1": cfg.rv1_fraction,
-        "rv2": cfg.rv2_fraction,
-        "rv3": cfg.rv3_fraction,
-        "rv4": cfg.rv4_fraction,
-        "cmem_mode": cfg.cmem_mode,
-        "selected_cmem": selected_cmem(cfg),
-        "vdd": cfg.vdd,
+        "tstop": cfg.tstop,
+        "tstep": cfg.tstep,
+        "maxstep": cfg.maxstep,
         "supply_mode": cfg.supply_mode,
         "vbat": cfg.vbat,
         "rbat": cfg.rbat,
-        "tol_mode": cfg.tol_mode,
-        "tol_seed": cfg.tol_seed,
-        "res_tol_pct": cfg.res_tol_pct,
-        "cap_tol_pct": cfg.cap_tol_pct,
-        "pot_tol_pct": cfg.pot_tol_pct,
-        "raw_first_cross_ms": raw_crossing_ms,
-        "first_cross_ms_after_ignore": filtered_crossing_ms,
-        "raw_crossing_count": raw_crossing_count,
-        "crossing_count_after_ignore": filtered_crossing_count,
-        "raw_spike_count_gt_1v": count_rising_edges(spike, 1.0) if len(spike) else 0,
-        "spike_count_gt_1v_after_ignore": edge_count_after_mask(t, spike, 1.0, cfg) if len(spike) else 0,
-        "raw_reset_count_gt_1v": count_rising_edges(reset, 1.0) if len(reset) else 0,
-        "reset_count_gt_1v_after_ignore": edge_count_after_mask(t, reset, 1.0, cfg) if len(reset) else 0,
-        "vm_int_min": float(np.nanmin(vm)) if len(vm) else np.nan,
-        "vm_int_max": float(np.nanmax(vm)) if len(vm) else np.nan,
-        "vm_int_end": float(vm[-1]) if len(vm) else np.nan,
-        "vm_ext_min": float(np.nanmin(vm_ext)) if len(vm_ext) else np.nan,
-        "vm_ext_max": float(np.nanmax(vm_ext)) if len(vm_ext) else np.nan,
-        "vm_ext_end": float(vm_ext[-1]) if len(vm_ext) else np.nan,
-        "vthreshold_min": float(np.nanmin(vth)) if len(vth) else np.nan,
-        "vthreshold_max": float(np.nanmax(vth)) if len(vth) else np.nan,
-        "spike_pulse_min": float(np.nanmin(spike)) if len(spike) else np.nan,
-        "spike_pulse_max": float(np.nanmax(spike)) if len(spike) else np.nan,
-        "reset_window_max": float(np.nanmax(reset)) if len(reset) else np.nan,
-        "reset_window_end_high_gt_1v": bool(reset_stats["high_at_end"]),
-        "reset_window_duty_cycle_after_ignore": reset_stats["duty_cycle"],
-        "reset_window_last_rise_ms_after_ignore": (
-            float(reset_stats["last_rise_s"] * 1e3) if reset_stats["last_rise_s"] is not None else np.nan
-        ),
-        "reset_window_last_fall_ms_after_ignore": (
-            float(reset_stats["last_fall_s"] * 1e3) if reset_stats["last_fall_s"] is not None else np.nan
-        ),
-        "reset_window_open_high_duration_ms_at_end": (
-            float(reset_stats["open_high_duration_s"] * 1e3)
-            if reset_stats["open_high_duration_s"] is not None
-            else np.nan
-        ),
-        "reset_window_low_duration_ms_since_last_fall": (
-            float(reset_stats["low_duration_since_last_fall_s"] * 1e3)
-            if reset_stats["low_duration_since_last_fall_s"] is not None
-            else np.nan
-        ),
-        "reset_window_closed_pulse_count_after_ignore": reset_stats["closed_pulse_count"],
-        "reset_window_pulse_width_median_ms_after_ignore": reset_stats["pulse_width_median_s"] * 1e3,
-        "reset_window_pulse_width_mean_ms_after_ignore": reset_stats["pulse_width_mean_s"] * 1e3,
-        "reset_window_pulse_width_max_ms_after_ignore": reset_stats["pulse_width_max_s"] * 1e3,
-        "reset_window_pulse_width_min_ms_after_ignore": reset_stats["pulse_width_min_s"] * 1e3,
-        "vw_max": float(np.nanmax(vw)) if len(vw) else np.nan,
-        "vdd_min_after_ignore": vdd_min_after_ignore,
-        "vdd_max_after_ignore": vdd_max_after_ignore,
-        "vdd_sag_after_ignore": vdd_sag_after_ignore,
-        "approx_peak_battery_current_mA_after_ignore": approx_i_mA_after_ignore,
-        "plot": str(png_path),
-        "csv": str(csv_path),
+        "vdd_ideal": cfg.vdd_ideal,
+        "rv1": cfg.rv1,
+        "rv2": cfg.rv2,
+        "rv3": cfg.rv3,
+        "rv4": cfg.rv4,
+        "rv5": cfg.rv5,
+        "rv6": cfg.rv6,
+        "rv7": cfg.rv7,
+        "rv8": cfg.rv8,
+        "rv9": cfg.rv9,
     }
 
+    for name in [
+        "VDD", "V_Boost", "VREF_2V048", "VREF_1V024", "V_Leak", "Vm_Int", "Vm_Ext",
+        "V_Threshold", "AP", "Spike_Pulse", "Peak_Window", "Reset_Window", "Spike_Out",
+        "V_Syn_State", "/V_Syn_Drive", "V_Stim_Drive", "Vw", "Vw_buff",
+    ]:
+        if name in df:
+            values = df[name].to_numpy()[mask]
+            row[f"{name}_min"] = float(np.nanmin(values))
+            row[f"{name}_max"] = float(np.nanmax(values))
+            row[f"{name}_end"] = float(df[name].to_numpy()[-1])
 
-def run_sweep(cfg: SimConfig) -> int:
-    rv1_values = parse_float_list(cfg.sweep_rv1)
-    rv2_values = parse_float_list(cfg.sweep_rv2)
-    rv3_values = parse_float_list(cfg.sweep_rv3)
-    rv4_values = parse_float_list(cfg.sweep_rv4) if cfg.sweep_rv4.strip() else [cfg.rv4_fraction]
-    vbat_values = parse_string_list(cfg.sweep_vbat) if cfg.sweep_vbat.strip() else [cfg.vbat]
-    rbat_values = parse_string_list(cfg.sweep_rbat) if cfg.sweep_rbat.strip() else [cfg.rbat]
+    if "Vm_Int" in df and "V_Threshold" in df:
+        vm = df["Vm_Int"].to_numpy()
+        vt = df["V_Threshold"].to_numpy()
+        row["Vm_threshold_crossings"] = _rising_edge_count((vm - vt)[mask], 0.0)
+        row["Vm_first_threshold_crossing_ms"] = _first_crossing_ms(t, vm, vt, mask)
 
-    # Keep sweep paths short. Long Windows paths can make ngspice fail before it
-    # writes a useful log file, especially when the run name repeats every
-    # parameter value. The detailed per-run metadata is still stored in
-    # sweep_summary.csv.
-    if cfg.supply_mode == "coin":
-        sweep_dir = OUTPUT_DIR / "sweep" / f"{cfg.stage}_{cfg.trace_set}_{cfg.startup_mode}_coin"
-    else:
-        sweep_dir = OUTPUT_DIR / "sweep" / f"{cfg.stage}_{cfg.trace_set}_{cfg.startup_mode}_ideal"
+    for name, threshold in [
+        ("AP", 1.0),
+        ("Spike_Pulse", 1.0),
+        ("Peak_Window", 1.0),
+        ("Reset_Window", 1.0),
+        ("Spike_Out", 1.0),
+    ]:
+        if name in df:
+            y = df[name].to_numpy()
+            row[f"{name}_rising_edges"] = _rising_edge_count(y[mask], threshold)
+            row[f"{name}_mean_period_ms"] = _edge_period_ms(t, y, threshold, mask)
 
-    if cfg.tol_mode == "random":
-        sweep_dir = sweep_dir / f"tol{cfg.tol_seed}"
-
-    sweep_dir.mkdir(parents=True, exist_ok=True)
-
-    summary_rows: list[dict[str, object]] = []
-    all_rows: list[pd.DataFrame] = []
-    run_index = 0
-
-    for rv1 in rv1_values:
-        for rv2 in rv2_values:
-            for rv3 in rv3_values:
-                for rv4 in rv4_values:
-                    for vbat in vbat_values:
-                        for rbat in rbat_values:
-                            run_index += 1
-                            run_cfg = dataclasses.replace(
-                                cfg,
-                                sweep=False,
-                                rv1_fraction=rv1,
-                                rv2_fraction=rv2,
-                                rv3_fraction=rv3,
-                                rv4_fraction=rv4,
-                                vbat=vbat,
-                                rbat=rbat,
-                            )
-
-                            run_name = (
-                                f"r{run_index:03d}"
-                                f"_r1{short_num(rv1)}"
-                                f"_r2{short_num(rv2)}"
-                                f"_r3{short_num(rv3)}"
-                                f"_r4{short_num(rv4)}"
-                            )
-                            if run_cfg.supply_mode == "coin":
-                                run_name += f"_vb{short_num(run_cfg.vbat)}_rb{short_num(run_cfg.rbat)}"
-                            else:
-                                run_name += f"_vdd{short_num(run_cfg.vdd)}"
-                            if run_cfg.tol_mode == "random":
-                                run_name += f"_tol{run_cfg.tol_seed}"
-                            run_name += f"_c{safe_tag(selected_cmem(run_cfg))}"
-
-                            deck_path = sweep_dir / f"{run_name}.cir"
-                            csv_path = sweep_dir / f"{run_name}.csv"
-                            png_path = sweep_dir / f"{run_name}.png"
-                            vm_png_path = sweep_dir / f"{run_name}_vmint_vmext.png"
-
-                            for path in (deck_path, csv_path, png_path, vm_png_path):
-                                if len(str(path)) > 240:
-                                    print(f"WARNING: long path may fail on Windows/ngspice: {len(str(path))} chars")
-                                    print(path)
-
-                            print("")
-                            print("=" * 80)
-                            print(
-                                f"Sweep run {run_index}: "
-                                f"RV1={rv1:.3f}, RV2={rv2:.3f}, RV3={rv3:.3f}, RV4={rv4:.3f}, "
-                                f"Cmem={selected_cmem(run_cfg)}, supply={run_cfg.supply_mode}, "
-                                f"Vbat={vbat}, Rbat={rbat}"
-                            )
-                            print("=" * 80)
-
-                            deck = build_spice_deck(
-                                run_cfg,
-                                for_cli=(run_cfg.backend == "ngspice-cli"),
-                                csv_path=csv_path,
-                            )
-                            deck_path.write_text(deck)
-
-                            if run_cfg.backend == "pyspice":
-                                df = run_with_pyspice(deck_path, run_cfg)
-                            else:
-                                df = run_with_ngspice_cli(deck_path, csv_path, run_cfg)
-
-                            df.to_csv(csv_path, index=False)
-                            plot_results(df, run_cfg, png_path)
-                            plot_vm_only(df, run_cfg, vm_png_path)
-
-                            df_meta = df.copy()
-                            df_meta.insert(0, "run", run_index)
-                            df_meta.insert(1, "rv1", rv1)
-                            df_meta.insert(2, "rv2", rv2)
-                            df_meta.insert(3, "rv3", rv3)
-                            df_meta.insert(4, "rv4", rv4)
-                            df_meta.insert(5, "selected_cmem", selected_cmem(run_cfg))
-                            df_meta.insert(6, "startup_mode", run_cfg.startup_mode)
-                            df_meta.insert(7, "ignore_start_ms", run_cfg.ignore_start_ms)
-                            df_meta.insert(8, "vbat", vbat)
-                            df_meta.insert(9, "rbat", rbat)
-                            all_rows.append(df_meta)
-
-                            summary_row = summarise_run(df, run_cfg, run_index, csv_path, png_path)
-                            summary_row["vm_only_plot"] = str(vm_png_path)
-                            summary_rows.append(summary_row)
-
-    summary = pd.DataFrame(summary_rows)
-    summary_path = sweep_dir / "sweep_summary.csv"
-    summary.to_csv(summary_path, index=False)
-
-    combined_path = sweep_dir / "sweep_all_traces.csv"
-    pd.concat(all_rows, ignore_index=True).to_csv(combined_path, index=False)
-
-    print("")
-    print("=" * 80)
-    print("Sweep complete")
-    print(f"Summary CSV:       {summary_path}")
-    print(f"Combined traces:   {combined_path}")
-    print("=" * 80)
-
-    return 0
-
-
-# -----------------------------------------------------------------------------
-# Results text logging
-# -----------------------------------------------------------------------------
-
-
-class TeeTextIO:
-    """Write text to multiple streams."""
-
-    def __init__(self, *streams):
-        self.streams = streams
-
-    def write(self, data: str) -> int:
-        for stream in self.streams:
-            stream.write(data)
-        return len(data)
-
-    def flush(self) -> None:
-        for stream in self.streams:
-            stream.flush()
-
-
-@contextlib.contextmanager
-def tee_stdout(path: Path):
-    """Duplicate stdout to a results text file for reproducible validation logs."""
-    old_stdout = sys.stdout
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        sys.stdout = TeeTextIO(old_stdout, handle)
+    if cfg.supply_mode == "coin" and "VDD" in df:
+        vdd = df["VDD"].to_numpy()[mask]
         try:
-            yield
-        finally:
-            sys.stdout = old_stdout
+            vbat = float(cfg.vbat)
+            rbat = float(cfg.rbat)
+            row["VDD_sag_max"] = float(vbat - np.nanmin(vdd))
+            row["Battery_current_peak_mA_est"] = float((vbat - np.nanmin(vdd)) / rbat * 1e3) if rbat > 0 else float("nan")
+        except Exception:
+            pass
+
+    pd.DataFrame([row]).to_csv(csv_path, index=False)
+
+    lines = [
+        f"# LIFeling run diagnostics — {cfg.run_label or 'unlabelled run'}",
+        "",
+        f"Script version: `{SCRIPT_VERSION}`",
+        f"Analysis ignores first `{cfg.ignore_start_ms:g} ms`.",
+        "",
+        "| Metric | Value |",
+        "|---|---:|",
+    ]
+    preferred = [
+        "Vm_Int_min", "Vm_Int_max", "Vm_Int_end", "Vm_Ext_max", "V_Threshold_min", "V_Threshold_max",
+        "Vm_threshold_crossings", "Vm_first_threshold_crossing_ms", "AP_rising_edges",
+        "Spike_Pulse_rising_edges", "Peak_Window_rising_edges", "Reset_Window_rising_edges", "Spike_Out_rising_edges",
+        "AP_mean_period_ms", "Reset_Window_mean_period_ms", "V_Syn_State_min", "V_Syn_State_max",
+        "/V_Syn_Drive_min", "/V_Syn_Drive_max", "VDD_min", "VDD_sag_max", "Battery_current_peak_mA_est",
+    ]
+    for key in preferred:
+        if key in row:
+            val = row[key]
+            if isinstance(val, float):
+                val_txt = f"{val:.6g}"
+            else:
+                val_txt = str(val)
+            lines.append(f"| `{key}` | {val_txt} |")
+    md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def run_ngspice(deck_path: Path, csv_path: Path, cfg: SimConfig) -> None:
+    exe = find_ngspice_binary(cfg.ngspice_binary)
+    log_path = csv_path.with_suffix(".ngspice.log")
+    if csv_path.exists():
+        csv_path.unlink()
+    if log_path.exists():
+        log_path.unlink()
+    proc = subprocess.run(
+        [exe, "-b", "-o", str(log_path), str(deck_path)],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0 or not csv_path.exists():
+        log_text = log_path.read_text(errors="replace") if log_path.exists() else ""
+        raise RuntimeError(
+            f"ngspice failed or did not create {csv_path}\n"
+            f"STDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}\nLOG:\n{log_text}"
+        )
+
+# -----------------------------------------------------------------------------
+# Validation verdict and README auto-update
+# -----------------------------------------------------------------------------
+
+README_AUTOGEN_START = "<!-- LIFELING_SPICE_AUTOGENERATED_START -->"
+README_AUTOGEN_END = "<!-- LIFELING_SPICE_AUTOGENERATED_END -->"
+
+
+def _safe_float(value, default: float = float("nan")) -> float:
+    try:
+        if value is None:
+            return default
+        if isinstance(value, str) and value.strip() == "":
+            return default
+        return float(value)
+    except Exception:
+        return default
+
+
+def _first_row(df, label_fragment: str):
+    if df is None or df.empty or "run_label" not in df.columns:
+        return None
+    labels = df["run_label"].astype(str)
+    rows = df[labels.str.contains(label_fragment, case=False, regex=False, na=False)]
+    if rows.empty:
+        return None
+    return rows.iloc[0]
+
+
+def _read_validation_suite_status(output_dir: Path) -> dict[str, str]:
+    output_dir = Path(output_dir)
+    candidates = [
+        output_dir / "validation_logs" / "validation_suite_latest.txt",
+        output_dir / "validation_suite_latest.txt",
+        output_dir.parent / "validation_suite_latest.txt",
+    ]
+
+    # Also accept the newest timestamped suite log if latest has not been copied yet.
+    log_dir = output_dir / "validation_logs"
+    if log_dir.exists():
+        candidates.extend(sorted(log_dir.glob("validation_suite_*.txt"), key=lambda p: p.stat().st_mtime, reverse=True))
+
+    suite_path = next((p for p in candidates if p.exists()), None)
+    status = {
+        "suite_log": str(suite_path) if suite_path else "",
+        "total_runs": "",
+        "failed_runs": "",
+        "start": "",
+        "end": "",
+    }
+    if suite_path is None:
+        return status
+
+    text = suite_path.read_text(encoding="utf-8", errors="replace")
+    for line in text.splitlines():
+        if line.startswith("START:"):
+            status["start"] = line.split(":", 1)[1].strip()
+        elif line.startswith("END:"):
+            status["end"] = line.split(":", 1)[1].strip()
+        elif line.startswith("TOTAL RUNS:"):
+            status["total_runs"] = line.split(":", 1)[1].strip()
+        elif line.startswith("FAILED RUNS:"):
+            status["failed_runs"] = line.split(":", 1)[1].strip()
+
+    return status
+
+
+def _add_verdict(rows: list[dict[str, str]], block: str, verdict: str, evidence: str, caveat: str = "") -> None:
+    rows.append({
+        "block": block,
+        "verdict": verdict,
+        "evidence": evidence,
+        "caveat": caveat,
+    })
+
+
+def make_validation_verdict(output_dir: Path) -> tuple[Path, Path, Path]:
+    """Generate block-level validation files from the validation-suite outputs."""
+    if pd is None:
+        raise RuntimeError("pandas is required for validation verdict generation")
+
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    summary_path = output_dir / "validation_diagnostics_summary.csv"
+    coverage_path = output_dir / "component_model_coverage.csv"
+
+    if not summary_path.exists():
+        raise FileNotFoundError(f"Cannot find diagnostics summary: {summary_path}")
+
+    summary = pd.read_csv(summary_path)
+    coverage = pd.read_csv(coverage_path) if coverage_path.exists() else pd.DataFrame()
+    suite = _read_validation_suite_status(output_dir)
+
+    rows: list[dict[str, str]] = []
+    metrics: list[dict[str, str]] = []
+
+    failed_runs = _safe_float(suite.get("failed_runs", ""))
+    total_runs = _safe_float(suite.get("total_runs", ""))
+
+    if np.isfinite(failed_runs):
+        _add_verdict(
+            rows,
+            "Simulation execution / convergence",
+            "PASS" if failed_runs == 0 else "FAIL",
+            f"{int(total_runs) if np.isfinite(total_runs) else 'unknown'} suite steps, {int(failed_runs)} failed.",
+        )
+    else:
+        _add_verdict(
+            rows,
+            "Simulation execution / convergence",
+            "WARNING",
+            "Validation-suite log was not found or did not contain TOTAL RUNS / FAILED RUNS.",
+        )
+
+    if not coverage.empty and "status" in coverage.columns:
+        counts = coverage["status"].astype(str).value_counts().to_dict()
+        unclassified = int(counts.get("unclassified", 0))
+        evidence = ", ".join(f"{k}: {v}" for k, v in sorted(counts.items()))
+        _add_verdict(
+            rows,
+            "Component model coverage",
+            "PASS" if unclassified == 0 else "WARNING",
+            evidence,
+            "Behavioural entries are intentional circuit-block approximations, not vendor-accurate macromodels.",
+        )
+        for key, val in sorted(counts.items()):
+            metrics.append({
+                "metric": f"coverage_{key}",
+                "value": str(val),
+                "run_label": "",
+                "notes": "component_model_coverage.csv",
+            })
+    else:
+        _add_verdict(
+            rows,
+            "Component model coverage",
+            "WARNING",
+            "component_model_coverage.csv was not found or did not contain a status column.",
+        )
+
+    baseline = _first_row(summary, "baseline_self_spiking")
+    debug = _first_row(summary, "debug_self_spiking")
+    cold = _first_row(summary, "cold_start")
+    quiet = _first_row(summary, "quiet_subthreshold")
+    mid = _first_row(summary, "synapse_midpoint")
+    exc = _first_row(summary, "synapse_excitatory")
+    inh = _first_row(summary, "synapse_inhibitory")
+    stim_pos = _first_row(summary, "external_stimulus_positive")
+    stim_neg = _first_row(summary, "external_stimulus_negative")
+    low_batt = _first_row(summary, "low_battery")
+
+    if baseline is not None:
+        ref2_min = _safe_float(baseline.get("VREF_2V048_min"))
+        ref2_max = _safe_float(baseline.get("VREF_2V048_max"))
+        ref1_min = _safe_float(baseline.get("VREF_1V024_min"))
+        ref1_max = _safe_float(baseline.get("VREF_1V024_max"))
+        ok = (
+            2.03 <= ref2_min <= 2.06 and
+            2.03 <= ref2_max <= 2.06 and
+            1.01 <= ref1_min <= 1.04 and
+            1.01 <= ref1_max <= 1.04
+        )
+        _add_verdict(
+            rows,
+            "Reference rails VREF_2V048 / VREF_1V024",
+            "PASS" if ok else "WARNING",
+            f"Baseline VREF_2V048={ref2_min:.4g}..{ref2_max:.4g} V; VREF_1V024={ref1_min:.4g}..{ref1_max:.4g} V.",
+        )
+        for metric in ["VREF_2V048_min", "VREF_2V048_max", "VREF_1V024_min", "VREF_1V024_max", "VDD_sag_max", "Battery_current_peak_mA_est"]:
+            if metric in baseline:
+                metrics.append({
+                    "metric": metric,
+                    "value": f"{_safe_float(baseline.get(metric)):.6g}",
+                    "run_label": str(baseline.get("run_label", "")),
+                    "notes": "baseline",
+                })
+    else:
+        _add_verdict(rows, "Reference rails VREF_2V048 / VREF_1V024", "WARNING", "Baseline self-spiking run was not found.")
+
+    if baseline is not None:
+        ap = int(_safe_float(baseline.get("AP_rising_edges"), 0))
+        rst = int(_safe_float(baseline.get("Reset_Window_rising_edges"), 0))
+        spk = int(_safe_float(baseline.get("Spike_Out_rising_edges"), 0))
+        vm_min = _safe_float(baseline.get("Vm_Int_min"))
+        vm_max = _safe_float(baseline.get("Vm_Int_max"))
+        ok = ap > 0 and rst > 0 and spk > 0
+        _add_verdict(
+            rows,
+            "Core LIF oscillation / threshold / AP / reset / Spike_Out",
+            "PASS" if ok else "WARNING",
+            f"Baseline AP={ap}, Reset_Window={rst}, Spike_Out={spk}; Vm_Int={vm_min:.4g}..{vm_max:.4g} V.",
+        )
+        for metric in [
+            "Vm_Int_min", "Vm_Int_max", "Vm_Ext_max",
+            "AP_rising_edges", "Spike_Pulse_rising_edges", "Peak_Window_rising_edges",
+            "Reset_Window_rising_edges", "Spike_Out_rising_edges", "AP_mean_period_ms",
+        ]:
+            if metric in baseline:
+                metrics.append({
+                    "metric": metric,
+                    "value": f"{_safe_float(baseline.get(metric)):.6g}",
+                    "run_label": str(baseline.get("run_label", "")),
+                    "notes": "baseline",
+                })
+    else:
+        _add_verdict(rows, "Core LIF oscillation / threshold / AP / reset / Spike_Out", "WARNING", "Baseline self-spiking run was not found.")
+
+    if quiet is not None:
+        edges = int(_safe_float(quiet.get("AP_rising_edges"), 0))
+        _add_verdict(
+            rows,
+            "Quiet subthreshold operating point",
+            "PASS" if edges == 0 else "WARNING",
+            f"Quiet-subthreshold AP_rising_edges={edges}; Vm_Int_max={_safe_float(quiet.get('Vm_Int_max')):.4g} V.",
+        )
+
+    if cold is not None:
+        ap = int(_safe_float(cold.get("AP_rising_edges"), 0))
+        _add_verdict(
+            rows,
+            "Cold-start behaviour",
+            "PASS" if ap > 0 else "WARNING",
+            f"Cold-start AP_rising_edges={ap}; Vm_Int_max={_safe_float(cold.get('Vm_Int_max')):.4g} V.",
+            "Cold-start is a stress condition, not the normal operating initial condition.",
+        )
+
+    if mid is not None and quiet is not None:
+        delta = _safe_float(mid.get("Vm_Int_max")) - _safe_float(quiet.get("Vm_Int_max"))
+        mid_edges = int(_safe_float(mid.get("AP_rising_edges"), 0))
+        ok = abs(delta) <= 0.005 and mid_edges == 0
+        _add_verdict(
+            rows,
+            "Synapse midpoint zero-effect",
+            "PASS" if ok else "WARNING",
+            f"Midpoint minus quiet Vm_Int_max delta={delta * 1e3:.4g} mV; AP_rising_edges={mid_edges}.",
+        )
+        metrics.append({
+            "metric": "synapse_midpoint_delta_vm_int_max_mV",
+            "value": f"{delta * 1e3:.6g}",
+            "run_label": str(mid.get("run_label", "")),
+            "notes": "midpoint should be close to zero-effect",
+        })
+
+    if exc is not None and quiet is not None:
+        delta = _safe_float(exc.get("Vm_Int_max")) - _safe_float(quiet.get("Vm_Int_max"))
+        _add_verdict(
+            rows,
+            "Excitatory synapse sign",
+            "PASS" if delta > 0.02 else "WARNING",
+            f"Excitatory minus quiet Vm_Int_max delta={delta * 1e3:.4g} mV.",
+        )
+        metrics.append({
+            "metric": "excitatory_delta_vm_int_max_mV",
+            "value": f"{delta * 1e3:.6g}",
+            "run_label": str(exc.get("run_label", "")),
+            "notes": "positive delta expected",
+        })
+
+    if inh is not None and baseline is not None:
+        p_base = _safe_float(baseline.get("AP_mean_period_ms"))
+        p_inh = _safe_float(inh.get("AP_mean_period_ms"))
+        ok = np.isfinite(p_base) and np.isfinite(p_inh) and p_inh > p_base
+        _add_verdict(
+            rows,
+            "Inhibitory synapse sign",
+            "PASS" if ok else "WARNING",
+            f"Baseline AP period={p_base:.4g} ms; inhibitory AP period={p_inh:.4g} ms.",
+        )
+        metrics.append({
+            "metric": "inhibitory_period_delta_ms",
+            "value": f"{p_inh - p_base:.6g}",
+            "run_label": str(inh.get("run_label", "")),
+            "notes": "positive delta means slower firing",
+        })
+
+    if stim_pos is not None and stim_neg is not None and quiet is not None:
+        q = _safe_float(quiet.get("Vm_Int_max"))
+        pos_delta = _safe_float(stim_pos.get("Vm_Int_max")) - q
+        neg_delta = _safe_float(stim_neg.get("Vm_Int_max")) - q
+        ok = pos_delta > 0 and neg_delta < 0
+        verdict = "PASS" if ok else "WARNING"
+        _add_verdict(
+            rows,
+            "External stimulus path",
+            verdict,
+            f"Positive stimulus delta={pos_delta * 1e3:.4g} mV; negative stimulus delta={neg_delta * 1e3:.4g} mV.",
+            "If this warns, run a dedicated Stimulus_Ext -> V_Stim_Drive -> Vm_Int polarity sweep.",
+        )
+        metrics.append({
+            "metric": "stimulus_positive_delta_vm_int_max_mV",
+            "value": f"{pos_delta * 1e3:.6g}",
+            "run_label": str(stim_pos.get("run_label", "")),
+            "notes": "positive delta expected",
+        })
+        metrics.append({
+            "metric": "stimulus_negative_delta_vm_int_max_mV",
+            "value": f"{neg_delta * 1e3:.6g}",
+            "run_label": str(stim_neg.get("run_label", "")),
+            "notes": "negative delta expected",
+        })
+
+    rv1_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("rv1_leak_threshold_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not rv1_rows.empty:
+        low_edges = int(_safe_float(rv1_rows.iloc[0].get("AP_rising_edges"), 0))
+        high_edges = int(_safe_float(rv1_rows.iloc[-1].get("AP_rising_edges"), 0))
+        _add_verdict(
+            rows,
+            "RV1 leak/reference sweep",
+            "PASS" if high_edges >= low_edges else "WARNING",
+            f"First sweep AP edges={low_edges}; last sweep AP edges={high_edges}.",
+        )
+
+    rv2_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("rv2_leak_rate_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not rv2_rows.empty:
+        periods = [_safe_float(x) for x in rv2_rows.get("AP_mean_period_ms", [])]
+        finite = [p for p in periods if np.isfinite(p)]
+        _add_verdict(
+            rows,
+            "RV2 leak-rate sweep",
+            "PASS" if len(finite) >= 2 else "WARNING",
+            f"Finite AP mean periods observed: {', '.join(f'{p:.4g} ms' for p in finite)}.",
+        )
+
+    rv3_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("rv3_adaptation_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not rv3_rows.empty:
+        _add_verdict(
+            rows,
+            "RV3 adaptation sweep",
+            "PASS",
+            f"{len(rv3_rows)} RV3 adaptation sweep runs completed.",
+            "Interpretation should verify that the knob direction matches the front-panel label.",
+        )
+
+    rv4_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("rv4_capacitance_bank_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not rv4_rows.empty:
+        _add_verdict(
+            rows,
+            "RV4 capacitance-bank sweep",
+            "PASS",
+            f"{len(rv4_rows)} RV4 capacitance-bank sweep runs completed.",
+            "A dedicated Cmem-selection table can be added later if exact one-hot switch state is required.",
+        )
+
+    rv5_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("rv5_synaptic_decay_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not rv5_rows.empty:
+        _add_verdict(
+            rows,
+            "RV5 synaptic decay sweep",
+            "PASS",
+            f"{len(rv5_rows)} RV5 synaptic decay sweep runs completed.",
+            "Interpretation should verify that the knob direction matches the front-panel label.",
+        )
+
+    sign_rows = summary[summary.get("run_label", pd.Series(dtype=str)).astype(str).str.contains("synaptic_sign_weight_sweep", case=False, regex=False, na=False)] if not summary.empty else pd.DataFrame()
+    if not sign_rows.empty:
+        _add_verdict(
+            rows,
+            "Synaptic sign/weight sweep",
+            "PASS",
+            f"{len(sign_rows)} synaptic sign/weight sweep runs completed.",
+        )
+
+    if low_batt is not None:
+        vdd_min = _safe_float(low_batt.get("VDD_min"))
+        batt_i = _safe_float(low_batt.get("Battery_current_peak_mA_est"))
+        spike_pulse_max = _safe_float(low_batt.get("Spike_Pulse_max"))
+        spike_pulse_edges = int(_safe_float(low_batt.get("Spike_Pulse_rising_edges"), 0))
+        caveat = ""
+        verdict = "PASS"
+        if spike_pulse_edges == 0 and np.isfinite(spike_pulse_max) and spike_pulse_max > 0.8:
+            verdict = "WARNING"
+            caveat = "Spike_Pulse edge counting may need a lower/comparator-relative threshold in low-battery conditions."
+        _add_verdict(
+            rows,
+            "Low-battery / high-impedance stress",
+            verdict,
+            f"VDD_min={vdd_min:.4g} V; estimated peak battery current={batt_i:.4g} mA; Spike_Pulse_max={spike_pulse_max:.4g} V.",
+            caveat,
+        )
+
+    verdict_df = pd.DataFrame(rows)
+    metrics_df = pd.DataFrame(metrics)
+
+    verdict_csv = output_dir / "LIFeling_validation_verdict.csv"
+    metrics_csv = output_dir / "LIFeling_key_validation_metrics.csv"
+    verdict_md = output_dir / "LIFeling_validation_verdict.md"
+
+    verdict_df.to_csv(verdict_csv, index=False)
+    metrics_df.to_csv(metrics_csv, index=False)
+
+    has_fail = any(str(v).upper() == "FAIL" for v in verdict_df["verdict"])
+    has_warning = any(str(v).upper() == "WARNING" for v in verdict_df["verdict"])
+    overall = "FAIL" if has_fail else ("PASS WITH WARNINGS" if has_warning else "PASS")
+
+    md_lines = [
+        "# LIFeling SPICE validation verdict",
+        "",
+        f"Script version: `{SCRIPT_VERSION}`",
+        f"Overall verdict: **{overall}**",
+        "",
+    ]
+    if suite.get("total_runs") or suite.get("failed_runs"):
+        md_lines.append(f"Validation suite: `{suite.get('total_runs', 'unknown')}` total steps, `{suite.get('failed_runs', 'unknown')}` failed.")
+        md_lines.append("")
+    md_lines += [
+        "## Block-level verdict",
+        "",
+        "| Circuit block | Verdict | Evidence | Caveat |",
+        "|---|---|---|---|",
+    ]
+    for _, row in verdict_df.iterrows():
+        md_lines.append(
+            f"| {_md_cell(row.get('block', ''))} | **{_md_cell(row.get('verdict', ''))}** | "
+            f"{_md_cell(row.get('evidence', ''))} | {_md_cell(row.get('caveat', ''))} |"
+        )
+
+    md_lines += [
+        "",
+        "## Generated files",
+        "",
+        "- `validation_diagnostics_summary.csv`: aggregate numerical diagnostics, one row per validation run.",
+        "- `component_model_coverage.csv`: electrical/behavioural/mechanical model coverage for schematic components.",
+        "- `LIFeling_validation_verdict.csv`: machine-readable block-level verdict.",
+        "- `LIFeling_key_validation_metrics.csv`: selected regression metrics.",
+        "",
+    ]
+
+    verdict_md.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
+    return verdict_md, verdict_csv, metrics_csv
+
+
+def _md_cell(value) -> str:
+    text = "" if value is None else str(value)
+    text = text.replace("|", "\\|")
+    text = text.replace("\n", " ")
+    return text
+
+
+def _rel_markdown_path(target: Path, readme_path: Path) -> str:
+    try:
+        rel = os.path.relpath(Path(target).resolve(), start=Path(readme_path).resolve().parent)
+        return Path(rel).as_posix()
+    except Exception:
+        return Path(target).as_posix()
+
+
+def _readme_plot_lines(output_dir: Path, readme_path: Path) -> list[str]:
+    output_dir = Path(output_dir)
+    if not output_dir.exists():
+        return []
+
+    pngs = sorted(output_dir.glob("*.png"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not pngs:
+        return []
+
+    wanted = [
+        ("Baseline self-spiking", "baseline_self_spiking_coin"),
+        ("Debug self-spiking", "debug_self_spiking_short"),
+        ("Synapse midpoint zero-effect", "synapse_midpoint_zero_effect_single"),
+        ("Excitatory synapse", "synapse_excitatory_single_high"),
+        ("Inhibitory synapse", "synapse_inhibitory_single_low"),
+        ("Positive external stimulus", "external_stimulus_positive_subthreshold"),
+        ("Cold start", "cold_start_self_spiking_coin"),
+    ]
+
+    lines: list[str] = []
+    used: set[Path] = set()
+
+    def find_one(fragment: str, vm_only: bool) -> Path | None:
+        matches = []
+        for p in pngs:
+            name = p.name
+            if fragment not in name:
+                continue
+            is_vm = name.endswith("_vmint_vmext.png")
+            if vm_only and not is_vm:
+                continue
+            if (not vm_only) and is_vm:
+                continue
+            matches.append(p)
+        return matches[0] if matches else None
+
+    for title, fragment in wanted:
+        vm = find_one(fragment, vm_only=True)
+        full = find_one(fragment, vm_only=False)
+        if vm is None and full is None:
+            continue
+
+        lines.append(f"#### {title}")
+        lines.append("")
+
+        if vm is not None:
+            used.add(vm)
+            lines.append(f"![{title} — Vm_Int and Vm_Ext]({_rel_markdown_path(vm, readme_path)})")
+            lines.append("")
+
+        if full is not None:
+            used.add(full)
+            lines.append(f"![{title} — full trace set]({_rel_markdown_path(full, readme_path)})")
+            lines.append("")
+
+    if not lines:
+        lines.append("#### Most recent plots")
+        lines.append("")
+        for p in pngs[:6]:
+            used.add(p)
+            title = p.stem.replace("_", " ")
+            lines.append(f"![{title}]({_rel_markdown_path(p, readme_path)})")
+            lines.append("")
+
+    return lines
+
+
+def build_readme_validation_section(output_dir: Path, readme_path: Path) -> str:
+    output_dir = Path(output_dir)
+    readme_path = Path(readme_path)
+
+    verdict_md, verdict_csv, metrics_csv = make_validation_verdict(output_dir)
+    verdict_df = pd.read_csv(verdict_csv) if verdict_csv.exists() else pd.DataFrame()
+    suite = _read_validation_suite_status(output_dir)
+
+    rel_output = _rel_markdown_path(output_dir, readme_path)
+    rel_summary = _rel_markdown_path(output_dir / "validation_diagnostics_summary.csv", readme_path)
+    rel_coverage = _rel_markdown_path(output_dir / "component_model_coverage.csv", readme_path)
+    rel_verdict_md = _rel_markdown_path(verdict_md, readme_path)
+    rel_verdict_csv = _rel_markdown_path(verdict_csv, readme_path)
+    rel_metrics_csv = _rel_markdown_path(metrics_csv, readme_path)
+
+    lines = [
+        README_AUTOGEN_START,
+        "",
+        "## Auto-generated SPICE validation snapshot",
+        "",
+        "This section is generated by `Spice.py` from the latest validation files in `LIFeling_pyspice_output/`. Do not edit it by hand; rerun the validation suite or `Spice.py --update-readme-only` instead.",
+        "",
+        f"- Script version: `{SCRIPT_VERSION}`",
+    ]
+
+    if suite.get("start"):
+        lines.append(f"- Suite start: `{suite['start']}`")
+    if suite.get("end"):
+        lines.append(f"- Suite end: `{suite['end']}`")
+    if suite.get("total_runs") or suite.get("failed_runs"):
+        lines.append(f"- Suite result: `{suite.get('total_runs', 'unknown')}` total steps, `{suite.get('failed_runs', 'unknown')}` failed")
+
+    lines += [
+        f"- Output folder: [`{rel_output}`]({rel_output})",
+        "",
+        "### Generated validation artifacts",
+        "",
+        f"- [Diagnostics summary CSV]({rel_summary})",
+        f"- [Component model coverage CSV]({rel_coverage})",
+        f"- [Block-level validation verdict Markdown]({rel_verdict_md})",
+        f"- [Block-level validation verdict CSV]({rel_verdict_csv})",
+        f"- [Key validation metrics CSV]({rel_metrics_csv})",
+        "",
+        "### Block-level verdict",
+        "",
+    ]
+
+    if not verdict_df.empty:
+        lines += [
+            "| Circuit block | Verdict | Evidence | Caveat |",
+            "|---|---|---|---|",
+        ]
+        for _, row in verdict_df.iterrows():
+            lines.append(
+                f"| {_md_cell(row.get('block', ''))} | **{_md_cell(row.get('verdict', ''))}** | "
+                f"{_md_cell(row.get('evidence', ''))} | {_md_cell(row.get('caveat', ''))} |"
+            )
+    else:
+        lines.append("No verdict table was available.")
+
+    lines += [
+        "",
+        "### Representative generated plots",
+        "",
+    ]
+
+    plot_lines = _readme_plot_lines(output_dir, readme_path)
+    if plot_lines:
+        lines.extend(plot_lines)
+    else:
+        lines.append("No PNG plots were found in the output folder.")
+        lines.append("")
+
+    lines += [
+        README_AUTOGEN_END,
+        "",
+    ]
+
+    return "\n".join(lines)
+
+
+def update_readme(readme_path: Path, output_dir: Path) -> Path:
+    readme_path = Path(readme_path)
+    output_dir = Path(output_dir)
+
+    readme_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if readme_path.exists():
+        text = readme_path.read_text(encoding="utf-8", errors="replace")
+    else:
+        text = "# LIFeling SPICE simulation\n\n"
+
+    section = build_readme_validation_section(output_dir, readme_path)
+
+    pattern = re.compile(
+        re.escape(README_AUTOGEN_START) + r".*?" + re.escape(README_AUTOGEN_END) + r"\s*",
+        flags=re.S,
+    )
+
+    if pattern.search(text):
+        new_text = pattern.sub(section, text)
+    else:
+        if not text.endswith("\n"):
+            text += "\n"
+        new_text = text + "\n" + section
+
+    readme_path.write_text(new_text, encoding="utf-8")
+    return readme_path
 
 
 # -----------------------------------------------------------------------------
-# Command line
+# CLI
 # -----------------------------------------------------------------------------
+
+
+def output_suffix(cfg: SimConfig) -> str:
+    payload_dict = dataclasses.asdict(cfg).copy()
+    # Keep the hash tied to circuit-affecting choices and run label, but avoid
+    # needless changes from absolute output paths or execution mode toggles.
+    for key in ["output_dir", "run", "write_only"]:
+        payload_dict.pop(key, None)
+    payload = repr(sorted(payload_dict.items())).encode("utf-8")
+    digest = hashlib.sha1(payload).hexdigest()[:8]
+    syn = ""
+    if cfg.syn1_enable or cfg.syn2_enable or cfg.syn3_enable or cfg.syn4_enable:
+        syn = "_syn" + "".join(str(i) for i, e in enumerate([cfg.syn1_enable, cfg.syn2_enable, cfg.syn3_enable, cfg.syn4_enable], start=1) if e)
+    label = safe_filename(cfg.run_label) + "_" if cfg.run_label else ""
+    suffix = f"{label}rv{cfg.rv1:.2f}_{cfg.rv2:.2f}_{cfg.rv3:.2f}_{cfg.rv4:.2f}_vb{cfg.vbat}_t{cfg.tstop}{syn}_{digest}"
+    return suffix.replace(".", "p").replace("-", "m")
 
 
 def parse_args(argv: list[str]) -> SimConfig:
-    p = argparse.ArgumentParser(description="Simulate the LIFeling Vm-relevant circuit with ngspice/PySpice.")
+    parser = argparse.ArgumentParser(description="Generate/run the updated full-schematic LIFeling SPICE model.")
+    parser.add_argument("--netlist", type=Path, default=DEFAULT_NETLIST)
+    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
+    parser.add_argument("--run-label", default="", help="Optional label prefixed to output filenames; useful for validation suites.")
+    parser.add_argument("--run", action="store_true", help="Run ngspice after writing the deck.")
+    parser.add_argument("--write-only", action="store_true", help="Only write .cir and coverage files; do not run ngspice.")
+    parser.add_argument("--ngspice-binary", default="auto")
 
-    p.add_argument("--stage", choices=["passive", "threshold", "threshold_reset", "threshold_reset_adapt"], default="passive")
-    p.add_argument("--strict-vendor", action="store_true", help="Require external vendor model files in ./models/.")
-    p.add_argument("--backend", choices=["pyspice", "ngspice-cli"], default="ngspice-cli")
-    p.add_argument("--ngspice-binary", default="auto", help="Path to ngspice.exe, or 'auto' to search PATH/common Windows locations.")
+    # Backward-compatible aliases accepted from the previous Vm-only script.
+    # They are intentionally retained so old command lines do not fail.
+    # The updated model is always the full schematic, always uses the ngspice CLI
+    # when --run is selected, and always uses the RV4-controlled capacitor bank.
+    parser.add_argument("--stage", choices=["passive", "threshold", "threshold_reset", "threshold_reset_adapt"], default="threshold_reset_adapt", help=argparse.SUPPRESS)
+    parser.add_argument("--backend", choices=["pyspice", "ngspice-cli"], default="ngspice-cli", help=argparse.SUPPRESS)
+    parser.add_argument("--trace-set", choices=["core", "debug"], default="core", help=argparse.SUPPRESS)
+    parser.add_argument("--ignore-start-ms", type=float, default=0.0, help="Initial time in ms ignored by diagnostics; does not affect ngspice.")
+    parser.add_argument("--cmem-mode", choices=["manual", "rv4"], default="rv4", help=argparse.SUPPRESS)
 
-    p.add_argument("--vdd", default="3", help="Ideal-supply voltage, e.g. 3, 3.3, or 2.7")
-    p.add_argument("--supply-mode", choices=["ideal", "coin"], default="ideal", help="ideal = ideal VDD source; coin = VBAT -> Rbat -> VDD with local decoupling")
-    p.add_argument("--vbat", default="3", help="Coin-cell open-circuit/source voltage used with --supply-mode coin")
-    p.add_argument("--rbat", default="30", help="Coin-cell series/internal resistance in ohms used with --supply-mode coin")
-    p.add_argument("--cdec-local", default="100n", help="Local IC bypass capacitance on VDD")
-    p.add_argument("--cdec-bulk", default="10u", help="Board-level bulk capacitance on VDD")
-    p.add_argument("--cdec-reservoir", default="47u", help="Optional reservoir capacitance on VDD")
-    p.add_argument("--cdec-esr", default="0.2", help="Series ESR applied to each VDD decoupling capacitor")
-    p.add_argument(
-        "--startup-mode",
-        choices=["operating", "cold"],
-        default="operating",
-        help="operating = precharged VDD/reset timer for normal behaviour; cold = discharged startup test",
+    parser.add_argument("--supply-mode", choices=["coin", "ideal"], default="coin")
+    parser.add_argument("--vbat", default="3.0")
+    parser.add_argument("--rbat", default="30")
+    parser.add_argument("--vdd-ideal", default="3.0")
+    parser.add_argument("--switch-on-resistance", default="0.2")
+    parser.add_argument("--vboost", default="3.3")
+    parser.add_argument("--startup-mode", choices=["operating", "cold"], default="operating")
+    parser.add_argument("--vm-initial", default="0.60")
+    parser.add_argument("--syn-initial", default="1.024")
+
+    parser.add_argument("--tstop", default="500m")
+    parser.add_argument("--tstep", default="10u")
+    parser.add_argument("--maxstep", default="10u")
+
+    for idx, default in [(1, 0.30), (2, 0.50), (3, 0.50), (4, 0.50), (5, 0.50), (6, 0.50), (7, 0.50), (8, 0.50), (9, 0.50)]:
+        parser.add_argument(f"--rv{idx}", type=float, default=default)
+
+    parser.add_argument("--stimulus-ext", "--stim-dc", dest="stimulus_ext", type=float, default=None, help="Optional DC source on J1 ring / Stimulus_Ext.")
+    parser.add_argument("--syn1-enable", action="store_true")
+    parser.add_argument("--syn2-enable", action="store_true")
+    parser.add_argument("--syn3-enable", action="store_true")
+    parser.add_argument("--syn4-enable", action="store_true")
+    parser.add_argument("--syn-all-enable", action="store_true")
+    parser.add_argument("--syn-amp", default="3.0")
+    parser.add_argument("--syn-rise", default="1u")
+    parser.add_argument("--syn-fall", default="1u")
+    for idx, delay in [(1, "80m"), (2, "120m"), (3, "160m"), (4, "200m")]:
+        parser.add_argument(f"--syn{idx}-delay", default=delay)
+        parser.add_argument(f"--syn{idx}-width", default="5m")
+        parser.add_argument(f"--syn{idx}-period", default="100m")
+    parser.add_argument("--trace-debug", action="store_true")
+    parser.add_argument(
+        "--make-validation-verdict",
+        action="store_true",
+        help="Generate validation verdict files from validation_diagnostics_summary.csv and component_model_coverage.csv.",
     )
-    p.add_argument(
-        "--ignore-start-ms",
-        type=float,
-        default=0.0,
-        help="Ignore this initial time window when reporting event counts/crossings and VDD sag.",
+    parser.add_argument(
+        "--update-readme",
+        action="store_true",
+        help="Update README.md after a normal run.",
     )
-    p.add_argument(
-        "--cold-vm-initial",
-        default="0",
-        help="Vm_Int initial condition used only with --startup-mode cold.",
+    parser.add_argument(
+        "--update-readme-only",
+        action="store_true",
+        help="Update README.md from existing validation outputs without running ngspice or parsing the netlist.",
+    )
+    parser.add_argument(
+        "--readme-path",
+        type=Path,
+        default=THIS_DIR / "README.md",
+        help="README file to update when --update-readme or --update-readme-only is used.",
     )
 
-    p.add_argument("--tol-mode", choices=["nominal", "random"], default="nominal", help="Apply deterministic random component tolerances")
-    p.add_argument("--tol-seed", type=int, default=1, help="Seed for deterministic random tolerance factors")
-    p.add_argument("--res-tol-pct", type=float, default=0.0, help="Uniform resistor tolerance, +/-percent")
-    p.add_argument("--cap-tol-pct", type=float, default=0.0, help="Uniform capacitor tolerance, +/-percent")
-    p.add_argument("--pot-tol-pct", type=float, default=0.0, help="Pot total/wiper tolerance, +/-percent of value/full-scale travel")
-    p.add_argument("--rv1", type=float, default=0.5, help="RV1 wiper fraction, 0..1; pin1=GNDREF, pin3=V_Leak_Ref_Max")
-    p.add_argument("--rv2", type=float, default=0.5, help="RV2 wiper fraction, 0..1; pin1=R32 node, pin2=Vm_Int, pin3=V_Leak")
-    p.add_argument("--rv3", type=float, default=0.5, help="RV3 wiper fraction, 0..1; pins1/2=Vw, pin3=R42 node")
-    p.add_argument("--rv4", type=float, default=0.5, help="RV4 Cm selector fraction, 0..1")
-
-    p.add_argument("--cmem-mode", choices=["manual", "rv4"], default="manual")
-    p.add_argument("--cmem", default="2.2u", help="Manual membrane capacitor, e.g. 470n, 1u, 2.2u, 4.7u, 10u")
-    p.add_argument("--vm-initial", default="0.385")
-
-    p.add_argument("--tstop", default="1", help="Transient stop time, seconds by default")
-    p.add_argument("--tstep", default="10u")
-    p.add_argument("--maxstep", default="10u")
-
-    p.add_argument("--probe", choices=["ideal", "scope10m", "probe1m"], default="ideal")
-    p.add_argument("--trace-set", choices=["core", "debug"], default="core", help="core = readable circuit traces; debug = include internal transistor/MOSFET nodes")
-    p.add_argument("--stim-dc", type=float, default=None, help="Optional DC source at J1 pin2 / Stimulus_Ext")
-
-    p.add_argument("--syn1-enable", action="store_true", help="Enable Syn1 spike-gated synaptic input model.")
-    p.add_argument("--syn2-enable", action="store_true", help="Enable Syn2 spike-gated synaptic input model.")
-    p.add_argument("--syn3-enable", action="store_true", help="Enable Syn3 spike-gated synaptic input model.")
-    p.add_argument("--syn4-enable", action="store_true", help="Enable Syn4 spike-gated synaptic input model.")
-    p.add_argument("--syn-all-enable", action="store_true", help="Enable all four synaptic input models.")
-    p.add_argument(
-        "--syn-ref-mode",
-        choices=["schematic", "legacy_direct", "buffered"],
-        default="schematic",
-        help="schematic = current KiCad R4/R5 raw node -> U2A buffer -> V_Leak_Ref_Max -> RV1/RV6-RV9; legacy_direct = old raw-node comparison; buffered = deprecated alias of schematic",
-    )
-    p.add_argument("--rv5", type=float, default=0.5, help="RV5 synaptic-state decay fraction, 0..1; pins1/2=decay node, pin3=V_Leak")
-    p.add_argument("--rv6", type=float, default=0.5, help="RV6 Syn1 set-voltage fraction, 0..1")
-    p.add_argument("--rv7", type=float, default=0.5, help="RV7 Syn2 set-voltage fraction, 0..1")
-    p.add_argument("--rv8", type=float, default=0.5, help="RV8 Syn3 set-voltage fraction, 0..1")
-    p.add_argument("--rv9", type=float, default=0.5, help="RV9 Syn4 set-voltage fraction, 0..1")
-    p.add_argument("--syn-amp", default="3", help="Synaptic input pulse high voltage")
-    p.add_argument("--syn-rise", default="1u", help="Synaptic input pulse rise time")
-    p.add_argument("--syn-fall", default="1u", help="Synaptic input pulse fall time")
-    p.add_argument("--syn1-delay", default="80m")
-    p.add_argument("--syn1-width", default="5m")
-    p.add_argument("--syn1-period", default="100m")
-    p.add_argument("--syn2-delay", default="120m")
-    p.add_argument("--syn2-width", default="5m")
-    p.add_argument("--syn2-period", default="100m")
-    p.add_argument("--syn3-delay", default="160m")
-    p.add_argument("--syn3-width", default="5m")
-    p.add_argument("--syn3-period", default="100m")
-    p.add_argument("--syn4-delay", default="200m")
-    p.add_argument("--syn4-width", default="5m")
-    p.add_argument("--syn4-period", default="100m")
-
-    p.add_argument("--sweep", action="store_true", help="Run an RV parameter sweep.")
-    p.add_argument("--sweep-rv1", default="0.3,0.5,0.7,1.0")
-    p.add_argument("--sweep-rv2", default="0.2,0.5,0.8")
-    p.add_argument("--sweep-rv3", default="0.2,0.5,0.8")
-    p.add_argument("--sweep-rv4", default="", help="Optional RV4 sweep list. Empty means use --rv4 only.")
-    p.add_argument("--sweep-vbat", default="", help="Optional coin-cell voltage sweep list. Empty means use --vbat only.")
-    p.add_argument("--sweep-rbat", default="", help="Optional coin-cell resistance sweep list. Empty means use --rbat only.")
-
-    ns = p.parse_args(argv)
+    ns = parser.parse_args(argv)
     return SimConfig(
-        stage=ns.stage,
-        strict_vendor=ns.strict_vendor,
-        vdd=ns.vdd,
+        netlist=ns.netlist,
+        output_dir=ns.output_dir,
+        run_label=ns.run_label,
+        run=ns.run,
+        write_only=ns.write_only,
+        ngspice_binary=ns.ngspice_binary,
         supply_mode=ns.supply_mode,
         vbat=ns.vbat,
         rbat=ns.rbat,
-        cdec_local=ns.cdec_local,
-        cdec_bulk=ns.cdec_bulk,
-        cdec_reservoir=ns.cdec_reservoir,
-        cdec_esr=ns.cdec_esr,
+        vdd_ideal=ns.vdd_ideal,
+        switch_on_resistance=ns.switch_on_resistance,
+        vboost=ns.vboost,
         startup_mode=ns.startup_mode,
         ignore_start_ms=ns.ignore_start_ms,
-        cold_vm_initial=ns.cold_vm_initial,
-        tol_mode=ns.tol_mode,
-        tol_seed=ns.tol_seed,
-        res_tol_pct=ns.res_tol_pct,
-        cap_tol_pct=ns.cap_tol_pct,
-        pot_tol_pct=ns.pot_tol_pct,
-        rv1_fraction=ns.rv1,
-        rv2_fraction=ns.rv2,
-        rv3_fraction=ns.rv3,
-        rv4_fraction=ns.rv4,
-        cmem_mode=ns.cmem_mode,
-        cmem=ns.cmem,
         vm_initial=ns.vm_initial,
+        syn_initial=ns.syn_initial,
         tstop=ns.tstop,
         tstep=ns.tstep,
         maxstep=ns.maxstep,
-        probe=ns.probe,
-        trace_set=ns.trace_set,
-        stim_dc=ns.stim_dc,
-        syn_ref_mode=ns.syn_ref_mode,
+        rv1=ns.rv1,
+        rv2=ns.rv2,
+        rv3=ns.rv3,
+        rv4=ns.rv4,
+        rv5=ns.rv5,
+        rv6=ns.rv6,
+        rv7=ns.rv7,
+        rv8=ns.rv8,
+        rv9=ns.rv9,
+        stimulus_ext=ns.stimulus_ext,
         syn1_enable=ns.syn1_enable or ns.syn_all_enable,
         syn2_enable=ns.syn2_enable or ns.syn_all_enable,
         syn3_enable=ns.syn3_enable or ns.syn_all_enable,
         syn4_enable=ns.syn4_enable or ns.syn_all_enable,
-        rv5_fraction=ns.rv5,
-        rv6_fraction=ns.rv6,
-        rv7_fraction=ns.rv7,
-        rv8_fraction=ns.rv8,
-        rv9_fraction=ns.rv9,
         syn_amp=ns.syn_amp,
         syn_rise=ns.syn_rise,
         syn_fall=ns.syn_fall,
@@ -2850,110 +2032,88 @@ def parse_args(argv: list[str]) -> SimConfig:
         syn4_delay=ns.syn4_delay,
         syn4_width=ns.syn4_width,
         syn4_period=ns.syn4_period,
-        backend=ns.backend,
-        ngspice_binary=ns.ngspice_binary,
-        sweep=ns.sweep,
-        sweep_rv1=ns.sweep_rv1,
-        sweep_rv2=ns.sweep_rv2,
-        sweep_rv3=ns.sweep_rv3,
-        sweep_rv4=ns.sweep_rv4,
-        sweep_vbat=ns.sweep_vbat,
-        sweep_rbat=ns.sweep_rbat,
+        trace_debug=ns.trace_debug or ns.trace_set == "debug",
+        make_validation_verdict=ns.make_validation_verdict,
+        update_readme=ns.update_readme,
+        update_readme_only=ns.update_readme_only,
+        readme_path=ns.readme_path,
     )
-
-
-def print_run_header(cfg: SimConfig, deck_path: Path) -> None:
-    print(f"Wrote SPICE deck: {deck_path}")
-    print(f"Stage:          {cfg.stage}")
-    print(f"Backend:        {cfg.backend}")
-    print(f"Strict vendor:  {cfg.strict_vendor}")
-    print(f"Trace set:      {cfg.trace_set}")
-    print(f"Supply mode:    {cfg.supply_mode}")
-    if cfg.supply_mode == "coin":
-        print(f"Vbat/Rbat:      {cfg.vbat} V / {cfg.rbat} ohm")
-        print(f"VDD decoupling: {cfg.cdec_local} + {cfg.cdec_bulk} + {cfg.cdec_reservoir}, ESR={cfg.cdec_esr} ohm")
-    else:
-        print(f"Ideal VDD:      {cfg.vdd} V")
-    print(f"Startup mode:   {cfg.startup_mode}")
-    print(f"Ignore start:   {cfg.ignore_start_ms:g} ms")
-    if cfg.startup_mode == "cold":
-        print(f"Cold Vm IC:      {cfg.cold_vm_initial} V")
-    print(f"Tolerance mode: {cfg.tol_mode}")
-    if cfg.tol_mode == "random":
-        print(f"Tolerance seed: {cfg.tol_seed}")
-        print(f"Tolerances:     R=+/-{cfg.res_tol_pct}% C=+/-{cfg.cap_tol_pct}% pot=+/-{cfg.pot_tol_pct}%")
-        print(
-            f"Effective RVs:  RV1={effective_pot_fraction(cfg, 'RV1', cfg.rv1_fraction):.3f} / "
-            f"RV2={effective_pot_fraction(cfg, 'RV2', cfg.rv2_fraction):.3f} / "
-            f"RV3={effective_pot_fraction(cfg, 'RV3', cfg.rv3_fraction):.3f} / "
-            f"RV4={effective_pot_fraction(cfg, 'RV4', cfg.rv4_fraction):.3f}"
-        )
-    print(f"RV1/RV2/RV3:    {cfg.rv1_fraction:.3f} / {cfg.rv2_fraction:.3f} / {cfg.rv3_fraction:.3f}")
-    print(f"Cmem mode:      {cfg.cmem_mode}")
-    print("Leak ref path:  R4/R5 -> V_Leak_Ref_Max_Raw -> U2A buffer -> V_Leak_Ref_Max")
-    print("Peak path:      R8/R9 -> V_Peak_Ref -> U2C buffer -> R49/U14 -> Vm_Int")
-    print("Live Vm output: Vm_Int -> R90/C38 Vm_Display_In + V_Peak_Drive/R91/U20 display spike -> U8/R1/C14 -> Vm_Ext")
-    if synapse_enabled(cfg):
-        print(f"Syn ref mode:   {cfg.syn_ref_mode}")
-        if cfg.syn_ref_mode == "legacy_direct":
-            print("Syn set refs:   RV6/RV7/RV8/RV9 pin3 use raw V_Leak_Ref_Max_Raw (comparison mode)")
-        else:
-            print("Syn set refs:   RV6/RV7/RV8/RV9 pin3 use buffered V_Leak_Ref_Max")
-        print("Syn state path: U2D follower model V_Syn_State -> V_Syn_Drive -> R80 -> Vm_Int")
-        print("Syn timing:")
-        for idx, delay, width, period in enabled_synapse_timing(cfg):
-            print(f"  - Syn{idx}: delay={delay}, width={width}, period={period}")
-        print("KiCad check:    U2D is now consistent: pin12=+, pins13/14=feedback/output")
-    print(f"RV4 fraction:   {cfg.rv4_fraction:.3f}")
-    print(f"Selected Cmem:  {selected_cmem(cfg)}")
-    print("Saved/plotted/printed compact visualisation traces:")
-    for trace in traces_for_config(cfg):
-        print(f"  - {trace.key}: {trace.label} [{trace.node}]")
 
 
 def main(argv: list[str] | None = None) -> int:
     cfg = parse_args(sys.argv[1:] if argv is None else argv)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    cfg.output_dir.mkdir(parents=True, exist_ok=True)
 
-    if cfg.sweep:
-        return run_sweep(cfg)
+    if cfg.update_readme_only:
+        verdict_md, verdict_csv, metrics_csv = make_validation_verdict(cfg.output_dir)
+        readme = update_readme(cfg.readme_path, cfg.output_dir)
+        print(f"Spice.py version: {SCRIPT_VERSION}")
+        print(f"Wrote validation verdict: {verdict_md}")
+        print(f"Wrote validation verdict: {verdict_csv}")
+        print(f"Wrote key metrics:        {metrics_csv}")
+        print(f"Updated README:           {readme}")
+        return 0
+
+    if cfg.make_validation_verdict:
+        verdict_md, verdict_csv, metrics_csv = make_validation_verdict(cfg.output_dir)
+        print(f"Spice.py version: {SCRIPT_VERSION}")
+        print(f"Wrote validation verdict: {verdict_md}")
+        print(f"Wrote validation verdict: {verdict_csv}")
+        print(f"Wrote key metrics:        {metrics_csv}")
+        return 0
+
+    design = parse_kicad_netlist(cfg.netlist)
 
     suffix = output_suffix(cfg)
-    deck_path = OUTPUT_DIR / f"LIFeling_vm_{suffix}.cir"
-    csv_path = OUTPUT_DIR / f"LIFeling_vm_{suffix}.csv"
-    png_path = OUTPUT_DIR / f"LIFeling_vm_{suffix}.png"
-    vm_png_path = OUTPUT_DIR / f"LIFeling_vm_{suffix}_vmint_vmext.png"
-    results_path = OUTPUT_DIR / f"LIFeling_vm_{suffix}_results.txt"
+    deck_path = cfg.output_dir / f"LIFeling_updated_{suffix}.cir"
+    csv_path = cfg.output_dir / f"LIFeling_updated_{suffix}.raw.csv"
+    parsed_csv_path = cfg.output_dir / f"LIFeling_updated_{suffix}.csv"
+    plot_path = cfg.output_dir / f"LIFeling_updated_{suffix}.png"
+    vm_plot_path = cfg.output_dir / f"LIFeling_updated_{suffix}_vmint_vmext.png"
+    diag_csv_path = cfg.output_dir / f"LIFeling_updated_{suffix}_diagnostics.csv"
+    diag_md_path = cfg.output_dir / f"LIFeling_updated_{suffix}_diagnostics.md"
+    coverage_path = cfg.output_dir / "component_model_coverage.csv"
 
-    for path in (deck_path, csv_path, png_path, vm_png_path, results_path):
-        if len(str(path)) > 240:
-            print(f"WARNING: long path may fail on Windows/ngspice: {len(str(path))} chars")
-            print(path)
+    deck = build_deck(design, cfg, csv_path=csv_path if cfg.run else None)
+    deck_path.write_text(deck, encoding="utf-8")
+    write_coverage_report(design, coverage_path)
 
-    deck = build_spice_deck(cfg, for_cli=(cfg.backend == "ngspice-cli"), csv_path=csv_path)
-    deck_path.write_text(deck)
+    print(f"Spice.py version: {SCRIPT_VERSION}")
+    print(f"Parsed components: {len(design.components)}")
+    print(f"Parsed nets:       {len(design.nets)}")
+    print(f"Wrote deck:        {deck_path}")
+    print(f"Wrote coverage:    {coverage_path}")
 
-    with tee_stdout(results_path):
-        print(f"Results text file: {results_path}")
-        print_run_header(cfg, deck_path)
+    if cfg.run:
+        run_ngspice(deck_path, csv_path, cfg)
+        traces = trace_nodes(cfg)
+        df = read_wrdata(csv_path, traces)
 
-        if cfg.backend == "pyspice":
-            df = run_with_pyspice(deck_path, cfg)
-        else:
-            df = run_with_ngspice_cli(deck_path, csv_path, cfg)
+        rename = {spice_node_name(name): name for name in traces}
+        df = df.rename(columns=rename)
 
-        # Save the same compact visualisation/validation traces that are plotted
-        # and printed. The detailed debug narrative is kept in *_results.txt.
-        df.to_csv(csv_path, index=False)
-        plot_results(df, cfg, png_path)
-        plot_vm_only(df, cfg, vm_png_path)
+        df.to_csv(parsed_csv_path, index=False)
+        title_suffix = cfg.run_label or suffix
+        plot_core(df, plot_path, title_suffix=title_suffix)
+        plot_vm_only(df, vm_plot_path, title_suffix=title_suffix)
+        write_run_diagnostics(df, cfg, diag_csv_path, diag_md_path)
 
-        print(f"Wrote CSV:              {csv_path}")
-        print(f"Wrote multi-trace plot: {png_path}")
-        print(f"Wrote Vm_Int/Vm_Ext plot: {vm_png_path}")
-        print(f"Wrote results text:     {results_path}")
-        print_diagnostics(df, cfg)
+        print(f"Wrote parsed CSV:   {parsed_csv_path}")
+        print(f"Wrote diagnostics:  {diag_csv_path}")
+        print(f"Wrote diagnostics:  {diag_md_path}")
+        if plt is not None:
+            print(f"Wrote plot:         {plot_path}")
+            print(f"Wrote Vm-only plot: {vm_plot_path}")
+    else:
+        print("ngspice was not run. Use --run to simulate after installing ngspice.")
+
+    if cfg.update_readme:
+        verdict_md, verdict_csv, metrics_csv = make_validation_verdict(cfg.output_dir)
+        readme = update_readme(cfg.readme_path, cfg.output_dir)
+        print(f"Wrote validation verdict: {verdict_md}")
+        print(f"Wrote validation verdict: {verdict_csv}")
+        print(f"Wrote key metrics:        {metrics_csv}")
+        print(f"Updated README:           {readme}")
 
     return 0
 

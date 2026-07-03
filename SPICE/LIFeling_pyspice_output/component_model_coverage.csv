@@ -1,0 +1,214 @@
+ref,value,footprint,status,model_note,pins
+BT1,C70377,Maxime:BAT-TH_CR2032-BS-6-1,behavioural,coin-cell source with configurable internal resistance,1:+BATT; 2:GNDREF
+C1,10uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:+BATT; 2:GNDREF
+C2,10uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C3,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C4,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C5,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C6,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C7,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C8,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+C9,10uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C10,22uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:GNDREF; 2:Net-(U7-VOUT)
+C11,1uF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:V_Boost; 2:GNDREF
+C12,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:V_Boost; 2:GNDREF
+C13,100pF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:Vm_Ext; 2:GNDREF
+C14,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:V_Boost; 2:GNDREF
+C15,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VREF_2V048; 2:GNDREF
+C16,22nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:Vm_Display_In
+C17,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C18,470nF,JLCPCB:C_0603,electrical,capacitor instantiated from netlist,1:Net-(U9-NO); 2:GNDREF
+C19,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C20,1uF,JLCPCB:C_0603,electrical,capacitor instantiated from netlist,1:Net-(U10-NO); 2:GNDREF
+C21,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C22,2.2uF,JLCPCB:C_0603,electrical,capacitor instantiated from netlist,1:Net-(U11-NO); 2:GNDREF
+C23,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C24,4.7uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:Net-(U12-NO); 2:GNDREF
+C25,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C26,10uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:Net-(U13-NO); 2:GNDREF
+C27,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C28,100pF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:Vm_Int
+C29,1uF,JLCPCB:C_0603,electrical,capacitor instantiated from netlist,1:/Vkick; 2:/Adapt_Kick_Drive
+C30,10uF,JLCPCB:C_0805,electrical,capacitor instantiated from netlist,1:GNDREF; 2:Vw
+C31,10nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:AP; 2:/Rising_AP
+C32,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C33,1uF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:Net-(U6C-INC-)
+C34,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C35,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C36,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C37,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:VDD; 2:GNDREF
+C38,220nF,JLCPCB:C_0603,electrical,capacitor instantiated from netlist,1:GNDREF; 2:V_Syn_State
+C39,100pF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:V_Stim_Cmd; 2:GNDREF
+C41,100nF,JLCPCB:C_0402,electrical,capacitor instantiated from netlist,1:GNDREF; 2:VDD
+D1,TPD1E05U06DPYT,Maxime:X1SON-2_L1.0-W0.6-P0.65-RD-1,behavioural,ESD protector approximated as capacitance plus leakage,1:Vm_Ext; 2:GNDREF
+D2,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Vm_Int
+D3,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Vm_Int; 2:GNDREF
+D4,1N4148WS,Maxime:SOD-323_L1.8-W1.3-LS2.5-RD-1,electrical,diode/clamp instantiated with generic fallback model,1:/Vkick; 2:GNDREF
+D5,1N4148WS,Maxime:SOD-323_L1.8-W1.3-LS2.5-RD-1,electrical,diode/clamp instantiated with generic fallback model,1:Vw; 2:/Vkick
+D6,RB521S30T1G,Maxime:SOD-523_L1.2-W0.8-LS1.6-RD,electrical,diode/clamp instantiated with generic fallback model,1:Vw; 2:Net-(D6-A)
+D7,1N4148WS,Maxime:SOD-323_L1.8-W1.3-LS2.5-RD-1,electrical,diode/clamp instantiated with generic fallback model,1:Vw; 2:GNDREF
+D8,RB521S30T1G,Maxime:SOD-523_L1.2-W0.8-LS1.6-RD,electrical,diode/clamp instantiated with generic fallback model,1:Spike_Pulse; 2:/Rising_AP
+D9,19-237/R6GHBHC-A01/2T,Maxime:LED-SMD_4P-L1.6-W1.6-19-237A-BHR6GHC-A01-2T,behavioural,RGB LED approximated with three generic LED diodes,1:Net-(D9-R-); 2:Net-(D9-G-); 3:Net-(D9-B-); 4:VDD
+D10,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Net-(D10-A)
+D11,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Net-(D10-A); 2:GNDREF
+D12,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Net-(D12-A)
+D13,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Net-(D12-A); 2:GNDREF
+D14,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Net-(D14-A)
+D15,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Net-(D14-A); 2:GNDREF
+D16,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Net-(D16-A)
+D17,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Net-(D16-A); 2:GNDREF
+D18,TPD1E05U06DPYT,X1SON-2_L1.0-W0.6-P0.65-RD,behavioural,ESD protector approximated as capacitance plus leakage,1:Spike_Out; 2:GNDREF
+D19,TPD1E05U06DPYT,Maxime:X1SON-2_L1.0-W0.6-P0.65-RD-1,behavioural,ESD protector approximated as capacitance plus leakage,1:Stimulus_Ext; 2:GNDREF
+D20,RB521S30T1G,Maxime:SOD-523_L1.2-W0.8-LS1.6-RD,electrical,diode/clamp instantiated with generic fallback model,1:Spike_Pulse; 2:GNDREF
+D21,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:VDD; 2:Vm_Display_In
+D22,BAT54WS L9,SOD-323_L1.8-W1.3-LS2.5-RD,electrical,diode/clamp instantiated with generic fallback model,1:Vm_Display_In; 2:GNDREF
+H1,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+H2,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+H3,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+H4,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+H5,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+H6,MountingHole,MountingHole:MountingHole_2.2mm_M2,mechanical,mounting hole; no electrical model required,
+J1,Stim_Ext,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:Vm_Ext; 2:Stimulus_Ext; 3:GNDREF
+J2,Axon_Output,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:Vm_Ext; 2:Spike_Out; 3:GNDREF
+J3,Syn1_Input,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:unconnected-(J3-Pad1); 2:Syn1_Spike; 3:GNDREF
+J4,Syn2_Input,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:unconnected-(J4-Pad1); 2:Syn2_Spike; 3:GNDREF
+J5,Syn3_Input,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:unconnected-(J5-Pad1); 2:Syn3_Spike; 3:GNDREF
+J6,Syn4_Input,AUDIO-SMD_HX-PJ-320A-3P-DIP,terminal,connector represented by its named external nets,1:unconnected-(J6-Pad1); 2:Syn4_Spike; 3:GNDREF
+L1,2.2uH,Maxime:IND-SMD_L3.0-W3.0_SMNR3015,electrical,inductor instantiated from netlist,1:VDD; 2:Net-(U7-SW)
+Q1,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:/AP_Gate; 2:GNDREF; 3:AP
+Q2,MMBT3904,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:/Adapt_Base; 2:GNDREF; 3:/Adapt_Current_Sink
+Q3,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:AP; 2:GNDREF; 3:/Reset_Timer_Discharge
+Q4,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:Peak_Window; 2:GNDREF; 3:/Reset_Injection_Enable
+Q5,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:/Reset_Injection_Enable; 2:/Reset_Injection_Drive; 3:/Reset_Switch_Mid
+Q6,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:Reset_Window; 2:/Reset_Switch_Mid; 3:/Reset_Gated_Drive
+Q7,BSS138,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:Reset_Window; 2:GNDREF; 3:Net-(Q7-D)
+Q8,MMBT3904,SOT-23-3_L2.9-W1.6-P1.90-LS2.8-BR,behavioural,BSS138/MMBT3904 generic transistor model,1:Net-(Q8-Pad1); 2:GNDREF; 3:Net-(Q8-Pad3)
+R1,10Ω,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U7-VOUT); 2:V_Boost
+R2,220Ω,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_Out_DRV; 2:Vm_Ext
+R3,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_FB; 2:Vm_Out_DRV
+R4,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Vm_FB
+R5,220kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VREF_1V024_RAW; 2:VREF_2V048
+R6,220kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:VREF_1V024_RAW
+R7,20kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Threshold; 2:VREF_1V024
+R8,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Threshold; 2:GNDREF
+R9,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VREF_1V024; 2:V_Reset_Ref
+R10,56kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:V_Reset_Ref
+R11,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:V_Peak_Ref
+R12,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:V_Peak_Ref
+R13,220kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Logic_Mid; 2:VDD
+R14,220kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:V_Logic_Mid
+R15,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_Display_In; 2:Vm_Int
+R16,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U20-NO); 2:V_Peak_Drive
+R17,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:T4
+R18,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T4; 2:T3
+R19,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T3; 2:T2
+R20,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T2; 2:T1
+R21,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T1; 2:GNDREF
+R22,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:S0
+R23,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T1; 2:S0
+R24,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:S1
+R25,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T1; 2:S1
+R26,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T2; 2:S1
+R27,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:S2
+R28,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T2; 2:S2
+R29,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T3; 2:S2
+R30,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:S3
+R31,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T3; 2:S3
+R32,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T4; 2:S3
+R33,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:S4
+R34,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:T4; 2:S4
+R35,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(R35-Pad1); 2:Vm_Int
+R36,2.2MΩ,R0402,electrical,fixed resistor instantiated from netlist,1:V_Threshold; 2:/AP_Gate
+R37,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:/AP_Gate
+R38,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:AP
+R39,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:/Vkick
+R40,100Ω,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(R40-Pad1); 2:GNDREF
+R41,200kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(U1A-VINB+)
+R42,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U1A-VINB+); 2:Vm_Int
+R43,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U1A-VINB-); 2:V_Leak
+R44,200kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U1A-VINB-); 2:Net-(U1A-VOUTB)
+R45,330kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U1A-VOUTB); 2:Net-(D6-A)
+R46,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_Int; 2:/Adapt_Current_Sink
+R47,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/Adapt_Base; 2:Vw_buff
+R48,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/Adapt_Base; 2:GNDREF
+R49,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/Rising_AP; 2:GNDREF
+R50,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Spike_Pulse
+R51,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:Peak_Window
+R52,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U14-NO); 2:V_Peak_Drive
+R53,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:Net-(U6C-INC-)
+R54,100Ω,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/Reset_Timer_Discharge; 2:Net-(U6C-INC-)
+R55,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:Reset_Window
+R56,270kΩ,R0402,electrical,fixed resistor instantiated from netlist,1:Net-(U6C-INC+); 2:VDD
+R57,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U6C-INC+); 2:Reset_Window
+R58,220kΩ,R0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(U6C-INC+)
+R59,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:/Reset_Injection_Enable
+R60,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/Reset_Gated_Drive; 2:Vm_Int
+R61,2kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(Q7-D); 2:Net-(D9-B-)
+R62,2kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(Q7-D); 2:Net-(D9-G-)
+R63,2kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(Q8-Pad3); 2:Net-(D9-R-)
+R64,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(Q8-Pad1); 2:Vm_Int
+R65,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(Q8-Pad1); 2:GNDREF
+R66,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U15-NO); 2:V_Syn_State
+R67,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U15-IN); 2:Net-(D10-A)
+R68,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(D10-A)
+R69,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Syn1_Spike; 2:Net-(D10-A)
+R70,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U16-NO); 2:V_Syn_State
+R71,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U16-IN); 2:Net-(D12-A)
+R72,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(D12-A)
+R73,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Syn2_Spike; 2:Net-(D12-A)
+R74,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U17-NO); 2:V_Syn_State
+R75,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U17-IN); 2:Net-(D14-A)
+R76,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(D14-A)
+R77,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Syn3_Spike; 2:Net-(D14-A)
+R78,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U18-NO); 2:V_Syn_State
+R79,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U18-IN); 2:Net-(D16-A)
+R80,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:GNDREF; 2:Net-(D16-A)
+R81,22kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Syn4_Spike; 2:Net-(D16-A)
+R82,10kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Syn_State; 2:Net-(R82-Pad2)
+R83,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Syn_State; 2:Net-(U2C-VIND+)
+R84,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_Int; 2:Net-(U2C-VIND+)
+R85,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VREF_1V024; 2:Net-(U2C-VIND-)
+R86,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U2C-VIND-); 2:/V_Syn_Drive
+R87,47kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:/V_Syn_Drive; 2:Vm_Int
+R88,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:Net-(U19-OUT)
+R89,100Ω,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Net-(U19-OUT); 2:Spike_Out
+R90,1MΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VREF_1V024; 2:V_Stim_Cmd
+R91,1kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Stimulus_Ext; 2:V_Stim_Cmd
+R92,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:Vm_Int; 2:Net-(U6B-INB+)
+R93,200kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Stim_Cmd; 2:Net-(U6B-INB+)
+R94,200kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VREF_1V024; 2:Net-(U6B-INB-)
+R95,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Stim_Drive; 2:Net-(U6B-INB-)
+R96,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:VDD; 2:V_Stim_Drive
+R97,100kΩ,JLCPCB:R_0402,electrical,fixed resistor instantiated from netlist,1:V_Stim_Drive; 2:Vm_Int
+RV1,100kΩ,Maxime:RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:/V_Leak_ref; 3:V_Leak_Ref_Max
+RV2,50kΩ,Maxime:RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:Net-(R35-Pad1); 2:Vm_Int; 3:V_Leak
+RV3,100kΩ,Maxime:RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:Vw; 2:Vw; 3:Net-(R40-Pad1)
+RV4,100kΩ,Maxime:RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:Vsel; 3:VDD
+RV5,100kΩ,Maxime:RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:Net-(R82-Pad2); 2:Net-(R82-Pad2); 3:VREF_1V024
+RV6,1MΩ,RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:Net-(U3A-VINB+); 3:VREF_2V048
+RV7,1MΩ,RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:Net-(U3B-VINC+); 3:VREF_2V048
+RV8,1MΩ,RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:Net-(U3C-VIND+); 3:VREF_2V048
+RV9,1MΩ,RES-ADJ-SMD_G43BT,electrical,potentiometer split into two variable resistances,1:GNDREF; 2:Net-(U3D-VINA+); 3:VREF_2V048
+SW1,SW_SPDT,Maxime:SW-SMD_SSAJ120100,behavioural,power switch approximated as configurable ON resistance,1:VDD; 2:+BATT; 3:unconnected-(SW1-C-Pad3)
+U1,MCP6004T-I/ST,Maxime:TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,op-amp channels modelled as followers or rail-limited amplifiers,1:V_Leak; 10:AP; 11:GNDREF; 12:Vw; 13:Vw_buff; 14:Vw_buff; 2:V_Leak; 3:/V_Leak_ref; 4:VDD; 5:Net-(U1A-VINB+); 6:Net-(U1A-VINB-); 7:Net-(U1A-VOUTB); 8:/Adapt_Kick_Drive; 9:/Adapt_Kick_Drive
+U2,MCP6004T-I/ST,Maxime:TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,op-amp channels modelled as followers or rail-limited amplifiers,1:V_Leak_Ref_Max; 10:V_Peak_Ref; 11:GNDREF; 12:Net-(U2C-VIND+); 13:Net-(U2C-VIND-); 14:/V_Syn_Drive; 2:V_Leak_Ref_Max; 3:VREF_2V048; 4:VDD; 5:V_Reset_Ref; 6:/Reset_Injection_Drive; 7:/Reset_Injection_Drive; 8:V_Peak_Drive; 9:V_Peak_Drive
+U3,MCP6004T-I/ST,Maxime:TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,op-amp channels modelled as followers or rail-limited amplifiers,1:V_Syn4_Set; 10:Net-(U3B-VINC+); 11:GNDREF; 12:Net-(U3C-VIND+); 13:V_Syn3_Set; 14:V_Syn3_Set; 2:V_Syn4_Set; 3:Net-(U3D-VINA+); 4:VDD; 5:Net-(U3A-VINB+); 6:V_Syn1_Set; 7:V_Syn1_Set; 8:V_Syn2_Set; 9:V_Syn2_Set
+U4,TLV7044PWR,TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,comparator channels modelled as smooth open-drain sinks with schematic pull-ups,1:S0; 10:T2; 11:GNDREF; 12:Vsel; 13:T2; 14:S2; 2:T1; 3:Vsel; 4:VDD; 5:Vsel; 6:T1; 7:S1; 8:S1; 9:Vsel
+U5,TLV7044PWR,TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,comparator channels modelled as smooth open-drain sinks with schematic pull-ups,1:S4; 10:T4; 11:GNDREF; 12:T3; 13:Vsel; 14:S2; 2:Vsel; 3:T4; 4:VDD; 5:Vsel; 6:T3; 7:S3; 8:S3; 9:Vsel
+U6,TLV7044PWR,TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL,behavioural,comparator channels modelled as smooth open-drain sinks with schematic pull-ups,1:Peak_Window; 10:Net-(U6C-INC+); 11:GNDREF; 12:V_Threshold; 13:Vm_Int; 14:/AP_Gate; 2:Spike_Pulse; 3:V_Threshold; 4:VDD; 5:Net-(U6B-INB+); 6:Net-(U6B-INB-); 7:V_Stim_Drive; 8:Reset_Window; 9:Net-(U6C-INC-)
+U7,TPS610995DRVR,Maxime:WSON-6_L2.0-W2.0-P0.65-TL-EP,behavioural,TPS610995 boost converter approximated as ideal boosted rail,1:GNDREF; 2:Net-(U7-VOUT); 3:GNDREF; 4:VDD; 5:Net-(U7-SW); 6:VDD; 7:GNDREF
+U8,TLV9001IDBVR,SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR,behavioural,op-amp channels modelled as followers or rail-limited amplifiers,1:Vm_Out_DRV; 2:GNDREF; 3:Vm_Display_In; 4:Vm_FB; 5:V_Boost
+U9,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U9-NO); 2:Vm_Int; 3:GNDREF; 4:S0; 5:VDD
+U10,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U10-NO); 2:Vm_Int; 3:GNDREF; 4:S1; 5:VDD
+U11,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U11-NO); 2:Vm_Int; 3:GNDREF; 4:S2; 5:VDD
+U12,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U12-NO); 2:Vm_Int; 3:GNDREF; 4:S3; 5:VDD
+U13,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U13-NO); 2:Vm_Int; 3:GNDREF; 4:S4; 5:VDD
+U14,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U14-NO); 2:Vm_Int; 3:GNDREF; 4:Peak_Window; 5:VDD
+U15,TS5A3166DCKR,Maxime:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U15-NO); 2:V_Syn1_Set; 3:GNDREF; 4:Net-(U15-IN); 5:VDD
+U16,TS5A3166DCKR,Maxime:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U16-NO); 2:V_Syn2_Set; 3:GNDREF; 4:Net-(U16-IN); 5:VDD
+U17,TS5A3166DCKR,Maxime:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U17-NO); 2:V_Syn3_Set; 3:GNDREF; 4:Net-(U17-IN); 5:VDD
+U18,TS5A3166DCKR,Maxime:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U18-NO); 2:V_Syn4_Set; 3:GNDREF; 4:Net-(U18-IN); 5:VDD
+U19,TLV7031DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.2-BR,behavioural,comparator channels modelled as smooth open-drain sinks with schematic pull-ups,1:Net-(U19-OUT); 2:GNDREF; 3:Peak_Window; 4:V_Logic_Mid; 5:VDD
+U20,TS5A3166DCKR,SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR,behavioural,TS5A3166 analogue switch model,1:Net-(U20-NO); 2:Vm_Display_In; 3:GNDREF; 4:Peak_Window; 5:VDD
+U21,REF3020AIDBZR,SOT-23-3_L3.0-W1.7-P0.95-LS2.9-BR,behavioural,REF3020 approximated as ideal 2.048 V reference bounded by VDD,1:VDD; 2:VREF_2V048; 3:GNDREF
+U22,TLV9001IDBVR,SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR,behavioural,op-amp channels modelled as followers or rail-limited amplifiers,1:VREF_1V024; 2:GNDREF; 3:VREF_1V024_RAW; 4:VREF_1V024; 5:VDD

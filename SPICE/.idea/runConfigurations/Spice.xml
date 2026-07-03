@@ -12,10 +12,9 @@
     <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
-    <option name="DEBUG_JUST_MY_CODE" value="false" />
-    <option name="RUN_TOOL" value="" />
+    <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Spice.py" />
-    <option name="PARAMETERS" value="--stage threshold_reset_adapt --backend ngspice-cli --trace-set debug --supply-mode coin --vbat 3 --rbat 50 --startup-mode operating --ignore-start-ms 20 --rv1 0.7 --rv2 0.5 --rv3 0.8 --cmem-mode rv4 --rv4 0.3 --syn-all-enable --rv5 0.5 --rv6 1.0 --rv7 1.0 --rv8 1.0 --rv9 1.0 --syn1-delay 150m --syn2-delay 180m --syn3-delay 210m --syn4-delay 240m --syn1-width 5m --syn2-width 5m --syn3-width 5m --syn4-width 5m --tstop 1.5 --tstep 1u --maxstep 1u" />
+    <option name="PARAMETERS" value="--run --supply-mode coin --vbat 3 --rbat 50 --startup-mode operating --rv1 0.7 --rv2 0.5 --rv3 0.8 --rv4 0.3 --syn-all-enable --rv5 0.5 --rv6 1.0 --rv7 1.0 --rv8 1.0 --rv9 1.0 --syn1-delay 150m --syn2-delay 180m --syn3-delay 210m --syn4-delay 240m --syn1-width 5m --syn2-width 5m --syn3-width 5m --syn4-width 5m --tstop 1.5 --tstep 10u --maxstep 10u" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

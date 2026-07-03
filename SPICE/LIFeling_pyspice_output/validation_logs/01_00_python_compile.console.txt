@@ -1,0 +1,9 @@
+﻿RUN: 01_00_python_compile
+START: 2026-07-03T16:12:51.6494593+02:00
+WORKDIR: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE
+COMMAND: C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\.venv\Scripts\python.exe -m py_compile C:\Users\mjyzi\Documents\GitHub\LIFeling\SPICE\Spice.py
+
+
+END: 2026-07-03T16:12:51.7412017+02:00
+ELAPSED: 0.1 s
+EXIT_CODE: 0
