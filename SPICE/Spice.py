@@ -84,7 +84,7 @@ except Exception:  # pragma: no cover
 
 
 THIS_DIR = Path(__file__).resolve().parent
-DEFAULT_NETLIST = THIS_DIR / "LIFeling.net"
+DEFAULT_NETLIST = THIS_DIR.parent / "PCBs" / "LIFeling" / "LIFeling.net"
 OUTPUT_DIR = THIS_DIR / "LIFeling_pyspice_output"
 
 
