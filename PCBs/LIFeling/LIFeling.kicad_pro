@@ -3,6 +3,8 @@
     "3dviewports": [],
     "design_settings": {
       "defaults": {
+        "apply_defaults_to_fp_barcodes": false,
+        "apply_defaults_to_fp_dimensions": false,
         "apply_defaults_to_fp_fields": false,
         "apply_defaults_to_fp_shapes": false,
         "apply_defaults_to_fp_text": false,
@@ -59,84 +61,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "lib_footprint_mismatch|87496297|75349265|8144ec9b-d9a9-4dca-8d97-6a9c35094ee8|00000000-0000-0000-0000-000000000000",
-          ""
-        ],
-        [
-          "silk_edge_clearance|106515001|105984002|1d43456c-9db2-401c-beea-90b160941116|eab3fb08-732e-49e5-852d-ea1e87ac62b0",
-          ""
-        ],
-        [
-          "silk_edge_clearance|107251121|77279498|cd2c5869-04b7-49e8-86ed-0aa62b54e82d|d2ffda9c-04c6-4f1e-8c76-fcfad22cb67d",
-          ""
-        ],
-        [
-          "silk_edge_clearance|113290000|78138022|7c01fb0a-1d6e-40f4-9a00-e3eeb16169e3|4e1233e4-d712-43c5-ad38-8f9da80345fd",
-          ""
-        ],
-        [
-          "silk_edge_clearance|127023060|125002068|6b0c9de3-895b-4ea3-a00b-da761ef75a41|cb2389c4-b24b-46ea-a2db-ed36a34ca6ed",
-          ""
-        ],
-        [
-          "silk_edge_clearance|130690206|121451792|4a77b38b-d997-4c24-912e-aa7ea11168e5|1c1d6af8-cf4a-4314-aac8-8519df76dd0d",
-          ""
-        ],
-        [
-          "silk_edge_clearance|177916247|70270000|6027e964-97eb-435c-b845-a785a5a07ee2|be050118-3bbd-417c-b081-21892c59ccd0",
-          ""
-        ],
-        [
-          "silk_edge_clearance|178290862|75270000|97126111-0fff-4c3c-a6af-12b81281c49d|44b7f51f-d55c-49a1-90df-a9badb55c9ad",
-          ""
-        ],
-        [
-          "silk_edge_clearance|58700680|88754517|5bb9366b-6f8a-4b3f-8cf3-253345a6fbf6|e4a38637-8407-48dc-be3b-22773bede553",
-          ""
-        ],
-        [
-          "silk_edge_clearance|60810001|93350000|04485420-a7b4-4cdd-9f64-bd5939e929b1|4672c22f-57cd-404c-9094-e3e22323f636",
-          ""
-        ],
-        [
-          "silk_edge_clearance|61868034|122422133|80799f05-4435-4f19-bd0a-3bfe186575f8|57e8453e-2e59-4027-9313-f45faa52b9ed",
-          ""
-        ],
-        [
-          "silk_edge_clearance|65064274|126267205|438a27f9-00d0-4a51-89a2-e01ea89faf6a|c2be98a0-3e40-4ff7-86f9-d5694594ccd2",
-          ""
-        ],
-        [
-          "silk_edge_clearance|84485869|74961254|caf44f03-5b1f-441d-9e2d-2823b6e7b68a|d861a2c8-f9eb-42f1-b563-b9dc574e15e8",
-          ""
-        ],
-        [
-          "silk_edge_clearance|87238934|74004488|3cf611d3-a987-4185-a653-3058c0d081c0|57975282-34a4-44b9-9cbd-965a9372628d",
-          ""
-        ],
-        [
-          "silk_edge_clearance|88439423|73902935|d0e00c44-afa3-41b6-944d-18b6473e92cc|e1b05c1e-8818-4f57-9ee9-10454fa170ff",
-          ""
-        ],
-        [
-          "silk_edge_clearance|89926314|73924093|a55bc6ff-9f51-40af-95db-f7cb41c00b00|e5d00e6e-3276-4fa2-ae3e-061c1228c18c",
-          ""
-        ],
-        [
-          "silk_edge_clearance|89926314|73924093|a55bc6ff-9f51-40af-95db-f7cb41c00b00|ffad46f3-7914-4ba0-88f0-764b530f72df",
-          ""
-        ],
-        [
-          "silk_edge_clearance|93390974|140227703|fed38133-dc27-4404-8249-671968349f1f|e4977af5-3308-4c74-abf2-13a73e754af9",
-          ""
-        ],
-        [
-          "silk_edge_clearance|98390000|139605490|32815e4f-c74f-4103-ae3e-137f60cdc350|9b428645-855c-45fc-8fa6-d21a53c212b5",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -155,6 +80,7 @@
         "extra_footprint": "warning",
         "footprint": "error",
         "footprint_filters_mismatch": "ignore",
+        "footprint_symbol_field_mismatch": "warning",
         "footprint_symbol_mismatch": "warning",
         "footprint_type_mismatch": "error",
         "hole_clearance": "error",
@@ -173,6 +99,7 @@
         "mirrored_text_on_front_layer": "warning",
         "missing_courtyard": "ignore",
         "missing_footprint": "warning",
+        "missing_tuning_profile": "warning",
         "net_conflict": "warning",
         "nonmirrored_text_on_back_layer": "warning",
         "npth_inside_courtyard": "ignore",
@@ -192,9 +119,12 @@
         "too_many_vias": "error",
         "track_angle": "error",
         "track_dangling": "warning",
+        "track_not_centered_on_via": "ignore",
+        "track_on_post_machined_layer": "error",
         "track_segment_length": "error",
         "track_width": "error",
         "tracks_crossing": "error",
+        "tuning_profile_track_geometries": "ignore",
         "unconnected_items": "error",
         "unresolved_variable": "error",
         "via_dangling": "warning",
@@ -1287,7 +1217,7 @@
         "uuid": "ceb44bb3-3806-4f1d-b60c-2d4eb7174dea"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#PWR169-171,#PWR177-178",
     "variants": []
   },
   "sheets": [

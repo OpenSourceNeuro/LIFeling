@@ -51,7 +51,7 @@
       "conflict_shadows",
       "shapes"
     ],
-    "visible_layers": "ffffffff_ffffffff_ffffffff_ffffffff",
+    "visible_layers": "ffffffff_ffffffff_fffff575_df7ff7ff",
     "zone_display_mode": 0
   },
   "git": {
@@ -61,7 +61,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "Spiky_Lui2.kicad_prl",
+    "filename": "LIFeling.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {
