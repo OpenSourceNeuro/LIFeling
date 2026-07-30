@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\PCBs\\LIFeling\\LIFeling.kicad_sch")
-		(date "2026-07-07T18:46:19")
+		(date "2026-07-29T20:56:15")
 		(tool "Eeschema 10.0.1")
 		(sheet
 			(number "1")
@@ -5988,6 +5988,146 @@
 				(tstamps "/")
 			)
 			(tstamps "19ffdf64-a6cb-41ff-8fa6-df7a674b044f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C43")
+			(value "100nF")
+			(footprint "JLCPCB:C_0402")
+			(datasheet "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html")
+			(fields
+				(field
+					(name "SYMBOL") "CL05B104KO5NNNC")
+				(field
+					(name "DEVICE") "CL05B104KO5NNNC")
+				(field
+					(name "LCSC PART NAME") "100nF ±10% 16V")
+				(field
+					(name "LCSC Part #") "C1525")
+				(field
+					(name "MANUFACTURER") "SAMSUNG(三星)")
+				(field
+					(name "MANUFACTURER PART") "CL05B104KO5NNNC")
+				(field
+					(name "SUPPLIER FOOTPRINT") "0402")
+				(field
+					(name "JLCPCB PART CLASS") "Basic Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "ALTIUM_VALUE") "100nF")
+				(field
+					(name "TOLERANCE") "±10%")
+				(field
+					(name "VOLTAGE RATING") "16V")
+				(field
+					(name "TEMPERATURE COEFFICIENT") "X7R")
+				(field
+					(name "Footprint") "JLCPCB:C_0402")
+				(field
+					(name "Datasheet") "https://item.szlcsc.com/datasheet/CL05B104KO5NNNC/1877.html")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "CL05B104KO5NNNC1_CL05B104KO5NNNC (1)-altium-import")
+				(part "root_0_CL05B104KO5NNNC_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "CL05B104KO5NNNC")
+			)
+			(property
+				(name "DEVICE")
+				(value "CL05B104KO5NNNC")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "100nF ±10% 16V")
+			)
+			(property
+				(name "LCSC Part #")
+				(value "C1525")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "SAMSUNG(三星)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "CL05B104KO5NNNC")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "0402")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Basic Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "ALTIUM_VALUE")
+				(value "100nF")
+			)
+			(property
+				(name "TOLERANCE")
+				(value "±10%")
+			)
+			(property
+				(name "VOLTAGE RATING")
+				(value "16V")
+			)
+			(property
+				(name "TEMPERATURE COEFFICIENT")
+				(value "X7R")
+			)
+			(property
+				(name "Sheetname")
+				(value "LIFeling")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LIFeling.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*C0402*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "47798453-8953-471a-8c82-ab91ed3c6685")
 			(units
 				(unit
 					(name "A")
@@ -27350,164 +27490,6 @@
 			(ref "R96")
 			(value "100kΩ")
 			(footprint "JLCPCB:R_0402")
-			(datasheet "https://item.szlcsc.com/datasheet/RC0402FR-07100KL/61543.html")
-			(fields
-				(field
-					(name "SYMBOL") "RC0402FR-07100KL")
-				(field
-					(name "DEVICE") "RC0402FR-07100KL")
-				(field
-					(name "LCSC PART NAME") "厚膜电阻 100kΩ ±1% 62.5mW")
-				(field
-					(name "LCSC Part #") "C60491")
-				(field
-					(name "MANUFACTURER") "YAGEO(国巨)")
-				(field
-					(name "MANUFACTURER PART") "RC0402FR-07100KL")
-				(field
-					(name "SUPPLIER FOOTPRINT") "0402")
-				(field
-					(name "JLCPCB PART CLASS") "Extended Part")
-				(field
-					(name "SUPPLIER") "LCSC")
-				(field
-					(name "ADD INTO BOM") "yes")
-				(field
-					(name "CONVERT TO PCB") "yes")
-				(field
-					(name "TYPE") "Thick Film Resistor")
-				(field
-					(name "ALTIUM_VALUE") "100kΩ")
-				(field
-					(name "TOLERANCE") "±1%")
-				(field
-					(name "POWER(WATTS)") "62.5mW")
-				(field
-					(name "VOLTAGE-SUPPLY(MAX)") "50V")
-				(field
-					(name "TEMPERATURE COEFFICIENT") "±100ppm/℃")
-				(field
-					(name "OPERATING TEMPERATURE") "-55℃~+155℃")
-				(field
-					(name "Footprint") "JLCPCB:R_0402")
-				(field
-					(name "Datasheet") "https://item.szlcsc.com/datasheet/RC0402FR-07100KL/61543.html")
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "Spiky_Lui-altium-import")
-				(part "root_0_RC0402FR-07100KL_")
-				(description "")
-			)
-			(property
-				(name "SYMBOL")
-				(value "RC0402FR-07100KL")
-			)
-			(property
-				(name "DEVICE")
-				(value "RC0402FR-07100KL")
-			)
-			(property
-				(name "LCSC PART NAME")
-				(value "厚膜电阻 100kΩ ±1% 62.5mW")
-			)
-			(property
-				(name "LCSC Part #")
-				(value "C60491")
-			)
-			(property
-				(name "MANUFACTURER")
-				(value "YAGEO(国巨)")
-			)
-			(property
-				(name "MANUFACTURER PART")
-				(value "RC0402FR-07100KL")
-			)
-			(property
-				(name "SUPPLIER FOOTPRINT")
-				(value "0402")
-			)
-			(property
-				(name "JLCPCB PART CLASS")
-				(value "Extended Part")
-			)
-			(property
-				(name "SUPPLIER")
-				(value "LCSC")
-			)
-			(property
-				(name "ADD INTO BOM")
-				(value "yes")
-			)
-			(property
-				(name "CONVERT TO PCB")
-				(value "yes")
-			)
-			(property
-				(name "TYPE")
-				(value "Thick Film Resistor")
-			)
-			(property
-				(name "ALTIUM_VALUE")
-				(value "100kΩ")
-			)
-			(property
-				(name "TOLERANCE")
-				(value "±1%")
-			)
-			(property
-				(name "POWER(WATTS)")
-				(value "62.5mW")
-			)
-			(property
-				(name "VOLTAGE-SUPPLY(MAX)")
-				(value "50V")
-			)
-			(property
-				(name "TEMPERATURE COEFFICIENT")
-				(value "±100ppm/℃")
-			)
-			(property
-				(name "OPERATING TEMPERATURE")
-				(value "-55℃~+155℃")
-			)
-			(property
-				(name "Sheetname")
-				(value "LIFeling")
-			)
-			(property
-				(name "Sheetfile")
-				(value "LIFeling.kicad_sch")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "*R0402*")
-			)
-			(sheetpath
-				(names "/")
-				(tstamps "/")
-			)
-			(tstamps "c0865b57-71c5-45ab-abea-d43374d7362b")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "R97")
-			(value "100kΩ")
-			(footprint "JLCPCB:R_0402")
 			(datasheet "https://item.szlcsc.com/datasheet/RC0402FR-0747KL/95141.html")
 			(fields
 				(field
@@ -29400,8 +29382,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "121ac0c8-fda6-4488-84b2-20a473291630" "121ac0c8-fda6-4488-84b2-20a47329162f"
-				"a4faab4c-4f9b-4437-b96d-c642bbcca3f0" "086434d6-aba3-4cb3-b767-1d89f4211f0a"
+			(tstamps "bd8b369d-d68d-4321-b534-62e903e4dd92" "896d9ca2-169c-484c-b264-b80111920f3e"
+				"6bf0071d-c934-4e69-a5bf-39f34e2651c5" "121ac0c8-fda6-4488-84b2-20a473291630"
 			)
 			(units
 				(unit
@@ -29641,8 +29623,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b00f836d-e8e3-416c-a0ea-b676112cac55" "a9942918-ff1f-4c20-945e-6b274323546c"
-				"bd8b369d-d68d-4321-b534-62e903e4dd92" "0440defc-0532-4269-b710-9e07fa7adee7"
+			(tstamps "a4faab4c-4f9b-4437-b96d-c642bbcca3f0" "086434d6-aba3-4cb3-b767-1d89f4211f0a"
+				"a9942918-ff1f-4c20-945e-6b274323546c" "0440defc-0532-4269-b710-9e07fa7adee7"
 			)
 			(units
 				(unit
@@ -29882,8 +29864,8 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "896d9ca2-169c-484c-b264-b80111920f3e" "a4859b04-4225-433e-8cbf-cfe731bed3a2"
-				"6bf0071d-c934-4e69-a5bf-39f34e2651c5" "46516d05-588b-473b-9732-04e68b39ab45"
+			(tstamps "a4859b04-4225-433e-8cbf-cfe731bed3a2" "b00f836d-e8e3-416c-a0ea-b676112cac55"
+				"46516d05-588b-473b-9732-04e68b39ab45" "121ac0c8-fda6-4488-84b2-20a47329162f"
 			)
 			(units
 				(unit
@@ -30007,8 +29989,8 @@
 				)
 			)
 			(libsource
-				(lib "TLV7044PWR1_TLV7044PWR-altium-import")
-				(part "root_0_TLV7044PWR_")
+				(lib "")
+				(part "root_0_TLV7044PWR__4")
 				(description "")
 			)
 			(property
@@ -30111,18 +30093,18 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e0cf622f-bfe7-4a64-b5ff-c56a9bea6829" "77e7d86e-64b6-4516-bf6b-ffc73d1f2cb4"
-				"9a2a79f1-c9f3-447b-a0ab-286757ced571" "086b24de-c670-4cf8-9a5a-216fe3297333"
+			(tstamps "9a2a79f1-c9f3-447b-a0ab-286757ced571" "77e7d86e-64b6-4516-bf6b-ffc73d1f2cb4"
+				"e0cf622f-bfe7-4a64-b5ff-c56a9bea6829" "086b24de-c670-4cf8-9a5a-216fe3297333"
 			)
 			(units
 				(unit
 					(name "A")
 					(pins
 						(pin
-							(num "3")
+							(num "2")
 						)
 						(pin
-							(num "2")
+							(num "3")
 						)
 						(pin
 							(num "4")
@@ -30236,8 +30218,8 @@
 				)
 			)
 			(libsource
-				(lib "TLV7044PWR1_TLV7044PWR-altium-import")
-				(part "root_0_TLV7044PWR_")
+				(lib "")
+				(part "root_0_TLV7044PWR__5")
 				(description "")
 			)
 			(property
@@ -30340,18 +30322,18 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "61391a9d-4c83-40e1-9240-fcf3907fae31" "3de06956-b441-4410-ae2c-500acb36e084"
-				"37728e3c-4ea8-4969-9f14-d22cd675e430" "28529801-52d2-45ac-9046-feecb34167ff"
+			(tstamps "37728e3c-4ea8-4969-9f14-d22cd675e430" "3de06956-b441-4410-ae2c-500acb36e084"
+				"61391a9d-4c83-40e1-9240-fcf3907fae31" "28529801-52d2-45ac-9046-feecb34167ff"
 			)
 			(units
 				(unit
 					(name "A")
 					(pins
 						(pin
-							(num "3")
+							(num "2")
 						)
 						(pin
-							(num "2")
+							(num "3")
 						)
 						(pin
 							(num "4")
@@ -30569,7 +30551,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b4beaa77-e088-4bc3-910b-ba30d38d7be7" "541b7e17-2059-4916-a1b1-09ae3247a340"
+			(tstamps "541b7e17-2059-4916-a1b1-09ae3247a340" "b4beaa77-e088-4bc3-910b-ba30d38d7be7"
 				"3da7b893-e8f2-4e80-9e9a-6ea55cd69d89" "3b26df60-dbf5-40bb-9b38-00bc3552d7da"
 			)
 			(units
@@ -30577,10 +30559,10 @@
 					(name "A")
 					(pins
 						(pin
-							(num "3")
+							(num "2")
 						)
 						(pin
-							(num "2")
+							(num "3")
 						)
 						(pin
 							(num "4")
@@ -33570,10 +33552,528 @@
 				)
 			)
 		)
+		(comp
+			(ref "U23")
+			(value "TLV9041IDBVR")
+			(footprint "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR")
+			(datasheet "https://www.ti.com/cn/lit/gpn/tlv9044")
+			(fields
+				(field
+					(name "SYMBOL") "TLV9041IDBVR")
+				(field
+					(name "DEVICE") "TLV9041IDBVR")
+				(field
+					(name "LCSC PART NAME") "适用于功率敏感型应用的超低电压微功耗RRIO放大器")
+				(field
+					(name "SUPPLIER PART") "C4368325")
+				(field
+					(name "MANUFACTURER") "TI(德州仪器)")
+				(field
+					(name "MANUFACTURER PART") "TLV9041IDBVR")
+				(field
+					(name "SUPPLIER FOOTPRINT") "SOT-23-5")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "NUMBER OF CHANNELS") "1")
+				(field
+					(name "MAXIMUM POWER SUPPLY RANGE (VDD-VSS)") "5.5V")
+				(field
+					(name "RAIL TO RAIL") "Rail-to-Rail Input, Rail-to-Rail Output")
+				(field
+					(name "GAIN BANDWIDTH PRODUCT") "350kHz")
+				(field
+					(name "VOS - INPUT OFFSET VOLTAGE") "600uV")
+				(field
+					(name "INPUT OFFSET VOLTAGE DRIFT(VOS TC)") "800nV/℃")
+				(field
+					(name "SLEW RATE") "200V/ms")
+				(field
+					(name "IB - INPUT BIAS CURRENT") "1pA")
+				(field
+					(name "INPUT OFFSET CURRENT(IOS)") "0.5pA")
+				(field
+					(name "INPUT VOLTAGE NOISE DENSITY") "64nV/√Hz@10kHz")
+				(field
+					(name "COMMON MODE REJECTION RATIO(CMRR)") "77dB")
+				(field
+					(name "INPUT OFFSET CURRENT DRIFT(IOS TC)") "-")
+				(field
+					(name "QUIESCENT CURRENT") "10uA")
+				(field
+					(name "OUTPUT CURRENT") "40mA")
+				(field
+					(name "OPERATING TEMPERATURE") "-40℃~+125℃")
+				(field
+					(name "SINGLE SUPPLY") "1.2V~5.5V")
+				(field
+					(name "DUAL SUPPLY") "-2.75V~2.75V")
+				(field
+					(name "REUSE BLOCK")
+				)
+				(field
+					(name "GROUP ID")
+				)
+				(field
+					(name "CHANNEL ID")
+				)
+				(field
+					(name "Footprint") "SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR")
+				(field
+					(name "Datasheet") "https://www.ti.com/cn/lit/gpn/tlv9044")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "SpikyOscilloscopce-altium-import")
+				(part "root_0_TLV9041IDBVR_")
+				(description "")
+			)
+			(property
+				(name "SYMBOL")
+				(value "TLV9041IDBVR")
+			)
+			(property
+				(name "DEVICE")
+				(value "TLV9041IDBVR")
+			)
+			(property
+				(name "LCSC PART NAME")
+				(value "适用于功率敏感型应用的超低电压微功耗RRIO放大器")
+			)
+			(property
+				(name "SUPPLIER PART")
+				(value "C4368325")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "TI(德州仪器)")
+			)
+			(property
+				(name "MANUFACTURER PART")
+				(value "TLV9041IDBVR")
+			)
+			(property
+				(name "SUPPLIER FOOTPRINT")
+				(value "SOT-23-5")
+			)
+			(property
+				(name "JLCPCB PART CLASS")
+				(value "Extended Part")
+			)
+			(property
+				(name "SUPPLIER")
+				(value "LCSC")
+			)
+			(property
+				(name "ADD INTO BOM")
+				(value "yes")
+			)
+			(property
+				(name "CONVERT TO PCB")
+				(value "yes")
+			)
+			(property
+				(name "NUMBER OF CHANNELS")
+				(value "1")
+			)
+			(property
+				(name "MAXIMUM POWER SUPPLY RANGE (VDD-VSS)")
+				(value "5.5V")
+			)
+			(property
+				(name "RAIL TO RAIL")
+				(value "Rail-to-Rail Input, Rail-to-Rail Output")
+			)
+			(property
+				(name "GAIN BANDWIDTH PRODUCT")
+				(value "350kHz")
+			)
+			(property
+				(name "VOS - INPUT OFFSET VOLTAGE")
+				(value "600uV")
+			)
+			(property
+				(name "INPUT OFFSET VOLTAGE DRIFT(VOS TC)")
+				(value "800nV/℃")
+			)
+			(property
+				(name "SLEW RATE")
+				(value "200V/ms")
+			)
+			(property
+				(name "IB - INPUT BIAS CURRENT")
+				(value "1pA")
+			)
+			(property
+				(name "INPUT OFFSET CURRENT(IOS)")
+				(value "0.5pA")
+			)
+			(property
+				(name "INPUT VOLTAGE NOISE DENSITY")
+				(value "64nV/√Hz@10kHz")
+			)
+			(property
+				(name "COMMON MODE REJECTION RATIO(CMRR)")
+				(value "77dB")
+			)
+			(property
+				(name "INPUT OFFSET CURRENT DRIFT(IOS TC)")
+				(value "-")
+			)
+			(property
+				(name "QUIESCENT CURRENT")
+				(value "10uA")
+			)
+			(property
+				(name "OUTPUT CURRENT")
+				(value "40mA")
+			)
+			(property
+				(name "OPERATING TEMPERATURE")
+				(value "-40℃~+125℃")
+			)
+			(property
+				(name "SINGLE SUPPLY")
+				(value "1.2V~5.5V")
+			)
+			(property
+				(name "DUAL SUPPLY")
+				(value "-2.75V~2.75V")
+			)
+			(property
+				(name "REUSE BLOCK")
+				(value "")
+			)
+			(property
+				(name "GROUP ID")
+				(value "")
+			)
+			(property
+				(name "CHANNEL ID")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "LIFeling")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LIFeling.kicad_sch")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0386c216-324f-4c59-b781-d5fbc8a526dd")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
 	)
 	(groups)
 	(variants)
 	(libparts
+		(libpart
+			(lib "")
+			(part "root_0_TLV7044PWR__4")
+			(docs "https://www.ti.com/cn/lit/gpn/tlv7042")
+			(footprints
+				(fp "*TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL*")
+			)
+			(fields
+				(field
+					(name "Reference") "U4")
+				(field
+					(name "Value") "TLV7044PWR")
+				(field
+					(name "Footprint") "TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL")
+				(field
+					(name "Datasheet") "https://www.ti.com/cn/lit/gpn/tlv7042")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "SYMBOL") "TLV7044PWR")
+				(field
+					(name "DEVICE") "TLV7044PWR")
+				(field
+					(name "LCSC PART NAME") "小尺寸、毫微功耗、低电压比较器")
+				(field
+					(name "LCSC Part #") "C3658877")
+				(field
+					(name "MANUFACTURER") "TI(德州仪器)")
+				(field
+					(name "MANUFACTURER PART") "TLV7044PWR")
+				(field
+					(name "SUPPLIER FOOTPRINT") "TSSOP-14")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "NUMBER OF CHANNELS") "4")
+				(field
+					(name "VOS - INPUT OFFSET VOLTAGE") "100uV")
+				(field
+					(name "IB - INPUT BIAS CURRENT") "2pA")
+				(field
+					(name "PROPAGATION DELAY TIME") "3us")
+				(field
+					(name "INPUT HYSTERESIS VOLTAGE (VHYS)") "10mV")
+				(field
+					(name "COMMON MODE REJECTION RATIO(CMRR)") "-")
+				(field
+					(name "OUTPUT TYPE") "-")
+				(field
+					(name "RAIL TO RAIL") "Rail-to-Rail Input")
+				(field
+					(name "QUIESCENT CURRENT") "315nA")
+				(field
+					(name "OPERATING TEMPERATURE") "-40℃~+125℃")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "OUTA")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "INA-")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "INA+")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "VCC")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "INB+")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "INB-")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "OUTB")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "OUTC")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "INC-")
+					(type "passive")
+				)
+				(pin
+					(num "10")
+					(name "INC+")
+					(type "passive")
+				)
+				(pin
+					(num "11")
+					(name "VEE")
+					(type "passive")
+				)
+				(pin
+					(num "12")
+					(name "IND+")
+					(type "passive")
+				)
+				(pin
+					(num "13")
+					(name "IND−")
+					(type "passive")
+				)
+				(pin
+					(num "14")
+					(name "OUTD")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "")
+			(part "root_0_TLV7044PWR__5")
+			(docs "https://www.ti.com/cn/lit/gpn/tlv7042")
+			(footprints
+				(fp "*TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL*")
+			)
+			(fields
+				(field
+					(name "Reference") "U5")
+				(field
+					(name "Value") "TLV7044PWR")
+				(field
+					(name "Footprint") "TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL")
+				(field
+					(name "Datasheet") "https://www.ti.com/cn/lit/gpn/tlv7042")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "SYMBOL") "TLV7044PWR")
+				(field
+					(name "DEVICE") "TLV7044PWR")
+				(field
+					(name "LCSC PART NAME") "小尺寸、毫微功耗、低电压比较器")
+				(field
+					(name "LCSC Part #") "C3658877")
+				(field
+					(name "MANUFACTURER") "TI(德州仪器)")
+				(field
+					(name "MANUFACTURER PART") "TLV7044PWR")
+				(field
+					(name "SUPPLIER FOOTPRINT") "TSSOP-14")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "NUMBER OF CHANNELS") "4")
+				(field
+					(name "VOS - INPUT OFFSET VOLTAGE") "100uV")
+				(field
+					(name "IB - INPUT BIAS CURRENT") "2pA")
+				(field
+					(name "PROPAGATION DELAY TIME") "3us")
+				(field
+					(name "INPUT HYSTERESIS VOLTAGE (VHYS)") "10mV")
+				(field
+					(name "COMMON MODE REJECTION RATIO(CMRR)") "-")
+				(field
+					(name "OUTPUT TYPE") "-")
+				(field
+					(name "RAIL TO RAIL") "Rail-to-Rail Input")
+				(field
+					(name "QUIESCENT CURRENT") "315nA")
+				(field
+					(name "OPERATING TEMPERATURE") "-40℃~+125℃")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "OUTA")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "INA-")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "INA+")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "VCC")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "INB+")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "INB-")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "OUTB")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "OUTC")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "INC-")
+					(type "passive")
+				)
+				(pin
+					(num "10")
+					(name "INC+")
+					(type "passive")
+				)
+				(pin
+					(num "11")
+					(name "VEE")
+					(type "passive")
+				)
+				(pin
+					(num "12")
+					(name "IND+")
+					(type "passive")
+				)
+				(pin
+					(num "13")
+					(name "IND−")
+					(type "passive")
+				)
+				(pin
+					(num "14")
+					(name "OUTD")
+					(type "passive")
+				)
+			)
+		)
 		(libpart
 			(lib "19-237_R6GHBHC-A01_2T1_19-237_R6GHBHC-A01_2T-altium-import")
 			(part "root_0_19-237/R6GHBHC-A01/2T_")
@@ -35166,6 +35666,57 @@
 			)
 		)
 		(libpart
+			(lib "SpikyOscilloscopce-altium-import")
+			(part "root_0_TLV9041IDBVR_")
+			(footprints
+				(fp "*SOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR*")
+			)
+			(fields
+				(field
+					(name "Reference")
+				)
+				(field
+					(name "Value")
+				)
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "OUT")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "V-")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "IN+")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "IN-")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "V+")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
 			(lib "Spiky_Lui-altium-import")
 			(part "root_0_0402CG101J500NT_")
 			(footprints
@@ -35604,25 +36155,64 @@
 		(libpart
 			(lib "TLV7044PWR1_TLV7044PWR-altium-import")
 			(part "root_0_TLV7044PWR_")
+			(docs "https://www.ti.com/cn/lit/gpn/tlv7042")
 			(footprints
 				(fp "*TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL*")
 			)
 			(fields
 				(field
-					(name "Reference")
-				)
+					(name "Reference") "U6")
 				(field
-					(name "Value")
-				)
+					(name "Value") "TLV7044PWR")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "TSSOP-14_L5.0-W4.4-P0.65-LS6.4-BL")
 				(field
-					(name "Datasheet")
-				)
+					(name "Datasheet") "https://www.ti.com/cn/lit/gpn/tlv7042")
 				(field
 					(name "Description")
 				)
+				(field
+					(name "SYMBOL") "TLV7044PWR")
+				(field
+					(name "DEVICE") "TLV7044PWR")
+				(field
+					(name "LCSC PART NAME") "小尺寸、毫微功耗、低电压比较器")
+				(field
+					(name "LCSC Part #") "C3658877")
+				(field
+					(name "MANUFACTURER") "TI(德州仪器)")
+				(field
+					(name "MANUFACTURER PART") "TLV7044PWR")
+				(field
+					(name "SUPPLIER FOOTPRINT") "TSSOP-14")
+				(field
+					(name "JLCPCB PART CLASS") "Extended Part")
+				(field
+					(name "SUPPLIER") "LCSC")
+				(field
+					(name "ADD INTO BOM") "yes")
+				(field
+					(name "CONVERT TO PCB") "yes")
+				(field
+					(name "NUMBER OF CHANNELS") "4")
+				(field
+					(name "VOS - INPUT OFFSET VOLTAGE") "100uV")
+				(field
+					(name "IB - INPUT BIAS CURRENT") "2pA")
+				(field
+					(name "PROPAGATION DELAY TIME") "3us")
+				(field
+					(name "INPUT HYSTERESIS VOLTAGE (VHYS)") "10mV")
+				(field
+					(name "COMMON MODE REJECTION RATIO(CMRR)") "-")
+				(field
+					(name "OUTPUT TYPE") "-")
+				(field
+					(name "RAIL TO RAIL") "Rail-to-Rail Input")
+				(field
+					(name "QUIESCENT CURRENT") "315nA")
+				(field
+					(name "OPERATING TEMPERATURE") "-40℃~+125℃")
 			)
 			(pins
 				(pin
@@ -35632,12 +36222,12 @@
 				)
 				(pin
 					(num "2")
-					(name "INA+")
+					(name "INA-")
 					(type "passive")
 				)
 				(pin
 					(num "3")
-					(name "INA-")
+					(name "INA+")
 					(type "passive")
 				)
 				(pin
@@ -35850,6 +36440,29 @@
 		)
 		(net
 			(code "3")
+			(name "/Adapt")
+			(class "Default")
+			(node
+				(ref "R44")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R45")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "14")
+				(pinfunction "VOUTD_14")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
 			(name "/Adapt_Base")
 			(class "Default")
 			(node
@@ -35872,7 +36485,7 @@
 			)
 		)
 		(net
-			(code "4")
+			(code "5")
 			(name "/Adapt_Current_Sink")
 			(class "Default")
 			(node
@@ -35889,7 +36502,7 @@
 			)
 		)
 		(net
-			(code "5")
+			(code "6")
 			(name "/Adapt_Kick_Drive")
 			(class "Default")
 			(node
@@ -35899,20 +36512,20 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
-				(pin "8")
-				(pinfunction "VOUTC_8")
+				(ref "U2")
+				(pin "1")
+				(pinfunction "VOUTA_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
-				(pin "9")
-				(pinfunction "VINC-_9")
+				(ref "U2")
+				(pin "2")
+				(pinfunction "VINA-_2")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "6")
+			(code "7")
 			(name "/Reset_Gated_Drive")
 			(class "Default")
 			(node
@@ -35929,7 +36542,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "8")
 			(name "/Reset_Injection_Drive")
 			(class "Default")
 			(node
@@ -35952,7 +36565,7 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "9")
 			(name "/Reset_Injection_Enable")
 			(class "Default")
 			(node
@@ -35975,7 +36588,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "10")
 			(name "/Reset_Switch_Mid")
 			(class "Default")
 			(node
@@ -35992,7 +36605,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "11")
 			(name "/Reset_Timer_Discharge")
 			(class "Default")
 			(node
@@ -36009,7 +36622,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "12")
 			(name "/Rising_AP")
 			(class "Default")
 			(node
@@ -36031,7 +36644,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "13")
 			(name "/V_Leak_ref")
 			(class "Default")
 			(node
@@ -36041,14 +36654,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
+				(ref "U3")
 				(pin "3")
 				(pinfunction "VINA+_3")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "13")
+			(code "14")
 			(name "/V_Syn_Drive")
 			(class "Default")
 			(node
@@ -36064,14 +36677,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
+				(ref "U1")
 				(pin "14")
 				(pinfunction "VOUTD_14")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "14")
+			(code "15")
 			(name "/Vkick")
 			(class "Default")
 			(node
@@ -36100,7 +36713,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "16")
 			(name "AP")
 			(class "Default")
 			(node
@@ -36127,14 +36740,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
-				(pin "10")
-				(pinfunction "VINC+_10")
+				(ref "U2")
+				(pin "3")
+				(pinfunction "VINA+_3")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "16")
+			(code "17")
 			(name "GNDREF")
 			(class "Default")
 			(node
@@ -36349,6 +36962,12 @@
 			)
 			(node
 				(ref "C42")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C43")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -36768,6 +37387,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "U23")
+				(pin "2")
+				(pinfunction "V-_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U3")
 				(pin "11")
 				(pinfunction "VSS_11")
@@ -36789,6 +37414,12 @@
 				(ref "U6")
 				(pin "11")
 				(pinfunction "VEE_11")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "6")
+				(pinfunction "INB-_6")
 				(pintype "passive")
 			)
 			(node
@@ -36823,7 +37454,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "18")
 			(name "Net-(D6-A)")
 			(class "Default")
 			(node
@@ -36840,7 +37471,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "19")
 			(name "Net-(D9-B-)")
 			(class "Default")
 			(node
@@ -36857,7 +37488,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "20")
 			(name "Net-(D9-G-)")
 			(class "Default")
 			(node
@@ -36874,7 +37505,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "21")
 			(name "Net-(D9-R-)")
 			(class "Default")
 			(node
@@ -36891,7 +37522,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "22")
 			(name "Net-(D10-A)")
 			(class "Default")
 			(node
@@ -36926,7 +37557,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "23")
 			(name "Net-(D12-A)")
 			(class "Default")
 			(node
@@ -36961,7 +37592,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "24")
 			(name "Net-(D14-A)")
 			(class "Default")
 			(node
@@ -36996,7 +37627,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "25")
 			(name "Net-(D16-A)")
 			(class "Default")
 			(node
@@ -37031,7 +37662,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "26")
 			(name "Net-(Q7-D)")
 			(class "Default")
 			(node
@@ -37054,7 +37685,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "27")
 			(name "Net-(Q8-Pad1)")
 			(class "Default")
 			(node
@@ -37077,7 +37708,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "28")
 			(name "Net-(Q8-Pad3)")
 			(class "Default")
 			(node
@@ -37094,7 +37725,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "29")
 			(name "Net-(R35-Pad1)")
 			(class "Default")
 			(node
@@ -37111,7 +37742,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "30")
 			(name "Net-(R40-Pad1)")
 			(class "Default")
 			(node
@@ -37128,7 +37759,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "31")
 			(name "Net-(R82-Pad2)")
 			(class "Default")
 			(node
@@ -37151,19 +37782,13 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "32")
 			(name "Net-(U1A-VINB+)")
 			(class "Default")
 			(node
-				(ref "R41")
+				(ref "RV7")
 				(pin "2")
 				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R42")
-				(pin "1")
-				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -37174,54 +37799,8 @@
 			)
 		)
 		(net
-			(code "32")
-			(name "Net-(U1A-VINB-)")
-			(class "Default")
-			(node
-				(ref "R43")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R44")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "6")
-				(pinfunction "VINB-_6")
-				(pintype "passive")
-			)
-		)
-		(net
 			(code "33")
-			(name "Net-(U1A-VOUTB)")
-			(class "Default")
-			(node
-				(ref "R44")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R45")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U1")
-				(pin "7")
-				(pinfunction "VOUTB_7")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "34")
-			(name "Net-(U2C-VIND+)")
+			(name "Net-(U1C-VIND+)")
 			(class "Default")
 			(node
 				(ref "R83")
@@ -37236,15 +37815,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
+				(ref "U1")
 				(pin "12")
 				(pinfunction "VIND+_12")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "35")
-			(name "Net-(U2C-VIND-)")
+			(code "34")
+			(name "Net-(U1C-VIND-)")
 			(class "Default")
 			(node
 				(ref "R85")
@@ -37259,15 +37838,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
+				(ref "U1")
 				(pin "13")
 				(pinfunction "VIND-_13")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "36")
-			(name "Net-(U3A-VINB+)")
+			(code "35")
+			(name "Net-(U1D-VINA+)")
 			(class "Default")
 			(node
 				(ref "RV6")
@@ -37276,18 +37855,64 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U3")
-				(pin "5")
-				(pinfunction "VINB+_5")
+				(ref "U1")
+				(pin "3")
+				(pinfunction "VINA+_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "36")
+			(name "Net-(U2C-VIND+)")
+			(class "Default")
+			(node
+				(ref "R41")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R42")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "12")
+				(pinfunction "VIND+_12")
 				(pintype "passive")
 			)
 		)
 		(net
 			(code "37")
+			(name "Net-(U2C-VIND-)")
+			(class "Default")
+			(node
+				(ref "R43")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R44")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "13")
+				(pinfunction "VIND-_13")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "38")
 			(name "Net-(U3B-VINC+)")
 			(class "Default")
 			(node
-				(ref "RV7")
+				(ref "RV8")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -37300,11 +37925,11 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "39")
 			(name "Net-(U3C-VIND+)")
 			(class "Default")
 			(node
-				(ref "RV8")
+				(ref "RV9")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -37317,70 +37942,7 @@
 			)
 		)
 		(net
-			(code "39")
-			(name "Net-(U3D-VINA+)")
-			(class "Default")
-			(node
-				(ref "RV9")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "3")
-				(pinfunction "VINA+_3")
-				(pintype "passive")
-			)
-		)
-		(net
 			(code "40")
-			(name "Net-(U6B-INB+)")
-			(class "Default")
-			(node
-				(ref "R92")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R93")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U6")
-				(pin "5")
-				(pinfunction "INB+_5")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "41")
-			(name "Net-(U6B-INB-)")
-			(class "Default")
-			(node
-				(ref "R94")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R95")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U6")
-				(pin "6")
-				(pinfunction "INB-_6")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "42")
 			(name "Net-(U6C-INC+)")
 			(class "Default")
 			(node
@@ -37409,7 +37971,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "41")
 			(name "Net-(U6C-INC-)")
 			(class "Default")
 			(node
@@ -37438,7 +38000,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "42")
 			(name "Net-(U7-SW)")
 			(class "Default")
 			(node
@@ -37455,7 +38017,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "43")
 			(name "Net-(U7-VOUT)")
 			(class "Default")
 			(node
@@ -37478,7 +38040,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "44")
 			(name "Net-(U9-NO)")
 			(class "Default")
 			(node
@@ -37495,7 +38057,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "45")
 			(name "Net-(U10-NO)")
 			(class "Default")
 			(node
@@ -37512,7 +38074,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "46")
 			(name "Net-(U11-NO)")
 			(class "Default")
 			(node
@@ -37529,7 +38091,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "47")
 			(name "Net-(U12-NO)")
 			(class "Default")
 			(node
@@ -37546,7 +38108,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "48")
 			(name "Net-(U13-NO)")
 			(class "Default")
 			(node
@@ -37563,7 +38125,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "49")
 			(name "Net-(U14-NO)")
 			(class "Default")
 			(node
@@ -37580,7 +38142,7 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "50")
 			(name "Net-(U15-IN)")
 			(class "Default")
 			(node
@@ -37597,7 +38159,7 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "51")
 			(name "Net-(U15-NO)")
 			(class "Default")
 			(node
@@ -37614,7 +38176,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "52")
 			(name "Net-(U16-IN)")
 			(class "Default")
 			(node
@@ -37631,7 +38193,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "53")
 			(name "Net-(U16-NO)")
 			(class "Default")
 			(node
@@ -37648,7 +38210,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "54")
 			(name "Net-(U17-IN)")
 			(class "Default")
 			(node
@@ -37665,7 +38227,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "55")
 			(name "Net-(U17-NO)")
 			(class "Default")
 			(node
@@ -37682,7 +38244,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "56")
 			(name "Net-(U18-IN)")
 			(class "Default")
 			(node
@@ -37699,7 +38261,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "57")
 			(name "Net-(U18-NO)")
 			(class "Default")
 			(node
@@ -37716,7 +38278,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "58")
 			(name "Net-(U19-OUT)")
 			(class "Default")
 			(node
@@ -37739,7 +38301,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "59")
 			(name "Net-(U20-NO)")
 			(class "Default")
 			(node
@@ -37752,6 +38314,52 @@
 				(ref "U20")
 				(pin "1")
 				(pinfunction "NO_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "60")
+			(name "Net-(U23-IN+)")
+			(class "Default")
+			(node
+				(ref "R92")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R93")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U23")
+				(pin "3")
+				(pinfunction "IN+_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "61")
+			(name "Net-(U23-IN-)")
+			(class "Default")
+			(node
+				(ref "R94")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R95")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U23")
+				(pin "4")
+				(pinfunction "IN-_4")
 				(pintype "passive")
 			)
 		)
@@ -38059,8 +38667,8 @@
 			)
 			(node
 				(ref "U6")
-				(pin "2")
-				(pinfunction "INA+_2")
+				(pin "3")
+				(pinfunction "INA+_3")
 				(pintype "passive")
 			)
 		)
@@ -38185,8 +38793,8 @@
 			)
 			(node
 				(ref "U4")
-				(pin "2")
-				(pinfunction "INA+_2")
+				(pin "3")
+				(pinfunction "INA+_3")
 				(pintype "passive")
 			)
 			(node
@@ -38232,8 +38840,8 @@
 			)
 			(node
 				(ref "U5")
-				(pin "3")
-				(pinfunction "INA-_3")
+				(pin "2")
+				(pinfunction "INA-_2")
 				(pintype "passive")
 			)
 		)
@@ -38426,6 +39034,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C43")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C5")
 				(pin "2")
 				(pinfunction "2_2")
@@ -38600,12 +39214,6 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R96")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
 				(ref "RV4")
 				(pin "3")
 				(pinfunction "3_3")
@@ -38708,6 +39316,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "U23")
+				(pin "5")
+				(pinfunction "V+_5")
+				(pintype "passive")
+			)
+			(node
 				(ref "U3")
 				(pin "4")
 				(pinfunction "VDD_4")
@@ -38729,6 +39343,12 @@
 				(ref "U6")
 				(pin "4")
 				(pinfunction "VCC_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "5")
+				(pinfunction "INB+_5")
 				(pintype "passive")
 			)
 			(node
@@ -38867,15 +39487,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
-				(pin "3")
-				(pinfunction "VINA+_3")
-				(pintype "passive")
-			)
-			(node
 				(ref "U21")
 				(pin "2")
 				(pinfunction "OUT_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "5")
+				(pinfunction "VINB+_5")
 				(pintype "passive")
 			)
 		)
@@ -38931,13 +39551,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
+				(ref "U3")
 				(pin "1")
 				(pinfunction "VOUTA_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U1")
+				(ref "U3")
 				(pin "2")
 				(pinfunction "VINA-_2")
 				(pintype "passive")
@@ -38954,15 +39574,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
-				(pin "1")
-				(pinfunction "VOUTA_1")
+				(ref "U3")
+				(pin "6")
+				(pinfunction "VINB-_6")
 				(pintype "passive")
 			)
 			(node
-				(ref "U2")
-				(pin "2")
-				(pinfunction "VINA-_2")
+				(ref "U3")
+				(pin "7")
+				(pinfunction "VOUTB_7")
 				(pintype "passive")
 			)
 		)
@@ -39105,20 +39725,14 @@
 			)
 			(node
 				(ref "R96")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R97")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U6")
-				(pin "7")
-				(pinfunction "OUTB_7")
+				(ref "U23")
+				(pin "1")
+				(pinfunction "OUT_1")
 				(pintype "passive")
 			)
 		)
@@ -39127,21 +39741,21 @@
 			(name "V_Syn1_Set")
 			(class "Default")
 			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "VOUTA_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "VINA-_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "U15")
 				(pin "2")
 				(pinfunction "COM_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "6")
-				(pinfunction "VINB-_6")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "7")
-				(pinfunction "VOUTB_7")
 				(pintype "passive")
 			)
 		)
@@ -39150,7 +39764,30 @@
 			(name "V_Syn2_Set")
 			(class "Default")
 			(node
+				(ref "U1")
+				(pin "6")
+				(pinfunction "VINB-_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "7")
+				(pinfunction "VOUTB_7")
+				(pintype "passive")
+			)
+			(node
 				(ref "U16")
+				(pin "2")
+				(pinfunction "COM_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "95")
+			(name "V_Syn3_Set")
+			(class "Default")
+			(node
+				(ref "U17")
 				(pin "2")
 				(pinfunction "COM_2")
 				(pintype "passive")
@@ -39169,11 +39806,11 @@
 			)
 		)
 		(net
-			(code "95")
-			(name "V_Syn3_Set")
+			(code "96")
+			(name "V_Syn4_Set")
 			(class "Default")
 			(node
-				(ref "U17")
+				(ref "U18")
 				(pin "2")
 				(pinfunction "COM_2")
 				(pintype "passive")
@@ -39188,29 +39825,6 @@
 				(ref "U3")
 				(pin "14")
 				(pinfunction "VOUTD_14")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "96")
-			(name "V_Syn4_Set")
-			(class "Default")
-			(node
-				(ref "U18")
-				(pin "2")
-				(pinfunction "COM_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "1")
-				(pinfunction "VOUTA_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U3")
-				(pin "2")
-				(pinfunction "VINA-_2")
 				(pintype "passive")
 			)
 		)
@@ -39291,8 +39905,8 @@
 			)
 			(node
 				(ref "U6")
-				(pin "3")
-				(pinfunction "INA-_3")
+				(pin "2")
+				(pinfunction "INA-_2")
 				(pintype "passive")
 			)
 		)
@@ -39472,7 +40086,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R97")
+				(ref "R96")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -39567,8 +40181,8 @@
 			)
 			(node
 				(ref "U4")
-				(pin "3")
-				(pinfunction "INA-_3")
+				(pin "2")
+				(pinfunction "INA-_2")
 				(pintype "passive")
 			)
 			(node
@@ -39597,8 +40211,8 @@
 			)
 			(node
 				(ref "U5")
-				(pin "2")
-				(pinfunction "INA+_2")
+				(pin "3")
+				(pinfunction "INA+_3")
 				(pintype "passive")
 			)
 			(node
@@ -39650,8 +40264,8 @@
 			)
 			(node
 				(ref "U1")
-				(pin "12")
-				(pinfunction "VIND+_12")
+				(pin "10")
+				(pinfunction "VINC+_10")
 				(pintype "passive")
 			)
 		)
@@ -39667,14 +40281,14 @@
 			)
 			(node
 				(ref "U1")
-				(pin "13")
-				(pinfunction "VIND-_13")
+				(pin "8")
+				(pinfunction "VOUTC_8")
 				(pintype "passive")
 			)
 			(node
 				(ref "U1")
-				(pin "14")
-				(pinfunction "VOUTD_14")
+				(pin "9")
+				(pinfunction "VINC-_9")
 				(pintype "passive")
 			)
 		)
@@ -39730,6 +40344,17 @@
 				(ref "SW1")
 				(pin "3")
 				(pinfunction "3_3")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "112")
+			(name "unconnected-(U6B-OUTB-Pad7)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "7")
+				(pinfunction "OUTB_7")
 				(pintype "passive+no_connect")
 			)
 		)
