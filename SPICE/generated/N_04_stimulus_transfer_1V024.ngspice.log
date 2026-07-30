@@ -1,0 +1,23 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * lifeling production spice validation deck
+
+Warning: Model issue on line 6 :
+  .model lif_bss138 nmos (level=3 vto=1.20 kp=0.055 theta=0.08 lambda=0.02 ...
+unrecognized parameter (lambda) - ignored
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+doAnalyses: TRAN:  Timestep too small; time = 0.000283225, timestep = 6.25e-18: trouble with lif_sw_boost_lo-instance s.xu7.slow
+
+
+run simulation(s) aborted
+
+No. of Data Rows : 14188
+ngspice-46 done

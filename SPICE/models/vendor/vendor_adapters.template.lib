@@ -1,0 +1,18 @@
+* Strict-vendor adapter template for LIFeling.
+* Copy to vendor_adapters.lib only after official packages are installed, declarations inspected,
+* terminal order approved in model_registry.json, and each wrapper passes an ngspice smoke test.
+*
+* The adapter must expose these stable LIFeling wrapper interfaces:
+* .subckt LIF_TLV7041_OD OUT VN INP INN VP
+* .subckt LIF_TLV7031_PP OUT VN INP INN VP
+* .subckt LIF_TLV9001 INP INN VP VN OUT
+* .subckt LIF_TLV9041 INP INN VP VN OUT
+* .subckt LIF_TS5A3166 NO COM GND IN VP
+* .subckt LIF_REF3020 VIN VOUT GND
+* .subckt LIF_TPD1E05U06 IO GND
+* .subckt LIF_CR2032_DYNAMIC P N PARAMS: SOC=1 R0=20
+* .subckt LIF_TPS610995_SWITCHING GND VOUT FB EN SW VIN
+*
+* It must also define exact-vendor model cards named:
+* LIF_MMBT3904 LIF_BSS138 LIF_BAT54WS LIF_RB521S30 LIF_1N4148WS
+* LIF_LED_RED LIF_LED_GREEN LIF_LED_BLUE

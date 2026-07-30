@@ -1,0 +1,8 @@
+* source TLV7041_PSPICE
+R_R1         N01525 VPU  10k TC=0,0 
+V_V4         VPU 0 1.8
+V_V1         IN+ 0  
++SIN 2.5 100m 100k 0 0 0
+V_V2         IN- 0 2.5
+V_V3         V+ 0 5
+X_U1         IN+ IN- N01525 V+ 0 TLV7041

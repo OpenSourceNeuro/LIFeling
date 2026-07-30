@@ -1,0 +1,20 @@
+** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\tlv9042.sim ] 
+
+** Creating circuit file "tlv9042.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../tlv9042.lib" 
+* From [PSPICE NETLIST] section of C:\SPB_Data-Silent\cdssetup\OrCAD_PSpice\23.1.0\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 3m 0 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+.END

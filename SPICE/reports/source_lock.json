@@ -1,0 +1,102 @@
+[
+  {
+    "file_name": "1n4148_spice.lib",
+    "sha256": "f48fd3b8722660f0dc06039a58b67a6b6423628b10276128246971aa5b78be47",
+    "size_bytes": 1629,
+    "source_type": "provided vendor/cross-vendor model",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "BOM.csv",
+    "sha256": "657aa5d14b832c269e664859ccc5e4f8da446c86de3a581b27c9f7f8bb221b48",
+    "size_bytes": 17833216,
+    "source_type": "uploaded supplementary BOM context; not authoritative for connectivity",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "LIFeling(1).kicad_sch",
+    "sha256": "9971cd95cc7011216b15f5ae127d027145e486473367b6c6d7d025a09745f5dd",
+    "size_bytes": 2117205,
+    "source_type": "latest attached KiCad schematic cross-check",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "LIFeling(2).net",
+    "sha256": "d5a0bf3aa70e19a4470710342be6b2e11441efbc97374f23ff95af703fe9eeea",
+    "size_bytes": 818149,
+    "source_type": "authoritative KiCad netlist",
+    "export_date": "2026-07-29T20:56:15",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": "Eeschema 10.0.1"
+  },
+  {
+    "file_name": "MCP6001.txt",
+    "sha256": "c510804933f8b3224f7c0b2064c98f7728ec81d3ce2052046a9b754dd8d482bf",
+    "size_bytes": 5990,
+    "source_type": "provided official Microchip family model",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "MCP6001_ngspice.lib",
+    "sha256": "982f2bf0b7d801135bb665831d4e3c2053b3ff0ff6a19948eabf69fe772ffdd6",
+    "size_bytes": 6101,
+    "source_type": "ngspice syntax-normalised copy of official Microchip family model",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "MMBT3904.spice.txt",
+    "sha256": "49c344a0aaa461869b9a6f7a67e8afc0afbb0050a6b4f7e19e44025b076a6d2d",
+    "size_bytes": 1587,
+    "source_type": "provided cross-manufacturer discrete model",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "Spice.py",
+    "sha256": "ee80d67884d0251fd4be509421c598d7f54c33abc61fb264b8e0f9e031878975",
+    "size_bytes": 117013,
+    "source_type": "previous simulator comparison only",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "lm2901.lib",
+    "sha256": "622338a26a2f7cd185f254f7596c729f52e8c8ac69585009a8feae129c8d7296",
+    "size_bytes": 7521,
+    "source_type": "provided legacy/unused comparator model",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  },
+  {
+    "file_name": "run_full_validation.ps1",
+    "sha256": "c4e7164bf972fe5fc2df11760d341ab6fec97b3cfbc8d3f28c87cc4e7528fb34",
+    "size_bytes": 21524,
+    "source_type": "previous runner comparison only",
+    "export_date": "",
+    "repository_commit": "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e",
+    "model_version": "2026.07.29-reconstruction-3",
+    "kicad_tool": ""
+  }
+]

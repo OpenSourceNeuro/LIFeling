@@ -1,0 +1,48 @@
+{
+  "system_version": "2026.07.29-reconstruction-3",
+  "netlist_sha256": "d5a0bf3aa70e19a4470710342be6b2e11441efbc97374f23ff95af703fe9eeea",
+  "source_manifest_sha256": "3f0746a8e6198edcea1070234103bbd79e6cfbd6e052a2894bebc786696f99df",
+  "source_lock_sha256": "55df884890c53c1af35b7f03e638c13b9e68e5c5d7e3ac005e109ba13a78201c",
+  "component_count": 216,
+  "net_count": 112,
+  "blocking_topology_failures": 0,
+  "warnings": 3,
+  "decks_generated": 48,
+  "runs_passed": 48,
+  "runs_failed": 0,
+  "runs_not_executed": 0,
+  "ngspice_version": "ngspice-46 : Circuit level simulation program",
+  "python_version": "3.12.6",
+  "operating_system": "Windows-11-10.0.26200-SP0",
+  "static_tests": {
+    "status": "skipped",
+    "tests_run": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "schematic_crosscheck": {
+    "schematic": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\sources\\LIFeling.kicad_sch",
+    "placed_symbol_count": 416,
+    "netlist_component_count": 216,
+    "missing_netlist_references_in_schematic": [],
+    "unexpected_schematic_references_not_in_netlist": [],
+    "value_mismatches": [],
+    "footprint_mismatches": [],
+    "blocking_failures": 0,
+    "warnings": 0,
+    "json": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\schematic_crosscheck.json",
+    "markdown": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\schematic_crosscheck.md"
+  },
+  "outputs": {
+    "inventory": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\netlist_inventory.csv",
+    "coverage": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\component_model_coverage.csv",
+    "pin_mapping": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\pin_model_mapping.csv",
+    "model_json": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\model_manifest.json",
+    "model_csv": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\model_manifest.csv",
+    "audit_json": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\connectivity_audit.json",
+    "audit_md": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\connectivity_audit.md",
+    "diagnostics_summary": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\validation_diagnostics_summary.csv",
+    "verdict_csv": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\validation_verdict.csv",
+    "verdict_md": "C:\\Users\\mjyzi\\Documents\\GitHub\\LIFeling\\SPICE\\reports\\validation_verdict.md"
+  }
+}

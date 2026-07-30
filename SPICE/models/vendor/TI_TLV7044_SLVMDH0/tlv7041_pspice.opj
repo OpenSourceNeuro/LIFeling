@@ -1,0 +1,74 @@
+(ExpressProject "Testing"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "17.4-2020 S002-[08/06/20]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library\tlv7041.olb"
+        (Type "Schematic Library")
+        (DisplayName "..\tlv7041-2020-08-05t22-15\library\tlv7041.olb")))
+    ("Allegro Netlist Directory" "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "61215")
+    (NoModify)
+    (File ".\tlv7041_pspice.dsn"
+      (Type "Schematic Design")
+      (DisplayName ".\tlv7041_pspice.DSN"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_DoNot_Show_WarningDlg "TRUE")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Layout")
+  (Folder "Outputs"
+    (File ".\tlv7041_pspice-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")
+      (DisplayName ".\tlv7041_pspice-PSpiceFiles\SCHEMATIC1\SCHEMATIC1.net")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\tlv7041_pspice-pspicefiles\schematic1\tran.sim"
+        (DisplayName "SCHEMATIC1-TRAN")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\tlv7041_pspice-pspicefiles\schematic1\tran.sim"))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\tlv7041.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\tlv7041.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector
+    (TLV7041
+      (FullPartName "TLV7041.Normal")
+      (LibraryName
+         "C:\USERS\A0226796\DOCUMENTS\TLV7041-2020-08-05T22-15\LIBRARY\TLV7041.OLB")
+      (DeviceIndex "0")))
+  (MPSSessionName "a0868764")
+  (LastUsedLibraryBrowseDirectory
+     "C:\Users\a0226796\Documents\tlv7041-2020-08-05T22-15\library")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice.dsn")
+      (Path "Design Resources"
+         "C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice.dsn"
+         "SCHEMATIC1")
+      (Path "Design Resources" "Library")
+      (Path "Design Resources" "Library"
+         "C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\library\tlv7041.olb")
+      (Path "Outputs")
+      (Path "PSpice Resources")
+      (Path "PSpice Resources" "Model Libraries")
+      (Path "PSpice Resources" "Simulation Profiles")
+      (Select "Design Resources"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 2305 0 745"))
+      (Tab 0))))

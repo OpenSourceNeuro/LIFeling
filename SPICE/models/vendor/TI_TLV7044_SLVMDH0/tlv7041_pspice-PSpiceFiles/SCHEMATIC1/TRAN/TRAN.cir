@@ -1,0 +1,21 @@
+** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\tran.sim ] 
+
+** Creating circuit file "TRAN.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../tlv7041.lib" 
+* From [PSPICE NETLIST] section of C:\SPB_Data\cdssetup\OrCAD_PSpiceTIPSpice_Install\17.4.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 50u 0 
+.OPTIONS ADVCONV
+.PROBE64 N([N01525])
+.INC "..\SCHEMATIC1.net" 
+
+
+.END

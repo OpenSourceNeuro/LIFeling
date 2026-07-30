@@ -1,0 +1,86 @@
+(ExpressProject "TLV7031"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "17.4-2019 S018 (3945310)  [5/16/2021]-[07/06/22]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library\dir1\tlv7031.olb"
+        (Type "Schematic Library"))
+      (File ".\library\tlv7031.olb"
+        (Type "Schematic Library")))
+    ("Allegro Netlist Directory" "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "61215")
+    (NoModify)
+    (File ".\tlv7031.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE")
+    (Netlist_TAB "3")
+    (PSPICE_Output_File
+       "C:\Users\a0488729\Downloads\boundarywire-2022-05-17T14-52\boundarywire-PSpiceFiles\SCHEMATIC1\SCHEMATIC1.NET")
+    (PSPICE_View_Output "FALSE")
+    (PSPICE_Subcircuit_Format "FALSE")
+    (PSPICE_Do_DRC_Markers "FALSE")
+    (PSPICE_Net_Name_Pref "TRUE")
+    (PSPICE_Hier_Format "FALSE")
+    (PSPICE_Hier_Descend "FALSE")
+    (PSPICE_Hier_DoNot_Descend "FALSE")
+    (PSPICE_Alt_Template "PSpiceTemplate"))
+  (Folder "Layout")
+  (Folder "Outputs"
+    (File ".\tlv7031-pspicefiles\schematic1\schematic1.net"
+      (Type "Report"))
+    (File ".\schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\tlv7031-pspicefiles\schematic1\test1.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\tlv7031-pspicefiles\schematic1\test1.sim"
+        (DisplayName "SCHEMATIC1-test1")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\tlv7031.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\tlv7031.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector
+    (TLV7031
+      (FullPartName "TLV7031.Normal")
+      (LibraryName "C:\MODELING\TLV7031_TI\TLV7031.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" ".\tlv7031.dsn")
+      (Path "Design Resources" ".\tlv7031.dsn" "SCHEMATIC1")
+      (Path "Design Resources" "Library")
+      (Path "Design Resources" "Library" ".\library\dir1\tlv7031.olb")
+      (Path "Outputs")
+      (Select "Design Resources" ".\tlv7031.dsn"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 829"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1674 24 847")
+        (Scroll "-294 -6")
+        (Zoom "108")
+        (Occurrence "/"))
+      (Path "C:\MODELING\TLV7031_TI\TLV7031.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (MPSSessionName "a0488729")
+  (ISPCBBASICLICENSE "false"))

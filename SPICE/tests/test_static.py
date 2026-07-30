@@ -1,0 +1,186 @@
+from __future__ import annotations
+
+import csv
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+from lifeling_spice.audit import run_topology_audit, write_audit_outputs
+from lifeling_spice.deck import DeckBuildError, DeckConfig, build_deck, deck_fingerprint, parse_value
+from lifeling_spice.design import parse_netlist
+from lifeling_spice.models import inspect_model_cards, inspect_subcircuits, load_registry, resolve_families
+from lifeling_spice.schematic import write_schematic_crosscheck
+
+
+class LIFelingStaticValidation(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.design = parse_netlist(ROOT / "sources/LIFeling.net")
+        cls.registry = load_registry(ROOT / "model_registry.json")
+
+    def test_deck_fingerprint_is_deterministic_for_same_source_lock(self):
+        cfg = DeckConfig(test_name="deterministic", output_dir=ROOT / "generated")
+        first = deck_fingerprint(self.design, cfg, "stable-source-lock")
+        second = deck_fingerprint(self.design, cfg, "stable-source-lock")
+        self.assertEqual(first, second)
+        self.assertNotEqual(first, deck_fingerprint(self.design, cfg, "changed-source-lock"))
+        relocated = DeckConfig(test_name="deterministic", output_dir=Path("elsewhere"))
+        self.assertEqual(first, deck_fingerprint(self.design, relocated, "stable-source-lock"))
+
+    def test_schematic_crosscheck_has_no_missing_reference_or_footprint(self):
+        with tempfile.TemporaryDirectory() as temp:
+            result = write_schematic_crosscheck(ROOT / "sources/LIFeling.kicad_sch", self.design, Path(temp))
+        self.assertEqual(result["blocking_failures"], 0)
+        self.assertEqual(result["missing_netlist_references_in_schematic"], [])
+        self.assertEqual(result["value_mismatches"], [])
+        self.assertEqual(result["unexpected_schematic_references_not_in_netlist"], [])
+
+    def test_authoritative_source_lock(self):
+        self.assertEqual(self.design.metadata.sha256, "d5a0bf3aa70e19a4470710342be6b2e11441efbc97374f23ff95af703fe9eeea")
+        self.assertEqual(self.design.metadata.export_date, "2026-07-29T20:56:15")
+        self.assertEqual(self.design.metadata.tool, "Eeschema 10.0.1")
+        self.assertEqual(len(self.design.components), 216)
+        self.assertEqual(len(self.design.nets), 112)
+
+    def test_topology_corrections_have_no_blocking_failure(self):
+        findings = run_topology_audit(self.design)
+        blocking = [item.identifier for item in findings if not item.passed and item.severity == "error"]
+        self.assertEqual(blocking, [])
+        self.assertEqual(self.design.components["U23"].net("1"), "V_Stim_Drive")
+        self.assertEqual(self.design.components["U6"].net("5"), "VDD")
+        self.assertEqual(self.design.components["U6"].net("6"), "GNDREF")
+
+    def test_all_modelled_ic_package_pin_maps_pass(self):
+        findings = run_topology_audit(self.design)
+        pin_failures = [item.identifier for item in findings if item.identifier.startswith("pinmap.") and not item.passed]
+        self.assertEqual(pin_failures, [])
+
+    def test_r96_r97_authoritative_designator(self):
+        self.assertIn("R96", self.design.components)
+        self.assertNotIn("R97", self.design.components)
+        self.assertEqual({p.net for p in self.design.components["R96"].pins.values()}, {"V_Stim_Drive", "Vm_Int"})
+
+    def test_megohm_is_not_milliohm(self):
+        self.assertEqual(parse_value("1MΩ", "R"), 1e6)
+        self.assertEqual(parse_value("1mΩ", "R"), 1e-3)
+
+    def test_provided_mmbt3904_model_card_is_detected_but_not_claimed_exact(self):
+        cards = inspect_model_cards(ROOT / "models/provided/MMBT3904.spice.txt")
+        self.assertTrue(any(item.name == "DI_MMBT3904" and item.device_type == "NPN" for item in cards))
+        resolutions = resolve_families(self.design, self.registry, ROOT, "hybrid")
+        mmbt = next(item for item in resolutions if item.value == "MMBT3904")
+        self.assertEqual(mmbt.model_status, "installed comparison model; portable fallback selected")
+
+    def test_official_mcp_model_declaration(self):
+        declarations = inspect_subcircuits(ROOT / "models/provided/MCP6001.txt")
+        declaration = next(item for item in declarations if item.name == "MCP6001")
+        self.assertEqual(declaration.terminals, ("1", "2", "3", "4", "5"))
+
+    def test_coverage_has_no_unresolved_reference(self):
+        resolutions = resolve_families(self.design, self.registry, ROOT, "hybrid")
+        findings = run_topology_audit(self.design)
+        with tempfile.TemporaryDirectory() as temp:
+            paths = write_audit_outputs(self.design, self.registry, resolutions, findings, Path(temp))
+            with open(paths["coverage"], encoding="utf-8-sig") as handle:
+                rows = list(csv.DictReader(handle))
+            unresolved = [row["reference"] for row in rows if row["category"] == "unresolved" or row["simulation_status"] == "unresolved"]
+            self.assertEqual(unresolved, [])
+            self.assertEqual(len(rows), 216)
+
+    def test_deck_has_physical_u23_and_no_silent_omission(self):
+        with tempfile.TemporaryDirectory() as temp:
+            cfg = DeckConfig(output_dir=Path(temp), test_name="static")
+            deck, represented = build_deck(self.design, cfg, ROOT, "manifest-test")
+        self.assertEqual(len(represented), 216)
+        self.assertIn("XU23 Net_U23_INP Net_U23_IN VDD 0 V_Stim_Drive LIF_TLV9041", deck)
+        self.assertIn("RR92 Vm_Int Net_U23_INP 100k", deck)
+        self.assertIn("RR96 V_Stim_Drive Vm_Int 100k", deck)
+        self.assertNotIn("V_Stim_Drive =", deck)
+        self.assertNotIn("B_U23", deck)
+        self.assertIn("wrdata static.wrdata.txt", deck)
+        self.assertNotIn(str(Path(temp).resolve()).replace("\\", "/"), deck)
+
+    def test_rv4_switch_mapping_is_physical(self):
+        with tempfile.TemporaryDirectory() as temp:
+            deck, _ = build_deck(self.design, DeckConfig(output_dir=Path(temp)), ROOT, "manifest-test")
+        self.assertIn("XU9 Net_U9_NO Vm_Int 0 S0 VDD LIF_TS5A3166", deck)
+        self.assertIn("XU13 Net_U13_NO Vm_Int 0 S4 VDD LIF_TS5A3166", deck)
+        self.assertIn("XU4A S0 0 T1 Vsel VDD LIF_TLV7041_OD", deck)
+
+    def test_open_drain_comparator_polarity_releases_when_plus_is_higher(self):
+        portable = (ROOT / "models/portable/lifeling_portable_models.lib").read_text(encoding="utf-8")
+        block = portable.split(".subckt LIF_TLV7041_OD", 1)[1].split(".ends LIF_TLV7041_OD", 1)[0]
+        self.assertIn("V(INN)-V(INP)", block)
+        self.assertNotIn("V(INP)-V(INN)", block)
+
+    def test_dynamic_battery_discharge_reduces_soc(self):
+        portable = (ROOT / "models/portable/lifeling_portable_models.lib").read_text(encoding="utf-8")
+        block = portable.split(".subckt LIF_CR2032_DYNAMIC", 1)[1].split(".ends LIF_CR2032_DYNAMIC", 1)[0]
+        self.assertIn("FSOC NSOC N VSENSE 1", block)
+
+    def test_peak_window_is_active_high_physical_comparator(self):
+        with tempfile.TemporaryDirectory() as temp:
+            deck, _ = build_deck(self.design, DeckConfig(output_dir=Path(temp)), ROOT, "manifest-test")
+        self.assertIn("XU6A Peak_Window 0 Spike_Pulse V_Threshold VDD LIF_TLV7041_OD", deck)
+        self.assertIn("XU14 Net_U14_NO Vm_Int 0 Peak_Window VDD LIF_TS5A3166", deck)
+        self.assertIn("XU20 Net_U20_NO Vm_Display_In 0 Peak_Window VDD LIF_TS5A3166", deck)
+
+    def test_ref3020_dbz_physical_pin_order(self):
+        u21 = self.design.components["U21"]
+        self.assertEqual(u21.net("1"), "VDD")
+        self.assertEqual(u21.net("2"), "VREF_2V048")
+        self.assertEqual(u21.net("3"), "GNDREF")
+        with tempfile.TemporaryDirectory() as temp:
+            deck, _ = build_deck(self.design, DeckConfig(output_dir=Path(temp)), ROOT, "manifest-test")
+        self.assertIn("XU21 VDD VREF_2V048 0 LIF_REF3020", deck)
+
+    def test_all_subcircuit_instances_resolve_in_packaged_libraries(self):
+        with tempfile.TemporaryDirectory() as temp:
+            deck, _ = build_deck(self.design, DeckConfig(output_dir=Path(temp)), ROOT, "manifest-test")
+        used = {line.split()[-1] for line in deck.splitlines() if line.startswith("X")}
+        declared = set()
+        for path in (ROOT / "models/portable/lifeling_portable_models.lib", ROOT / "models/compatible/MCP6001_ngspice.lib"):
+            declared.update(item.name for item in inspect_subcircuits(path))
+        self.assertEqual(used - declared, set())
+
+    def test_tps610995_is_fixed_3v6_variant(self):
+        self.assertEqual(self.design.components["U7"].value, "TPS610995DRVR")
+        portable = (ROOT / "models/portable/lifeling_portable_models.lib").read_text(encoding="utf-8")
+        self.assertIn("VSET=3.6", portable)
+        self.assertNotIn("VSET=3.3", portable)
+
+    def test_vendor_deck_requires_explicit_adapter_library(self):
+        with tempfile.TemporaryDirectory() as temp:
+            cfg = DeckConfig(output_dir=Path(temp), profile="vendor")
+            with self.assertRaises(DeckBuildError):
+                build_deck(self.design, cfg, ROOT, "manifest-test")
+
+    def test_vendor_profile_fails_until_ti_wrappers_are_approved(self):
+        resolutions = resolve_families(self.design, self.registry, ROOT, "vendor")
+        unresolved = {item.value for item in resolutions if item.model_status == "unresolved"}
+        self.assertIn("TLV7044PWR", unresolved)
+        self.assertIn("TPS610995DRVR", unresolved)
+
+    def test_portable_boost_oscillator_uses_ngspice_supported_pulse_source(self):
+        portable = (ROOT / "models/portable/lifeling_portable_models.lib").read_text(encoding="utf-8")
+        self.assertNotIn("mod(time*FSW", portable)
+        self.assertIn("VOSC OSC GND PULSE", portable)
+
+    def test_mcp6001_ngspice_copy_normalises_resistor_tc_syntax(self):
+        compatible = (ROOT / "models/compatible/MCP6001_ngspice.lib").read_text(encoding="utf-8")
+        original = (ROOT / "models/provided/MCP6001.txt").read_text(encoding="utf-8")
+        self.assertIn("R61 0 61 100 TC=3.11M,4.51U", compatible)
+        self.assertNotIn("R61 0 61 100 TC 3.11M 4.51U", compatible)
+        self.assertIn("R61 0 61 100 TC 3.11M 4.51U", original)
+
+    def test_generated_deck_includes_ngspice_compatible_mcp_model(self):
+        with tempfile.TemporaryDirectory() as temp:
+            deck, _ = build_deck(self.design, DeckConfig(output_dir=Path(temp)), ROOT, "manifest-test")
+        self.assertIn("models/compatible/MCP6001_ngspice.lib", deck.replace("\\", "/"))
+
+
+if __name__ == "__main__":
+    unittest.main()

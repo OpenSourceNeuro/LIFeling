@@ -1,0 +1,472 @@
+* LIFeling production SPICE validation deck
+* authoritative_netlist=LIFeling.net
+* netlist_sha256=d5a0bf3aa70e19a4470710342be6b2e11441efbc97374f23ff95af703fe9eeea
+* netlist_export=2026-07-29T20:56:15
+* kicad_tool=Eeschema 10.0.1
+* source_lock_sha256=55df884890c53c1af35b7f03e638c13b9e68e5c5d7e3ac005e109ba13a78201c
+* profile=hybrid
+* test_name=20_rv4_selector_region_1
+* Connectivity is generated exclusively from physical pins in the KiCad export.
+* Remaining approximations are enumerated in model_manifest.json and validation_report.md.
+.option method=gear reltol=2e-4 abstol=1e-12 vntol=1e-7 chgtol=1e-14
+.option itl1=1000 itl4=1000 gmin=1e-12
+.temp 25
+.include "../models/portable/lifeling_portable_models.lib"
+.include "../models/compatible/MCP6001_ngspice.lib"
+
+* --- physical sources and passives ---
+VBT1_OC N_BT1_OC 0 DC 3
+RBT1_INT N_BT1_OC P_BATT 20
+RSW1 P_BATT VDD 150m
+R_SW1_UNUSED unconnected_SW1_Pad3 0 1T
+RR1 Net_U7_VOUT V_Boost 10
+RR2 Vm_Out_DRV Vm_Ext 220
+RR3 Vm_FB Vm_Out_DRV 10k
+RR4 0 Vm_FB 100k
+RR5 VREF_1V024_RAW VREF_2V048 220k
+RR6 0 VREF_1V024_RAW 220k
+RR7 V_Threshold VREF_1V024 20k
+RR8 V_Threshold 0 100k
+RR9 VREF_1V024 V_Reset_Ref 100k
+RR10 0 V_Reset_Ref 56k
+RR11 VDD V_Peak_Ref 100k
+RR12 0 V_Peak_Ref 1Meg
+RR13 V_Logic_Mid VDD 220k
+RR14 0 V_Logic_Mid 220k
+RR15 Vm_Display_In Vm_Int 100k
+RR16 Net_U20_NO V_Peak_Drive 10k
+RR17 VDD T4 100k
+RR18 T4 T3 100k
+RR19 T3 T2 100k
+RR20 T2 T1 100k
+RR21 T1 0 100k
+RR22 VDD S0 100k
+RR23 T1 S0 1Meg
+RR24 VDD S1 100k
+RR25 T1 S1 1Meg
+RR26 T2 S1 1Meg
+RR27 VDD S2 100k
+RR28 T2 S2 1Meg
+RR29 T3 S2 1Meg
+RR30 VDD S3 100k
+RR31 T3 S3 1Meg
+RR32 T4 S3 1Meg
+RR33 VDD S4 100k
+RR34 T4 S4 1Meg
+RR35 Net_R35_Pad1 Vm_Int 1k
+RR36 V_Threshold N_AP_Gate 2.2Meg
+RR37 VDD N_AP_Gate 10k
+RR38 VDD AP 100k
+RR39 0 N_Vkick 22k
+RR40 Net_R40_Pad1 0 100
+RR41 0 Net_U2C_VINDP 200k
+RR42 Net_U2C_VINDP Vm_Int 100k
+RR43 Net_U2C_VIND V_Leak 100k
+RR44 Net_U2C_VIND N_Adapt 200k
+RR45 N_Adapt Net_D6_A 330k
+RR46 Vm_Int N_Adapt_Current_Sink 10k
+RR47 N_Adapt_Base Vw_buff 22k
+RR48 N_Adapt_Base 0 100k
+RR49 N_Rising_AP 0 100k
+RR50 0 Spike_Pulse 1Meg
+RR51 VDD Peak_Window 100k
+RR52 Net_U14_NO V_Peak_Drive 10k
+RR53 VDD Net_U6C_INC 22k
+RR54 N_Reset_Timer_Discharge Net_U6C_INC 100
+RR55 VDD Reset_Window 100k
+RR56 Net_U6C_INCP VDD 270k
+RR57 Net_U6C_INCP Reset_Window 1Meg
+RR58 0 Net_U6C_INCP 220k
+RR59 VDD N_Reset_Injection_Enable 100k
+RR60 N_Reset_Gated_Drive Vm_Int 10k
+RR61 Net_Q7_D Net_D9_B 2k
+RR62 Net_Q7_D Net_D9_G 2k
+RR63 Net_Q8_Pad3 Net_D9_R 2k
+RR64 Net_Q8_Pad1 Vm_Int 10k
+RR65 Net_Q8_Pad1 0 100k
+RR66 Net_U15_NO V_Syn_State 22k
+RR67 Net_U15_IN Net_D10_A 1k
+RR68 0 Net_D10_A 100k
+RR69 Syn1_Spike Net_D10_A 22k
+RR70 Net_U16_NO V_Syn_State 22k
+RR71 Net_U16_IN Net_D12_A 1k
+RR72 0 Net_D12_A 100k
+RR73 Syn2_Spike Net_D12_A 22k
+RR74 Net_U17_NO V_Syn_State 22k
+RR75 Net_U17_IN Net_D14_A 1k
+RR76 0 Net_D14_A 100k
+RR77 Syn3_Spike Net_D14_A 22k
+RR78 Net_U18_NO V_Syn_State 22k
+RR79 Net_U18_IN Net_D16_A 1k
+RR80 0 Net_D16_A 100k
+RR81 Syn4_Spike Net_D16_A 22k
+RR82 V_Syn_State Net_R82_Pad2 10k
+RR83 V_Syn_State Net_U1C_VINDP 1Meg
+RR84 Vm_Int Net_U1C_VINDP 1Meg
+RR85 VREF_1V024 Net_U1C_VIND 1Meg
+RR86 Net_U1C_VIND N_V_Syn_Drive 1Meg
+RR87 N_V_Syn_Drive Vm_Int 47k
+RR88 VDD Net_U19_OUT 100k
+RR89 Net_U19_OUT Spike_Out 100
+RR90 VREF_1V024 V_Stim_Cmd 1Meg
+RR91 Stimulus_Ext V_Stim_Cmd 1k
+RR92 Vm_Int Net_U23_INP 100k
+RR93 V_Stim_Cmd Net_U23_INP 200k
+RR94 VREF_1V024 Net_U23_IN 200k
+RR95 V_Stim_Drive Net_U23_IN 100k
+RR96 V_Stim_Drive Vm_Int 100k
+* RV1: physical pin1=GNDREF, wiper=/V_Leak_ref, pin3=V_Leak_Ref_Max, fraction=0.55
+RRV1_1W 0 N_V_Leak_ref 55k
+RRV1_W3 N_V_Leak_ref V_Leak_Ref_Max 45k
+* RV2: physical pin1=Net-(R35-Pad1), wiper=Vm_Int, pin3=V_Leak, fraction=0.5
+RRV2_1W Net_R35_Pad1 Vm_Int 25k
+RRV2_W3 Vm_Int V_Leak 25k
+* RV3: physical pin1=Vw, wiper=Vw, pin3=Net-(R40-Pad1), fraction=0.5
+RRV3_W3 Vw Net_R40_Pad1 50k
+* RV4: physical pin1=GNDREF, wiper=Vsel, pin3=VDD, fraction=0.05
+RRV4_1W 0 Vsel 5k
+RRV4_W3 Vsel VDD 95k
+* RV5: physical pin1=Net-(R82-Pad2), wiper=Net-(R82-Pad2), pin3=VREF_1V024, fraction=0.5
+RRV5_W3 Net_R82_Pad2 VREF_1V024 50k
+* RV6: physical pin1=GNDREF, wiper=Net-(U1D-VINA+), pin3=VREF_2V048, fraction=0.5
+RRV6_1W 0 Net_U1D_VINAP 500k
+RRV6_W3 Net_U1D_VINAP VREF_2V048 500k
+* RV7: physical pin1=GNDREF, wiper=Net-(U1A-VINB+), pin3=VREF_2V048, fraction=0.5
+RRV7_1W 0 Net_U1A_VINBP 500k
+RRV7_W3 Net_U1A_VINBP VREF_2V048 500k
+* RV8: physical pin1=GNDREF, wiper=Net-(U3B-VINC+), pin3=VREF_2V048, fraction=0.5
+RRV8_1W 0 Net_U3B_VINCP 500k
+RRV8_W3 Net_U3B_VINCP VREF_2V048 500k
+* RV9: physical pin1=GNDREF, wiper=Net-(U3C-VIND+), pin3=VREF_2V048, fraction=0.5
+RRV9_1W 0 Net_U3C_VINDP 500k
+RRV9_W3 Net_U3C_VINDP VREF_2V048 500k
+* C1 10uF; effective=9.536e-06F, ESR=0.009487ohm, ESL=9e-10H, leakage=1e+08ohm
+LC1_ESL P_BATT N_C1_ESL 900p
+RC1_ESR N_C1_ESL N_C1_ESR 9.48683298051m
+CC1 N_C1_ESR 0 9.536u
+RC1_LEAK N_C1_ESR 0 100Meg
+* C2 10uF; effective=9.536e-06F, ESR=0.009487ohm, ESL=9e-10H, leakage=1e+08ohm
+LC2_ESL VDD N_C2_ESL 900p
+RC2_ESR N_C2_ESL N_C2_ESR 9.48683298051m
+CC2 N_C2_ESR 0 9.536u
+RC2_LEAK N_C2_ESR 0 100Meg
+* C3 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC3_ESL 0 N_C3_ESL 450p
+RC3_ESR N_C3_ESL N_C3_ESR 94.8683298051m
+CC3 N_C3_ESR VDD 96.35n
+RC3_LEAK N_C3_ESR VDD 10G
+* C4 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC4_ESL 0 N_C4_ESL 450p
+RC4_ESR N_C4_ESL N_C4_ESR 94.8683298051m
+CC4 N_C4_ESR VDD 96.35n
+RC4_LEAK N_C4_ESR VDD 10G
+* C5 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC5_ESL 0 N_C5_ESL 450p
+RC5_ESR N_C5_ESL N_C5_ESR 94.8683298051m
+CC5 N_C5_ESR VDD 96.35n
+RC5_LEAK N_C5_ESR VDD 10G
+* C6 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC6_ESL 0 N_C6_ESL 450p
+RC6_ESR N_C6_ESL N_C6_ESR 94.8683298051m
+CC6 N_C6_ESR VDD 96.35n
+RC6_LEAK N_C6_ESR VDD 10G
+* C7 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC7_ESL 0 N_C7_ESL 450p
+RC7_ESR N_C7_ESL N_C7_ESR 94.8683298051m
+CC7 N_C7_ESR VDD 96.35n
+RC7_LEAK N_C7_ESR VDD 10G
+* C8 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC8_ESL 0 N_C8_ESL 450p
+RC8_ESR N_C8_ESL N_C8_ESR 94.8683298051m
+CC8 N_C8_ESR VDD 96.35n
+RC8_LEAK N_C8_ESR VDD 10G
+* C9 10uF; effective=9.536e-06F, ESR=0.009487ohm, ESL=9e-10H, leakage=1e+08ohm
+LC9_ESL VDD N_C9_ESL 900p
+RC9_ESR N_C9_ESL N_C9_ESR 9.48683298051m
+CC9 N_C9_ESR 0 9.536u
+RC9_LEAK N_C9_ESR 0 100Meg
+* C10 22uF; effective=2.132768e-05F, ESR=0.008ohm, ESL=9e-10H, leakage=1e+08ohm
+LC10_ESL 0 N_C10_ESL 900p
+RC10_ESR N_C10_ESL N_C10_ESR 8m
+CC10 N_C10_ESR Net_U7_VOUT 21.32768u
+RC10_LEAK N_C10_ESR Net_U7_VOUT 100Meg
+* C11 1uF; effective=9.0944e-07F, ESR=0.03ohm, ESL=4.5e-10H, leakage=1e+09ohm
+LC11_ESL V_Boost N_C11_ESL 450p
+RC11_ESR N_C11_ESL N_C11_ESR 30m
+CC11 N_C11_ESR 0 909.44n
+RC11_LEAK N_C11_ESR 0 1G
+* C12 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC12_ESL V_Boost N_C12_ESL 450p
+RC12_ESR N_C12_ESL N_C12_ESR 94.8683298051m
+CC12 N_C12_ESR 0 96.35n
+RC12_LEAK N_C12_ESR 0 10G
+* C13 100pF; effective=1e-10F, ESR=0.1ohm, ESL=4.5e-10H, leakage=1e+11ohm
+LC13_ESL Vm_Ext N_C13_ESL 450p
+RC13_ESR N_C13_ESL N_C13_ESR 100m
+CC13 N_C13_ESR 0 100p
+RC13_LEAK N_C13_ESR 0 100G
+* C14 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC14_ESL V_Boost N_C14_ESL 450p
+RC14_ESR N_C14_ESL N_C14_ESR 94.8683298051m
+CC14 N_C14_ESR 0 96.35n
+RC14_LEAK N_C14_ESR 0 10G
+* C15 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC15_ESL VREF_2V048 N_C15_ESL 450p
+RC15_ESR N_C15_ESL N_C15_ESR 94.8683298051m
+CC15 N_C15_ESR 0 96.35n
+RC15_LEAK N_C15_ESR 0 10G
+* C16 22nF; effective=2.1197e-08F, ESR=0.2023ohm, ESL=4.5e-10H, leakage=4.545e+10ohm
+LC16_ESL 0 N_C16_ESL 450p
+RC16_ESR N_C16_ESL N_C16_ESR 202.259958739m
+CC16 N_C16_ESR Vm_Display_In 21.197n
+RC16_LEAK N_C16_ESR Vm_Display_In 45.4545454545G
+* C17 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC17_ESL VDD N_C17_ESL 450p
+RC17_ESR N_C17_ESL N_C17_ESR 94.8683298051m
+CC17 N_C17_ESR 0 96.35n
+RC17_LEAK N_C17_ESR 0 10G
+* C18 470nF; effective=4.581184e-07F, ESR=0.04376ohm, ESL=6.5e-10H, leakage=2.128e+09ohm
+LC18_ESL Net_U9_NO N_C18_ESL 650p
+RC18_ESR N_C18_ESL N_C18_ESR 43.7594974494m
+CC18 N_C18_ESR 0 458.1184n
+RC18_LEAK N_C18_ESR 0 2.12765957447G
+* C19 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC19_ESL VDD N_C19_ESL 450p
+RC19_ESR N_C19_ESL N_C19_ESR 94.8683298051m
+CC19 N_C19_ESR 0 96.35n
+RC19_LEAK N_C19_ESR 0 10G
+* C20 1uF; effective=9.4944e-07F, ESR=0.03ohm, ESL=6.5e-10H, leakage=1e+09ohm
+LC20_ESL Net_U10_NO N_C20_ESL 650p
+RC20_ESR N_C20_ESL N_C20_ESR 30m
+CC20 N_C20_ESR 0 949.44n
+RC20_LEAK N_C20_ESR 0 1G
+* C21 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC21_ESL VDD N_C21_ESL 450p
+RC21_ESR N_C21_ESL N_C21_ESR 94.8683298051m
+CC21 N_C21_ESR 0 96.35n
+RC21_LEAK N_C21_ESR 0 10G
+* C22 2.2uF; effective=2.088768e-06F, ESR=0.02023ohm, ESL=6.5e-10H, leakage=4.545e+08ohm
+LC22_ESL Net_U11_NO N_C22_ESL 650p
+RC22_ESR N_C22_ESL N_C22_ESR 20.2259958739m
+CC22 N_C22_ESR 0 2.088768u
+RC22_LEAK N_C22_ESR 0 454.545454545Meg
+* C23 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC23_ESL VDD N_C23_ESL 450p
+RC23_ESR N_C23_ESL N_C23_ESR 94.8683298051m
+CC23 N_C23_ESR 0 96.35n
+RC23_LEAK N_C23_ESR 0 10G
+* C24 4.7uF; effective=4.556368e-06F, ESR=0.01384ohm, ESL=9e-10H, leakage=2.128e+08ohm
+LC24_ESL Net_U12_NO N_C24_ESL 900p
+RC24_ESR N_C24_ESL N_C24_ESR 13.8379681204m
+CC24 N_C24_ESR 0 4.556368u
+RC24_LEAK N_C24_ESR 0 212.765957447Meg
+* C25 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC25_ESL VDD N_C25_ESL 450p
+RC25_ESR N_C25_ESL N_C25_ESR 94.8683298051m
+CC25 N_C25_ESR 0 96.35n
+RC25_LEAK N_C25_ESR 0 10G
+* C26 10uF; effective=9.6944e-06F, ESR=0.009487ohm, ESL=9e-10H, leakage=1e+08ohm
+LC26_ESL Net_U13_NO N_C26_ESL 900p
+RC26_ESR N_C26_ESL N_C26_ESR 9.48683298051m
+CC26 N_C26_ESR 0 9.6944u
+RC26_LEAK N_C26_ESR 0 100Meg
+* C27 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC27_ESL VDD N_C27_ESL 450p
+RC27_ESR N_C27_ESL N_C27_ESR 94.8683298051m
+CC27 N_C27_ESR 0 96.35n
+RC27_LEAK N_C27_ESR 0 10G
+* C28 100pF; effective=1e-10F, ESR=0.1ohm, ESL=4.5e-10H, leakage=1e+11ohm
+LC28_ESL 0 N_C28_ESL 450p
+RC28_ESR N_C28_ESL N_C28_ESR 100m
+CC28 N_C28_ESR Vm_Int 100p
+RC28_LEAK N_C28_ESR Vm_Int 100G
+* C29 1uF; effective=9.4944e-07F, ESR=0.03ohm, ESL=6.5e-10H, leakage=1e+09ohm
+LC29_ESL N_Vkick N_C29_ESL 650p
+RC29_ESR N_C29_ESL N_C29_ESR 30m
+CC29 N_C29_ESR N_Adapt_Kick_Drive 949.44n
+RC29_LEAK N_C29_ESR N_Adapt_Kick_Drive 1G
+* C30 10uF; effective=9.536e-06F, ESR=0.009487ohm, ESL=9e-10H, leakage=1e+08ohm
+LC30_ESL 0 N_C30_ESL 900p
+RC30_ESR N_C30_ESL N_C30_ESR 9.48683298051m
+CC30 N_C30_ESR Vw 9.536u
+RC30_LEAK N_C30_ESR Vw 100Meg
+* C31 10nF; effective=9.635e-09F, ESR=0.3ohm, ESL=4.5e-10H, leakage=1e+11ohm
+LC31_ESL AP N_C31_ESL 450p
+RC31_ESR N_C31_ESL N_C31_ESR 300m
+CC31 N_C31_ESR N_Rising_AP 9.635n
+RC31_LEAK N_C31_ESR N_Rising_AP 100G
+* C32 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC32_ESL VDD N_C32_ESL 450p
+RC32_ESR N_C32_ESL N_C32_ESR 94.8683298051m
+CC32 N_C32_ESR 0 96.35n
+RC32_LEAK N_C32_ESR 0 10G
+* C33 1uF; effective=9.0944e-07F, ESR=0.03ohm, ESL=4.5e-10H, leakage=1e+09ohm
+LC33_ESL 0 N_C33_ESL 450p
+RC33_ESR N_C33_ESL N_C33_ESR 30m
+CC33 N_C33_ESR Net_U6C_INC 909.44n
+RC33_LEAK N_C33_ESR Net_U6C_INC 1G
+* C34 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC34_ESL VDD N_C34_ESL 450p
+RC34_ESR N_C34_ESL N_C34_ESR 94.8683298051m
+CC34 N_C34_ESR 0 96.35n
+RC34_LEAK N_C34_ESR 0 10G
+* C35 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC35_ESL VDD N_C35_ESL 450p
+RC35_ESR N_C35_ESL N_C35_ESR 94.8683298051m
+CC35 N_C35_ESR 0 96.35n
+RC35_LEAK N_C35_ESR 0 10G
+* C36 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC36_ESL VDD N_C36_ESL 450p
+RC36_ESR N_C36_ESL N_C36_ESR 94.8683298051m
+CC36 N_C36_ESR 0 96.35n
+RC36_LEAK N_C36_ESR 0 10G
+* C37 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC37_ESL VDD N_C37_ESL 450p
+RC37_ESR N_C37_ESL N_C37_ESR 94.8683298051m
+CC37 N_C37_ESR 0 96.35n
+RC37_LEAK N_C37_ESR 0 10G
+* C38 220nF; effective=2.1197e-07F, ESR=0.06396ohm, ESL=6.5e-10H, leakage=4.545e+09ohm
+LC38_ESL 0 N_C38_ESL 650p
+RC38_ESR N_C38_ESL N_C38_ESR 63.9602149067m
+CC38 N_C38_ESR V_Syn_State 211.97n
+RC38_LEAK N_C38_ESR V_Syn_State 4.54545454545G
+* C39 100pF; effective=1e-10F, ESR=0.1ohm, ESL=4.5e-10H, leakage=1e+11ohm
+LC39_ESL V_Stim_Cmd N_C39_ESL 450p
+RC39_ESR N_C39_ESL N_C39_ESR 100m
+CC39 N_C39_ESR 0 100p
+RC39_LEAK N_C39_ESR 0 100G
+* C40 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC40_ESL VDD N_C40_ESL 450p
+RC40_ESR N_C40_ESL N_C40_ESR 94.8683298051m
+CC40 N_C40_ESR 0 96.35n
+RC40_LEAK N_C40_ESR 0 10G
+* C41 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC41_ESL 0 N_C41_ESL 450p
+RC41_ESR N_C41_ESL N_C41_ESR 94.8683298051m
+CC41 N_C41_ESR VDD 96.35n
+RC41_LEAK N_C41_ESR VDD 10G
+* C42 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC42_ESL 0 N_C42_ESL 450p
+RC42_ESR N_C42_ESL N_C42_ESR 94.8683298051m
+CC42 N_C42_ESR VDD 96.35n
+RC42_LEAK N_C42_ESR VDD 10G
+* C43 100nF; effective=9.635e-08F, ESR=0.09487ohm, ESL=4.5e-10H, leakage=1e+10ohm
+LC43_ESL 0 N_C43_ESL 450p
+RC43_ESR N_C43_ESL N_C43_ESR 94.8683298051m
+CC43 N_C43_ESR VDD 96.35n
+RC43_LEAK N_C43_ESR VDD 10G
+* L1 ANR3015T2R2M: datasheet-derived DCR=85mohm, Cp=12pF, Isat gate=2A
+RL1_DCR VDD N_L1_DCR 85m
+LL1 N_L1_DCR Net_U7_SW 2.2u
+CL1_PAR VDD Net_U7_SW 12p
+
+* --- physical active devices ---
+XU1A Net_U1D_VINAP V_Syn1_Set VDD 0 V_Syn1_Set MCP6001
+XU1B Net_U1A_VINBP V_Syn2_Set VDD 0 V_Syn2_Set MCP6001
+XU1C Vw Vw_buff VDD 0 Vw_buff MCP6001
+XU1D Net_U1C_VINDP Net_U1C_VIND VDD 0 N_V_Syn_Drive MCP6001
+XU2A AP N_Adapt_Kick_Drive VDD 0 N_Adapt_Kick_Drive MCP6001
+XU2B V_Reset_Ref N_Reset_Injection_Drive VDD 0 N_Reset_Injection_Drive MCP6001
+XU2C V_Peak_Ref V_Peak_Drive VDD 0 V_Peak_Drive MCP6001
+XU2D Net_U2C_VINDP Net_U2C_VIND VDD 0 N_Adapt MCP6001
+XU3A N_V_Leak_ref V_Leak VDD 0 V_Leak MCP6001
+XU3B VREF_2V048 V_Leak_Ref_Max VDD 0 V_Leak_Ref_Max MCP6001
+XU3C Net_U3B_VINCP V_Syn3_Set VDD 0 V_Syn3_Set MCP6001
+XU3D Net_U3C_VINDP V_Syn4_Set VDD 0 V_Syn4_Set MCP6001
+XU4A S0 0 T1 Vsel VDD LIF_TLV7041_OD
+XU4B S1 0 Vsel T1 VDD LIF_TLV7041_OD
+XU4C S1 0 T2 Vsel VDD LIF_TLV7041_OD
+XU4D S4 0 Vsel T4 VDD LIF_TLV7041_OD
+XU5A S2 0 Vsel T2 VDD LIF_TLV7041_OD
+XU5B S2 0 T3 Vsel VDD LIF_TLV7041_OD
+XU5C S3 0 Vsel T3 VDD LIF_TLV7041_OD
+XU5D S3 0 T4 Vsel VDD LIF_TLV7041_OD
+XU6A Peak_Window 0 Spike_Pulse V_Threshold VDD LIF_TLV7041_OD
+XU6B unconnected_U6B_OUTB_Pad7 0 VDD 0 VDD LIF_TLV7041_OD
+XU6C Reset_Window 0 Net_U6C_INCP Net_U6C_INC VDD LIF_TLV7041_OD
+XU6D N_AP_Gate 0 V_Threshold Vm_Int VDD LIF_TLV7041_OD
+XU7 0 Net_U7_VOUT 0 VDD Net_U7_SW VDD LIF_TPS610995_SWITCHING
+RU7_PAD 0 0 1u
+XU8 Vm_Display_In Vm_FB V_Boost 0 Vm_Out_DRV LIF_TLV9001
+XU9 Net_U9_NO Vm_Int 0 S0 VDD LIF_TS5A3166
+XU10 Net_U10_NO Vm_Int 0 S1 VDD LIF_TS5A3166
+XU11 Net_U11_NO Vm_Int 0 S2 VDD LIF_TS5A3166
+XU12 Net_U12_NO Vm_Int 0 S3 VDD LIF_TS5A3166
+XU13 Net_U13_NO Vm_Int 0 S4 VDD LIF_TS5A3166
+XU14 Net_U14_NO Vm_Int 0 Peak_Window VDD LIF_TS5A3166
+XU15 Net_U15_NO V_Syn1_Set 0 Net_U15_IN VDD LIF_TS5A3166
+XU16 Net_U16_NO V_Syn2_Set 0 Net_U16_IN VDD LIF_TS5A3166
+XU17 Net_U17_NO V_Syn3_Set 0 Net_U17_IN VDD LIF_TS5A3166
+XU18 Net_U18_NO V_Syn4_Set 0 Net_U18_IN VDD LIF_TS5A3166
+XU19 Net_U19_OUT 0 Peak_Window V_Logic_Mid VDD LIF_TLV7031_PP
+XU20 Net_U20_NO Vm_Display_In 0 Peak_Window VDD LIF_TS5A3166
+XU21 VDD VREF_2V048 0 LIF_REF3020
+XU22 VREF_1V024_RAW VREF_1V024 VDD 0 VREF_1V024 LIF_TLV9001
+XU23 Net_U23_INP Net_U23_IN VDD 0 V_Stim_Drive LIF_TLV9041
+XD1 Vm_Ext 0 LIF_TPD1E05U06
+DD2 Vm_Int VDD LIF_BAT54WS
+DD3 0 Vm_Int LIF_BAT54WS
+DD4 0 N_Vkick LIF_1N4148WS
+DD5 N_Vkick Vw LIF_1N4148WS
+DD6 Net_D6_A Vw LIF_RB521S30
+DD7 0 Vw LIF_1N4148WS
+DD8 N_Rising_AP Spike_Pulse LIF_RB521S30
+DD9_R VDD Net_D9_R LIF_LED_RED
+DD9_G VDD Net_D9_G LIF_LED_GREEN
+DD9_B VDD Net_D9_B LIF_LED_BLUE
+DD10 Net_D10_A VDD LIF_BAT54WS
+DD11 0 Net_D10_A LIF_BAT54WS
+DD12 Net_D12_A VDD LIF_BAT54WS
+DD13 0 Net_D12_A LIF_BAT54WS
+DD14 Net_D14_A VDD LIF_BAT54WS
+DD15 0 Net_D14_A LIF_BAT54WS
+DD16 Net_D16_A VDD LIF_BAT54WS
+DD17 0 Net_D16_A LIF_BAT54WS
+XD18 Spike_Out 0 LIF_TPD1E05U06
+XD19 Stimulus_Ext 0 LIF_TPD1E05U06
+DD20 0 Spike_Pulse LIF_RB521S30
+DD21 Vm_Display_In VDD LIF_BAT54WS
+DD22 0 Vm_Display_In LIF_BAT54WS
+MQ1 AP N_AP_Gate 0 0 LIF_BSS138
+QQ2 N_Adapt_Current_Sink N_Adapt_Base 0 LIF_MMBT3904
+MQ3 N_Reset_Timer_Discharge AP 0 0 LIF_BSS138
+MQ4 N_Reset_Injection_Enable Peak_Window 0 0 LIF_BSS138
+MQ5 N_Reset_Switch_Mid N_Reset_Injection_Enable N_Reset_Injection_Drive N_Reset_Injection_Drive LIF_BSS138
+MQ6 N_Reset_Gated_Drive Reset_Window N_Reset_Switch_Mid N_Reset_Switch_Mid LIF_BSS138
+MQ7 Net_Q7_D Reset_Window 0 0 LIF_BSS138
+QQ8 Net_Q8_Pad3 Net_Q8_Pad1 0 LIF_MMBT3904
+
+* --- external terminals ---
+R_EXT_STIM_FLOAT Stimulus_Ext 0 1T
+R_EXT_SYN1_FLOAT Syn1_Spike 0 1T
+R_EXT_SYN2_FLOAT Syn2_Spike 0 1T
+R_EXT_SYN3_FLOAT Syn3_Spike 0 1T
+R_EXT_SYN4_FLOAT Syn4_Spike 0 1T
+* J1 Stim_Ext: pin1=Vm_Ext, pin2=Stimulus_Ext, pin3=GNDREF
+* J2 Axon_Output: pin1=Vm_Ext, pin2=Spike_Out, pin3=GNDREF
+* J3 Syn1_Input: pin1=unconnected-(J3-Pad1), pin2=Syn1_Spike, pin3=GNDREF
+* J4 Syn2_Input: pin1=unconnected-(J4-Pad1), pin2=Syn2_Spike, pin3=GNDREF
+* J5 Syn3_Input: pin1=unconnected-(J5-Pad1), pin2=Syn3_Spike, pin3=GNDREF
+* J6 Syn4_Input: pin1=unconnected-(J6-Pad1), pin2=Syn4_Spike, pin3=GNDREF
+* H1: mechanical-only mounting hole
+* H2: mechanical-only mounting hole
+* H3: mechanical-only mounting hole
+* H4: mechanical-only mounting hole
+* H5: mechanical-only mounting hole
+* H6: mechanical-only mounting hole
+R_FLOAT_unconnected_J3_Pad1 unconnected_J3_Pad1 0 1T
+R_FLOAT_unconnected_J4_Pad1 unconnected_J4_Pad1 0 1T
+R_FLOAT_unconnected_J5_Pad1 unconnected_J5_Pad1 0 1T
+R_FLOAT_unconnected_J6_Pad1 unconnected_J6_Pad1 0 1T
+R_FLOAT_unconnected_SW1_Pad3 unconnected_SW1_Pad3 0 1T
+R_FLOAT_unconnected_U6B_OUTB_Pad7 unconnected_U6B_OUTB_Pad7 0 1T
+
+* --- analysis ---
+.save v(VDD) v(V_Boost) v(VREF_2V048) v(VREF_1V024) v(V_Leak) v(Vm_Int) v(V_Threshold) v(AP) v(Spike_Pulse) v(Peak_Window) v(Reset_Window) v(Vm_Display_In) v(Vm_Ext) v(Spike_Out) v(V_Syn_State) v(N_V_Syn_Drive) v(V_Stim_Cmd) v(V_Stim_Drive) v(Vsel) v(S0) v(S1) v(S2) v(S3) v(S4) v(Vw) v(Vw_buff) v(N_Vkick) v(N_Adapt_Kick_Drive) v(N_Rising_AP) v(N_AP_Gate) v(V_Reset_Ref) v(N_Reset_Injection_Drive) v(N_Reset_Gated_Drive) v(V_Peak_Drive) v(V_Syn1_Set) v(V_Syn2_Set) v(V_Syn3_Set) v(V_Syn4_Set)
+.tran 2u 80m 0 2u uic
+.control
+run
+wrdata N_20_rv4_selector_region_1.wrdata.txt v(VDD) v(V_Boost) v(VREF_2V048) v(VREF_1V024) v(V_Leak) v(Vm_Int) v(V_Threshold) v(AP) v(Spike_Pulse) v(Peak_Window) v(Reset_Window) v(Vm_Display_In) v(Vm_Ext) v(Spike_Out) v(V_Syn_State) v(N_V_Syn_Drive) v(V_Stim_Cmd) v(V_Stim_Drive) v(Vsel) v(S0) v(S1) v(S2) v(S3) v(S4) v(Vw) v(Vw_buff) v(N_Vkick) v(N_Adapt_Kick_Drive) v(N_Rising_AP) v(N_AP_Gate) v(V_Reset_Ref) v(N_Reset_Injection_Drive) v(N_Reset_Gated_Drive) v(V_Peak_Drive) v(V_Syn1_Set) v(V_Syn2_Set) v(V_Syn3_Set) v(V_Syn4_Set)
+quit
+.endc
+.end

@@ -1,0 +1,62 @@
+{
+  "test_name": "06_cold_start_dynamic_battery",
+  "source_lock_sha256": "55df884890c53c1af35b7f03e638c13b9e68e5c5d7e3ac005e109ba13a78201c",
+  "deck_sha256": "902a833d18cb3e27511a1cb012ce4604a088035dd0e5887d5310d4163d0bf625",
+  "temperature_c": 25.0,
+  "profile": "hybrid",
+  "supply_mode": "coin_fixed",
+  "pot_positions": {
+    "RV1": 0.55,
+    "RV2": 0.5,
+    "RV3": 0.5,
+    "RV4": 0.1,
+    "RV5": 0.5,
+    "RV6": 0.5,
+    "RV7": 0.5,
+    "RV8": 0.5,
+    "RV9": 0.5
+  },
+  "VDD": {
+    "min": -7.69570818e-06,
+    "max": 0.701003027,
+    "end": 0.701003027
+  },
+  "V_Boost": {
+    "min": -0.000485645985,
+    "max": 0.679121067,
+    "end": 0.679121067
+  },
+  "VREF_2V048": {
+    "min": -1.24631832e-07,
+    "max": 0.438434053,
+    "end": 0.438434053
+  },
+  "VREF_1V024": {
+    "min": -0.0199843196,
+    "max": 0.680237203,
+    "end": 0.680237203
+  },
+  "Vm_Int": {
+    "min": -0.00213748316,
+    "max": 0.0131291558,
+    "end": 0.0131291558
+  },
+  "AP": {
+    "min": -6.05690756e-07,
+    "max": 0.237237002,
+    "end": 0.237237002
+  },
+  "Spike_Out": {
+    "min": -2.92324536e-09,
+    "max": 0.0282490411,
+    "end": 0.000266279831
+  },
+  "AP_rising_edges": 0,
+  "AP_mean_period_s": null,
+  "Spike_Out_rising_edges": 0,
+  "Spike_Out_mean_period_s": null,
+  "status": "passed",
+  "ngspice_version": "ngspice-46 : Circuit level simulation program",
+  "python_version": "3.12.6",
+  "operating_system": "Windows-11-10.0.26200-SP0"
+}

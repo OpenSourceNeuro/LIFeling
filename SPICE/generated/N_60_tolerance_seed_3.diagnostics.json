@@ -1,0 +1,226 @@
+{
+  "test_name": "60_tolerance_seed_3",
+  "source_lock_sha256": "55df884890c53c1af35b7f03e638c13b9e68e5c5d7e3ac005e109ba13a78201c",
+  "deck_sha256": "ceac5141da11e62f97246696c746624b47b5fa0f416f9a01b5d8f38636d121e9",
+  "temperature_c": 25.0,
+  "profile": "hybrid",
+  "supply_mode": "coin_fixed",
+  "pot_positions": {
+    "RV1": 0.55,
+    "RV2": 0.5,
+    "RV3": 0.5,
+    "RV4": 0.1,
+    "RV5": 0.5,
+    "RV6": 0.5,
+    "RV7": 0.5,
+    "RV8": 0.5,
+    "RV9": 0.5
+  },
+  "VDD": {
+    "min": 6.56447306e-05,
+    "max": 0.701003334,
+    "end": 0.701003334
+  },
+  "V_Boost": {
+    "min": -0.00012721886,
+    "max": 0.659846736,
+    "end": 0.659846736
+  },
+  "VREF_2V048": {
+    "min": -1.22107306e-07,
+    "max": 0.291701268,
+    "end": 0.291701268
+  },
+  "VREF_1V024": {
+    "min": -0.0199033931,
+    "max": 0.680225904,
+    "end": 0.680225904
+  },
+  "V_Leak": {
+    "min": 0.000282317645,
+    "max": 0.159269704,
+    "end": 0.159269704
+  },
+  "Vm_Int": {
+    "min": -0.0037849654,
+    "max": 0.0101877639,
+    "end": 0.00421228833
+  },
+  "V_Threshold": {
+    "min": -0.0164617252,
+    "max": 0.567950333,
+    "end": 0.567950333
+  },
+  "AP": {
+    "min": 1.57288957e-06,
+    "max": 0.150135557,
+    "end": 0.150135557
+  },
+  "Spike_Pulse": {
+    "min": 7.85385627e-07,
+    "max": 0.04842261,
+    "end": 0.04842261
+  },
+  "Peak_Window": {
+    "min": 5.9495258e-06,
+    "max": 0.0352670546,
+    "end": 0.00012596732
+  },
+  "Reset_Window": {
+    "min": 7.17620597e-05,
+    "max": 0.668039762,
+    "end": 0.668039762
+  },
+  "Vm_Display_In": {
+    "min": -9.20108323e-05,
+    "max": 0.0152698592,
+    "end": 0.0152698592
+  },
+  "Vm_Ext": {
+    "min": -0.020120702,
+    "max": 0.56106466,
+    "end": 0.56106466
+  },
+  "Spike_Out": {
+    "min": 2.47343261e-08,
+    "max": 0.0392888166,
+    "end": 0.000264278352
+  },
+  "V_Syn_State": {
+    "min": -4.85971334e-06,
+    "max": 0.00699140599,
+    "end": 0.00699140599
+  },
+  "/V_Syn_Drive": {
+    "min": 0.000209423206,
+    "max": 0.0269521782,
+    "end": 0.000220731489
+  },
+  "V_Stim_Cmd": {
+    "min": -0.00046366898,
+    "max": 0.147950155,
+    "end": 0.147950155
+  },
+  "V_Stim_Drive": {
+    "min": -0.0199229084,
+    "max": 0.680717821,
+    "end": 0.680717821
+  },
+  "Vsel": {
+    "min": 6.564472e-06,
+    "max": 0.0701003221,
+    "end": 0.0701003221
+  },
+  "S0": {
+    "min": 2.63484175e-05,
+    "max": 0.647809007,
+    "end": 0.647809007
+  },
+  "S1": {
+    "min": -2.6700217e-06,
+    "max": 0.0377215331,
+    "end": 0.000132629452
+  },
+  "S2": {
+    "min": 3.1900796e-06,
+    "max": 0.0200746484,
+    "end": 0.00013366643
+  },
+  "S3": {
+    "min": 2.31469947e-06,
+    "max": 0.0159880157,
+    "end": 0.000138540091
+  },
+  "S4": {
+    "min": 1.83251035e-06,
+    "max": 0.0147997576,
+    "end": 0.000133989146
+  },
+  "Vw": {
+    "min": -1.81265042e-05,
+    "max": 1.80145483e-05,
+    "end": 5.78886757e-07
+  },
+  "Vw_buff": {
+    "min": 0.000281799836,
+    "max": 0.00123237694,
+    "end": 0.000281799836
+  },
+  "/Vkick": {
+    "min": 0.000282387176,
+    "max": 0.148731588,
+    "end": 0.148731588
+  },
+  "/Adapt_Kick_Drive": {
+    "min": 0.00028239035,
+    "max": 0.149524085,
+    "end": 0.149524085
+  },
+  "/Rising_AP": {
+    "min": 1.57128916e-06,
+    "max": 0.0647999702,
+    "end": 0.0647999702
+  },
+  "/AP_Gate": {
+    "min": 4.22615848e-06,
+    "max": 0.700289199,
+    "end": 0.700289199
+  },
+  "V_Reset_Ref": {
+    "min": -0.0066094799,
+    "max": 0.24397896,
+    "end": 0.24397896
+  },
+  "/Reset_Injection_Drive": {
+    "min": 0.000282427615,
+    "max": 0.243375902,
+    "end": 0.243375902
+  },
+  "/Reset_Gated_Drive": {
+    "min": -9.05843911e-05,
+    "max": 0.011672837,
+    "end": 0.00432178207
+  },
+  "V_Peak_Drive": {
+    "min": 0.000281863024,
+    "max": 0.635132812,
+    "end": 0.635132812
+  },
+  "V_Syn1_Set": {
+    "min": 0.000282602136,
+    "max": 0.143930881,
+    "end": 0.143930881
+  },
+  "V_Syn2_Set": {
+    "min": 0.00028260214,
+    "max": 0.144067733,
+    "end": 0.144067733
+  },
+  "V_Syn3_Set": {
+    "min": 0.000282602084,
+    "max": 0.144108564,
+    "end": 0.144108564
+  },
+  "V_Syn4_Set": {
+    "min": 0.000282602235,
+    "max": 0.143723748,
+    "end": 0.143723748
+  },
+  "AP_rising_edges": 0,
+  "AP_mean_period_s": null,
+  "Peak_Window_rising_edges": 0,
+  "Peak_Window_mean_period_s": null,
+  "Reset_Window_rising_edges": 1,
+  "Reset_Window_mean_period_s": null,
+  "Spike_Out_rising_edges": 0,
+  "Spike_Out_mean_period_s": null,
+  "Spike_Pulse_rising_edges": 0,
+  "Spike_Pulse_mean_period_s": null,
+  "Vm_threshold_crossings": 0,
+  "stimulus_transfer_linear_points": 0,
+  "stimulus_transfer_error_linear_max_abs_v": null,
+  "status": "passed",
+  "ngspice_version": "ngspice-46 : Circuit level simulation program",
+  "python_version": "3.12.6",
+  "operating_system": "Windows-11-10.0.26200-SP0"
+}

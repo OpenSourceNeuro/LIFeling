@@ -1,0 +1,204 @@
+
+**** 08/07/20 06:55:55 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-a"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\a.si
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "a.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../tlv7041.lib" 
+* From [PSPICE NETLIST] section of C:\SPB_Data\cdssetup\OrCAD_PSpiceTIPSpice_Install\17.4.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 50u 0 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source TLV7041_PSPICE
+R_R1         N01525 VPU  10k TC=0,0 
+V_V4         VPU 0 1.8
+V_V1         IN+ 0  
++SIN 2.5 100m 100k 0 0 0
+V_V2         IN- 0 2.5
+V_V3         V+ 0 5
+X_U1         IN+ IN- N01525 V+ 0 TLV7041
+
+**** RESUMING a.cir ****
+.END
+
+INFO(ORPSIM-15423): Unable to find index file tlv7041.ind for library file tlv7041.lib.
+
+INFO(ORPSIM-15422): Making new index file tlv7041.ind for library file tlv7041.lib.
+
+Index has 39 entries from 1 file(s).
+
+**** 08/07/20 06:55:55 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-a"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\a.si
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Dbreak          
+          IS   10.000000E-15 
+          RS     .1          
+         CJO  100.000000E-15 
+
+
+**** 08/07/20 06:55:55 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-a"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\a.si
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               NPN1            
+               NPN             
+       LEVEL    1            
+          IS  100.000000E-18 
+          BF  100            
+          NF    1            
+          BR    1            
+          NR    1            
+         ISS    0            
+          RB  850            
+          RE    0            
+          RC   15            
+         CJE    0            
+         VJE     .75         
+         CJC    0            
+         VJC     .75         
+         MJC     .33         
+        XCJC    1            
+         CJS    0            
+         VJS     .75         
+          TF    4.000000E-09 
+          KF    0            
+          AF    1            
+          CN    2.42         
+           D     .87         
+
+
+**** 08/07/20 06:55:55 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-a"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\a.si
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.X_U1.X_U6.X_S3._S3 
+         RON    1            
+        ROFF    1.000000E+12 
+         VON    5            
+        VOFF    0            
+
+
+               X_U1.X_U1.X_U6.X_S4._S4 
+         RON    1            
+        ROFF    1.000000E+12 
+         VON    0            
+        VOFF    5            
+
+
+ERROR(ORPSIM-16583): Detected an imported model containing transistors or diodes. For such models, PSpice for TI supports a minimum of one and maximum of three traces. Reduce the number of traces and simulate again.
+
+
+ABORTING SIMULATION
+**** 08/07/20 06:55:55 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-a"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\a.si
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+Node counts:
+  Top level (NUNODS)                =           6
+  External (NCNODS)                 =          63
+  Total (NUMNOD)                    =          70
+
+Total device count (NUMEL)          =         107
+  Capacitors (C)                    =          21
+  Diodes (D)                        =           1
+  VCVS (E)                          =          34
+  VCCS (G)                          =           2
+  Current Sources (I)               =           3
+  BJTs (Q)                          =           1
+  Resistors (R)                     =          22
+  VSwitches (S)                     =           2
+  TLines (T)                        =           1
+  Voltage Sources (V)               =          20
+
+Number of subcircuits (X)           =          34
+
+Matrix statistics:
+  Matrix size (NSTOP)               =         126
+  Initial no. elements (NTTAR)      =         334
+  No. elements w/ fillin (NTTBR)    =         334
+  No. fillins (IFILL)               =           0
+  No. overflows (NTTOV)             =           0
+  No. LU operations (IOPS)          =           0
+  Percent sparsity (PERSPA)         =      97.896
+
+Analysis statistics:
+  No. total time points (NUMTTP)    =           0
+  No. rejected time points (NUMRTP) =           0
+  No. iterations (NUMNIT)           =           0
+
+Load Threads                        =           1
+
+Runtime statistics:                       Seconds      Iterations
+  Matrix load                       =        0.00
+  Matrix solution                   =        0.00               1
+  Readin                            =        1.19
+  General setup                     =         .02
+  CMI setup                     =        0.00
+  Setup                             =        0.00
+  DC sweep                          =        0.00               0
+  Bias point                        =        0.00               0
+  AC and noise                      =        0.00               0
+  Total transient analysis          =        0.00
+  Output                            =        0.00
+  Overhead                          =         .06
+  Total job time (using Solver 1)   =        1.22
+

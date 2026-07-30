@@ -1,0 +1,325 @@
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "tlv9042.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../tlv9042.lib" 
+* From [PSPICE NETLIST] section of C:\SPB_Data-Silent\cdssetup\OrCAD_PSpice\23.1.0\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 3m 0 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source TLV9042
+V_V3         IN 0  
++SIN 0 1 1k 0 0 0
+V_V1         VCC 0 2.75
+V_V2         0 VEE 2.75
+X_U1         IN OUT VCC VEE OUT TLV9042
+
+**** RESUMING tlv9042.cir ****
+.END
+
+WARNING(ORPSIM-15246): Library index file tlv9042.ind does not have the correct format
+
+INFO(ORPSIM-15422): Making new index file tlv9042.ind for library file tlv9042.lib.
+
+Index has 16 entries from 1 file(s).
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.Xi_nn.DVNF X_U1.Xi_np.DVNF X_U1.Xe_n.DVN   
+          IS  100.000000E-18  100.000000E-18  100.000000E-18 
+          KF  316.227800E-15  316.227800E-15   31.622780E-12 
+
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     Resistor MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.R_NOISELESS 
+  T_Measured   27            
+   T_Current -273.15         
+           R    1            
+
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.BB_SW      X_U1.ESD_SW     X_U1.OL_SW      X_U1.OR_SW      
+         RON   50              50               1.000000E-03     .01         
+        ROFF    1.000000E+12    1.000000E+12    1.000000E+09    1.000000E+09 
+         VON     .7              .25             .9             1.000000E-03 
+        VOFF    0               0                .8             0            
+
+
+               X_U1.S_VSWITCH_1 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .45         
+
+
+               X_U1.S_VSWITCH_2 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .45         
+
+
+               X_U1.S_VSWITCH_3 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .45         
+
+
+               X_U1.S_VSWITCH_4 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .45         
+
+
+               X_U1.S_VSWITCH_5 
+         RON     .01         
+        ROFF    1.000000E+12 
+         VON     .01         
+        VOFF    0            
+
+
+               X_U1.S_VSWITCH_6 
+         RON     .01         
+        ROFF    1.000000E+12 
+         VON     .01         
+        VOFF    0            
+
+
+               X_U1.S_VSWITCH_7 
+         RON    1.000000E-03 
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .1          
+
+
+               X_U1.S_VSWITCH_8 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .1          
+
+
+               X_U1.S_VSWITCH_9 
+         RON   50            
+        ROFF    1.000000E+12 
+         VON     .5          
+        VOFF     .1          
+
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   IN)    0.0000  (  OUT) 340.2E-06  (  VCC)    2.7500  (  VEE)   -2.7500      
+
+(X_U1.21)-50.00E-15                   (X_U1.22) 367.9E-06                       
+
+(X_U1.23)     .0037                   (X_U1.24) 340.0E-06                       
+
+(X_U1.25)    2.7400                   (X_U1.26)   -2.7400                       
+
+(X_U1.27)-49.95E-24                   (X_U1.28)-1.125E-15                       
+
+(X_U1.29) 87.01E-09                   (X_U1.30)   34.5400                       
+
+(X_U1.31)-86.99E-09                   (X_U1.32)  -23.4850                       
+
+(X_U1.33) 8.760E-09                   (X_U1.34)     .0037                       
+
+(X_U1.35) 935.5E-09                   (X_U1.36)     .0037                       
+
+(X_U1.37)     .0037                   (X_U1.38)     .0037                       
+
+(X_U1.39) 340.2E-06                   (X_U1.40)-33.00E-12                       
+
+(X_U1.41)-33.00E-12                   (X_U1.42)-33.00E-12                       
+
+(X_U1.43)-33.00E-12                   (X_U1.44)   16.5000                       
+
+(X_U1.45)   16.5000                   (X_U1.46)  -16.5000                       
+
+(X_U1.47)  -16.5000                   (X_U1.48) 340.2E-06                       
+
+(X_U1.49) 340.2E-06                   (X_U1.50)   40.0000                       
+
+(X_U1.51)  -40.0000                   (X_U1.52)    0.0000                       
+
+(X_U1.53)    0.0000                   (X_U1.54)   16.5000                       
+
+(X_U1.55)  -16.5000                   (X_U1.56)  400.0000                       
+
+(X_U1.57) -400.0000                   (X_U1.58) 367.9E-06                       
+
+(X_U1.59)    0.0000                   (X_U1.60)    0.0000                       
+
+(X_U1.61)    0.0000                   (X_U1.62)    0.0000                       
+
+(X_U1.63)    0.0000                   (X_U1.64)    0.0000                       
+
+(X_U1.65)    2.7400                   (X_U1.66)   -2.7400                       
+
+(X_U1.67)    0.0000                   (X_U1.68)    0.0000                       
+
+(X_U1.69)    0.0000                   (X_U1.70)    0.0000                       
+
+(X_U1.71)    0.0000                   (X_U1.72) 3.678E-12                       
+
+(X_U1.73) 340.2E-06                   (X_U1.74) 367.9E-06                       
+
+(X_U1.75) 340.2E-06                   (X_U1.76)   -2.7600                       
+
+(X_U1.77)    2.7600                   (X_U1.78) 340.2E-06                       
+
+(X_U1.79)    0.0000                   (X_U1.80)   -2.7500                       
+
+(X_U1.81)    2.7500                   (X_U1.82) 340.0E-06                       
+
+(X_U1.83) 340.0E-06                   (X_U1.MID)    0.0000                      
+
+(X_U1.ESDn) 340.2E-06                 (X_U1.ESDp)-50.00E-15                     
+
+(X_U1.VCLP) 367.9E-06                 (X_U1.CLAMP) 367.9E-06                    
+
+(X_U1.SW_OL)    0.0000                (X_U1.VCC_B)    2.7500                    
+
+(X_U1.VEE_B)   -2.7500                (X_U1.VIMON) 3.674E-12                    
+
+(X_U1.VOUT_S) 340.2E-06               (X_U1.VSENSE) 367.9E-06                   
+
+(X_U1.Xe_n.3)    0.0000               (X_U1.Xe_n.4)    0.0000                   
+
+(X_U1.Xe_n.5)    0.0000               (X_U1.Xe_n.6)    0.0000                   
+
+(X_U1.Xe_n.7)     .8338               (X_U1.Xe_n.8)     .8338                   
+
+(X_U1.VCC_CLP)    2.7400              (X_U1.VEE_CLP)   -2.7400                  
+
+(X_U1.Xi_nn.3)    0.0000              (X_U1.Xi_nn.4)    0.0000                  
+
+(X_U1.Xi_nn.5)    0.0000              (X_U1.Xi_nn.6)    0.0000                  
+
+(X_U1.Xi_nn.7)     .8338              (X_U1.Xi_nn.8)     .8338                  
+
+(X_U1.Xi_np.3)    0.0000              (X_U1.Xi_np.4)    0.0000                  
+
+(X_U1.Xi_np.5)    0.0000              (X_U1.Xi_np.6)    0.0000                  
+
+(X_U1.Xi_np.7)     .8338              (X_U1.Xi_np.8)     .8338                  
+
+(X_U1.CL_CLAMP) 367.9E-06             (X_U1.CLAW_CLAMP) 367.9E-06           
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V3        -5.000E-12
+    V_V1        -1.000E-05
+    V_V2        -1.000E-05
+    X_U1.VS1     3.905E-17
+    X_U1.V_GRp  -4.000E-10
+    X_U1.V_GRn   4.000E-10
+    X_U1.V_ISCp  -4.000E-11
+    X_U1.V_ISCn   4.000E-11
+    X_U1.V_ORn   0.000E+00
+    X_U1.V11     3.300E-11
+    X_U1.V_ORp   0.000E+00
+    X_U1.V12    -3.300E-11
+    X_U1.V4      3.678E-15
+    X_U1.VCM_MIN   2.760E-12
+    X_U1.VCM_MAX  -2.760E-12
+
+    TOTAL POWER DISSIPATION   5.53E-05  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 01/12/26 13:30:21 *** PSpice 23.1.0 (29 September 2023) ** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-tlv9042"  [ C:\Users\a0507996\Documents\PSpice Working Directory\TLV9041_DEV\TLV9042-PSpiceFiles\SCHEMATIC1\
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  License check-out time            =         .52
+  Total job time (using Solver 1)   =         .22
+

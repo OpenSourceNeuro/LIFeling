@@ -1,0 +1,2 @@
+# Required for PNG plot generation after ngspice execution.
+matplotlib>=3.8

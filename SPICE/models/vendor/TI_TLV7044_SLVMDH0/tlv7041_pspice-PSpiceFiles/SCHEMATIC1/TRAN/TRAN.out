@@ -1,0 +1,255 @@
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "TRAN.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../tlv7041.lib" 
+* From [PSPICE NETLIST] section of C:\SPB_Data\cdssetup\OrCAD_PSpiceTIPSpice_Install\17.4.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 50u 0 
+.OPTIONS ADVCONV
+.PROBE64 N([N01525])
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source TLV7041_PSPICE
+R_R1         N01525 VPU  10k TC=0,0 
+V_V4         VPU 0 1.8
+V_V1         IN+ 0  
++SIN 2.5 100m 100k 0 0 0
+V_V2         IN- 0 2.5
+V_V3         V+ 0 5
+X_U1         IN+ IN- N01525 V+ 0 TLV7041
+
+**** RESUMING TRAN.cir ****
+.END
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Dbreak          
+          IS   10.000000E-15 
+          RS     .1          
+         CJO  100.000000E-15 
+
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               NPN1            
+               NPN             
+       LEVEL    1            
+          IS  100.000000E-18 
+          BF  100            
+          NF    1            
+          BR    1            
+          NR    1            
+         ISS    0            
+          RB  850            
+          RE    0            
+          RC   15            
+         CJE    0            
+         VJE     .75         
+         CJC    0            
+         VJC     .75         
+         MJC     .33         
+        XCJC    1            
+         CJS    0            
+         VJS     .75         
+          TF    4.000000E-09 
+          KF    0            
+          AF    1            
+          CN    2.42         
+           D     .87         
+
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.X_U1.X_U6.X_S3._S3 
+         RON    1            
+        ROFF    1.000000E+12 
+         VON    5            
+        VOFF    0            
+
+
+               X_U1.X_U1.X_U6.X_S4._S4 
+         RON    1            
+        ROFF    1.000000E+12 
+         VON    0            
+        VOFF    5            
+
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   V+)    5.0000  (  IN+)    2.5000  (  IN-)    2.5000  (  VPU)    1.8000      
+
+(N01525)    1.8000 (X_U1.X_U1.N00308)    4.9020                                 
+
+(X_U1.X_U1.N00312)    4.9020          (X_U1.X_U1.N00316)    0.0000              
+
+(X_U1.X_U1.N00323)    0.0000          (X_U1.X_U1.N00366)     .0070              
+
+(X_U1.X_U1.N001101)    2.5000         (X_U1.X_U1.N001103)    2.5000             
+
+(X_U1.X_U1.V+_BUFF)    5.0000         (X_U1.X_U1.V-_BUFF)    0.0000             
+
+(X_U1.X_U1.X_U6.5V)    5.0000         (X_U1.X_U1.X_U7.VH)     .0035             
+
+(X_U1.X_U1.IN+_BUFF)    2.5000        (X_U1.X_U1.IN-_BUFF)    2.5000            
+
+(X_U1.X_U1.X_U6.MID)    3.2000        (X_U1.X_U1.X_U7.OUT)    5.0000            
+
+(X_U1.X_U1.X_U7.VMID)    2.5000       (X_U1.X_U1.X_U2.N18928)    7.0000         
+
+(X_U1.X_U1.X_U2.N18940)    5.0000     (X_U1.X_U1.X_U2.N18958)    5.0000         
+
+(X_U1.X_U1.X_U2.N19100)    5.0000     (X_U1.X_U1.X_U2.N19104)    5.0000         
+
+(X_U1.X_U1.X_U2.N19172)    5.0000     (X_U1.X_U1.X_U2.N19230)    -.3000         
+
+(X_U1.X_U1.X_U4.N24639)    6.0000     (X_U1.X_U1.X_U4.N24659)    0.0000         
+
+(X_U1.X_U1.X_U4.N24733)    0.0000     (X_U1.X_U1.X_U4.N24743)    0.0000         
+
+(X_U1.X_U1.X_U4.N24835)    6.0000     (X_U1.X_U1.X_U4.N24963)    0.0000         
+
+(X_U1.X_U1.X_U4.N25095)    0.0000     (X_U1.X_U1.X_U4.N25117)    -.3000         
+
+(X_U1.X_U1.X_U4.N25203)    0.0000     (X_U1.X_U1.X_U4.N25311)    -.3000         
+
+(X_U1.X_U1.X_U4.N26592)    5.0000     (X_U1.X_U1.X_U6.X_U3.3)    6.0000         
+
+(X_U1.X_U1.X_U6.X_U8.4)    0.0000     (X_U1.X_U1.X_U7.INNNEW)    2.4965         
+
+(X_U1.X_U1.X_U8.N19122)    5.0000     (X_U1.X_U1.X_U8.N19288)    1.6000         
+
+(X_U1.X_U1.X_U8.N19358)    5.0000     (X_U1.X_U1.X_U8.N19740)    5.0000         
+
+(X_U1.X_U1.X_U2.X_U16.4)    5.0000    (X_U1.X_U1.X_U4.X_U18.4)    0.0000        
+
+(X_U1.X_U1.X_U4.X_U19.4)    0.0000    (X_U1.X_U1.X_U6.CONTROL)    0.0000        
+
+(X_U1.X_U1.X_U6.N772534)    6.0000    (X_U1.X_U1.X_U6.N772678)    6.0000        
+
+(X_U1.X_U1.X_U6.N773140)    0.0000    (X_U1.X_U1.X_U6.N775848)    1.8000        
+
+(X_U1.X_U1.X_U6.N776699)    1.9230    (X_U1.X_U1.X_U6.N776980)    2.5000        
+
+(X_U1.X_U1.X_U8.N194424)    5.0000    (X_U1.X_U1.X_U8.N194834)    5.0000        
+
+(X_U1.X_U1.X_U6.X_U7.VMID)    2.5000  (X_U1.X_U1.X_U2.X_U17.VMID)    2.5000     
+
+(X_U1.X_U1.X_U8.X_U15.VMID)    2.5000 (X_U1.X_U1.X_U8.X_U16.VMID)    2.5000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V4        -2.324E-12
+    V_V1        -4.500E-12
+    V_V2        -4.500E-12
+    V_V3        -3.350E-07
+    X_U1.X_U1.V_V1   0.000E+00
+    X_U1.X_U1.X_U4.V_V3   3.000E-01
+    X_U1.X_U1.X_U4.V_V4   3.000E-01
+    X_U1.X_U1.X_U4.V_V1   0.000E+00
+    X_U1.X_U1.X_U4.V_V5   0.000E+00
+    X_U1.X_U1.X_U4.V_V2   0.000E+00
+    X_U1.X_U1.X_U6.V_V3   0.000E+00
+    X_U1.X_U1.X_U6.V_V1   0.000E+00
+    X_U1.X_U1.X_U6.V_V4   1.277E-12
+    X_U1.X_U1.X_U2.V_V4   5.300E+00
+    X_U1.X_U1.X_U2.V_V5   0.000E+00
+    X_U1.X_U1.X_U2.V_V1   0.000E+00
+    X_U1.X_U1.X_U8.V_V2   0.000E+00
+    X_U1.X_U1.X_U8.V_V3   0.000E+00
+    X_U1.X_U1.X_U8.V_V1   0.000E+00
+    X_U1.X_U1.X_U8.V_V4   0.000E+00
+
+    TOTAL POWER DISSIPATION   1.77E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 08/07/20 06:58:35 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0868764\Downloads\tlv7041_pspice-2020-08-06T21-23\tlv7041_pspice-pspicefiles\schematic1\t
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  License check-out time            =        1.25
+  Total job time (using Solver 1)   =         .70
+

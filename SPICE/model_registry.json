@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "generated_for_netlist_export": "2026-07-29T20:56:15",
+  "profiles": {
+    "portable": "Use provided models where suitable and documented datasheet-derived models for all remaining devices.",
+    "hybrid": "Prefer locally installed official vendor models with verified adapters; otherwise use portable models and emit an explicit limitation.",
+    "vendor": "Require official/exact models and verified terminal adapters. Any unresolved or incompatible model fails the build."
+  },
+  "families": {
+    "MCP6004T-I/ST": {
+      "references": [
+        "U1",
+        "U2",
+        "U3"
+      ],
+      "manufacturer": "Microchip Technology",
+      "exact_part": "MCP6004T-I/ST",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.microchip.com/en-us/product/MCP6004",
+      "model_source_page": "https://www.microchip.com/en-us/application-notes/an1297",
+      "package_name": "MCP6001/2/4 PSpice macromodel",
+      "local_candidates": [
+        "models/vendor/MCP6001.txt",
+        "models/compatible/MCP6001_ngspice.lib",
+        "models/provided/MCP6001.txt"
+      ],
+      "subcircuit_candidates": [
+        "MCP6001"
+      ],
+      "declared_terminal_order": [
+        "IN+",
+        "IN-",
+        "V+",
+        "V-",
+        "OUT"
+      ],
+      "simulator": "PSpice",
+      "encrypted": false,
+      "ngspice_compatibility": "Official PSpice model preserved unchanged; hybrid/portable decks use a checksum-tracked ngspice syntax-normalised copy with only the R61 TC instance syntax translated.",
+      "wrapper": "quad package split into four MCP6001 instances using physical MCP6004 pins",
+      "redistribution": "Microchip model licence in file; use is restricted to Microchip products.",
+      "portable_model": "models/compatible/MCP6001_ngspice.lib",
+      "model_version_date": "REV G; supplied file revision history includes dated revisions through 2012 and a later syntax-fix entry without a date"
+    },
+    "TLV7044PWR": {
+      "references": [
+        "U4",
+        "U5",
+        "U6"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TLV7044PWR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/TLV7044",
+      "model_source_page": "https://www.ti.com/product/TLV7044#design-development",
+      "package_name": "SLVMDH0.ZIP",
+      "download_url": "https://www.ti.com/lit/zip/slvmdh0",
+      "local_candidates": [
+        "models/vendor/TLV704x"
+      ],
+      "subcircuit_candidates": [
+        "TLV7041",
+        "TLV7042",
+        "TLV7044",
+        "TLV704X"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice",
+      "encrypted": false,
+      "ngspice_compatibility": "Must be established by inspecting and smoke-testing the downloaded package.",
+      "wrapper": "physical PW-14 pin mapper; each comparator channel is instantiated independently if the vendor model is single-channel",
+      "redistribution": "TI evaluation-item terms apply; do not commit downloaded package unless redistribution is confirmed.",
+      "portable_model": "LIF_TLV7041_OD",
+      "model_version_date": "SLVMDH0 package; revision/date not encoded in the public package identifier"
+    },
+    "TLV7031DCKR": {
+      "references": [
+        "U19"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TLV7031DCKR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/TLV7031",
+      "model_source_page": "https://www.ti.com/product/TLV7031#design-development",
+      "package_name": "SLVMDG0A.ZIP",
+      "download_url": "https://www.ti.com/lit/zip/slvmdg0a",
+      "local_candidates": [
+        "models/vendor/TLV7031"
+      ],
+      "subcircuit_candidates": [
+        "TLV7031"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice",
+      "encrypted": false,
+      "ngspice_compatibility": "Must be established by actual package inspection and smoke test.",
+      "wrapper": "DCK physical pins 1 OUT, 2 GND, 3 IN+, 4 IN-, 5 V+",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TLV7031_PP",
+      "model_version_date": "SLVMDG0A, Rev. A"
+    },
+    "TLV9001IDBVR": {
+      "references": [
+        "U8",
+        "U22"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TLV9001IDBVR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/TLV9001",
+      "model_source_page": "https://www.ti.com/product/TLV9001#design-development",
+      "package_name": "SBOMAL2D.ZIP (TLV9002 PSpice model, Rev. D)",
+      "download_url": "https://www.ti.com/lit/zip/sbomal2d",
+      "local_candidates": [
+        "models/vendor/TLV900x"
+      ],
+      "subcircuit_candidates": [
+        "TLV9001",
+        "TLV9002",
+        "TLV900X"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice",
+      "encrypted": false,
+      "ngspice_compatibility": "The public package is for TLV9002; adapter and channel extraction must be verified.",
+      "wrapper": "DBV physical pins 1 OUT, 2 V-, 3 IN+, 4 IN-, 5 V+",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TLV9001",
+      "model_version_date": "SBOMAL2D, Rev. D"
+    },
+    "TLV9041IDBVR": {
+      "references": [
+        "U23"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TLV9041IDBVR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/TLV9041",
+      "model_source_page": "https://www.ti.com/product/TLV9041#design-development",
+      "package_name": "SBOMB62B.ZIP (TLV904x PSpice model, Rev. B)",
+      "download_url": "https://www.ti.com/lit/zip/sbomb62b",
+      "local_candidates": [
+        "models/vendor/TLV904x"
+      ],
+      "subcircuit_candidates": [
+        "TLV9041",
+        "TLV9042",
+        "TLV904X"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice",
+      "encrypted": false,
+      "ngspice_compatibility": "Must be established by actual package inspection and smoke test.",
+      "wrapper": "normal TLV9041 DBV-5 physical pins 1 OUT, 2 V-, 3 IN+, 4 IN-, 5 V+; not the U variant",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TLV9041",
+      "model_version_date": "SBOMB62B, Rev. B"
+    },
+    "TS5A3166DCKR": {
+      "references": [
+        "U9",
+        "U10",
+        "U11",
+        "U12",
+        "U13",
+        "U14",
+        "U15",
+        "U16",
+        "U17",
+        "U18",
+        "U20"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TS5A3166DCKR",
+      "category": "official vendor discrete model",
+      "product_page": "https://www.ti.com/product/TS5A3166",
+      "model_source_page": "https://www.ti.com/product/TS5A3166#design-development",
+      "package_name": "SCDJ032.ZIP",
+      "download_url": "https://www.ti.com/lit/zip/scdj032",
+      "local_candidates": [
+        "models/vendor/TS5A3166"
+      ],
+      "subcircuit_candidates": [
+        "TS5A3166"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "HSPICE",
+      "encrypted": false,
+      "ngspice_compatibility": "HSPICE syntax conversion and a switching smoke test are required.",
+      "wrapper": "DCK physical pins 1 NO, 2 COM, 3 GND, 4 IN, 5 V+",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TS5A3166",
+      "model_version_date": "SCDJ032; revision/date not established until package inspection"
+    },
+    "TPS610995DRVR": {
+      "references": [
+        "U7"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TPS610995DRVR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/TPS61099/part-details/TPS610995DRVR",
+      "model_source_page": "https://www.ti.com/product/TPS61099#design-development",
+      "package_name": "SLVMCO7A.ZIP",
+      "download_url": "https://www.ti.com/lit/zip/slvmco7a",
+      "local_candidates": [
+        "models/vendor/TPS610995"
+      ],
+      "subcircuit_candidates": [
+        "TPS610995",
+        "TPS61099"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice transient",
+      "encrypted": false,
+      "ngspice_compatibility": "Official package is unencrypted, but compatibility and terminal order must be verified in the installed package.",
+      "wrapper": "DRV package physical pins 1 GND, 2 VOUT, 3 FB, 4 EN, 5 SW, 6 VIN; exposed pad 7 is tied to GND outside vendor model",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TPS610995_SWITCHING",
+      "model_version_date": "SLVMCO7A, Rev. A"
+    },
+    "REF3020AIDBZR": {
+      "references": [
+        "U21"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "REF3020AIDBZR",
+      "category": "official vendor SPICE model",
+      "product_page": "https://www.ti.com/product/REF30",
+      "model_source_page": "https://www.ti.com/product/REF30#design-development",
+      "package_name": "SBVM736A.TSM",
+      "download_url": "https://www.ti.com/lit/tsm/sbvm736a",
+      "local_candidates": [
+        "models/vendor/SBVM736A.TSM"
+      ],
+      "subcircuit_candidates": [
+        "REF3020"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "TINA-TI",
+      "encrypted": null,
+      "ngspice_compatibility": "TINA macro-model may require manual extraction/conversion; strict mode must not assume compatibility.",
+      "wrapper": "Official DBZ physical pins are 1 IN, 2 OUT, 3 GND and match the KiCad export. The vendor TINA .SUBCKT terminal order is a separate inspection gate.",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_REF3020",
+      "model_version_date": "SBVM736A, Rev. A"
+    },
+    "TPD1E05U06DPYT": {
+      "references": [
+        "D1",
+        "D18",
+        "D19"
+      ],
+      "manufacturer": "Texas Instruments",
+      "exact_part": "TPD1E05U06DPYT",
+      "category": "datasheet-derived electrical model",
+      "product_page": "https://www.ti.com/product/TPD1E05U06",
+      "model_source_page": "https://www.ti.com/product/TPD1E05U06#design-development",
+      "package_name": "Exact catalog part has IBIS and S-parameter models; TPD1E05U06-Q1 has SLVME60.ZIP PSpice transient model",
+      "download_url": "https://www.ti.com/lit/zip/slvme60",
+      "local_candidates": [
+        "models/vendor/TPD1E05U06_Q1"
+      ],
+      "subcircuit_candidates": [
+        "TPD1E05U06",
+        "TPD1E05U06_Q1"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "PSpice transient for Q1 variant",
+      "encrypted": null,
+      "ngspice_compatibility": "Exact catalog model is unavailable as a public transient SPICE model; use documented datasheet-derived model unless the Q1 model is separately validated.",
+      "wrapper": "two-terminal unidirectional ESD protector",
+      "redistribution": "TI evaluation-item terms apply.",
+      "portable_model": "LIF_TPD1E05U06",
+      "model_version_date": "Exact-part transient SPICE unavailable; Q1 comparison package SLVME60"
+    },
+    "BSS138": {
+      "references": [
+        "Q1",
+        "Q3",
+        "Q4",
+        "Q5",
+        "Q6",
+        "Q7"
+      ],
+      "manufacturer": "onsemi",
+      "exact_part": "BSS138",
+      "category": "datasheet-derived electrical model",
+      "product_page": "https://www.onsemi.com/products/discrete-power-modules/mosfets/bss138",
+      "local_candidates": [
+        "models/vendor/BSS138.lib"
+      ],
+      "subcircuit_candidates": [
+        "BSS138"
+      ],
+      "declared_terminal_order": null,
+      "simulator": "SPICE",
+      "encrypted": false,
+      "ngspice_compatibility": "Use exact onsemi model if installed and inspected; otherwise portable datasheet-derived MOSFET model.",
+      "wrapper": "KiCad physical pins are audited before mapping to D/G/S",
+      "redistribution": "Check onsemi model licence before committing.",
+      "portable_model": "LIF_BSS138",
+      "model_version_date": "Exact-vendor model version/date not established"
+    },
+    "MMBT3904": {
+      "references": [
+        "Q2",
+        "Q8"
+      ],
+      "manufacturer": "Hottech",
+      "exact_part": "MMBT3904",
+      "category": "datasheet-derived electrical model",
+      "product_page": "",
+      "local_candidates": [
+        "models/vendor/HOTTECH_MMBT3904.lib",
+        "models/provided/MMBT3904.spice.txt"
+      ],
+      "subcircuit_candidates": [
+        "DI_MMBT3904"
+      ],
+      "declared_terminal_order": [
+        "C",
+        "B",
+        "E"
+      ],
+      "simulator": "SPICE model card",
+      "encrypted": false,
+      "ngspice_compatibility": "Provided model is from Diodes Incorporated, not the ordered Hottech part; exact-vendor mode rejects it.",
+      "wrapper": "SOT-23 physical pin mapping audited before C/B/E mapping",
+      "redistribution": "Diodes Incorporated licence is contained in provided file.",
+      "portable_model": "DI_MMBT3904",
+      "model_version_date": "Provided Diodes Incorporated model card; file contains no explicit release date"
+    },
+    "BAT54WS L9": {
+      "references": [
+        "D2",
+        "D3",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D21",
+        "D22"
+      ],
+      "manufacturer": "CJ",
+      "exact_part": "BAT54WS L9",
+      "category": "datasheet-derived electrical model",
+      "portable_model": "LIF_BAT54WS",
+      "known_limitations": "No exact CJ transient model was supplied; leakage and capacitance are datasheet-derived.",
+      "model_version_date": "Datasheet-derived portable model; no vendor model version"
+    },
+    "1N4148WS": {
+      "references": [
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "manufacturer": "ST (supplier metadata; exact company identity ambiguous)",
+      "exact_part": "1N4148WS",
+      "category": "datasheet-derived electrical model",
+      "local_candidates": [
+        "models/provided/1n4148_spice.lib"
+      ],
+      "subcircuit_candidates": [
+        "1N4148"
+      ],
+      "declared_terminal_order": [
+        "A",
+        "K"
+      ],
+      "ngspice_compatibility": "Provided Diotec model is inspectable but does not match the netlist manufacturer metadata.",
+      "portable_model": "1N4148",
+      "model_version_date": "Provided comparison model; version/date recorded only in source file if present"
+    },
+    "RB521S30T1G": {
+      "references": [
+        "D6",
+        "D8",
+        "D20"
+      ],
+      "manufacturer": "onsemi",
+      "exact_part": "RB521S30T1G",
+      "category": "datasheet-derived electrical model",
+      "product_page": "https://www.onsemi.com/products/discrete-power-modules/schottky-diodes-schottky-rectifiers/rb521s30t1g",
+      "portable_model": "LIF_RB521S30",
+      "known_limitations": "Use official onsemi model if obtained and its orientation is verified; otherwise low-current Vf and capacitance are approximated.",
+      "model_version_date": "Datasheet-derived portable model; no installed vendor-model version"
+    },
+    "19-237/R6GHBHC-A01/2T": {
+      "references": [
+        "D9"
+      ],
+      "manufacturer": "Everlight",
+      "exact_part": "19-237/R6GHBHC-A01/2T",
+      "category": "datasheet-derived electrical model",
+      "product_page": "https://www.everlight.com/",
+      "portable_model": "three colour-specific LED model cards",
+      "known_limitations": "No official Everlight SPICE model was identified; red, green and blue junctions are modelled separately.",
+      "model_version_date": "Datasheet-derived colour-specific LED models"
+    },
+    "CR2032": {
+      "references": [
+        "BT1"
+      ],
+      "manufacturer": "unspecified cell; only holder LCSC C70377 is identified",
+      "exact_part": "unspecified CR2032 cell",
+      "category": "datasheet-derived electrical model",
+      "portable_model": "LIF_CR2032_DYNAMIC",
+      "known_limitations": "Battery chemistry cannot be vendor-correlated until the actual CR2032 cell manufacturer and type are fixed.",
+      "model_version_date": "Dynamic equivalent version 2026.07.29; exact cell manufacturer unresolved"
+    },
+    "ANR3015T2R2M": {
+      "references": [
+        "L1"
+      ],
+      "manufacturer": "APV",
+      "exact_part": "ANR3015T2R2M",
+      "category": "datasheet-derived electrical model",
+      "portable_model": "direct L plus DCR, estimated parasitic capacitance and saturation warning",
+      "known_limitations": "No vendor nonlinear inductor model was supplied.",
+      "model_version_date": "Direct L/DCR/Cp approximation version 2026.07.29"
+    }
+  }
+}

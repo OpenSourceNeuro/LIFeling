@@ -1,0 +1,430 @@
+"""Physical-pin-driven ngspice deck generation for the latest LIFeling netlist."""
+from __future__ import annotations
+
+import dataclasses
+import hashlib
+import json
+import math
+import os
+import random
+import re
+from pathlib import Path
+from typing import Iterable
+
+from .design import Component, Design
+
+
+@dataclasses.dataclass
+class DeckConfig:
+    profile: str = "hybrid"  # portable, hybrid, vendor
+    test_name: str = "full_operating"
+    output_dir: Path = Path("generated")
+    tstep: str = "5u"
+    tstop: str = "250m"
+    temperature_c: float = 25.0
+    seed: int = 1
+    apply_tolerances: bool = False
+    supply_mode: str = "coin_fixed"  # ideal, coin_fixed, coin_dynamic
+    battery_voltage: float = 3.0
+    battery_resistance: float = 20.0
+    battery_soc: float = 1.0
+    battery_rise_time: str | None = None
+    switch_state: str = "on"
+    pot_positions: dict[str, float] = dataclasses.field(default_factory=lambda: {
+        "RV1": 0.55, "RV2": 0.50, "RV3": 0.50, "RV4": 0.10,
+        "RV5": 0.50, "RV6": 0.50, "RV7": 0.50, "RV8": 0.50, "RV9": 0.50,
+    })
+    stimulus_dc: float | None = None
+    stimulus_pulse: tuple[float, float, str, str, str] | None = None
+    synapse_pulses: dict[int, tuple[float, float, str, str, str]] = dataclasses.field(default_factory=dict)
+    vm_ext_load_ohm: float | None = None
+    spike_out_load_ohm: float | None = None
+    initial_conditions: dict[str, float] = dataclasses.field(default_factory=dict)
+    save_nets: list[str] = dataclasses.field(default_factory=lambda: [
+        "VDD", "V_Boost", "VREF_2V048", "VREF_1V024", "V_Leak", "Vm_Int",
+        "V_Threshold", "AP", "Spike_Pulse", "Peak_Window", "Reset_Window",
+        "Vm_Display_In", "Vm_Ext", "Spike_Out", "V_Syn_State", "/V_Syn_Drive",
+        "V_Stim_Cmd", "V_Stim_Drive", "Vsel", "S0", "S1", "S2", "S3", "S4",
+        "Vw", "Vw_buff", "/Vkick", "/Adapt_Kick_Drive", "/Rising_AP", "/AP_Gate",
+        "V_Reset_Ref", "/Reset_Injection_Drive", "/Reset_Gated_Drive", "V_Peak_Drive",
+        "V_Syn1_Set", "V_Syn2_Set", "V_Syn3_Set", "V_Syn4_Set",
+    ])
+    analysis: str = "tran"  # tran or op
+
+
+class DeckBuildError(RuntimeError):
+    pass
+
+
+def safe_name(text: str) -> str:
+    value = text.replace("+", "P_").replace("/", "N_").replace("-", "_")
+    value = re.sub(r"[^A-Za-z0-9_]+", "_", value)
+    value = re.sub(r"_+", "_", value).strip("_") or "NODE"
+    if value[0].isdigit():
+        value = "N_" + value
+    return value
+
+
+def node(net: str) -> str:
+    return "0" if net in {"GNDREF", "GND", "0"} else safe_name(net)
+
+
+def parse_value(value: str, kind: str) -> float:
+    text = value.strip().replace("Ω", "").replace("Ω", "").replace("µ", "u").replace("μ", "u").replace(" ", "")
+    if kind == "C" and text.lower().endswith("f"):
+        text = text[:-1]
+    if kind == "L" and text.lower().endswith("h"):
+        text = text[:-1]
+    match = re.fullmatch(r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))([A-Za-z]*)", text)
+    if not match:
+        raise DeckBuildError(f"Cannot parse {kind} value {value!r}")
+    scale = {
+        "": 1.0, "f": 1e-15, "p": 1e-12, "n": 1e-9, "u": 1e-6,
+        "m": 1e-3, "k": 1e3, "meg": 1e6, "g": 1e9, "t": 1e12,
+    }
+    raw_suffix = match.group(2)
+    suffix = "meg" if raw_suffix == "M" else raw_suffix.lower()
+    if suffix not in scale:
+        raise DeckBuildError(f"Unsupported suffix {raw_suffix!r} in {value!r}")
+    return float(match.group(1)) * scale[suffix]
+
+
+def spice_number(value: float) -> str:
+    if value == 0:
+        return "0"
+    magnitude = abs(value)
+    scales = [(1e12, "T"), (1e9, "G"), (1e6, "Meg"), (1e3, "k"), (1, ""),
+              (1e-3, "m"), (1e-6, "u"), (1e-9, "n"), (1e-12, "p"), (1e-15, "f")]
+    for factor, suffix in scales:
+        scaled = magnitude / factor
+        if 1 <= scaled < 1000:
+            sign = "-" if value < 0 else ""
+            return f"{sign}{scaled:.12g}{suffix}"
+    return f"{value:.12g}"
+
+
+def tolerance_fraction(component: Component, default: float) -> float:
+    raw = component.fields.get("TOLERANCE", "")
+    match = re.search(r"([0-9.]+)\s*%", raw)
+    return float(match.group(1)) / 100 if match else default
+
+
+def varied(nominal: float, tolerance: float, cfg: DeckConfig, ref: str) -> float:
+    if not cfg.apply_tolerances or tolerance <= 0:
+        return nominal
+    seed_material = f"{cfg.seed}:{ref}".encode()
+    local_seed = int(hashlib.sha256(seed_material).hexdigest()[:16], 16)
+    rng = random.Random(local_seed)
+    return nominal * (1 + rng.uniform(-tolerance, tolerance))
+
+
+def _cap_parasitics(component: Component, capacitance: float) -> tuple[float, float, float, float]:
+    footprint = component.footprint.upper()
+    tempco = component.fields.get("TEMPERATURE COEFFICIENT", "").upper()
+    rating_match = re.search(r"([0-9.]+)\s*V", component.fields.get("VOLTAGE RATING", ""))
+    rating = float(rating_match.group(1)) if rating_match else 16.0
+    # Conservative low-voltage derating estimate; exact vendor curves remain an approximation.
+    ratio = 3.3 / max(rating, 3.3)
+    if tempco in {"C0G", "NP0"}:
+        bias_factor = 1.0
+        leakage_r = 100e9
+    else:
+        package_penalty = 0.08 if "0402" in footprint and capacitance >= 1e-6 else 0.04 if "0603" in footprint and capacitance >= 1e-6 else 0.02
+        bias_factor = max(0.75, 1.0 - package_penalty - 0.08 * ratio)
+        leakage_r = max(100e6, 1000 / max(capacitance, 1e-15))
+    esr = max(0.008, 0.03 * math.sqrt(1e-6 / max(capacitance, 1e-12)))
+    if capacitance < 1e-9:
+        esr = 0.1
+    esl = 0.45e-9 if "0402" in footprint else 0.65e-9 if "0603" in footprint else 0.9e-9
+    return capacitance * bias_factor, esr, esl, leakage_r
+
+
+def _append_resistor(lines: list[str], component: Component, cfg: DeckConfig) -> None:
+    nominal = parse_value(component.value, "R")
+    value = varied(nominal, tolerance_fraction(component, 0.01), cfg, component.reference)
+    lines.append(f"R{component.reference} {node(component.net('1'))} {node(component.net('2'))} {spice_number(value)}")
+
+
+def _append_pot(lines: list[str], component: Component, cfg: DeckConfig) -> None:
+    total = varied(parse_value(component.value, "R"), tolerance_fraction(component, 0.20), cfg, component.reference)
+    fraction = min(max(float(cfg.pot_positions.get(component.reference, 0.5)), 1e-6), 1 - 1e-6)
+    # Fraction is measured from physical pin 1 towards physical pin 3.
+    p1, pw, p3 = node(component.net("1")), node(component.net("2")), node(component.net("3"))
+    r1 = max(total * fraction, 1e-6)
+    r3 = max(total * (1 - fraction), 1e-6)
+    lines.append(f"* {component.reference}: physical pin1={component.net('1')}, wiper={component.net('2')}, pin3={component.net('3')}, fraction={fraction:.6g}")
+    if p1 != pw:
+        lines.append(f"R{component.reference}_1W {p1} {pw} {spice_number(r1)}")
+    if pw != p3:
+        lines.append(f"R{component.reference}_W3 {pw} {p3} {spice_number(r3)}")
+
+
+def _append_capacitor(lines: list[str], component: Component, cfg: DeckConfig) -> None:
+    nominal = varied(parse_value(component.value, "C"), tolerance_fraction(component, 0.10), cfg, component.reference)
+    effective, esr, esl, leakage = _cap_parasitics(component, nominal)
+    a, b = node(component.net("1")), node(component.net("2"))
+    x1, x2 = f"N_{component.reference}_ESL", f"N_{component.reference}_ESR"
+    lines.append(f"* {component.reference} {component.value}; effective={effective:.7g}F, ESR={esr:.4g}ohm, ESL={esl:.4g}H, leakage={leakage:.4g}ohm")
+    lines.append(f"L{component.reference}_ESL {a} {x1} {spice_number(esl)}")
+    lines.append(f"R{component.reference}_ESR {x1} {x2} {spice_number(esr)}")
+    lines.append(f"C{component.reference} {x2} {b} {spice_number(effective)}")
+    lines.append(f"R{component.reference}_LEAK {x2} {b} {spice_number(leakage)}")
+
+
+def _append_inductor(lines: list[str], component: Component, cfg: DeckConfig) -> None:
+    nominal = varied(parse_value(component.value, "L"), tolerance_fraction(component, 0.20), cfg, component.reference)
+    a, b = node(component.net("1")), node(component.net("2"))
+    internal = f"N_{component.reference}_DCR"
+    # APV catalog entry identifies 2 A rating/Isat; DCR is not embedded in the export, so 85 mOhm is an explicit estimate.
+    lines.append(f"* {component.reference} {component.manufacturer_part}: datasheet-derived DCR=85mohm, Cp=12pF, Isat gate=2A")
+    lines.append(f"R{component.reference}_DCR {a} {internal} 85m")
+    lines.append(f"L{component.reference} {internal} {b} {spice_number(nominal)}")
+    lines.append(f"C{component.reference}_PAR {a} {b} 12p")
+
+
+def _include(lines: list[str], path: Path, deck_dir: Path) -> None:
+    path = Path(path)
+    if not path.is_file():
+        raise DeckBuildError(f"Required model file is missing: {path}")
+    relative = os.path.relpath(path.resolve(), start=Path(deck_dir).resolve()).replace(chr(92), "/")
+    lines.append(f'.include "{relative}"')
+
+
+def _append_power(lines: list[str], design: Design, cfg: DeckConfig) -> set[str]:
+    represented = {"BT1", "SW1"}
+    plus = node(design.require_component("BT1").net("1"))
+    minus = node(design.require_component("BT1").net("2"))
+    if cfg.supply_mode == "ideal":
+        lines.append(f"VBT1 {plus} {minus} DC {cfg.battery_voltage:.9g}")
+    elif cfg.supply_mode == "coin_dynamic":
+        lines.append(f"XBT1 {plus} {minus} LIF_CR2032_DYNAMIC PARAMS: SOC={cfg.battery_soc:.6g} R0={cfg.battery_resistance:.6g}")
+    else:
+        if cfg.battery_rise_time:
+            lines.append(
+                f"VBT1_OC N_BT1_OC {minus} PWL(0 0 {cfg.battery_rise_time} {cfg.battery_voltage:.9g})"
+            )
+        else:
+            lines.append(f"VBT1_OC N_BT1_OC {minus} DC {cfg.battery_voltage:.9g}")
+        lines.append(f"RBT1_INT N_BT1_OC {plus} {cfg.battery_resistance:.9g}")
+    sw = design.require_component("SW1")
+    resistance = 0.15 if cfg.switch_state == "on" else 1e12
+    lines.append(f"RSW1 {node(sw.net('1'))} {node(sw.net('2'))} {spice_number(resistance)}")
+    lines.append(f"R_SW1_UNUSED {node(sw.net('3'))} 0 1T")
+    return represented
+
+
+def _append_quad_opamp(lines: list[str], component: Component) -> None:
+    pin_map = {
+        "A": ("3", "2", "1"), "B": ("5", "6", "7"),
+        "C": ("10", "9", "8"), "D": ("12", "13", "14"),
+    }
+    for channel, (plus, minus, out) in pin_map.items():
+        lines.append(f"X{component.reference}{channel} {node(component.net(plus))} {node(component.net(minus))} {node(component.net('4'))} {node(component.net('11'))} {node(component.net(out))} MCP6001")
+
+
+def _append_quad_comparator(lines: list[str], component: Component) -> None:
+    pin_map = {
+        "A": ("1", "3", "2"), "B": ("7", "5", "6"),
+        "C": ("8", "10", "9"), "D": ("14", "12", "13"),
+    }
+    for channel, (out, plus, minus) in pin_map.items():
+        lines.append(f"X{component.reference}{channel} {node(component.net(out))} {node(component.net('11'))} {node(component.net(plus))} {node(component.net(minus))} {node(component.net('4'))} LIF_TLV7041_OD")
+
+
+def _append_single_opamp(lines: list[str], component: Component, model: str) -> None:
+    # Portable wrapper order IN+ IN- V+ V- OUT, from physical DBV pins 3,4,5,2,1.
+    lines.append(f"X{component.reference} {node(component.net('3'))} {node(component.net('4'))} {node(component.net('5'))} {node(component.net('2'))} {node(component.net('1'))} {model}")
+
+
+def _append_active(lines: list[str], design: Design, cfg: DeckConfig) -> set[str]:
+    represented: set[str] = set()
+    for reference in design.refs("U"):
+        component = design.components[reference]
+        if component.value == "MCP6004T-I/ST":
+            _append_quad_opamp(lines, component)
+        elif component.value == "TLV7044PWR":
+            _append_quad_comparator(lines, component)
+        elif component.value == "TLV7031DCKR":
+            lines.append(f"X{reference} {node(component.net('1'))} {node(component.net('2'))} {node(component.net('3'))} {node(component.net('4'))} {node(component.net('5'))} LIF_TLV7031_PP")
+        elif component.value == "TLV9001IDBVR":
+            _append_single_opamp(lines, component, "LIF_TLV9001")
+        elif component.value == "TLV9041IDBVR":
+            _append_single_opamp(lines, component, "LIF_TLV9041")
+        elif component.value == "TS5A3166DCKR":
+            lines.append(f"X{reference} {node(component.net('1'))} {node(component.net('2'))} {node(component.net('3'))} {node(component.net('4'))} {node(component.net('5'))} LIF_TS5A3166")
+        elif component.value == "TPS610995DRVR":
+            lines.append(f"X{reference} {node(component.net('1'))} {node(component.net('2'))} {node(component.net('3'))} {node(component.net('4'))} {node(component.net('5'))} {node(component.net('6'))} LIF_TPS610995_SWITCHING")
+            if "7" in component.pins:
+                lines.append(f"R{reference}_PAD {node(component.net('7'))} {node(component.net('1'))} 1u")
+        elif component.value == "REF3020AIDBZR":
+            lines.append(f"X{reference} {node(component.net('1'))} {node(component.net('2'))} {node(component.net('3'))} LIF_REF3020")
+        else:
+            raise DeckBuildError(f"Active reference {reference} value {component.value!r} has no model rule")
+        represented.add(reference)
+    return represented
+
+
+def _append_semiconductors(lines: list[str], design: Design) -> set[str]:
+    represented: set[str] = set()
+    for reference in design.refs("D"):
+        c = design.components[reference]
+        if c.value == "TPD1E05U06DPYT":
+            lines.append(f"X{reference} {node(c.net('1'))} {node(c.net('2'))} LIF_TPD1E05U06")
+        elif c.value == "19-237/R6GHBHC-A01/2T":
+            # Physical pin 4 is common anode; pins 1/2/3 are R/G/B cathodes.
+            lines.append(f"D{reference}_R {node(c.net('4'))} {node(c.net('1'))} LIF_LED_RED")
+            lines.append(f"D{reference}_G {node(c.net('4'))} {node(c.net('2'))} LIF_LED_GREEN")
+            lines.append(f"D{reference}_B {node(c.net('4'))} {node(c.net('3'))} LIF_LED_BLUE")
+        else:
+            models = {
+                "BAT54WS L9": "LIF_BAT54WS",
+                "1N4148WS": "LIF_1N4148WS",
+                "RB521S30T1G": "LIF_RB521S30",
+            }
+            if c.value not in models:
+                raise DeckBuildError(f"Diode {reference} value {c.value!r} has no model rule")
+            # Netlist symbols explicitly identify physical pin 1 as cathode and pin 2 as anode.
+            lines.append(f"D{reference} {node(c.net('2'))} {node(c.net('1'))} {models[c.value]}")
+        represented.add(reference)
+
+    for reference in design.refs("Q"):
+        c = design.components[reference]
+        if c.value == "BSS138":
+            # SOT-23 physical pin map audited from symbol: 1 G, 2 S, 3 D.
+            lines.append(f"M{reference} {node(c.net('3'))} {node(c.net('1'))} {node(c.net('2'))} {node(c.net('2'))} LIF_BSS138")
+        elif c.value == "MMBT3904":
+            # Board symbol/footprint map: physical pin 1 B, 2 E, 3 C.
+            lines.append(f"Q{reference} {node(c.net('3'))} {node(c.net('1'))} {node(c.net('2'))} LIF_MMBT3904")
+        else:
+            raise DeckBuildError(f"Transistor {reference} value {c.value!r} has no model rule")
+        represented.add(reference)
+    return represented
+
+
+def _append_external_sources(lines: list[str], design: Design, cfg: DeckConfig) -> None:
+    if cfg.stimulus_dc is not None:
+        lines.append(f"V_EXT_STIM Stimulus_Ext 0 DC {cfg.stimulus_dc:.9g}")
+    elif cfg.stimulus_pulse:
+        low, high, delay, width, period = cfg.stimulus_pulse
+        lines.append(f"V_EXT_STIM Stimulus_Ext 0 PULSE({low:.9g} {high:.9g} {delay} 1u 1u {width} {period})")
+    else:
+        lines.append("R_EXT_STIM_FLOAT Stimulus_Ext 0 1T")
+    for index in range(1, 5):
+        net_name = f"Syn{index}_Spike"
+        if index in cfg.synapse_pulses:
+            low, high, delay, width, period = cfg.synapse_pulses[index]
+            lines.append(f"V_EXT_SYN{index} {node(net_name)} 0 PULSE({low:.9g} {high:.9g} {delay} 1u 1u {width} {period})")
+        else:
+            lines.append(f"R_EXT_SYN{index}_FLOAT {node(net_name)} 0 1T")
+    if cfg.vm_ext_load_ohm is not None:
+        lines.append(f"R_EXT_VM_LOAD Vm_Ext 0 {spice_number(cfg.vm_ext_load_ohm)}")
+    if cfg.spike_out_load_ohm is not None:
+        lines.append(f"R_EXT_SPIKE_LOAD Spike_Out 0 {spice_number(cfg.spike_out_load_ohm)}")
+
+
+def _append_test_overrides(lines: list[str], cfg: DeckConfig) -> None:
+    # These are external stimuli only; no internal physical transfer is replaced.
+    if cfg.test_name == "selector_dc_sweep":
+        lines.append("* RV4 is swept parametrically through its physical resistance split in separate generated decks.")
+    elif cfg.test_name == "stimulus_transfer":
+        lines.append("* V_EXT_STIM is swept by the runner; U23 and R92-R96 remain fully physical.")
+    elif "peak_window" in cfg.test_name:
+        lines.append("V_TEST_SPIKE_SRC N_TEST_SPIKE 0 PULSE(0 2.2 1m 10u 10u 500u 5m)")
+        lines.append("R_TEST_SPIKE_IN N_TEST_SPIKE Spike_Pulse 10")
+
+
+def build_deck(design: Design, cfg: DeckConfig, project_root: Path, source_lock_sha: str) -> tuple[str, set[str]]:
+    project_root = Path(project_root)
+    lines = [
+        "* LIFeling production SPICE validation deck",
+        f"* authoritative_netlist={design.path.name}",
+        f"* netlist_sha256={design.metadata.sha256}",
+        f"* netlist_export={design.metadata.export_date}",
+        f"* kicad_tool={design.metadata.tool}",
+        f"* source_lock_sha256={source_lock_sha}",
+        f"* profile={cfg.profile}",
+        f"* test_name={cfg.test_name}",
+        "* Connectivity is generated exclusively from physical pins in the KiCad export.",
+        "* Remaining approximations are enumerated in model_manifest.json and validation_report.md.",
+        ".option method=gear reltol=2e-4 abstol=1e-12 vntol=1e-7 chgtol=1e-14",
+        ".option itl1=1000 itl4=1000 gmin=1e-12",
+        f".temp {cfg.temperature_c:.6g}",
+    ]
+    device_library = (project_root / "models/vendor/vendor_adapters.lib"
+                      if cfg.profile == "vendor"
+                      else project_root / "models/portable/lifeling_portable_models.lib")
+    _include(lines, device_library, cfg.output_dir)
+    _include(lines, project_root / "models/compatible/MCP6001_ngspice.lib", cfg.output_dir)
+    lines += ["", "* --- physical sources and passives ---"]
+    represented = _append_power(lines, design, cfg)
+
+    for reference in design.refs("R"):
+        if re.fullmatch(r"R\d+", reference):
+            _append_resistor(lines, design.components[reference], cfg)
+            represented.add(reference)
+    for reference in design.refs("RV"):
+        _append_pot(lines, design.components[reference], cfg)
+        represented.add(reference)
+    for reference in design.refs("C"):
+        if re.fullmatch(r"C\d+", reference):
+            _append_capacitor(lines, design.components[reference], cfg)
+            represented.add(reference)
+    for reference in design.refs("L"):
+        _append_inductor(lines, design.components[reference], cfg)
+        represented.add(reference)
+
+    lines += ["", "* --- physical active devices ---"]
+    represented |= _append_active(lines, design, cfg)
+    represented |= _append_semiconductors(lines, design)
+
+    lines += ["", "* --- external terminals ---"]
+    _append_external_sources(lines, design, cfg)
+    _append_test_overrides(lines, cfg)
+    for reference in design.refs("J"):
+        c = design.components[reference]
+        pin_text = ", ".join(f"pin{pin}={connection.net}" for pin, connection in sorted(c.pins.items()))
+        lines.append(f"* {reference} {c.value}: {pin_text}")
+        represented.add(reference)
+    for reference in design.refs("H"):
+        lines.append(f"* {reference}: mechanical-only mounting hole")
+        represented.add(reference)
+
+    # Weak DC paths only on explicitly unconnected nets to avoid masking physical high-impedance behavior.
+    for net_name in sorted(design.nets):
+        if net_name.startswith("unconnected-"):
+            lines.append(f"R_FLOAT_{safe_name(net_name)} {node(net_name)} 0 1T")
+
+    if cfg.initial_conditions:
+        tokens = [f"V({node(net_name)})={value:.9g}" for net_name, value in cfg.initial_conditions.items()]
+        lines.append(".ic " + " ".join(tokens))
+
+    save_existing = [name for name in cfg.save_nets if name in design.nets]
+    lines += ["", "* --- analysis ---", ".save " + " ".join(f"v({node(name)})" for name in save_existing)]
+    # ngspice is executed with the deck directory as its working directory.
+    # Keep wrdata paths relative so generated decks remain relocatable and their
+    # content does not depend on the machine's absolute checkout path.
+    raw_spice = f"{safe_name(cfg.test_name)}.wrdata.txt"
+    if cfg.analysis == "op":
+        lines.append(".op")
+        lines += [".control", "run", f"wrdata {raw_spice} " + " ".join(f"v({node(name)})" for name in save_existing), "quit", ".endc"]
+    else:
+        lines.append(f".tran {cfg.tstep} {cfg.tstop} 0 {cfg.tstep} uic")
+        lines += [".control", "run", f"wrdata {raw_spice} " + " ".join(f"v({node(name)})" for name in save_existing), "quit", ".endc"]
+    lines.append(".end")
+
+    missing = sorted(set(design.components) - represented)
+    if missing:
+        raise DeckBuildError("Silent-omission gate failed; no instance/rationale for: " + ", ".join(missing))
+    return "\n".join(lines) + "\n", represented
+
+
+def deck_fingerprint(design: Design, cfg: DeckConfig, source_lock_sha: str) -> str:
+    payload = {
+        "netlist": design.metadata.sha256,
+        "config": dataclasses.asdict(cfg),
+        "source_lock": source_lock_sha,
+    }
+    # Output location is operational metadata, not an electrical input.  Removing
+    # it makes fingerprints identical after relocating the package.
+    payload["config"].pop("output_dir", None)
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()

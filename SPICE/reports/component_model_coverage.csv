@@ -1,0 +1,217 @@
+﻿reference,value,category,model_note,model_confidence,simulation_status,functional_block
+BT1,"type=""R"" model=""Battery_Cell"" lib=""""",datasheet-derived electrical model,CR2032 fixed-source or dynamic equivalent; exact cell manufacturer unresolved,medium,CR2032 fixed-source or dynamic equivalent; exact cell manufacturer unresolved,power and precision references
+C1,10uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",power and precision references
+C2,10uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C3,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C4,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C5,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C6,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C7,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C8,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C9,10uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C10,22uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",miscellaneous schematic support
+C11,1uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",power and precision references
+C12,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",power and precision references
+C13,100pF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",external membrane display/output
+C14,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",power and precision references
+C15,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",power and precision references
+C16,22nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",external membrane display/output
+C17,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C18,470nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane capacitance selector
+C19,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C20,1uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane capacitance selector
+C21,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C22,2.2uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane capacitance selector
+C23,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C24,4.7uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane capacitance selector
+C25,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C26,10uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane capacitance selector
+C27,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C28,100pF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",membrane leak and integration
+C29,1uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",adaptation
+C30,10uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",adaptation
+C31,10nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating","threshold, AP, peak, reset and spike output"
+C32,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C33,1uF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",miscellaneous schematic support
+C34,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C35,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C36,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C37,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C38,220nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",signed synapses
+C39,100pF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",external stimulus
+C40,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C41,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C42,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+C43,100nF,ordinary passive instantiated directly,"capacitor with ESR, leakage, ESL and optional DC-bias derating",medium,"capacitor with ESR, leakage, ESL and optional DC-bias derating",local decoupling
+D1,TPD1E05U06DPYT,datasheet-derived electrical model,LIF_TPD1E05U06,medium,portable fallback,external membrane display/output
+D2,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,membrane leak and integration
+D3,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,membrane leak and integration
+D4,1N4148WS,datasheet-derived electrical model,1N4148,medium,installed comparison model; portable fallback selected,adaptation
+D5,1N4148WS,datasheet-derived electrical model,1N4148,medium,installed comparison model; portable fallback selected,adaptation
+D6,RB521S30T1G,datasheet-derived electrical model,LIF_RB521S30,medium,portable fallback,adaptation
+D7,1N4148WS,datasheet-derived electrical model,1N4148,medium,installed comparison model; portable fallback selected,adaptation
+D8,RB521S30T1G,datasheet-derived electrical model,LIF_RB521S30,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+D9,19-237/R6GHBHC-A01/2T,datasheet-derived electrical model,three colour-specific LED model cards,medium,portable fallback,miscellaneous schematic support
+D10,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D11,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D12,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D13,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D14,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D15,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D16,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D17,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,miscellaneous schematic support
+D18,TPD1E05U06DPYT,datasheet-derived electrical model,LIF_TPD1E05U06,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+D19,TPD1E05U06DPYT,datasheet-derived electrical model,LIF_TPD1E05U06,medium,portable fallback,external stimulus
+D20,RB521S30T1G,datasheet-derived electrical model,LIF_RB521S30,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+D21,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,external membrane display/output
+D22,BAT54WS L9,datasheet-derived electrical model,LIF_BAT54WS,medium,portable fallback,external membrane display/output
+H1,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+H2,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+H3,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+H4,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+H5,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+H6,MountingHole,mechanical-only,mounting hole; deliberately omitted electrically,high,mounting hole; deliberately omitted electrically,local decoupling
+J1,Stim_Ext,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,external stimulus
+J2,Axon_Output,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,"threshold, AP, peak, reset and spike output"
+J3,Syn1_Input,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,signed synapses
+J4,Syn2_Input,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,signed synapses
+J5,Syn3_Input,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,signed synapses
+J6,Syn4_Input,connector or external terminal,physical pins retained as external nets,high,physical pins retained as external nets,signed synapses
+L1,2.2uH,datasheet-derived electrical model,inductance plus DCR/parasitic capacitance; saturation checked numerically,medium,inductance plus DCR/parasitic capacitance; saturation checked numerically,power and precision references
+Q1,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+Q2,MMBT3904,datasheet-derived electrical model,DI_MMBT3904,medium,installed comparison model; portable fallback selected,miscellaneous schematic support
+Q3,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+Q4,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+Q5,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,miscellaneous schematic support
+Q6,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+Q7,BSS138,datasheet-derived electrical model,LIF_BSS138,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+Q8,MMBT3904,datasheet-derived electrical model,DI_MMBT3904,medium,installed comparison model; portable fallback selected,miscellaneous schematic support
+R1,10Ω,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R2,220Ω,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external membrane display/output
+R3,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external membrane display/output
+R4,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external membrane display/output
+R5,220kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R6,220kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R7,20kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R8,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R9,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R10,56kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R11,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R12,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R13,220kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R14,220kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R15,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R16,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R17,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R18,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R19,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R20,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R21,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R22,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R23,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R24,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R25,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R26,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R27,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R28,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R29,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R30,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R31,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R32,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R33,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R34,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane capacitance selector
+R35,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R36,2.2MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R37,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R38,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R39,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,adaptation
+R40,100Ω,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R41,200kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R42,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R43,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R44,200kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,adaptation
+R45,330kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,adaptation
+R46,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R47,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,adaptation
+R48,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R49,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R50,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R51,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R52,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R53,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R54,100Ω,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R55,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R56,270kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R57,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R58,220kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R59,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R60,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R61,2kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R62,2kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R63,2kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R64,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R65,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R66,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R67,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R68,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R69,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R70,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R71,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R72,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R73,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R74,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R75,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R76,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R77,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R78,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R79,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R80,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R81,22kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R82,10kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R83,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R84,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,membrane leak and integration
+R85,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R86,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R87,47kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,signed synapses
+R88,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,miscellaneous schematic support
+R89,100Ω,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,"threshold, AP, peak, reset and spike output"
+R90,1MΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R91,1kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external stimulus
+R92,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external stimulus
+R93,200kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external stimulus
+R94,200kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,power and precision references
+R95,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external stimulus
+R96,100kΩ,ordinary passive instantiated directly,direct resistor with tolerance support,high,direct resistor with tolerance support,external stimulus
+RV1,100kΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,membrane leak and integration
+RV2,50kΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,membrane leak and integration
+RV3,100kΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,adaptation
+RV4,100kΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,membrane capacitance selector
+RV5,100kΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,power and precision references
+RV6,1MΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,power and precision references
+RV7,1MΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,power and precision references
+RV8,1MΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,power and precision references
+RV9,1MΩ,ordinary passive instantiated directly,three-terminal potentiometer split at physical wiper,high,three-terminal potentiometer split at physical wiper,power and precision references
+SW1,K3-1260D-L1,datasheet-derived electrical model,power switch contact resistance and selectable state,medium,power switch contact resistance and selectable state,power and precision references
+U1,MCP6004T-I/ST,official vendor SPICE model,models/compatible/MCP6001_ngspice.lib,high,installed vendor/model source,signed synapses
+U2,MCP6004T-I/ST,official vendor SPICE model,models/compatible/MCP6001_ngspice.lib,high,installed vendor/model source,"threshold, AP, peak, reset and spike output"
+U3,MCP6004T-I/ST,official vendor SPICE model,models/compatible/MCP6001_ngspice.lib,high,installed vendor/model source,power and precision references
+U4,TLV7044PWR,official vendor SPICE model,LIF_TLV7041_OD,medium,portable fallback,membrane capacitance selector
+U5,TLV7044PWR,official vendor SPICE model,LIF_TLV7041_OD,medium,portable fallback,membrane capacitance selector
+U6,TLV7044PWR,official vendor SPICE model,LIF_TLV7041_OD,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+U7,TPS610995DRVR,official vendor SPICE model,LIF_TPS610995_SWITCHING,medium,portable fallback,power and precision references
+U8,TLV9001IDBVR,official vendor SPICE model,LIF_TLV9001,medium,portable fallback,power and precision references
+U9,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,membrane capacitance selector
+U10,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,membrane capacitance selector
+U11,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,membrane capacitance selector
+U12,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,membrane capacitance selector
+U13,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,membrane capacitance selector
+U14,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+U15,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,signed synapses
+U16,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,signed synapses
+U17,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,signed synapses
+U18,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,signed synapses
+U19,TLV7031DCKR,official vendor SPICE model,LIF_TLV7031_PP,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+U20,TS5A3166DCKR,official vendor discrete model,LIF_TS5A3166,medium,portable fallback,"threshold, AP, peak, reset and spike output"
+U21,REF3020AIDBZR,official vendor SPICE model,LIF_REF3020,medium,portable fallback,power and precision references
+U22,TLV9001IDBVR,official vendor SPICE model,LIF_TLV9001,medium,portable fallback,power and precision references
+U23,TLV9041IDBVR,official vendor SPICE model,LIF_TLV9041,medium,portable fallback,external stimulus

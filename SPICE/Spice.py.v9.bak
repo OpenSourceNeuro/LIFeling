@@ -1,0 +1,322 @@
+#!/usr/bin/env python3
+"""LIFeling physical-netlist SPICE reconstruction, audit, generation and validation CLI."""
+from __future__ import annotations
+
+import argparse
+import csv
+import dataclasses
+import datetime as dt
+import hashlib
+import io
+import json
+import platform
+import re
+import subprocess
+import unittest
+import sys
+import time
+from pathlib import Path
+
+from lifeling_spice import __version__
+from lifeling_spice.audit import file_manifest, run_topology_audit, write_audit_outputs
+from lifeling_spice.deck import DeckConfig, build_deck, deck_fingerprint, safe_name
+from lifeling_spice.design import parse_netlist
+from lifeling_spice.fetch_models import fetch_vendor_models
+from lifeling_spice.models import load_registry, resolve_families, sha256_file, validate_vendor_adapter_library
+from lifeling_spice.report import build_report
+from lifeling_spice.runner import find_ngspice, ngspice_version, run_deck, write_suite_reports
+from lifeling_spice.schematic import write_schematic_crosscheck
+
+ROOT = Path(__file__).resolve().parent
+DEFAULT_NETLIST = ROOT / "sources" / "LIFeling.net"
+DEFAULT_REPORTS = ROOT / "reports"
+DEFAULT_GENERATED = ROOT / "generated"
+DEFAULT_REGISTRY = ROOT / "model_registry.json"
+DEFAULT_REPOSITORY_COMMIT = "272b9b74c9f78c5c64ee9d9609b1ea035339ad1e"
+DEFAULT_REPOSITORY_DATE = "2026-07-08T10:47:48Z"
+
+
+def _hash_json(value) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, default=str, ensure_ascii=False).encode()).hexdigest()
+
+
+def _stable_source_lock_payload(rows: list[dict]) -> list[dict]:
+    """Return only immutable provenance fields used to fingerprint generated decks."""
+    stable_keys = ("file_name", "sha256", "size_bytes", "source_type", "export_date", "repository_commit", "model_version", "kicad_tool")
+    return [{key: row.get(key, "") for key in stable_keys} for row in sorted(rows, key=lambda item: (item.get("file_name", ""), item.get("sha256", "")))]
+
+
+def _write_manifest(rows: list[dict], report_dir: Path) -> tuple[Path, Path, str, str]:
+    report_dir.mkdir(parents=True, exist_ok=True)
+    manifest_json = report_dir / "source_manifest.json"
+    manifest_csv = report_dir / "source_manifest.csv"
+    source_lock_json = report_dir / "source_lock.json"
+    manifest_json.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
+    with manifest_csv.open("w", newline="", encoding="utf-8-sig") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]) if rows else ["file_name"])
+        writer.writeheader()
+        writer.writerows(rows)
+    stable_payload = _stable_source_lock_payload(rows)
+    source_lock_json.write_text(json.dumps(stable_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    return manifest_json, manifest_csv, sha256_file(manifest_json), sha256_file(source_lock_json)
+
+
+
+
+def run_static_tests(report_dir: Path) -> dict:
+    """Run the packaged reconstruction tests in the current Python process.
+
+    Running the tests in-process avoids launching a second Python interpreter on
+    Windows.  On some PyCharm/ngspice installations that child-process boundary
+    can activate the graphical ngspice launcher even though the tests themselves
+    never request a simulation.
+    """
+    report_dir.mkdir(parents=True, exist_ok=True)
+
+    stream = io.StringIO()
+    loader = unittest.TestLoader()
+    suite = loader.discover(start_dir=str(ROOT / "tests"), pattern="test*.py")
+    result = unittest.TextTestRunner(stream=stream, verbosity=2).run(suite)
+    transcript = stream.getvalue()
+
+    tests_run = int(result.testsRun)
+    failures = len(result.failures)
+    errors = len(result.errors)
+    returncode = 0 if result.wasSuccessful() else 1
+    status = "passed" if returncode == 0 else "failed"
+    summary = {
+        "status": status, "returncode": returncode, "tests_run": tests_run,
+        "failures": failures, "errors": errors, "python": sys.version, "transcript": transcript,
+        "execution_mode": "in-process unittest runner",
+    }
+    (report_dir / "static_test_results.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    md = [
+        "# LIFeling static reconstruction tests", "",
+        f"Status: **{status.upper()}**", "",
+        f"Tests run: **{tests_run}**; failures: **{failures}**; errors: **{errors}**.", "",
+        "Execution mode: **in-process unittest runner**.", "",
+        "```text", transcript.rstrip(), "```", "",
+    ]
+    (report_dir / "static_test_results.md").write_text("\n".join(md), encoding="utf-8")
+    if returncode != 0:
+        raise SystemExit("Static reconstruction tests failed; inspect reports/static_test_results.md")
+    return summary
+
+def source_rows(args, design, ng_version: str) -> list[dict]:
+    candidates = [
+        (Path(args.netlist), "authoritative KiCad netlist", "LIFeling(2).net"),
+        (ROOT / "sources/LIFeling.kicad_sch", "latest attached KiCad schematic cross-check", "LIFeling(1).kicad_sch"),
+        (ROOT / "sources/Spice.previous.py", "previous simulator comparison only", "Spice.py"),
+        (ROOT / "sources/run_full_validation.previous.ps1", "previous runner comparison only", "run_full_validation.ps1"),
+        (ROOT / "models/provided/1n4148_spice.lib", "provided vendor/cross-vendor model", "1n4148_spice.lib"),
+        (ROOT / "models/provided/lm2901.lib", "provided legacy/unused comparator model", "lm2901.lib"),
+        (ROOT / "models/provided/MCP6001.txt", "provided official Microchip family model", "MCP6001.txt"),
+        (ROOT / "models/compatible/MCP6001_ngspice.lib", "ngspice syntax-normalised copy of official Microchip family model", "MCP6001_ngspice.lib"),
+        (ROOT / "models/provided/MMBT3904.spice.txt", "provided cross-manufacturer discrete model", "MMBT3904.spice.txt"),
+        (ROOT / "sources/BOM.csv", "uploaded supplementary BOM context; not authoritative for connectivity", "BOM.csv"),
+    ]
+    if args.additional_source:
+        candidates.extend((Path(item), "additional uploaded source", Path(item).name) for item in args.additional_source)
+    rows = file_manifest(candidates, repository_commit=args.repository_commit, simulation_date=dt.datetime.now(dt.timezone.utc).isoformat(), ngspice_version=ng_version)
+    for row in rows:
+        if row["sha256"] == design.metadata.sha256:
+            row["export_date"] = design.metadata.export_date
+            row["kicad_tool"] = design.metadata.tool
+        else:
+            row["kicad_tool"] = ""
+    return rows
+
+
+def test_configs(output_dir: Path, profile: str) -> list[DeckConfig]:
+    common = dict(profile=profile, output_dir=output_dir, supply_mode="coin_fixed", battery_voltage=3.0, battery_resistance=20.0)
+    configs = [
+        DeckConfig(test_name="01_full_operating", tstop="500m", tstep="10u", initial_conditions={"Vm_Int": 0.55, "V_Syn_State": 1.024}, **common),
+        DeckConfig(test_name="02_peak_window_active_high", tstop="12m", tstep="1u", supply_mode="ideal", battery_voltage=3.0, battery_resistance=0.1, **{k:v for k,v in common.items() if k not in {"supply_mode","battery_voltage","battery_resistance"}}),
+        DeckConfig(test_name="03_stimulus_transfer_0V", tstop="80m", tstep="5u", stimulus_dc=0.0, **common),
+        DeckConfig(test_name="04_stimulus_transfer_1V024", tstop="80m", tstep="5u", stimulus_dc=1.024, **common),
+        DeckConfig(test_name="05_stimulus_transfer_2V048", tstop="80m", tstep="5u", stimulus_dc=2.048, **common),
+        DeckConfig(test_name="06_cold_start_dynamic_battery", tstop="50m", tstep="5u", supply_mode="coin_dynamic", battery_voltage=3.0, battery_resistance=35.0, battery_soc=0.75, save_nets=["VDD", "V_Boost", "VREF_2V048", "VREF_1V024", "Vm_Int", "AP", "Spike_Out"], **{k:v for k,v in common.items() if k not in {"supply_mode","battery_voltage","battery_resistance"}}),
+        DeckConfig(test_name="07_low_battery_high_impedance", tstop="250m", tstep="5u", battery_voltage=2.55, battery_resistance=80.0, **{k:v for k,v in common.items() if k not in {"battery_voltage","battery_resistance"}}),
+        DeckConfig(test_name="08_synapse_midpoint", tstop="250m", tstep="10u", synapse_pulses={1:(0.0,3.0,"50m","5m","100m")}, **common),
+        DeckConfig(test_name="09_power_switch_off", analysis="op", switch_state="off", **common),
+        DeckConfig(test_name="10_vm_ext_loaded_10k", tstop="250m", tstep="10u", vm_ext_load_ohm=10_000, **common),
+        DeckConfig(test_name="11_spike_out_loaded_10k", tstop="250m", tstep="10u", spike_out_load_ohm=10_000, **common),
+    ]
+    for index, fraction in enumerate((0.05, 0.25, 0.45, 0.65, 0.90), start=1):
+        pots = DeckConfig().pot_positions.copy(); pots["RV4"] = fraction
+        configs.append(DeckConfig(test_name=f"20_rv4_selector_region_{index}", tstop="80m", tstep="2u", pot_positions=pots, **common))
+    for control, prefix in (("RV1","30_rv1_leak"), ("RV2","31_rv2_leak_rate"), ("RV3","32_rv3_adaptation"), ("RV5","33_rv5_synapse_decay")):
+        for index, fraction in enumerate((0.1, 0.5, 0.9), start=1):
+            pots = DeckConfig().pot_positions.copy(); pots[control] = fraction
+            syn = {1:(0.0,3.0,"50m","5m","100m")} if control == "RV5" else {}
+            configs.append(DeckConfig(test_name=f"{prefix}_{index}", tstop="300m", tstep="10u", pot_positions=pots, synapse_pulses=syn, **common))
+    # Every synaptic sign/weight control is exercised independently at low, midpoint, and high.
+    for pot_index in range(6, 10):
+        for level_name, fraction in (("low",0.05), ("mid",0.50), ("high",0.95)):
+            pots = DeckConfig().pot_positions.copy(); pots[f"RV{pot_index}"] = fraction
+            channel = pot_index - 5
+            configs.append(DeckConfig(test_name=f"40_rv{pot_index}_syn{channel}_{level_name}", tstop="250m", tstep="10u", pot_positions=pots, synapse_pulses={channel:(0.0,3.0,"50m","5m","100m")}, **common))
+    for temperature in (-20.0, 25.0, 60.0):
+        configs.append(DeckConfig(test_name=f"50_temperature_{str(temperature).replace('-','m').replace('.','p')}C", tstop="250m", tstep="10u", temperature_c=temperature, **common))
+    for seed in range(1, 6):
+        configs.append(DeckConfig(test_name=f"60_tolerance_seed_{seed}", tstop="250m", tstep="10u", apply_tolerances=True, seed=seed, **common))
+    return configs
+
+
+def execute(args) -> int:
+    design = parse_netlist(Path(args.netlist))
+    registry = load_registry(Path(args.registry))
+    report_dir = Path(args.report_dir)
+    static_test_summary = ({"status": "skipped", "tests_run": 0, "failures": 0, "errors": 0}
+                           if args.skip_static_tests else run_static_tests(report_dir))
+    schematic_crosscheck = write_schematic_crosscheck(ROOT / "sources/LIFeling.kicad_sch", design, report_dir)
+    if schematic_crosscheck["blocking_failures"]:
+        raise SystemExit("Schematic/netlist cross-check failed; inspect reports/schematic_crosscheck.md")
+    generated_dir = Path(args.output_dir)
+    generated_dir.mkdir(parents=True, exist_ok=True)
+    # Audit and deck-generation commands do not need to start ngspice.  In
+    # particular, probing the Windows GUI launcher merely to obtain its version
+    # can display a modal "Information during setup" dialog.
+    if args.run:
+        binary = find_ngspice(args.ngspice_binary)
+        ng_version = ngspice_version(binary) if binary else "not installed/not executed"
+    else:
+        binary = None
+        ng_version = "not queried (audit/generate command)"
+    rows = source_rows(args, design, ng_version)
+    manifest_json, manifest_csv, manifest_sha, source_lock_sha = _write_manifest(rows, report_dir)
+
+    repository_snapshot = {
+        "repository": "MaximeZimmermann/LIFeling",
+        "branch": "main",
+        "commit_sha": args.repository_commit,
+        "commit_date": args.repository_date,
+        "attached_netlist_export": design.metadata.export_date,
+        "attached_files_newer": design.metadata.export_date[:10] > args.repository_date[:10],
+        "comparison_note": "Attached netlist is authoritative when it differs from main.",
+    }
+    (report_dir / "repository_snapshot.json").write_text(json.dumps(repository_snapshot, indent=2), encoding="utf-8")
+
+    findings = run_topology_audit(design)
+    resolutions = resolve_families(design, registry, ROOT, args.profile)
+    outputs = write_audit_outputs(design, registry, resolutions, findings, report_dir)
+    blocking = [item for item in findings if not item.passed and item.severity == "error"]
+    unresolved = [item for item in resolutions if item.model_status == "unresolved"]
+    if blocking:
+        raise SystemExit("Blocking topology audit failure: " + "; ".join(item.identifier for item in blocking))
+    if args.profile == "vendor" and unresolved:
+        raise SystemExit("Strict vendor model gate failed: " + ", ".join(item.value for item in unresolved))
+    if args.profile == "vendor":
+        adapter = ROOT / "models/vendor/vendor_adapters.lib"
+        missing_subckts, missing_models = validate_vendor_adapter_library(adapter)
+        if missing_subckts or missing_models:
+            details = []
+            if missing_subckts: details.append("subcircuits=" + ",".join(sorted(missing_subckts)))
+            if missing_models: details.append("model_cards=" + ",".join(sorted(missing_models)))
+            raise SystemExit("Strict vendor adapter gate failed: " + "; ".join(details))
+
+    configs = test_configs(generated_dir, args.profile) if args.suite else [DeckConfig(profile=args.profile, test_name=args.test_name, output_dir=generated_dir)]
+    if args.suite_test_name:
+        if not args.suite:
+            raise SystemExit("--suite-test-name requires --suite")
+        configs = [cfg for cfg in configs if cfg.test_name == args.suite_test_name]
+        if not configs:
+            available = ", ".join(cfg.test_name for cfg in test_configs(generated_dir, args.profile))
+            raise SystemExit(f"Unknown suite test {args.suite_test_name!r}. Available tests: {available}")
+    execution = []
+    generated_index = []
+    total_configs = len(configs)
+    partial_status_path = report_dir / "execution_status.partial.json"
+    for index, cfg in enumerate(configs, start=1):
+        text, represented = build_deck(design, cfg, ROOT, source_lock_sha)
+        fingerprint = deck_fingerprint(design, cfg, source_lock_sha)
+        deck_path = generated_dir / f"{safe_name(cfg.test_name)}_{fingerprint[:12]}.cir"
+        deck_path.write_text(text, encoding="utf-8")
+        generated_index.append({"test_name": cfg.test_name, "deck": str(deck_path), "deck_sha256": sha256_file(deck_path), "represented_references": len(represented), "source_manifest_sha256": manifest_sha, "source_lock_sha256": source_lock_sha, "config": dataclasses.asdict(cfg)})
+        if args.run:
+            print(
+                f"[{index:02d}/{total_configs:02d}] START {cfg.test_name} "
+                f"(analysis={cfg.analysis}, timeout={args.timeout_seconds:g}s)",
+                flush=True,
+            )
+            started = time.perf_counter()
+            result = run_deck(
+                deck_path,
+                cfg,
+                source_lock_sha,
+                args.ngspice_binary,
+                timeout_seconds=args.timeout_seconds,
+            )
+            elapsed = time.perf_counter() - started
+            result_row = dataclasses.asdict(result)
+            result_row["elapsed_seconds"] = round(elapsed, 6)
+            execution.append(result_row)
+            print(
+                f"[{index:02d}/{total_configs:02d}] {result.status.upper()} "
+                f"{cfg.test_name} in {elapsed:.1f}s",
+                flush=True,
+            )
+            partial_status_path.write_text(json.dumps(execution, indent=2), encoding="utf-8")
+        else:
+            execution.append({"test_name": cfg.test_name, "status": "not_executed", "source_lock_sha256": source_lock_sha, "deck": str(deck_path), "ngspice_version": ng_version, "message": "deck generated; --run was not requested"})
+    (report_dir / "generated_deck_index.json").write_text(json.dumps(generated_index, indent=2, default=str), encoding="utf-8")
+    (report_dir / "execution_status.json").write_text(json.dumps(execution, indent=2), encoding="utf-8")
+    if partial_status_path.exists():
+        partial_status_path.unlink()
+    diagnostics_summary, verdict_csv, verdict_md = write_suite_reports(execution, report_dir)
+    build_report(design, rows, repository_snapshot, findings, resolutions, execution, report_dir / "validation_report.md", static_test_summary)
+
+    machine_summary = {
+        "system_version": __version__, "netlist_sha256": design.metadata.sha256,
+        "source_manifest_sha256": manifest_sha, "source_lock_sha256": source_lock_sha, "component_count": len(design.components), "net_count": len(design.nets),
+        "blocking_topology_failures": len(blocking), "warnings": sum(1 for x in findings if not x.passed and x.severity == "warning"),
+        "decks_generated": len(configs), "runs_passed": sum(x.get("status")=="passed" for x in execution),
+        "runs_failed": sum(x.get("status")=="failed" for x in execution), "runs_not_executed": sum(x.get("status")=="not_executed" for x in execution),
+        "ngspice_version": ng_version, "python_version": platform.python_version(), "operating_system": platform.platform(),
+        "static_tests": static_test_summary, "schematic_crosscheck": schematic_crosscheck,
+        "outputs": {**{key:str(value) for key,value in outputs.items()}, "diagnostics_summary": str(diagnostics_summary), "verdict_csv": str(verdict_csv), "verdict_md": str(verdict_md)},
+    }
+    (report_dir / "validation_summary.json").write_text(json.dumps(machine_summary, indent=2), encoding="utf-8")
+    print(json.dumps(machine_summary, indent=2))
+    return 1 if machine_summary["runs_failed"] else 0
+
+
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description="Reconstruct and validate the latest physical LIFeling circuit from its KiCad netlist.")
+    parser.add_argument("command", nargs="?", choices=["audit", "generate", "run", "fetch-models"], default="generate")
+    parser.add_argument("--netlist", type=Path, default=DEFAULT_NETLIST)
+    parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
+    parser.add_argument("--report-dir", type=Path, default=DEFAULT_REPORTS)
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_GENERATED)
+    parser.add_argument("--profile", choices=["portable", "hybrid", "vendor"], default="hybrid")
+    parser.add_argument("--suite", action="store_true", help="Generate/run the full validation matrix.")
+    parser.add_argument("--test-name", default="full_operating")
+
+    parser.add_argument("--suite-test-name", help="With --suite, run only the named specialised suite configuration.")
+    parser.add_argument("--ngspice-binary", default="auto")
+    parser.add_argument(
+        "--timeout-seconds",
+        type=float,
+        default=180.0,
+        help="Maximum wall-clock time allowed for each ngspice deck (default: 180 s).",
+    )
+    parser.add_argument("--repository-commit", default=DEFAULT_REPOSITORY_COMMIT)
+    parser.add_argument("--repository-date", default=DEFAULT_REPOSITORY_DATE)
+    parser.add_argument("--additional-source", action="append", default=[])
+    parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--skip-static-tests", action="store_true", help="Skip the automatic packaged static reconstruction tests.")
+    args = parser.parse_args(argv)
+    if args.timeout_seconds <= 0:
+        parser.error("--timeout-seconds must be greater than zero")
+    if args.command == "fetch-models":
+        registry = load_registry(args.registry)
+        print(fetch_vendor_models(registry, ROOT, overwrite=args.overwrite))
+        return 0
+    args.run = args.command == "run"
+    if args.command == "audit":
+        args.suite = False
+    return execute(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
